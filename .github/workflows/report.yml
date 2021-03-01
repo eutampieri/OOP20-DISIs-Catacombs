@@ -1,5 +1,5 @@
 name: 'Generate report'
-true: push
+on: push
 jobs:
   pdflatex:
     name: 'Compile LaTeX'
