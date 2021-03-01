@@ -1,0 +1,17 @@
+name: 'Generate report'
+true: push
+jobs:
+  pdflatex:
+    name: 'Compile LaTeX'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: 'Run pdflatex'
+        run: 'cd report && pdflatex report.tex'
+        shell: bash
+      - name: 'Archive production artifacts'
+        uses: actions/upload-artifact@v2
+        with:
+          name: report
+          path: report/report.pdf
