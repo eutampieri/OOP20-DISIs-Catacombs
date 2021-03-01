@@ -1,5 +1,7 @@
 # Procedural dungeon project
 
+[![Generate report](https://github.com/eutampieri/OOP20-procedural-dungeon/actions/workflows/report.yml/badge.svg)](https://github.com/eutampieri/OOP20-procedural-dungeon/actions/workflows/report.yml)
+
 Il gioco consiste in un dungeon procedurale generato in maniera randomica in cui il personaggio utilizza armi trovate durante la partita ed eventuali abilità per superare una serie di piani e sconfiggere un boss finale.
 
 ## Funzionalità minimali ritenute obbligatorie:
