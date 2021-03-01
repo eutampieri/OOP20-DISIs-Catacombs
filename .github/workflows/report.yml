@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v2
       - name: 'Run pdflatex'
         run: |
-          sudo apt install texlive
+          sudo apt install texlive-pictures
           cd report
           pdflatex report.tex
         shell: bash
