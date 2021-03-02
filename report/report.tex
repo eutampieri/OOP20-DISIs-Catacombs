@@ -4,9 +4,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{pgf-umlcd}
+\usepackage{biblatex}
+\usepackage[style=numeric-comp]{biblatex}
 
+\addbibresource{bibliografia.bib}
 \title{DISI's catacomb report}
 \author{Chelli M., Monti G., Sanità R., Tampieri E.}
+
 \begin{document}
 	\maketitle
 	\tableofcontents
@@ -44,7 +48,5 @@
 	\section{Sviluppo}
 	\section{Commenti finali}
 	\section{Guida utente}
-	\bibliography{bibliografia} 
-	\bibliographystyle{ieeetr}
+	\printbibliography
 \end{document}
-
