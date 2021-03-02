@@ -11,9 +11,40 @@
 	\maketitle
 	\tableofcontents
 	\section{Analisi}
+	% Qui si meotte la parte di analisi
+	\par Il team si pone l'obiettivo di realizzare un gioco 2D roguelike,
+	ovvero caratterizzato dall'esplorazione di livelli generati proceduralmente
+	di un dungeon, da un gameplay a turni, da grafica tile-based e la morte
+	permanente del giocatore \cite{wiki:Roguelike}, simile ai giochi Enter the
+	Gungeon e Nuclear Throne.
+	\par Il giocatore dovrà affrontare una serie di piani composti da stanze contenenti nemici e
+	oggetti fino ad arrivare a un boss finale. La mappa di gioco sarà generata
+	in modo casuale e sarà casuale anche la stanza in cui il personaggio comincerà
+	la sua avventura.
+	\par Inizialmente il protagonista avrà 5 vite, un armatura al 100\%
+	e un arma base che potrà cambiare con armi più avanzate che troverà nel corso
+	della partità. Ad ogni colpo subito il personaggio perderà una percentuale dell'
+	armatura nel momento in cui l'armatura raggiungerà la percentuale dello 0\%
+	il danno subito toglierà una vita al personaggio, se il personaggio perde tutte
+	e 5 le vite il giocatore ha perso e il gioco termina.
+	\par Il gioco può terminare anche se viene sconfitto il boss della mappa ovvero
+	un nemico di dimensione maggiore rispetto a quelli incontrati nelle stanze precedenti.
+	Tale boss possiederà anche abilità superiori e armi letali per il personaggio.
+	\par Se il giocatore si trova in difficoltà può trovare sparsi per la mappa di gioco
+	alcune vite o armature che lo aiuteranno a sopravvivere fino alla battaglia finale.
+	\par Esistono 2 tipi di nemici base:
+	\begin{itemize}
+		\item Nemici che attaccano da lontano
+		\item Nemici che attaccano da vicino
+	\end{itemize}
+	\par Il gioco si basa sull'abilità del giocatore ma anche su una percentuale di
+	fortuna nel trovare vite, armature ed armi che lo aiuteranno a sconfiggere il
+	boss finale.
 	\section{Design}
 	\section{Sviluppo}
 	\section{Commenti finali}
 	\section{Guida utente}
+	\bibliography{bibliografia} 
+	\bibliographystyle{ieeetr}
 \end{document}
 
