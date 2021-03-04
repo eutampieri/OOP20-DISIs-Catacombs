@@ -53,6 +53,22 @@
 		\item Il gioco dovrà avere una grafica e comandi chiari e intuitivi.
 	\end{itemize}
 	\section{Analisi e modello del dominio}
+	% modello del dom
+	\par Il sistema gestisce la generazione delle mappe con le varie stanze e le interazioni tra il 
+	personaggio e i nemici. 
+	\par Oltre ai nemici il personaggio potrà interagire con oggetti trovati nelle varie stanze.
+	\par Il personaggio possiede principalmente un numero di vite che aumenteranno con gli oggetti 
+	o diminuiranno se colpiti da un nemico e una abilità speciale con un tempo di recupero variabile a seconda degli oggetti.
+	\par I nemici potranno essere di due tipi principali, melee (che attaccano da vicino) e ranged (che attaccano da lontano) 
+	e si muoveranno all'interno delle stanze e avranno una vita massima. Nemici più difficili da sconfiggere, 
+	come i Boss avranno una maggiore vita massima e mosse speciali che useranno in determinati step durante il combattimento. 
+	\par La mappa è strutturata in più livelli. Ogni livello è costituito da varie stanze stanze dove compariranno nemnici, 
+	NPC ("Non Playable Character") e/o oggetti utilizzabili dal giocatore. Al termine di ogni stanza il giocatore si potrà 
+	spostare a quelle adiacenti o esplorare la mappa. Una sola stanza permetterà di passare al piano successivo. 
+	Arrivato all'ultimo paino in personaggio dovrà affrontare il Boss e dopo il combattimento il gioco terminerà. 
+	\par \par Gli elementi considerati nel modello sono sintetizzati in Figura 1.1
+	
+	
 	\chapter{Design}
 	\section{Architettura}
 	\section{Design dettagliato}
