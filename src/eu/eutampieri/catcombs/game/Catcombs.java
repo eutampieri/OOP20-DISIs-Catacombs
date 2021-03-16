@@ -1,4 +1,4 @@
-package it.unibo.oop20.catcombs.game;
+package eu.eutampieri.catcombs.game;
 
 public class Catcombs {
 
