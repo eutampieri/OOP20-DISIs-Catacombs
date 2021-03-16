@@ -9,10 +9,10 @@ jobs:
         uses: actions/checkout@v2
       - name: 'Run pdflatex'
         run: |
-          sudo apt install texlive-pictures texlive-lang-italian
+          sudo apt install texlive-pictures texlive-lang-italian biber
           cd report
           pdflatex report.tex
-          biber report.tex
+          biber report
           pdflatex report.tex
         shell: bash
       - name: 'Archive production artifacts'
