@@ -1,4 +1,4 @@
-package eu.eutampieri.catcombs.model;
+package eu.eutampieri.catacombs.model;
 
 public enum ID {
 

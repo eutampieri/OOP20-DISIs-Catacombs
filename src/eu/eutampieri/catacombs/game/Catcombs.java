@@ -1,4 +1,4 @@
-package eu.eutampieri.catcombs.game;
+package eu.eutampieri.catacombs.game;
 
 public class Catcombs {
 

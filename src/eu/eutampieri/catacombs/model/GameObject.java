@@ -1,10 +1,10 @@
-package eu.eutampieri.catcombs.model;
+package eu.eutampieri.catacombs.model;
 
 public abstract class GameObject {
 
 	protected int posX, posY;
 	protected ID id;
-	protected velX, velY;
+	protected int velX, velY;
 	
 	public GameObject(int x, int y, ID id) {
 		this.posX = x;
