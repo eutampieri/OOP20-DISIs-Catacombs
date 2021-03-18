@@ -4,6 +4,8 @@ public enum ID {
 
 	Player(),
 	Enemy(), 
-	Pickup();
+	Pickup(),
+	Gun(),
+	Item();
 	
 }
