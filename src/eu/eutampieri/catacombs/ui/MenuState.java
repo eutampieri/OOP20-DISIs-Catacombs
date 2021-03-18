@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import eu.eutampieri.catacombs.ui.utils.FontUtils;
+
 public class MenuState extends State {
 	
 	private static final int START_GAME = 1;
@@ -18,26 +20,31 @@ public class MenuState extends State {
 		super(game);
 	}
 	
-	public void update() {
-		// da completare
+	@Override
+	public void update(float delta) {
+		// implementare key manager
+		
 	}
 	
 	public void render(Graphics2D g2) {
 		g2.setColor(Color.black);
-		// g2.fillRect(x, y, width, height);
+		g2.fillRect(0, 0, Game.getGameWidth(), Game.getGameHeight());
 		g2.setColor(Color.white);
 		
 		// title
 		g2.setFont(this.titleFont);
 		String title = "CATACOMBS";
-		// da implementare position x
+		float x = (Game.getWidth() - FontUtils.getTextWidth(titleFont, title)) / 2;
+		g2.drawString(title, x, titleFont.getSize() + 20);
 		
 		// options
 		g2.setFont(this.font);
 		String start = "Start";
-		// da implementare position x1
+		float x1 = (Game.getWidth() - FontUtils.getTextWidth(font, start)) / 2;
+		g2.drawString(start, x1, titleFont.getSize() + 80);
 		String quit = "Quit";
-		// da implementare position x2
+		float x2 = (Game.getWidth() - FontUtils.getTextWidth(font, quit)) / 2;
+		g2.drawString(quit, x2, titleFont.getSize() + font.getSize() + 100);
 		
 		// selection
 		int x3 = (int) (this.optionSelected == START_GAME ? x1 - 30 : x2 - 30 );

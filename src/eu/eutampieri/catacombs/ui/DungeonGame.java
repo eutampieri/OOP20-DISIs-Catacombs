@@ -1,6 +1,6 @@
 package eu.eutampieri.catacombs.ui;
 
-public class DungeonGame {
+public class DungeonGame extends Game {
 	
 	private MenuState menuState;
 	private State state;
@@ -26,7 +26,7 @@ public class DungeonGame {
 	}
 	
 	public void render() {
-		// da implementare
+		this.state.render(graphics);
 	}
 	
 	// da implementare nextLevel startGame e restartLevel
