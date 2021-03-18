@@ -1,8 +1,10 @@
 package eu.eutampieri.catacombs.model;
 
-
-public class Bat extends GameObject{ //general enemy for example purpose
-
+/**
+ * Enemy Bat class
+ *
+ */
+public class Bat extends GameObject implements LivingCharacter{ 
 	public Bat(int x, int y) {
 		super(x, y, ID.Enemy);
 		
@@ -16,6 +18,18 @@ public class Bat extends GameObject{ //general enemy for example purpose
 
 	@Override
 	public void render() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getHealth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setHealth(int health) {
 		// TODO Auto-generated method stub
 		
 	}

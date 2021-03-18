@@ -1,9 +1,12 @@
 package eu.eutampieri.catacombs.model;
 
-public class Gun extends GameObject{
+public class Gun extends SimpleWeapon{
 
-	public Gun(int x, int y) {
-		super(0, 0, ID.Enemy);
+
+
+	Gun(int damage, String name) {
+		super(damage, name);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

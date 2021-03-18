@@ -1,10 +1,15 @@
 package eu.eutampieri.catacombs.model;
 
 public class Player extends GameObject implements LivingCharacter{
-	private int health = 100;
+	private static final int BASE_MOVEMENT_SPEED = 2;
+	private static final int MAX_BASE_HP = 100;
+	private int health;
 
 	public Player(int x, int y, ID id) {
-		super(x, y, id);
+		super(x, y, ID.Player);
+		setVelX(BASE_MOVEMENT_SPEED);
+		setVelY(BASE_MOVEMENT_SPEED);
+		this.setHealth(MAX_BASE_HP);
 	}
 
 	@Override
@@ -22,5 +27,18 @@ public class Player extends GameObject implements LivingCharacter{
 		}
 
 	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void render() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }
