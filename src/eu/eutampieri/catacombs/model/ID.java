@@ -7,5 +7,4 @@ public enum ID {
 	Pickup(),
 	Gun(),
 	Item();
-	
 }
