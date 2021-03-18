@@ -18,7 +18,7 @@ public class DungeonGame {
 	}
 	
 	public void setMenuState() {
-		setState(this.menuState)
+		setState(this.menuState);
 	}
 	
 	public void update(float delta) {
