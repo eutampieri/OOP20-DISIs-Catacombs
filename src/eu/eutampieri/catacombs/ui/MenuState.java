@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-public class MenuState {
+public class MenuState extends State {
 	
 	private static final int START_GAME = 1;
 	private static final int END_GAME = 2;
@@ -14,8 +14,8 @@ public class MenuState {
 	
 	private int optionSelected = START_GAME;
 	
-	public MenuState() {
-		// da completare
+	public MenuState(DungeonGame game) {
+		super(game);
 	}
 	
 	public void update() {
@@ -48,6 +48,4 @@ public class MenuState {
 		
 	}
 	
-	
-
 }
