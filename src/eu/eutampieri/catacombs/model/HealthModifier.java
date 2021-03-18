@@ -12,4 +12,6 @@ public interface HealthModifier {
 		currentHealth += this.getHealthDelta();
 		character.setHealth(currentHealth);
 	}
+	
+	public String getName();
 }
