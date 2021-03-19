@@ -11,13 +11,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.image.BufferStrategy;
 import java.awt.image.VolatileImage;
 
+import eu.eutampieri.catacombs.ui.input.KeyManager;
+import eu.eutampieri.catacombs.ui.input.MouseManager;
 import eu.eutampieri.catacombs.window.MainWindow;
 
 public abstract class Game implements Runnable {
 	
 	public static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
-	// implementare key manager
-	// implementare mouse manager
+	public static final KeyManager keyManager = new KeyManager();
+	public static final MouseManager mouseManager = new MouseManager();
 	
 	protected static MainWindow mainFrame;
 	protected static GameConfiguration gameConfiguration;
@@ -62,13 +64,13 @@ public abstract class Game implements Runnable {
 	}
 	
 	public final void initialize(GameConfiguration config) {
-		this.gameConfiguration = config;
-		this.mainFrame = new MainWindow(config.getTitle(),config.getGameWidth(),config.getGameHeight(),
+		gameConfiguration = config;
+		mainFrame = new MainWindow(config.getTitle(),config.getGameWidth(),config.getGameHeight(),
 				config.fullScreen(),config.resizeable());
-		this.mainFrame.getCanvas().setBackground(Color.BLACK);
+		mainFrame.getCanvas().setBackground(Color.BLACK);
 		this.fps = config.getFps();
-		this.gc = this.mainFrame.getCanvas().getGraphicsConfiguration();
-		this.mainFrame.getFrame().addComponentListener(new ComponentListener() {
+		gc = mainFrame.getCanvas().getGraphicsConfiguration();
+		mainFrame.getFrame().addComponentListener(new ComponentListener() {
 
 			@Override
 			public void componentResized(ComponentEvent e) {
@@ -95,7 +97,8 @@ public abstract class Game implements Runnable {
 			
 		});
 		
-		// aggiungere gli adapter
+		addKeyAdapter(keyManager);
+		addMouseAdapter(mouseManager);
 	}
 	
 	private void preRender() {
@@ -184,7 +187,7 @@ public abstract class Game implements Runnable {
 			while ((now -lastUpdateTime) >= tickPerTime) {
 				float delta;
 				delta = (now -lastUpdateTime) / 1000000000.0f;
-				//  da implementare
+				keyManager.update(delta);
 				delta = delta <= 0.016f ? delta : 0.016f;
 				update(delta);
 				lastUpdateTime += tickPerTime;
@@ -216,6 +219,20 @@ public abstract class Game implements Runnable {
 			}
 		}
 	}
+	
+	protected void renderfpsCount(Color color) {
+		graphics.setFont(DEFAULT_FONT);
+		graphics.setColor(color);
+		graphics.drawString("FRAME PER SECOND : " + framesThisSecond,
+				gameConfiguration.isScaling() ? gameConfiguration.getGameWidth() - 160 : getWidth() - 160,
+				10 + graphics.getFont().getSize());
+	}
+
+	protected void renderfpsCount(Color color, int x, int y) {
+		graphics.setColor(color);
+		graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
+	}
+
 	
 	public void addKeyAdapter(KeyAdapter e) {
 		mainFrame.getCanvas().addKeyListener(e);

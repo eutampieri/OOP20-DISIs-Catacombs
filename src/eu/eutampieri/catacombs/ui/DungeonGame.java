@@ -31,6 +31,15 @@ public class DungeonGame extends Game {
 	
 	// da implementare nextLevel startGame e restartLevel
 	
-	
+	public void startgame() {
+		
+	}
 
+	public void restartLevel() {
+		
+	}
+	
+	public void nextLevels() {
+		
+	}
 }
