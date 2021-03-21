@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map.Entry;
 
 import eu.eutampieri.catacombs.ui.utils.ImageRotator;
 
@@ -18,11 +19,24 @@ public class AssetManager {
 		return this.allAnimations.get(key);
 	}
 	
+	public BufferedImage getImage(String key) {
+		return this.allImages.get(key);
+	}
+	
+	public String getImageKey(BufferedImage image) {
+		for (Entry<String,BufferedImage> entry : this.allImages.entrySet()) {
+			if (entry.getValue() == image) {
+				return entry.getKey();
+			}
+		}
+		return null;
+	}
+	
 	public void load() {
 		loadSlimeAnimations();
 		loadBatAnimations();
 		loadPlayerAnimations();
-		loadImage();
+		loadImages();
 	}
 	
 	public BufferedImage horizontalFlip(BufferedImage image) {
@@ -35,7 +49,7 @@ public class AssetManager {
 		return flippedImage;
 	}
 	
-	public void loadImage() {
+	public void loadImages() {
 		// Tiles
 		GameSheets tileSheet = new GameSheets("/tileSheet.png");
 		int count = 1;
