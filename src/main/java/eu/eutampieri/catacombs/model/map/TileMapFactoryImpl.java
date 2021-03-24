@@ -192,7 +192,7 @@ public class TileMapFactoryImpl implements TileMapFactory {
 			}
 			makeCorridor(p0, p, res); // add the corridor to the tree
 			if (rand.nextInt(4) == 0) { // choose if to add a random corridor (dead end or cycle) to this room too
-				var randomPoint = new Point(rand.nextInt(w), rand.nextInt(h));
+				var randomPoint = new Point(rand.nextInt(w - 2) + 1, rand.nextInt(h - 2) + 1);
 				if (p.dist(randomPoint) <= 2 * maxRoomDist) { // if the corridor would be too long, don't add it
 					makeCorridor(p, randomPoint, res);
 				}
