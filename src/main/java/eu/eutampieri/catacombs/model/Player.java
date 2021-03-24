@@ -4,12 +4,14 @@ public class Player extends GameObject implements LivingCharacter{
 	private static final int BASE_MOVEMENT_SPEED = 2;
 	private static final int MAX_BASE_HP = 100;
 	private int health;
+    private String name;
 
-	public Player(int x, int y, ID id) {
+	public Player(int x, int y, String name) {
 		super(x, y, ID.Player);
 		setVelX(BASE_MOVEMENT_SPEED);
 		setVelY(BASE_MOVEMENT_SPEED);
 		this.setHealth(MAX_BASE_HP);
+		this.name = name;
 	}
 
 	@Override
@@ -39,6 +41,10 @@ public class Player extends GameObject implements LivingCharacter{
 		// TODO Auto-generated method stub
 		
 	}
+    public String getName() {
+        return name;
+    }
 
-	
+
+
 }

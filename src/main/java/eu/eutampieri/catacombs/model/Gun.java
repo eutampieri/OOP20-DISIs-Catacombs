@@ -4,7 +4,7 @@ public class Gun extends SimpleWeapon{
 
 	private static final String WEAPON_NAME = "Gun";
 
-	Gun(int damage) {
+	public Gun(int damage) {
 		super(damage, WEAPON_NAME);
 		// TODO Auto-generated constructor stub
 	}
