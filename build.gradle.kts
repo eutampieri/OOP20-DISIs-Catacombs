@@ -4,6 +4,7 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application.
     application
+    jacoco
 }
 
 repositories {
@@ -50,4 +51,34 @@ task("runMain", JavaExec::class) {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+}
+
+jacoco {
+    toolVersion = "0.8.6"
+    reportsDirectory.set(file("$buildDir/jacoco"))
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.isEnabled = true
+        xml.destination = file("$buildDir/jacoco/report.xml")
+        csv.isEnabled = false
+        html.isEnabled = true
+        html.destination = file("$buildDir/jacoco/html")
+    }
+}
+
+tasks.jacocoTestCoverageVerification {
+    dependsOn(tasks.jacocoTestReport)
+    violationRules {
+        rule {
+            limit {
+                minimum = "0.85".toBigDecimal()
+            }
+        }
+    }
 }
