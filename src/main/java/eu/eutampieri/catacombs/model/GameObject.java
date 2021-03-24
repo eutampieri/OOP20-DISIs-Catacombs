@@ -16,7 +16,7 @@ public abstract class GameObject {
 	 * 
 	 * @param x object X position
 	 * @param y	object Y position
-	 * @param id object ID @see eu.tampieri.catacombs.model.ID
+	 * @param id object ID @see eu.eutampieri.catacombs.model.ID
 	 */
 	public GameObject(int x, int y, ID id) {
 		this.posX = x;
@@ -24,7 +24,11 @@ public abstract class GameObject {
 		this.id = id;
 	}
 
-	public abstract void update();
+	/**
+	 *
+	 * @param delta time between updates
+	 */
+	public abstract void update(float delta);
 	public abstract void render();
 
 	/**
@@ -73,6 +77,11 @@ public abstract class GameObject {
 
 	public void setVelY(int velY) {
 		this.velY = velY;
+	}
+
+	public void setBothVelAsEquals(int vel) {
+		this.velX = vel;
+		this.velY = vel;
 	}
 
 	public ID getId() {

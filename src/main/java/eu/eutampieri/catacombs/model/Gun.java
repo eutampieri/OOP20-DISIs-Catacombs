@@ -4,15 +4,13 @@ public class Gun extends SimpleWeapon{
 
 	private static final String WEAPON_NAME = "Gun";
 
-	public Gun(int damage) {
-		super(damage, WEAPON_NAME);
-		// TODO Auto-generated constructor stub
+	Gun(int damage, String name, int fireRate, int range, int magazine) {
+		super(damage, name, fireRate, range, magazine);
 	}
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
+	public void update(float delta) {
+
 	}
 
 	@Override

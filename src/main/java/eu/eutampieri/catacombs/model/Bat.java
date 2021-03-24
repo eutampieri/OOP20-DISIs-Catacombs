@@ -1,25 +1,41 @@
 package eu.eutampieri.catacombs.model;
 
+import eu.eutampieri.catacombs.model.map.TileMap;
+
 /**
  * Enemy Bat class
  *
  */
-public class Bat extends GameObject implements LivingCharacter{ 
-	public Bat(int x, int y) {
-		super(x, y, ID.Enemy);
-		
+public class Bat extends Entity {
+
+	private SimpleWeapon weapon;
+	private boolean isMoving;
+	private float moveDelay;
+
+	public Bat(int x, int y, TileMap tileMap) {
+		super(x, y, tileMap);
+		setHeight(16);
+		setWidth(16);
+		setBothVelAsEquals(1);
+		setHealth(8);
+
+		// TODO Animations
+
+		// box = new CollisionBox();
+
+		// TODO Enemy targeting box
 	}
 
 	@Override
-	public void update() {
+	public void update(float delta) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void render() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -31,7 +47,7 @@ public class Bat extends GameObject implements LivingCharacter{
 	@Override
 	public void setHealth(int health) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
