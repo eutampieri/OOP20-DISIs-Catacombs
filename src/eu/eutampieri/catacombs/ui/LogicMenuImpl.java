@@ -8,6 +8,7 @@ public class LogicMenuImpl implements LogicMenu {
 	private static final int QUIT_GAME = 2;
 	
 	private int optionSelected = START_GAME;
+	
 	public DungeonGame game;
 	
 	public LogicMenuImpl(DungeonGame game) {
