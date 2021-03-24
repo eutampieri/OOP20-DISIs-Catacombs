@@ -1,24 +1,22 @@
 package eu.eutampieri.catacombs.model;
 
-public class Gun extends SimpleWeapon {
+public class Gun extends SimpleWeapon{
 
-    private static final String WEAPON_NAME = "Gun";
+	private static final String WEAPON_NAME = "Gun";
 
-    public Gun(final int damage) {
-        super(damage, WEAPON_NAME);
-        // TODO Auto-generated constructor stub
-    }
+	Gun(int damage, String name, int fireRate, int range, int magazine) {
+		super(damage, name, fireRate, range, magazine);
+	}
 
-    @Override
-    public void update() {
-        // TODO Auto-generated method stub
+	@Override
+	public void update(float delta) {
 
-    }
+	}
 
-    @Override
-    public void render() {
-        // TODO Auto-generated method stub
-
-    }
+	@Override
+	public void render() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

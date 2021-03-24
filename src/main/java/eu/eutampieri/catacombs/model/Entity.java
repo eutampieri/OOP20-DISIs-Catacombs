@@ -1,6 +1,5 @@
 package eu.eutampieri.catacombs.model;
 
-import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 
 public abstract class Entity extends GameObject implements LivingCharacter{
@@ -17,7 +16,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
     protected int width, height;
 
     protected TileMap tileMap;
-    protected CollisionBox hitBox;
+    //protected CollisionBox box;
 
     public Entity(int x, int y, TileMap tileMap) {
         super(x, y, ID.Enemy);
@@ -45,7 +44,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
     }
 
     @Override
-    public void update(int delta) {
+    public void update(float delta) {
         move();
         updateSpriteLocation();
     }
@@ -56,51 +55,51 @@ public abstract class Entity extends GameObject implements LivingCharacter{
     }
 
     protected void move() {
-        if(up) {
-            if (!isUpCollision(speedY)) {
-                hitBox.posY -= speedY;
+        if (up) {
+            if (!isUpCollision(velY)) {
+                //box.y -= velY;
             }
             face = FACE_UP;
         }
-        if(down) {
-            if (!isDownCollision(speedY)) {
-                hitBox.posY += speedY;
+        if (down) {
+            if (!isDownCollision(velY)) {
+                //box.y += velY;
             }
             face = FACE_DOWN;
         }
-        if(left) {
-            if (!isLeftCollision(speedX)) {
-                hitBox.posX -= speedX;
+        if (left) {
+            if (!isLeftCollision(velX)) {
+                //box.x -= velX;
             }
             face = FACE_LEFT;
         }
-        if(right) {
-            if (!isRightCollision(speedX)) {
-                hitBox.posX += speedX;
+        if (right) {
+            if (!isRightCollision(velX)) {
+                //box.x += velX;
             }
             face = FACE_RIGHT;
         }
     }
 
     protected boolean isUpCollision(float dy) {
-        return tileMap.at(posX, posY-1)==Tile.WALL;
+        return false;
     }
 
     protected boolean isRightCollision(float dx) {
-        return tileMap.at(posX+1, posY)==Tile.WALL;
+        return false;
     }
 
     protected boolean isDownCollision(float dy) {
-        return tileMap.at(posX, posY+1)==Tile.WALL;
+        return false;
     }
 
     protected boolean isLeftCollision(float dx) {
-        return tileMap.at(posX-1, posY)==Tile.WALL;
+        return false;
     }
 
     protected void updateSpriteLocation() {
-        this.posX = hitBox.posX;
-        this.posY = hitBox.posY;
+        //this.posX = box.x;
+        //this.posY = box.y;
     }
 
     protected void resetMovement() {

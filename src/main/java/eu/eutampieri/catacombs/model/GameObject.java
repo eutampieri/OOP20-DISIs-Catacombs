@@ -1,16 +1,18 @@
 package eu.eutampieri.catacombs.model;
 
 /**
- * Abstract class for every game object (ex: Player, enemies, items, ecc...).
+ * 
+ * Abstract class for every game object (ex: Player, enemies, items, ecc...)
+ *
  */
 public abstract class GameObject {
 
 	protected int posX, posY;
 	protected ID id;
-	protected int speedX, speedY;
+	protected int velX, velY;
 	
 	/**
-	 * GameObject constructor.
+	 * GameObject constructor base
 	 * 
 	 * @param x object X position
 	 * @param y	object Y position
@@ -26,7 +28,7 @@ public abstract class GameObject {
 	 *
 	 * @param delta time between updates
 	 */
-	public abstract void update(int delta);
+	public abstract void update(float delta);
 	public abstract void render();
 
 	/**
@@ -61,26 +63,25 @@ public abstract class GameObject {
 		this.posY = posY;
 	}
 
-	public int getSpeedX() {
-		return speedX;
+	public int getVelX() {
+		return velX;
 	}
 
-	public void setSpeedX(int velX) {
-		this.speedX = velX;
+	public void setVelX(int velX) {
+		this.velX = velX;
 	}
 
-	public int getSpeedY() {
-		return speedY;
+	public int getVelY() {
+		return velY;
 	}
 
-	public void setSpeedY(int velY) {
-		this.speedY = velY;
+	public void setVelY(int velY) {
+		this.velY = velY;
 	}
 
-	public void setSpeed(int vel) {
-		this.speedX = vel;
-		this.speedY = vel;
-
+	public void setBothVelAsEquals(int vel) {
+		this.velX = vel;
+		this.velY = vel;
 	}
 
 	public ID getId() {
