@@ -1,9 +1,7 @@
-package test;
-
-
 import org.junit.jupiter.api.Test;
 
-import static junit.framework.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
+
 
 class MapTests {
     @Test
