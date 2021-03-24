@@ -19,7 +19,7 @@ jobs:
       - name: Build JAR with Gradle
         run: ./gradlew jar
       - name: 'Archive production artifacts'
-          uses: actions/upload-artifact@v2
-          with:
-            name: jar
-            path: build/libs/OOP20-procedueal-dungeon.jar
+        uses: actions/upload-artifact@v2
+        with:
+          name: jar
+          path: build/libs/OOP20-procedueal-dungeon.jar
