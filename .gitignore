@@ -2,3 +2,5 @@
 **/build/
 !src/**/build/
 .gradle
+.settings
+/build/*

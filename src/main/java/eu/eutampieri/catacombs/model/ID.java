@@ -3,7 +3,9 @@ package eu.eutampieri.catacombs.model;
 public enum ID {
 
 	Player(),
-	Enemy(), 
-	Pickup();
-	
+	Enemy(),
+	Boss(),
+	Pickup(),
+	Weapon(),
+	Item();
 }
