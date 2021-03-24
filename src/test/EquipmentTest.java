@@ -2,9 +2,11 @@ package test;
 
 import org.junit.jupiter.api.Test;
 import eu.eutampieri.catacombs.model.*;
+import org.junit.jupiter.api.TestInstance;
 
 import static junit.framework.Assert.assertEquals;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class EquipmentTest {
 
 	@Test
