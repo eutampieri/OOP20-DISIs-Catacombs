@@ -1,11 +1,13 @@
 package eu.eutampieri.catacombs.game;
 
 
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
-public class Tests {
+import static junit.framework.Assert.fail;
+
+class Tests {
 	@Test
-	public void testGameLaunch() {
-		Assert.fail("Not yet implemented");
+	void testGameLaunch() {
+		fail("Not yet implemented");
 	}
 }
