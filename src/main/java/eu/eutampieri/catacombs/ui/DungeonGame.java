@@ -29,7 +29,7 @@ public class DungeonGame extends Game {
 		this.state.render(graphics);
 	}
 	
-	// da implementare nextLevel startGame e restartLevel
+	// TODO nextLevel startGame e restartLevel
 	
 	public void startgame() {
 		
