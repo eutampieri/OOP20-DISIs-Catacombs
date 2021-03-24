@@ -24,7 +24,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = "eu.eutampieri.catcombs.game.Catcombs"
+    mainClassName = "eu.eutampieri.catacombs.game.Catcombs"
 }
 
 tasks.register("listPlugins") {
@@ -37,12 +37,15 @@ tasks.register("listPlugins") {
 
 val jar by tasks.getting(Jar::class) {
     manifest {
-        attributes["Main-Class"] = "eu.eutampieri.catcombs.game.Catcombs"
+        attributes["Main-Class"] = "eu.eutampieri.catacombs.game.Catcombs"
     }
 }
 
 task("runMain", JavaExec::class) {
-    main = "eu.eutampieri.catcombs.game.Catcombs"
+    main = "eu.eutampieri.catacombs.game.Catcombs"
     classpath = sourceSets["main"].runtimeClasspath
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
