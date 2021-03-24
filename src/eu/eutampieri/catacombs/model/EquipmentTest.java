@@ -1,8 +1,8 @@
 package eu.eutampieri.catacombs.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+
+import static junit.framework.Assert.assertEquals;
 
 class EquipmentTest {
 
@@ -10,7 +10,7 @@ class EquipmentTest {
 	void testSimpleWeapon() {
 		Player p = new Player(0,0, ID.Player);
 		final int healthOnCreation = p.getHealth();
-		final HealthModifier h = new SimpleWeapon(21, "Weapon21");
+		final HealthModifier h = new Gun(21);
 		h.useOn(p);
 		assertEquals(p.getHealth(), healthOnCreation - 21);
 	}
@@ -18,7 +18,7 @@ class EquipmentTest {
 	@Test
 	void testHealthUnderflow() {
 		Player p = new Player(0,0, ID.Player);
-		final HealthModifier h = new SimpleWeapon(21, "Weapon21");
+		final HealthModifier h = new Gun(21);
 		for(int i = 0; i < 5; i++) {
 			h.useOn(p);
 		}
@@ -37,7 +37,7 @@ class EquipmentTest {
 	void testSimplePotionAfterWeapon() {
 		Player p = new Player(0,0, ID.Player);
 		final int healthOnCreation = p.getHealth();
-		final HealthModifier w = new SimpleWeapon(21, "Weapon21");
+		final HealthModifier w = new Gun(21);
 		final HealthModifier o = new SimplePotion(20, "Potion20");
 		w.useOn(p);
 		o.useOn(p);
