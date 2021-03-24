@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -7,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 class MapTests {
     @Test
     void testGameLaunch() {
-        assertEquals(0,0);
-        //fail("Not yet implemented");
+        TileMapFactoryImpl mf = new TileMapFactoryImpl();
+        mf.def();
     }
 }
