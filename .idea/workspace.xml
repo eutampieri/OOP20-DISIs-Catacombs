@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Refactored MenuState">
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Refactored MainWindow">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/window/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/window/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/SimpleWeapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/SimpleWeapon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/map/TileMapImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/map/TileMapImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -360,7 +361,7 @@
       <workItem from="1616604910749" duration="3621000" />
       <workItem from="1616669928686" duration="125000" />
       <workItem from="1616670107545" duration="2088000" />
-      <workItem from="1616687466637" duration="2237000" />
+      <workItem from="1616687466637" duration="2390000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Eclipse's config files">
       <created>1616595875480</created>
@@ -544,7 +545,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616689638994</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Refactored MainWindow">
+      <created>1616689747359</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1616689747359</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -676,7 +684,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Enable PMD and SpotBugs" />
     <MESSAGE value="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions" />
     <MESSAGE value="Configured Checkstyle" />
     <MESSAGE value="Configured PMD" />
@@ -701,7 +708,8 @@
     <MESSAGE value="Game configuration is now a final class" />
     <MESSAGE value="Refactored KeyManager.java and MouseManager.java" />
     <MESSAGE value="Refactored MenuState" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored MenuState" />
+    <MESSAGE value="Refactored MainWindow" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored MainWindow" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -49,7 +49,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
     }
 
     /**
-     * Get the amount of damage a weapon inflicts on a LivingCharacter
+     * Get the amount of damage a weapon inflicts on a LivingCharacter.
      * @return an integer
      */
     public int getDamage() {
