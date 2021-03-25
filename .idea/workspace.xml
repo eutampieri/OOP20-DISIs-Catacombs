@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Refactored Slime.java">
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/map/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/map/Tile.java" afterDir="false" />
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Added doc to Tile">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Catacombs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Catacombs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/SimplePotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/SimplePotion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -359,7 +362,7 @@
       <workItem from="1616604910749" duration="3621000" />
       <workItem from="1616669928686" duration="125000" />
       <workItem from="1616670107545" duration="2088000" />
-      <workItem from="1616687466637" duration="2690000" />
+      <workItem from="1616687466637" duration="3146000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Eclipse's config files">
       <created>1616595875480</created>
@@ -571,7 +574,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616690040227</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Added doc to Tile">
+      <created>1616690225867</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1616690225867</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -703,7 +713,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moved JaCoCo reports" />
     <MESSAGE value="Configured spotbugs to output HTML" />
     <MESSAGE value="\t to 4 spaces indentation" />
     <MESSAGE value="Renamed main class to fix typo" />
@@ -728,7 +737,8 @@
     <MESSAGE value="Refactored TileMapImpl.java" />
     <MESSAGE value="Refactored DungeonGame.java" />
     <MESSAGE value="Refactored Slime.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored Slime.java" />
+    <MESSAGE value="Added doc to Tile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added doc to Tile" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

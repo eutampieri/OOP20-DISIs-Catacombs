@@ -4,17 +4,17 @@ package eu.eutampieri.catacombs.model;
  * A potion that will increase a player's health by a fixed amount.
  */
 public final class SimplePotion implements HealthModifier {
-    private final int healing;
+    private final int healthDelta;
     private final String name;
 
     public SimplePotion(final int healing, final String name) {
-        this.healing = healing;
+        this.healthDelta = healing;
         this.name = name;
     }
 
     @Override
     public int getHealthDelta() {
-        return this.healing;
+        return this.healthDelta;
     }
 
     @Override

@@ -18,7 +18,7 @@ public abstract class GameObject {
     /**
      * The kind of game object.
      */
-    private ID id;
+    private final ID id;
     /**
      * The x component of the object's velocity.
      */
