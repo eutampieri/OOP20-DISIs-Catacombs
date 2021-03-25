@@ -1,6 +1,6 @@
 package eu.eutampieri.catacombs.game;
 
-public class Catcombs {
+public class Catacombs {
     public static void main(String[] args) {
 	    // TODO Auto-generated method stub
         // Removing hello world because of PMD
