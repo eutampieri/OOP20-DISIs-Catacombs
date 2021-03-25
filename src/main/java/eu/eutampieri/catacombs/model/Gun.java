@@ -1,10 +1,10 @@
 package eu.eutampieri.catacombs.model;
 
-public class Gun extends SimpleWeapon{
+public class Gun extends SimpleWeapon {
 
     private static final String WEAPON_NAME = "Gun";
 
-    public Gun(int damage) {
+    public Gun(final int damage) {
         super(damage, WEAPON_NAME);
         // TODO Auto-generated constructor stub
     }
