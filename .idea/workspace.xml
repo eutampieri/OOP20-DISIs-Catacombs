@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Added curly braces for ifs and removed magic numbers in TileMapFactoryImpl.java">
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Game configuration is now a final class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/GameConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/GameConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/input/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/input/KeyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/input/MouseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/input/MouseManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -360,7 +361,7 @@
       <workItem from="1616604910749" duration="3621000" />
       <workItem from="1616669928686" duration="125000" />
       <workItem from="1616670107545" duration="2088000" />
-      <workItem from="1616687466637" duration="1433000" />
+      <workItem from="1616687466637" duration="1773000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Eclipse's config files">
       <created>1616595875480</created>
@@ -523,7 +524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616688753298</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Game configuration is now a final class">
+      <created>1616688945581</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1616688945581</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -678,7 +686,8 @@
     <MESSAGE value="Renamed renderfpsCount to renderFpsCount" />
     <MESSAGE value="renidented TileMapFactoryImpl.java" />
     <MESSAGE value="Added curly braces for ifs and removed magic numbers in TileMapFactoryImpl.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added curly braces for ifs and removed magic numbers in TileMapFactoryImpl.java" />
+    <MESSAGE value="Game configuration is now a final class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game configuration is now a final class" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

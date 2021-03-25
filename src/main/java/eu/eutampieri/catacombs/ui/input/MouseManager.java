@@ -3,10 +3,11 @@ package eu.eutampieri.catacombs.ui.input;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MouseManager extends MouseAdapter {
+public final class MouseManager extends MouseAdapter {
 
     private boolean leftPress, rightPress;
-    private float x,y;
+    private float x;
+    private float y;
 
     public float getX() {
         return x;
@@ -25,7 +26,7 @@ public class MouseManager extends MouseAdapter {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
             this.leftPress = true;
         }
@@ -36,7 +37,7 @@ public class MouseManager extends MouseAdapter {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
             this.leftPress = true;
         }
@@ -46,7 +47,7 @@ public class MouseManager extends MouseAdapter {
     }
 
     @Override
-    public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(final MouseEvent e) {
         this.x = e.getX();
         this.y = e.getY();
     }
