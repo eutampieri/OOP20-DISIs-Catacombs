@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="">
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions">
+      <change afterPath="$PROJECT_DIR$/config/checkstyle/checkstyle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/checkstyle/suppressions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Catcombs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Catcombs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +34,22 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="OOP20-procedural-dungeon" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="OOP20-procedural-dungeon" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -146,24 +162,14 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.github/workflows" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.All tests">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Gradle.Check">
     <configuration name="All tests" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -185,24 +191,23 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="EquipmentTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Check" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;EquipmentTest&quot;" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value=":cleanTest" />
-            <option value=":test" />
+            <option value="check" />
           </list>
         </option>
-        <option name="vmOptions" />
+        <option name="vmOptions" value="" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -297,19 +302,19 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.All tests" />
-      <item itemvalue="Gradle.EquipmentTest" />
       <item itemvalue="Gradle.EquipmentTest.testSimplePotionAfterWeapon" />
       <item itemvalue="Gradle.EquipmentTest.testSimpleWeapon" />
       <item itemvalue="Gradle.GameTests" />
       <item itemvalue="Gradle.MapTests" />
+      <item itemvalue="Gradle.Check" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Check" />
         <item itemvalue="Gradle.MapTests" />
         <item itemvalue="Gradle.GameTests" />
         <item itemvalue="Gradle.EquipmentTest.testSimpleWeapon" />
         <item itemvalue="Gradle.EquipmentTest.testSimplePotionAfterWeapon" />
-        <item itemvalue="Gradle.EquipmentTest" />
       </list>
     </recent_temporary>
   </component>
@@ -325,7 +330,9 @@
       <option name="presentableId" value="Default" />
       <updated>1616584609124</updated>
       <workItem from="1616584611046" duration="7704000" />
-      <workItem from="1616604910749" duration="3207000" />
+      <workItem from="1616604910749" duration="3621000" />
+      <workItem from="1616669928686" duration="125000" />
+      <workItem from="1616670107545" duration="655000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Eclipse's config files">
       <created>1616595875480</created>
@@ -341,7 +348,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616668903193</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions">
+      <created>1616669512767</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616669512767</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -463,7 +477,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Removed Eclipse's config files" />
     <MESSAGE value="Enable PMD and SpotBugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enable PMD and SpotBugs" />
+    <MESSAGE value="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

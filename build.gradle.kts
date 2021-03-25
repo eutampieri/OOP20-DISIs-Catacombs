@@ -7,6 +7,7 @@ plugins {
     jacoco
     pmd
     id("com.github.spotbugs") version "4.7.0"
+    checkstyle
 }
 
 repositories {
