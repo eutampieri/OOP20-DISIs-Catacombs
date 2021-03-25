@@ -4,7 +4,7 @@ public final class TileMapImpl implements TileMap {
     private final Tile[][] map;
 
     public TileMapImpl(final Tile[][] m) {
-        map = m;
+        map = m.clone();
     }
 
     @Override
@@ -22,4 +22,7 @@ public final class TileMapImpl implements TileMap {
         return map[y][x];
     }
 
+    public Tile[][] getMap() {
+        return map.clone();
+    }
 }
