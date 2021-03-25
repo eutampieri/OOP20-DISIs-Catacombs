@@ -18,20 +18,20 @@ import eu.eutampieri.catacombs.window.MainWindow;
 public abstract class Game implements Runnable {
 
     public static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
-    public static final KeyManager keyManager = new KeyManager();
-    public static final MouseManager mouseManager = new MouseManager();
+    public static final KeyManager KEY_MANAGER = new KeyManager();
+    public static final MouseManager MOUSE_MANAGER = new MouseManager();
 
-    protected static MainWindow mainFrame;
-    protected static GameConfiguration gameConfiguration;
+    private static MainWindow mainFrame;
+    private static GameConfiguration gameConfiguration;
 
     private BufferStrategy bs;
     private GraphicsConfiguration gc;
     private VolatileImage vImage;
     private int framesThisSecond;
     private boolean running = true;
-    protected Graphics2D graphics;
-    protected int fps;
-    protected Thread gameThread;
+    private Graphics2D graphics;
+    private int fps;
+    private Thread gameThread;
 
     public Game() {
 
@@ -59,31 +59,31 @@ public abstract class Game implements Runnable {
         return gameConfiguration.getGameHeight();
     }
 
-    protected void setFps(int fps) {
+    protected void setFps(final int fps) {
         this.fps = fps;
     }
 
-    public final void initialize(GameConfiguration config) {
+    public final void initialize(final GameConfiguration config) {
         gameConfiguration = config;
-        mainFrame = new MainWindow(config.getTitle(),config.getGameWidth(),config.getGameHeight(),
-                config.fullScreen(),config.resizeable());
+        mainFrame = new MainWindow(config.getTitle(), config.getGameWidth(), config.getGameHeight(),
+                config.fullScreen(), config.resizeable());
         mainFrame.getCanvas().setBackground(Color.BLACK);
         this.fps = config.getFps();
         gc = mainFrame.getCanvas().getGraphicsConfiguration();
         mainFrame.getFrame().addComponentListener(new ComponentListener() {
 
             @Override
-            public void componentResized(ComponentEvent e) {
+            public void componentResized(final ComponentEvent e) {
 
             }
 
             @Override
-            public void componentMoved(ComponentEvent e) {
+            public void componentMoved(final ComponentEvent e) {
 
             }
 
             @Override
-            public void componentShown(ComponentEvent e) {
+            public void componentShown(final ComponentEvent e) {
                 if (!gameConfiguration.isScaling()) {
                     vImage = gc.createCompatibleVolatileImage(getWidth(), getHeight());
                 }
@@ -91,14 +91,14 @@ public abstract class Game implements Runnable {
             }
 
             @Override
-            public void componentHidden(ComponentEvent e) {
+            public void componentHidden(final ComponentEvent e) {
 
             }
 
         });
 
-        addKeyAdapter(keyManager);
-        addMouseAdapter(mouseManager);
+        addKeyAdapter(KEY_MANAGER);
+        addMouseAdapter(MOUSE_MANAGER);
     }
 
     private void preRender() {
@@ -158,7 +158,7 @@ public abstract class Game implements Runnable {
     public synchronized void stop() {
         try {
             this.gameThread.join();
-        }catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -182,12 +182,12 @@ public abstract class Game implements Runnable {
         ticks = 0;
         while (running) {
             now = System.nanoTime();
-            timer += (now -lastTime);
+            timer += (now - lastTime);
             updates = 0;
-            while ((now -lastUpdateTime) >= tickPerTime) {
+            while ((now - lastUpdateTime) >= tickPerTime) {
                 float delta;
-                delta = (now -lastUpdateTime) / 1000000000.0f;
-                keyManager.update(delta);
+                delta = (now - lastUpdateTime) / 1000000000.0f;
+                KEY_MANAGER.update(delta);
                 delta = delta <= 0.016f ? delta : 0.016f;
                 update(delta);
                 lastUpdateTime += tickPerTime;
@@ -204,12 +204,13 @@ public abstract class Game implements Runnable {
 
             long timeTake;
             timeTake = System.nanoTime() - now;
-            if (tickPerTime > timeTake)
+            if (tickPerTime > timeTake) {
                 try {
                     Thread.sleep((long) ((tickPerTime - timeTake) / 1000000f));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+            }
 
             if (timer >= 1000000000) {
                 // mainFrame.getFrame().setTitle("Frame Per Seconds : " + ticks);
@@ -220,7 +221,7 @@ public abstract class Game implements Runnable {
         }
     }
 
-    protected void renderfpsCount(Color color) {
+    protected void renderfpsCount(final Color color) {
         graphics.setFont(DEFAULT_FONT);
         graphics.setColor(color);
         graphics.drawString("FRAME PER SECOND : " + framesThisSecond,
@@ -228,27 +229,31 @@ public abstract class Game implements Runnable {
                 10 + graphics.getFont().getSize());
     }
 
-    protected void renderfpsCount(Color color, int x, int y) {
+    protected void renderfpsCount(final Color color, final int x, final int y) {
         graphics.setColor(color);
         graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
     }
 
 
-    public void addKeyAdapter(KeyAdapter e) {
+    public void addKeyAdapter(final KeyAdapter e) {
         mainFrame.getCanvas().addKeyListener(e);
         mainFrame.getFrame().addKeyListener(e);
     }
 
-    public void addMouseAdapter(MouseAdapter e) {
+    public void addMouseAdapter(final MouseAdapter e) {
         mainFrame.getCanvas().addMouseListener(e);
         mainFrame.getFrame().addMouseListener(e);
         mainFrame.getCanvas().addMouseMotionListener(e);
         mainFrame.getFrame().addMouseMotionListener(e);
     }
 
-    public void removeKeyAdapter(KeyAdapter e) {
+    public void removeKeyAdapter(final KeyAdapter e) {
         mainFrame.getCanvas().removeKeyListener(e);
         mainFrame.getFrame().removeKeyListener(e);
+    }
+
+    public Graphics2D getGraphics() {
+        return graphics;
     }
 
 }

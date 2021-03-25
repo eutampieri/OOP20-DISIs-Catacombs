@@ -23,7 +23,7 @@ public class MenuState extends State {
 
     @Override
     public void update(float delta) {
-        if (Game.keyManager.isKeyJustPressed(KeyEvent.VK_ENTER)) {
+        if (Game.KEY_MANAGER.isKeyJustPressed(KeyEvent.VK_ENTER)) {
             switch(this.optionSelected) {
                 case START_GAME:
                     this.game.startgame();
@@ -33,10 +33,10 @@ public class MenuState extends State {
                     break;
             }
         }
-        if (Game.keyManager.isKeyPressed(KeyEvent.VK_S)) {
+        if (Game.KEY_MANAGER.isKeyPressed(KeyEvent.VK_S)) {
             this.optionSelected = QUIT_GAME;
         }
-        if (Game.keyManager.isKeyPressed(KeyEvent.VK_W)) {
+        if (Game.KEY_MANAGER.isKeyPressed(KeyEvent.VK_W)) {
             this.optionSelected = START_GAME;
         }
 
