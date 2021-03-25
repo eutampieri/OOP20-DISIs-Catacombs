@@ -15,7 +15,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 	private final String name; 
 	
 	/**
-	 * 
+	 * Simple weapon constructor.
 	 * @param damage The amount of damage (i.e. the change in health) that a character
 	 * will have after being hit with this weapon
 	 * @param name The weapon's name
@@ -103,7 +103,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 	}
 
 	/**
-	 * Makes weapon fire on key press
+	 * Makes weapon fire on key press.
 	 */
 	public void fireWeapon() {
 		// TODO 

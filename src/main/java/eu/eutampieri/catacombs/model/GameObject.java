@@ -1,9 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
 /**
- * 
- * Abstract class for every game object (ex: Player, enemies, items, ecc...)
- *
+ * Abstract class for every game object (ex: Player, enemies, items, ecc...).
  */
 public abstract class GameObject {
 
@@ -12,7 +10,7 @@ public abstract class GameObject {
 	protected int speedX, speedY;
 	
 	/**
-	 * GameObject constructor base
+	 * GameObject constructor.
 	 * 
 	 * @param x object X position
 	 * @param y	object Y position

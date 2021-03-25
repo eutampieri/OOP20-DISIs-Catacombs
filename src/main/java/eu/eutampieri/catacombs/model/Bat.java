@@ -20,6 +20,12 @@ public final class Bat extends Entity {
 	private int pauseDelay, pauseCounter;
 	private CollisionBox radarBox;
 
+	/**
+	 * Bat constructor.
+	 * @param x X spawn position
+	 * @param y Y spawn position
+	 * @param tileMap Tile map in which Bat is spawned
+	 */
 	public Bat(final int x, final int y, final TileMap tileMap) {
 		super(x, y, tileMap);
 		setHeight(HEIGHT);
@@ -74,6 +80,9 @@ public final class Bat extends Entity {
 		this.hp = health;
 	}
 
+	/**
+	 * Utility class that makes the bat change movement direction. As of now bats can only go left or right.
+	 */
 	private void changeDirection() {
 		if (face == FACE_RIGHT) {
 			left = true;
@@ -86,6 +95,9 @@ public final class Bat extends Entity {
 		}
 	}
 
+	/**
+	 * Updates the aggro radar's Bat box.
+	 */
 	private void updateRadarBoxLocation() {
 		radarBox.setLocation(posX - width * 4, posY - height * 4);
 	}
