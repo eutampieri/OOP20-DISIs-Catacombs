@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions">
-      <change afterPath="$PROJECT_DIR$/config/checkstyle/checkstyle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/checkstyle/suppressions.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
     </list>
@@ -332,7 +329,7 @@
       <workItem from="1616584611046" duration="7704000" />
       <workItem from="1616604910749" duration="3621000" />
       <workItem from="1616669928686" duration="125000" />
-      <workItem from="1616670107545" duration="655000" />
+      <workItem from="1616670107545" duration="973000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Eclipse's config files">
       <created>1616595875480</created>
@@ -355,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616669512767</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Configured Checkstyle">
+      <created>1616670951074</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1616670951074</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -478,7 +482,8 @@
     <MESSAGE value="Removed Eclipse's config files" />
     <MESSAGE value="Enable PMD and SpotBugs" />
     <MESSAGE value="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions" />
+    <MESSAGE value="Configured Checkstyle" />
+    <option name="LAST_COMMIT_MESSAGE" value="Configured Checkstyle" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
