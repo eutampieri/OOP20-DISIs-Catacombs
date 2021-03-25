@@ -8,8 +8,8 @@ import eu.eutampieri.catacombs.model.map.TileMap;
  */
 public final class Bat extends Entity {
 
-	private static final int HEIGHT = 2;
-	private static final int WIDTH = 2;
+	private static final int HEIGH = 16;
+	private static final int WIDTH = 16;
 	private static final int MOVEMENT_SPEED = 1;
 	private static final int HEALTH = 8;
 	private static final String NAME = "Bat";
@@ -20,15 +20,9 @@ public final class Bat extends Entity {
 	private int pauseDelay, pauseCounter;
 	private CollisionBox radarBox;
 
-	/**
-	 * Bat constructor.
-	 * @param x X spawn position
-	 * @param y Y spawn position
-	 * @param tileMap Tile map in which Bat is spawned
-	 */
 	public Bat(final int x, final int y, final TileMap tileMap) {
 		super(x, y, tileMap);
-		setHeight(HEIGHT);
+		setHeight(HEIGH);
 		setWidth(WIDTH);
 		setSpeed(MOVEMENT_SPEED);
 		setHealth(HEALTH);
@@ -80,9 +74,6 @@ public final class Bat extends Entity {
 		this.hp = health;
 	}
 
-	/**
-	 * Utility class that makes the bat change movement direction. As of now bats can only go left or right.
-	 */
 	private void changeDirection() {
 		if (face == FACE_RIGHT) {
 			left = true;
@@ -95,9 +86,6 @@ public final class Bat extends Entity {
 		}
 	}
 
-	/**
-	 * Updates the aggro radar's Bat box.
-	 */
 	private void updateRadarBoxLocation() {
 		radarBox.setLocation(posX - width * 4, posY - height * 4);
 	}
