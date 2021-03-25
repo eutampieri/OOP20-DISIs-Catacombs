@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Refactored TileMapImpl.java">
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Refactored DungeonGame.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/DungeonGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/DungeonGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Slime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Slime.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -360,7 +360,7 @@
       <workItem from="1616604910749" duration="3621000" />
       <workItem from="1616669928686" duration="125000" />
       <workItem from="1616670107545" duration="2088000" />
-      <workItem from="1616687466637" duration="2474000" />
+      <workItem from="1616687466637" duration="2534000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Eclipse's config files">
       <created>1616595875480</created>
@@ -558,7 +558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616689913149</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Refactored DungeonGame.java">
+      <created>1616689992316</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1616689992316</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -690,7 +697,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Configured Checkstyle" />
     <MESSAGE value="Configured PMD" />
     <MESSAGE value="Moved JaCoCo reports" />
     <MESSAGE value="Configured spotbugs to output HTML" />
@@ -715,7 +721,8 @@
     <MESSAGE value="Refactored MenuState" />
     <MESSAGE value="Refactored MainWindow" />
     <MESSAGE value="Refactored TileMapImpl.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored TileMapImpl.java" />
+    <MESSAGE value="Refactored DungeonGame.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored DungeonGame.java" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

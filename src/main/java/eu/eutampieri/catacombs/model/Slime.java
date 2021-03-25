@@ -2,12 +2,12 @@ package eu.eutampieri.catacombs.model;
 
 /**
  *
- * Enemy Slime class
+ * Enemy Slime class.
  *
  */
-public class Slime extends GameObject implements LivingCharacter{
+public final class Slime extends GameObject implements LivingCharacter {
 
-    public Slime(int x, int y) {
+    public Slime(final int x, final int y) {
         super(x, y, ID.ENEMY);
 
     }
@@ -31,7 +31,7 @@ public class Slime extends GameObject implements LivingCharacter{
     }
 
     @Override
-    public void setHealth(int health) {
+    public void setHealth(final int health) {
         // TODO Auto-generated method stub
 
     }
