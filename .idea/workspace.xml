@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/pmd.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Launcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/gamefx/AssetManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/gamefx/GameSheets.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/ImageLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/ImageRotator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/TextLoader.java" afterDir="false" />
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="added Launcher and Main">
+      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/EndGameState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/GameState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/gamefx/AssetManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/gamefx/GameSheets.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/utils/ImageLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/utils/ImageRotator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/utils/TextLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/DungeonGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/DungeonGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +62,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="world_generator" />
+        <entry key="$PROJECT_DIR$" value="Launcher_and_Main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -381,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616678956919</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added Launcher and Main">
+      <created>1616680748888</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1616680748888</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -518,7 +513,8 @@
     <MESSAGE value="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions" />
     <MESSAGE value="Configured Checkstyle" />
     <MESSAGE value="cherry picked code style conf" />
-    <option name="LAST_COMMIT_MESSAGE" value="cherry picked code style conf" />
+    <MESSAGE value="added Launcher and Main" />
+    <option name="LAST_COMMIT_MESSAGE" value="added Launcher and Main" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$OOP20_procedural_dungeon__test_.ic" NAME="OOP20-procedural-dungeon [test] Coverage Results" MODIFIED="1616605031613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
