@@ -9,7 +9,7 @@ public abstract class GameObject {
 
 	protected int posX, posY;
 	protected ID id;
-	protected int velX, velY;
+	protected int speedX, speedY;
 	
 	/**
 	 * GameObject constructor base
@@ -28,7 +28,7 @@ public abstract class GameObject {
 	 *
 	 * @param delta time between updates
 	 */
-	public abstract void update(float delta);
+	public abstract void update(int delta);
 	public abstract void render();
 
 	/**
@@ -63,25 +63,26 @@ public abstract class GameObject {
 		this.posY = posY;
 	}
 
-	public int getVelX() {
-		return velX;
+	public int getSpeedX() {
+		return speedX;
 	}
 
-	public void setVelX(int velX) {
-		this.velX = velX;
+	public void setSpeedX(int velX) {
+		this.speedX = velX;
 	}
 
-	public int getVelY() {
-		return velY;
+	public int getSpeedY() {
+		return speedY;
 	}
 
-	public void setVelY(int velY) {
-		this.velY = velY;
+	public void setSpeedY(int velY) {
+		this.speedY = velY;
 	}
 
-	public void setBothVelAsEquals(int vel) {
-		this.velX = vel;
-		this.velY = vel;
+	public void setSpeed(int vel) {
+		this.speedX = vel;
+		this.speedY = vel;
+
 	}
 
 	public ID getId() {

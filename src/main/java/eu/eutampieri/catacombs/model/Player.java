@@ -8,8 +8,7 @@ public class Player extends GameObject implements LivingCharacter{
 
 	public Player(int x, int y, String name) {
 		super(x, y, ID.Player);
-		setVelX(BASE_MOVEMENT_SPEED);
-		setVelY(BASE_MOVEMENT_SPEED);
+		setSpeed(BASE_MOVEMENT_SPEED);
 		this.setHealth(MAX_BASE_HP);
 		this.name = name;
 	}
@@ -31,7 +30,7 @@ public class Player extends GameObject implements LivingCharacter{
 	}
 
 	@Override
-	public void update(float delta) {
+	public void update(int delta) {
 		// TODO Auto-generated method stub
 		
 	}

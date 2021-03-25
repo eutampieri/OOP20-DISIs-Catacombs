@@ -13,7 +13,7 @@ public class Slime extends GameObject implements LivingCharacter{
 	}
 
 	@Override
-	public void update(float delta) {
+	public void update(int delta) {
 		// TODO Auto-generated method stub
 		
 	}

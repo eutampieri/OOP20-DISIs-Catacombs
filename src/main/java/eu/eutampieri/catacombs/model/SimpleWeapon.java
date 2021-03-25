@@ -43,7 +43,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 	}
 
 	@Override
-	public void update() {
+	public void update(int delta) {
 		// TODO Auto-generated method stub
 		
 	}
