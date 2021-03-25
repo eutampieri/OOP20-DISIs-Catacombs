@@ -1,9 +1,10 @@
 package eu.eutampieri.catacombs.ui;
 
-public class GameConfiguration {
+public final class GameConfiguration {
 
+    static final int DEFAULT_FPS = 60;
     private int gameHeight, gameWidth;
-    private int fps = 60;
+    private int fps = DEFAULT_FPS;
     private String title;
     private boolean fullScreen;
     private boolean isScaling;
@@ -37,30 +38,30 @@ public class GameConfiguration {
         return this.isScaling;
     }
 
-    public void setFullScreen(boolean fullScreen) {
+    public void setFullScreen(final boolean fullScreen) {
         this.fullScreen = fullScreen;
     }
-    public void setGameWidth(int gameWidth) {
+    public void setGameWidth(final int gameWidth) {
         this.gameWidth = gameWidth;
     }
 
-    public void setGameHeight(int gameHeight) {
+    public void setGameHeight(final int gameHeight) {
         this.gameHeight = gameHeight;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
         this.title = title;
     }
 
-    public void setFps(int fps) {
+    public void setFps(final int fps) {
         this.fps = fps;
     }
 
-    public void setScaling(boolean s) {
+    public void setScaling(final boolean s) {
         this.isScaling = s;
     }
 
-    public void setResizeable(boolean r) {
+    public void setResizeable(final boolean r) {
         this.resizeable = r;
     }
 
