@@ -119,7 +119,7 @@ public class TileMapFactoryImpl implements TileMapFactory {
 			throw new IllegalArgumentException();
 		if (maxRoomDist < minRoomDist)
 			throw new IllegalArgumentException();
-		var pool = new ArrayList<Point>(); // pool of all points at acceptable distances frome the already selected
+		var pool = new ArrayList<Point>(); // pool of all points at acceptable distances from the already selected
 											// rooms
 		var centers = new ArrayList<Point>(); // selected rooms' centers
 		var dist = new HashMap<Point, Integer>(); // distance to closest selected center for all points
