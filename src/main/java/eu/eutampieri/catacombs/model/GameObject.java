@@ -2,25 +2,40 @@ package eu.eutampieri.catacombs.model;
 
 /**
  *
- * Abstract class for every game object (ex: Player, enemies, items, ecc...)
+ * Abstract class for every game object (ex: Player, enemies, items, ecc...).
  *
  */
 public abstract class GameObject {
 
-    protected int posX;
-    protected int posY;
-    protected ID id;
-    protected int velX;
-    protected int velY;
+    /**
+     * The current x coordinate of the object.
+     */
+    private int posX;
+    /**
+     * The current y coordinate of the object.
+     */
+    private int posY;
+    /**
+     * The kind of game object.
+     */
+    private ID id;
+    /**
+     * The x component of the object's velocity.
+     */
+    private int velX;
+    /**
+     * The y component of the object's velocity.
+     */
+    private int velY;
 
     /**
-     * GameObject constructor base
+     * GameObject constructor base.
      *
      * @param x object X position
-     * @param y	object Y position
-     * @param id object ID @see eu.tampieri.catacombs.model.ID
+     * @param y object Y position
+     * @param id object ID @see eu.eutampieri.catacombs.model.ID
      */
-    public GameObject(int x, int y, ID id) {
+    public GameObject(final int x, final int y, final ID id) {
         this.posX = x;
         this.posY = y;
         this.id = id;
@@ -41,7 +56,7 @@ public abstract class GameObject {
      *
      * @param posX set object X position
      */
-    public void setPosX(int posX) {
+    public void setPosX(final int posX) {
         this.posX = posX;
     }
 
@@ -57,32 +72,48 @@ public abstract class GameObject {
      *
      * @param posY set object Y position
      */
-    public void setPosY(int posY) {
+    public void setPosY(final int posY) {
         this.posY = posY;
     }
 
+    /**
+     *
+     * @return Object's X velocity
+     */
     public int getVelX() {
         return velX;
     }
 
-    public void setVelX(int velX) {
+    /**
+     * Set the object's current X velocity.
+     * @param velX
+     */
+    public void setVelX(final int velX) {
         this.velX = velX;
     }
 
+    /**
+     *
+     * @return Object's Y velocity
+     */
     public int getVelY() {
         return velY;
     }
 
-    public void setVelY(int velY) {
+    /**
+     * Set the object's current Y velocity.
+     * @param velY
+     */
+    public void setVelY(final int velY) {
         this.velY = velY;
     }
 
+    /**
+     *
+     * @return The object's kind
+     */
     public ID getId() {
         return id;
-    }
-
-    public void setId(ID id) {
-        this.id = id;
     }
 
 }
