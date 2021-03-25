@@ -168,10 +168,13 @@ public abstract class Entity extends GameObject implements LivingCharacter{
         left = false;
     }
 
+<<<<<<< HEAD
     /**
      * Getter for Entity hit box
      * @return Entity hit box
      */
+=======
+>>>>>>> 9ecb83a... Updated Slime.java and fixed bugs
     public CollisionBox getHitBox() {
         return hitBox;
     }

@@ -62,7 +62,7 @@ public abstract class Game implements Runnable {
     public final void initialize(final GameConfiguration config) {
         gameConfiguration = config;
         mainFrame = new MainWindow(config.getTitle(), config.getGameWidth(), config.getGameHeight(),
-                config.fullScreen(), config.resizeable());
+                config.isFullScreen(), config.isResizeable());
         mainFrame.getCanvas().setBackground(Color.BLACK);
         this.fps = config.getFps();
         gc = mainFrame.getCanvas().getGraphicsConfiguration();
@@ -169,7 +169,7 @@ public abstract class Game implements Runnable {
         long timer;
         int ticks;
         int updates = 0;
-        int maxUpdates = 5;
+        final int maxUpdates = 5;
 
         tickPerTime = 1_000_000_000 / fps;
         lastTime = System.nanoTime();

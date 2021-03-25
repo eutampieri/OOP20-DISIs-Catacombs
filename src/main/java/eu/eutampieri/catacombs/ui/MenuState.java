@@ -14,8 +14,8 @@ public final class MenuState extends State {
     private static final int TITLE_FONT_SIZE = 50;
     private static final int DEFAULT_FONT_SIZE = 40;
 
-    private Font titleFont = new Font("Times New Roman", Font.PLAIN, TITLE_FONT_SIZE);
-    private Font font = new Font("Arial", Font.PLAIN, DEFAULT_FONT_SIZE);
+    private final transient Font titleFont = new Font("Times New Roman", Font.PLAIN, TITLE_FONT_SIZE);
+    private final transient Font font = new Font("Arial", Font.PLAIN, DEFAULT_FONT_SIZE);
 
     private int optionSelected = START_GAME;
 
@@ -46,6 +46,7 @@ public final class MenuState extends State {
 
     }
 
+    @Override
     public void render(final Graphics2D g2) {
         g2.setColor(Color.black);
         g2.fillRect(0, 0, Game.getGameWidth(), Game.getGameHeight());
@@ -53,22 +54,22 @@ public final class MenuState extends State {
 
         // title
         g2.setFont(this.titleFont);
-        String title = "CATACOMBS";
-        float x = (Game.getWidth() - FontUtils.getTextWidth(titleFont, title)) / 2;
+        final String title = "CATACOMBS";
+        final float x = (float)(Game.getWidth() - FontUtils.getTextWidth(titleFont, title)) / 2f;
         g2.drawString(title, x, titleFont.getSize() * 2);
 
         // options
         g2.setFont(this.font);
-        String start = "Start";
-        float x1 = (Game.getWidth() - FontUtils.getTextWidth(font, start)) / 2;
+        final String start = "Start";
+        final float x1 = (float)(Game.getWidth() - FontUtils.getTextWidth(font, start)) / 2f;
         g2.drawString(start, x1, titleFont.getSize() * 2);
-        String quit = "Quit";
-        float x2 = (Game.getWidth() - FontUtils.getTextWidth(font, quit)) / 2;
+        final String quit = "Quit";
+        final float x2 = (float)(Game.getWidth() - FontUtils.getTextWidth(font, quit)) / 2f;
         g2.drawString(quit, x2, titleFont.getSize() + font.getSize() + 100);
 
         // selection
-        int x3 = (int) (this.optionSelected == START_GAME ? x1 - 30 : x2 - 30);
-        int y = this.optionSelected == START_GAME ? this.titleFont.getSize() + 55 : this.titleFont.getSize() + font.getSize() + 75;
+        final int x3 = (int) (this.optionSelected == START_GAME ? x1 - 30 : x2 - 30);
+        final int y = this.optionSelected == START_GAME ? this.titleFont.getSize() + 55 : this.titleFont.getSize() + font.getSize() + 75;
         g2.fillOval(x3, y, 20, 20);
 
 

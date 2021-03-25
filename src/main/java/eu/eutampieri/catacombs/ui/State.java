@@ -4,9 +4,9 @@ import java.awt.Graphics2D;
 
 public abstract class State {
 
-    protected DungeonGame game;
+    protected final DungeonGame game;
 
-    public State(DungeonGame game) {
+    public State(final DungeonGame game) {
         this.game = game;
     }
 

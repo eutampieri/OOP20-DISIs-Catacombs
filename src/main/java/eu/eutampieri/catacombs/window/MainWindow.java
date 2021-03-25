@@ -46,8 +46,8 @@ public final class MainWindow {
     }
 
     private void makeFullScreen() {
-        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = env.getDefaultScreenDevice();
+        final GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        final GraphicsDevice gd = env.getDefaultScreenDevice();
         if (gd.isFullScreenSupported()) {
             this.frame.setUndecorated(true);
             this.frame.setResizable(false);

@@ -18,12 +18,15 @@ public final class Slime extends Entity{
 	private Entity characterToFollow;
 	private CollisionBox radarBox;
 
+<<<<<<< HEAD
 	/**
 	 * Slime constructor.
 	 * @param x X spawn position
 	 * @param y Y spawn position
 	 * @param tileMap Tile map in which Slime is spawned
 	 */
+=======
+>>>>>>> 9ecb83a... Updated Slime.java and fixed bugs
 	public Slime(int x, int y, TileMap tileMap) {
 		super(x, y, tileMap);
 		setHeight(HEIGHT);
@@ -63,19 +66,25 @@ public final class Slime extends Entity{
 		this.hp = health;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Utility method useful and used in GameState to make the Slime follow an Entity (most likely the Player).
 	 * 		With this method Slimes can follow every entity.
 	 * @param e Entity to follow
 	 */
+=======
+>>>>>>> 9ecb83a... Updated Slime.java and fixed bugs
 	public void follow(Entity e) {
 		if (radarBox.overlaps(e.getHitBox()))
 			characterToFollow = e;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Makes Slime path towards the Character(Entity) to follow.
 	 */
+=======
+>>>>>>> 9ecb83a... Updated Slime.java and fixed bugs
 	private void follow() {
 		if (characterToFollow == null){
 			return;
@@ -92,9 +101,12 @@ public final class Slime extends Entity{
 		}
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Updates the aggro radar's Slime box.
 	 */
+=======
+>>>>>>> 9ecb83a... Updated Slime.java and fixed bugs
 	public void updateRadarBoxLocation() {
 		radarBox.setLocation(posX - width * 2, posY - height * 2);
 	}

@@ -7,7 +7,7 @@ public final class GameConfiguration {
     private int fps = DEFAULT_FPS;
     private String title;
     private boolean fullScreen;
-    private boolean isScaling;
+    private boolean scaling;
     private boolean resizeable;
 
     public int getGameWidth() {
@@ -26,16 +26,16 @@ public final class GameConfiguration {
         return this.fps;
     }
 
-    public boolean fullScreen() {
+    public boolean isFullScreen() {
         return this.fullScreen;
     }
 
-    public boolean resizeable() {
+    public boolean isResizeable() {
         return this.resizeable;
     }
 
     public boolean isScaling() {
-        return this.isScaling;
+        return this.scaling;
     }
 
     public void setFullScreen(final boolean fullScreen) {
@@ -58,7 +58,7 @@ public final class GameConfiguration {
     }
 
     public void setScaling(final boolean s) {
-        this.isScaling = s;
+        this.scaling = s;
     }
 
     public void setResizeable(final boolean r) {
