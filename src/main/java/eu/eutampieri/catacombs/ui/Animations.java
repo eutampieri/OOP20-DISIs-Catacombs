@@ -3,6 +3,7 @@ package eu.eutampieri.catacombs.ui;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 import java.awt.image.BufferedImage;
 
+
 public class Animations {
 
     private BufferedImage[] frames;
