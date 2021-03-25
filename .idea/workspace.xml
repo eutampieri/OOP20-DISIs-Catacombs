@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/code_quality.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +167,17 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.Check">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All tests" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -329,7 +340,7 @@
       <workItem from="1616584611046" duration="7704000" />
       <workItem from="1616604910749" duration="3621000" />
       <workItem from="1616669928686" duration="125000" />
-      <workItem from="1616670107545" duration="1892000" />
+      <workItem from="1616670107545" duration="2088000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Eclipse's config files">
       <created>1616595875480</created>
@@ -373,7 +384,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616671529730</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Configured spotbugs to output HTML">
+      <created>1616672479575</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1616672479575</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -499,7 +517,8 @@
     <MESSAGE value="Configured Checkstyle" />
     <MESSAGE value="Configured PMD" />
     <MESSAGE value="Moved JaCoCo reports" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved JaCoCo reports" />
+    <MESSAGE value="Configured spotbugs to output HTML" />
+    <option name="LAST_COMMIT_MESSAGE" value="Configured spotbugs to output HTML" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
