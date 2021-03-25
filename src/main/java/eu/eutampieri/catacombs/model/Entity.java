@@ -110,4 +110,8 @@ public abstract class Entity extends GameObject implements LivingCharacter{
         left = false;
     }
 
+    public CollisionBox getHitBox() {
+        return hitBox;
+    }
+
 }

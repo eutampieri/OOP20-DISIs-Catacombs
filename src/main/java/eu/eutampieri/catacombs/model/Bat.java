@@ -8,8 +8,8 @@ import eu.eutampieri.catacombs.model.map.TileMap;
  */
 public final class Bat extends Entity {
 
-	private static final int HEIGH = 16;
-	private static final int WIDTH = 16;
+	private static final int HEIGHT = 2;
+	private static final int WIDTH = 2;
 	private static final int MOVEMENT_SPEED = 1;
 	private static final int HEALTH = 8;
 	private static final String NAME = "Bat";
@@ -22,7 +22,7 @@ public final class Bat extends Entity {
 
 	public Bat(final int x, final int y, final TileMap tileMap) {
 		super(x, y, tileMap);
-		setHeight(HEIGH);
+		setHeight(HEIGHT);
 		setWidth(WIDTH);
 		setSpeed(MOVEMENT_SPEED);
 		setHealth(HEALTH);
