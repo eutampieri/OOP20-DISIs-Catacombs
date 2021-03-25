@@ -1,12 +1,17 @@
 package eu.eutampieri.catacombs.ui;
 
+import eu.eutampieri.catacombs.ui.MenuState;
+import eu.eutampieri.catacombs.ui.State;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
+
 public class DungeonGame extends Game {
 	
 	private MenuState menuState;
 	private State state;
+	public AssetManager assetManager;
 	
 	public void create() {
-		// caricare gli asset
+		assetManager.load();
 		
 		this.menuState = new MenuState(this);
 		setState(this.menuState);

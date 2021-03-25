@@ -5,8 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config/pmd.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Launcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/gamefx/AssetManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/gamefx/GameSheets.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/ImageLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/ImageRotator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/TextLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/gamefx/AssetManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/gamefx/GameSheets.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/utils/ImageLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/utils/ImageRotator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/utils/TextLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/DungeonGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/DungeonGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,12 +72,12 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="world_generator" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="IdeDocumentHistory">
@@ -91,6 +105,7 @@
     <option name="height" value="900" />
   </component>
   <component name="ProjectId" id="1qDCh7C13jEHrKABwCQ6iphkv40" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -359,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616670951074</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="cherry picked code style conf">
+      <created>1616678956919</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1616678956919</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -478,18 +500,33 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Removed Eclipse's config files" />
     <MESSAGE value="Enable PMD and SpotBugs" />
     <MESSAGE value="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions" />
     <MESSAGE value="Configured Checkstyle" />
-    <option name="LAST_COMMIT_MESSAGE" value="Configured Checkstyle" />
+    <MESSAGE value="cherry picked code style conf" />
+    <option name="LAST_COMMIT_MESSAGE" value="cherry picked code style conf" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$OOP20_procedural_dungeon__test_.ic" NAME="OOP20-procedural-dungeon [test] Coverage Results" MODIFIED="1616605031613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest.ic" NAME="EquipmentTest Coverage Results" MODIFIED="1616584997634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1616604970237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest_testSimplePotionAfterWeapon.ic" NAME="EquipmentTest.testSimplePotionAfterWeapon Coverage Results" MODIFIED="1616584983342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1616606169047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$OOP20_procedural_dungeon__test_.exec" NAME="OOP20-procedural-dungeon [test] Coverage Results" MODIFIED="1616604951218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Bat.java">

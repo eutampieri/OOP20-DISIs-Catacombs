@@ -10,13 +10,18 @@ import eu.eutampieri.catacombs.ui.utils.ImageRotator;
 
 public class AssetManager {
 	
-	private  HashMap<String,BufferedImage[]> allAnimations = new HashMap<String,BufferedImage[]>();
+	private  static HashMap<String,BufferedImage[]> allAnimations = new HashMap<String,BufferedImage[]>();
 	private  HashMap<String,BufferedImage> allImages = new HashMap<String,BufferedImage>();
 	
 	private ImageRotator imageRot;
+
+	public AssetManager() {
+
+	}
+
 	
-	public BufferedImage[] getFrames(String key) {
-		return this.allAnimations.get(key);
+	public static BufferedImage[] getFrames(String key) {
+		return allAnimations.get(key);
 	}
 	
 	public BufferedImage getImage(String key) {
