@@ -5,6 +5,7 @@ public final class DungeonGame extends Game {
     private MenuState menuState;
     private State state;
 
+    @Override
     public void create() {
         // caricare gli asset
 
@@ -21,17 +22,19 @@ public final class DungeonGame extends Game {
         setState(this.menuState);
     }
 
+    @Override
     public void update(final float delta) {
         this.state.update(delta);
     }
 
+    @Override
     public void render() {
         this.state.render(this.getGraphics());
     }
 
     // da implementare nextLevel startGame e restartLevel
 
-    public void startgame() {
+    public void startGame() {
 
     }
 
@@ -41,5 +44,13 @@ public final class DungeonGame extends Game {
 
     public void nextLevels() {
 
+    }
+
+    public MenuState getMenuState() {
+        return menuState;
+    }
+
+    public State getState() {
+        return state;
     }
 }

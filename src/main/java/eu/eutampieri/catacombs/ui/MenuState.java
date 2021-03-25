@@ -28,7 +28,7 @@ public final class MenuState extends State {
         if (Game.KEY_MANAGER.isKeyJustPressed(KeyEvent.VK_ENTER)) {
             switch (this.optionSelected) {
                 case START_GAME:
-                    this.game.startgame();
+                    this.game.startGame();
                     break;
                 case QUIT_GAME:
                     System.exit(0);

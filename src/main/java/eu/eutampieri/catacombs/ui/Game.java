@@ -28,14 +28,10 @@ public abstract class Game implements Runnable {
     private GraphicsConfiguration gc;
     private VolatileImage vImage;
     private int framesThisSecond;
-    private boolean running = true;
+    private final boolean running = true;
     private Graphics2D graphics;
     private int fps;
     private Thread gameThread;
-
-    public Game() {
-
-    }
 
     public abstract void create();
 
@@ -163,6 +159,7 @@ public abstract class Game implements Runnable {
         }
     }
 
+    @Override
     public void run() {
         create();
         double tickPerTime;
@@ -174,7 +171,7 @@ public abstract class Game implements Runnable {
         int updates = 0;
         int maxUpdates = 5;
 
-        tickPerTime = 1000000000 / fps;
+        tickPerTime = 1_000_000_000 / fps;
         lastTime = System.nanoTime();
         lastUpdateTime = System.nanoTime();
         now = 0;
@@ -182,11 +179,11 @@ public abstract class Game implements Runnable {
         ticks = 0;
         while (running) {
             now = System.nanoTime();
-            timer += (now - lastTime);
+            timer += now - lastTime;
             updates = 0;
             while ((now - lastUpdateTime) >= tickPerTime) {
                 float delta;
-                delta = (now - lastUpdateTime) / 1000000000.0f;
+                delta = (now - lastUpdateTime) / 1_000_000_000.0f;
                 KEY_MANAGER.update(delta);
                 delta = delta <= 0.016f ? delta : 0.016f;
                 update(delta);
@@ -206,13 +203,13 @@ public abstract class Game implements Runnable {
             timeTake = System.nanoTime() - now;
             if (tickPerTime > timeTake) {
                 try {
-                    Thread.sleep((long) ((tickPerTime - timeTake) / 1000000f));
+                    Thread.sleep((long) ((tickPerTime - timeTake) / 1_000_000f));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
 
-            if (timer >= 1000000000) {
+            if (timer >= 1_000_000_000) {
                 // mainFrame.getFrame().setTitle("Frame Per Seconds : " + ticks);
                 this.framesThisSecond = ticks;
                 ticks = 0;
