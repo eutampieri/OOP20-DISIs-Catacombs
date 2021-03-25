@@ -2,27 +2,26 @@ package eu.eutampieri.catacombs.model;
 
 /**
  *
- * Abstract class for every game object (ex: Player, enemies, items, ecc...)
- *
+ * Abstract class for every game object (ex: Player, enemies, items, ecc...).
  */
 public abstract class GameObject {
 
-    private int posX, posY;
-    protected ID id;
-    protected int velX, velY;
-
-    /**
-     * GameObject constructor base
-     *
-     * @param x  object X position
-     * @param y  object Y position
-     * @param id object ID @see eu.eutampieri.catacombs.model.ID
-     */
-    public GameObject(final int x, final int y, final ID id) {
-        this.posX = x;
-        this.posY = y;
-        this.id = id;
-    }
+	protected int posX, posY;
+	protected ID id;
+	protected int speedX, speedY;
+	
+	/**
+	 * GameObject constructor.
+	 * 
+	 * @param x object X position
+	 * @param y	object Y position
+	 * @param id object ID @see eu.eutampieri.catacombs.model.ID
+	 */
+	public GameObject(int x, int y, ID id) {
+		this.posX = x;
+		this.posY = y;
+		this.id = id;
+	}
 
     /**
      *
@@ -64,26 +63,27 @@ public abstract class GameObject {
         this.posY = posY;
     }
 
-    public int getVelX() {
-        return velX;
-    }
+	public int getSpeedX() {
+		return speedX;
+	}
 
-    public void setVelX(final int velX) {
-        this.velX = velX;
-    }
+	public void setSpeedX(int velX) {
+		this.speedX = velX;
+	}
 
-    public int getVelY() {
-        return velY;
-    }
+	public int getSpeedY() {
+		return speedY;
+	}
 
-    public void setVelY(final int velY) {
-        this.velY = velY;
-    }
+	public void setSpeedY(final int velY) {
+		this.speedY = velY;
+	}
 
-    public void setBothVelAsEquals(final int vel) {
-        this.velX = vel;
-        this.velY = vel;
-    }
+	public void setSpeed(final int vel) {
+		this.speedX = vel;
+		this.speedY = vel;
+
+	}
 
     public ID getId() {
         return id;

@@ -6,6 +6,31 @@ package eu.eutampieri.catacombs.model;
  *
  */
 public abstract class SimpleWeapon extends GameObject implements HealthModifier {
+	private int damage;
+	private int fireRate;
+	private int fireDelay; // timer between shots
+	private int range;
+	private int reloadSpeed; // time taken to reload
+	private int magazine; // number of bullets 
+	private final String name; 
+	
+	/**
+	 * Simple weapon constructor.
+	 * @param damage The amount of damage (i.e. the change in health) that a character
+	 * will have after being hit with this weapon
+	 * @param name The weapon's name
+	 * @param fireRate weapon's rate of fire
+	 * @param range weapon's range
+	 * @param magazine weapon's number of bullets (if -1 infinite)
+	 */
+	SimpleWeapon(int damage, String name, int fireRate, int range, int magazine) {
+		super(0,0,ID.Weapon);
+		this.damage = damage;
+		this.name = name;
+		this.fireRate = fireRate;
+		this.range = range;
+		this.magazine = magazine;
+	}
     private int damage;
     private int fireRate;
     private int fireDelay; // timer between shots
@@ -16,7 +41,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Simple weapon constructor.
-     * 
+     *
      * @param damage   The amount of damage (i.e. the change in health) that a
      *                 character will have after being hit with this weapon
      * @param name     The weapon's name
@@ -103,29 +128,31 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
         this.magazine = magazine;
     }
 
-    /**
-     * Makes weapon fire on key press.
-     */
-    public void fireWeapon() {
-        // TODO
-
-    }
-
-    /**
-     *
-     * @return true if magazine > 0 and fireDelay timer passed.
-     */
-    public boolean canFire() {
-        return false;
-        // TODO
-    }
-
-    /**
-     * Reloads weapon on key press.
-     */
-    public void reloadWeapon() {
-        // TODO
-
-    }
+	/**
+	 * Makes weapon fire on key press.
+	 */
+	public void fireWeapon() {
+		// TODO
+		
+	}
+	
+	/**
+	 *
+	 * @return true if magazine > 0 and fireDelay timer passed.
+	 */
+	public boolean canFire() {
+		return false;
+		// TODO
+	}
+	
+	/**
+	 * Reloads weapon on key press.
+	 */
+	public void reloadWeapon() {
+		// TODO
+		
+	}
+	
+	
 
 }
