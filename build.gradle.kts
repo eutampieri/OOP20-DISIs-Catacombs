@@ -62,16 +62,16 @@ tasks.jacocoTestReport {
 
 jacoco {
     toolVersion = "0.8.6"
-    reportsDirectory.set(file("$buildDir/jacoco"))
+    reportsDirectory.set(file("$buildDir/reports/jacoco"))
 }
 
 tasks.jacocoTestReport {
     reports {
         xml.isEnabled = true
-        xml.destination = file("$buildDir/jacoco/report.xml")
+        xml.destination = file("$buildDir/reports/jacoco/report.xml")
         csv.isEnabled = false
         html.isEnabled = true
-        html.destination = file("$buildDir/jacoco/html")
+        html.destination = file("$buildDir/reports/jacoco/html")
     }
 }
 
