@@ -7,9 +7,11 @@ package eu.eutampieri.catacombs.model;
  */
 public abstract class GameObject {
 
-	protected int posX, posY;
+	protected int posX;
+	protected int posY;
 	protected ID id;
-	protected int velX, velY;
+	protected int velX;
+	protected int velY;
 	
 	/**
 	 * GameObject constructor base
