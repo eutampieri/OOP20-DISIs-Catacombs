@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public class TileMapFactoryImpl implements TileMapFactory {
+public final class TileMapFactoryImpl implements TileMapFactory {
+
+    static final int NORMAL_N_ROOMS = 16;
+    static final int NORMAL_MIN_ROOM_SIDE = 8;
+    static final int NORMAL_MAX_ROOM_SIDE = 16;
+    static final int NORMAL_MIN_ROOM_DIST = 32;
+    static final int NORMAL_MAX_ROOM_DIST = 42;
 
     /**
      * prng used to generate maps.
@@ -26,32 +32,38 @@ public class TileMapFactoryImpl implements TileMapFactory {
         }
 
         @Override
-        public boolean equals(Object obj) {
-            if (this == obj)
+        public boolean equals(final Object obj) {
+            if (this == obj) {
                 return true;
-            if (obj == null)
+            }
+            if (obj == null) {
                 return false;
-            if (getClass() != obj.getClass())
+            }
+            if (getClass() != obj.getClass()) {
                 return false;
+            }
             Point other = (Point) obj;
-            if (!getEnclosingInstance().equals(other.getEnclosingInstance()))
+            if (!getEnclosingInstance().equals(other.getEnclosingInstance())) {
                 return false;
-            if (x != other.x)
+            }
+            if (x != other.x) {
                 return false;
-            if (y != other.y)
+            }
+            if (y != other.y) {
                 return false;
+            }
             return true;
         }
 
-        final int x;
-        final int y;
+        private final int x;
+        private final int y;
 
-        Point(int x, int y) {
+        Point(final int x, final int y) {
             this.x = x;
             this.y = y;
         }
 
-        int dist(Point o) {
+        int dist(final Point o) {
             return Math.abs(x - o.x) + Math.abs(y - o.y);
         }
 
@@ -65,35 +77,39 @@ public class TileMapFactoryImpl implements TileMapFactory {
      * @param b   the other point to connect
      * @param res the map in which to connect them
      */
-    private void makeCorridor(final Point a, final Point b, Tile[][] res) {
+    private void makeCorridor(final Point a, final Point b, final Tile[][] res) {
         int y = a.y;
         int x = a.x;
         while (y != b.y && x != b.x) {
             if (rand.nextBoolean()) {
-                if (y < b.y)
+                if (y < b.y) {
                     y++;
-                else
+                } else {
                     y--;
+                }
             } else {
-                if (x < b.x)
+                if (x < b.x) {
                     x++;
-                else
+                } else {
                     x--;
+                }
             }
             res[y][x] = Tile.FLOOR;
         }
         while (y != b.y) {
-            if (y < b.y)
+            if (y < b.y) {
                 y++;
-            else
+            } else {
                 y--;
+            }
             res[y][x] = Tile.FLOOR;
         }
         while (x != b.x) {
-            if (x < b.x)
+            if (x < b.x) {
                 x++;
-            else
+            } else {
                 x--;
+            }
             res[y][x] = Tile.FLOOR;
         }
     }
@@ -108,17 +124,22 @@ public class TileMapFactoryImpl implements TileMapFactory {
      * @return A Tilemap with nRooms square rooms connected by corridors in a tree,
      *         plus some random corridors minRoomDist > maxRoomSide is recommended
      */
-    private TileMap normal(int nRooms, int minRoomSide, int maxRoomSide, int minRoomDist, int maxRoomDist) {
-        if (nRooms <= 0)
+    private TileMap normal(final int nRooms, final int minRoomSide, final int maxRoomSide, final int minRoomDist, final int maxRoomDist) {
+        if (nRooms <= 0) {
             throw new IllegalArgumentException();
-        if (minRoomSide <= 0)
+        }
+        if (minRoomSide <= 0) {
             throw new IllegalArgumentException();
-        if (maxRoomSide < minRoomSide)
+        }
+        if (maxRoomSide < minRoomSide) {
             throw new IllegalArgumentException();
-        if (minRoomDist < 0)
+        }
+        if (minRoomDist < 0) {
             throw new IllegalArgumentException();
-        if (maxRoomDist < minRoomDist)
+        }
+        if (maxRoomDist < minRoomDist) {
             throw new IllegalArgumentException();
+        }
         var pool = new ArrayList<Point>(); // pool of all points at acceptable distances from the already selected
         // rooms
         var centers = new ArrayList<Point>(); // selected rooms' centers
@@ -135,8 +156,9 @@ public class TileMapFactoryImpl implements TileMapFactory {
                     int currentDist = cp.dist(p);
                     if (currentDist < formerDist) {
                         dist.put(cp, currentDist);
-                        if (formerDist > maxRoomDist)
+                        if (formerDist > maxRoomDist) {
                             pool.add(cp); // add points that were too far before
+                        }
                     }
                 }
             }
@@ -150,14 +172,18 @@ public class TileMapFactoryImpl implements TileMapFactory {
         }
         int minY = 0, minX = 0, maxY = 0, maxX = 0; // get map boundaries to shift coordinates and calculate map size
         for (Point p : centers) {
-            if (p.y < minY)
+            if (p.y < minY) {
                 minY = p.y;
-            if (p.x < minX)
+            }
+            if (p.x < minX) {
                 minX = p.x;
-            if (p.y > maxY)
+            }
+            if (p.y > maxY) {
                 maxY = p.y;
-            if (p.x > maxX)
+            }
+            if (p.x > maxX) {
                 maxX = p.x;
+            }
         }
         int w = maxX - minX + maxRoomSide + 4; // this way a room should not touch the edges
         int h = maxY - minY + maxRoomSide + 4;
@@ -207,7 +233,7 @@ public class TileMapFactoryImpl implements TileMapFactory {
     @Override
     public TileMap def() {
         rand.setSeed(System.currentTimeMillis()); // seed the prng based on time
-        return normal(16, 8, 16, 32, 42); // and call the normal builder with default parameters
+        return normal(NORMAL_N_ROOMS, NORMAL_MIN_ROOM_SIDE, NORMAL_MAX_ROOM_SIDE, NORMAL_MIN_ROOM_DIST, NORMAL_MAX_ROOM_DIST); // and call the normal builder with default parameters
     }
 
 }
