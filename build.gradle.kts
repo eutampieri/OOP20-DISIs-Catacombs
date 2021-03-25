@@ -5,6 +5,8 @@ plugins {
     // Apply the application plugin to add support for building a CLI application.
     application
     jacoco
+    pmd
+    id("com.github.spotbugs") version "4.7.0"
 }
 
 repositories {
@@ -81,4 +83,11 @@ tasks.jacocoTestCoverageVerification {
             }
         }
     }
+}
+
+pmd {
+    isConsoleOutput = true
+    toolVersion = "6.21.0"
+    rulesMinimumPriority.set(5)
+    ruleSets = listOf("category/java/errorprone.xml", "category/java/bestpractices.xml")
 }
