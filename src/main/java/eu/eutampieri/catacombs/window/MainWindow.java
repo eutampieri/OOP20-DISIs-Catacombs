@@ -6,20 +6,22 @@ import java.awt.GraphicsEnvironment;
 
 import javax.swing.JFrame;
 
-public class MainWindow {
+public final class MainWindow {
 
     private JFrame frame;
     private Canvas canvas;
 
-    public MainWindow(String name, int width, int height,boolean fullScreen,boolean resizeable) {
+    public MainWindow(final String name, final int width, final int height, final boolean fullScreen, final boolean resizeable) {
 
         this.frame = new JFrame(name);
         this.canvas = new Canvas();
         this.canvas.setSize(width, height);
-        this.frame.setSize(width,height);
+        this.frame.setSize(width, height);
         this.frame.setResizable(resizeable);
         this.frame.add(canvas);
-        if(fullScreen)makeFullScreen();
+        if (fullScreen) {
+            makeFullScreen();
+        }
 
         this.frame.pack();
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,7 +33,7 @@ public class MainWindow {
         return this.frame;
     }
 
-    public void setFrame(JFrame frame) {
+    public void setFrame(final JFrame frame) {
         this.frame = frame;
     }
 
@@ -39,7 +41,7 @@ public class MainWindow {
         return this.canvas;
     }
 
-    public void setCanvas(Canvas canvas) {
+    public void setCanvas(final Canvas canvas) {
         this.canvas = canvas;
     }
 
