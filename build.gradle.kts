@@ -68,10 +68,8 @@ jacoco {
 tasks.jacocoTestReport {
     reports {
         xml.isEnabled = true
-        xml.destination = file("$buildDir/reports/jacoco/report.xml")
         csv.isEnabled = false
         html.isEnabled = true
-        html.destination = file("$buildDir/reports/jacoco/html")
     }
 }
 
@@ -92,3 +90,11 @@ pmd {
     rulesMinimumPriority.set(5)
     ruleSetFiles(file("$projectDir/config/pmd.xml"))
 }
+
+tasks.spotbugsMain {
+    reports.create("html") {
+        isEnabled = true
+        setStylesheet("fancy-hist.xsl")
+    }
+}
+
