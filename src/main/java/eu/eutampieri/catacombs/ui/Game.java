@@ -221,7 +221,7 @@ public abstract class Game implements Runnable {
         }
     }
 
-    protected void renderfpsCount(final Color color) {
+    protected void renderFpsCount(final Color color) {
         graphics.setFont(DEFAULT_FONT);
         graphics.setColor(color);
         graphics.drawString("FRAME PER SECOND : " + framesThisSecond,
@@ -229,7 +229,7 @@ public abstract class Game implements Runnable {
                 10 + graphics.getFont().getSize());
     }
 
-    protected void renderfpsCount(final Color color, final int x, final int y) {
+    protected void renderFpsCount(final Color color, final int x, final int y) {
         graphics.setColor(color);
         graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
     }
