@@ -269,12 +269,12 @@ public abstract class Game implements Runnable {
                 }
             }
 
-            /*if (timer >= FPS_CONST) {
-                // mainFrame.getFrame().setTitle("Frame Per Seconds : " + ticks);
+            if (timer >= FPS_CONST) {
                 this.framesThisSecond = ticks;
+                mainFrame.getFrame().setTitle("Frame Per Seconds : " + framesThisSecond);
                 ticks = 0;
                 timer = 0;
-            }*/
+            }
         }
     }
 /*
