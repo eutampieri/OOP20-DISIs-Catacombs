@@ -1,10 +1,11 @@
+import eu.eutampieri.catacombs.model.map.TileMapImpl;
 import org.junit.jupiter.api.Test;
 
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MapTests {
     private void checkMap(TileMap m){
@@ -12,7 +13,7 @@ class MapTests {
             for(int x=0; x<m.width(); x++){
                 assertTrue(m.at(x,y)==Tile.FLOOR || m.at(x,y)==Tile.WALL);
                 if(y==0||x==0||y==m.height()-1||x==m.width()-1){
-                    assertTrue(m.at(x,y)!=Tile.FLOOR);
+                    assertNotSame(m.at(x,y), Tile.FLOOR);
                 }
             }
         }
@@ -23,5 +24,13 @@ class MapTests {
         for(int i=0; i<32; i++){
             checkMap(mf.def());
         }
+    }
+
+    @Test
+    public void testMapClone() {
+        TileMapImpl tm = (TileMapImpl) new TileMapFactoryImpl().def();
+        Tile[][] tiles = tm.getMap();
+        assertEquals(tiles[0].length, tm.width());
+        assertEquals(tiles.length, tm.height());
     }
 }

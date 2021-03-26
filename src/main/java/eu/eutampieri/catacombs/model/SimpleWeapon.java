@@ -38,6 +38,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
     protected final String name;
 
     /**
+     * Simple weapon constructor.
      * @param damage The amount of damage (i.e. the change in health) that a character
      * will have after being hit with this weapon
      * @param name The weapon's name
@@ -77,6 +78,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
     @Override
     public void update(final int delta) {
         // TODO Auto-generated method stub
+        
     }
 
     @Override
@@ -168,6 +170,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      * Makes weapon fire on key press.
      */
     public void fireWeapon() {
+        this.magazine--;
         // TODO
     }
 

@@ -47,4 +47,39 @@ class EquipmentTest {
 		assertEquals(p.getHealth(), healthOnCreation - 21 + 20);
 	}
 
+	@Test
+	void testGunGettersAndSetters() {
+		DEFAULT_GUN.setMagazine(64);
+		assertEquals(64, DEFAULT_GUN.getMagazine());
+		DEFAULT_GUN.setReloadSpeed(64);
+		assertEquals(64, DEFAULT_GUN.getReloadSpeed());
+		DEFAULT_GUN.setRange(64);
+		assertEquals(64, DEFAULT_GUN.getRange());
+		DEFAULT_GUN.setFireDelay(64);
+		assertEquals(64, DEFAULT_GUN.getFireDelay());
+		DEFAULT_GUN.setFireRate(64);
+		assertEquals(64, DEFAULT_GUN.getFireRate());
+		DEFAULT_GUN.setDamage(64);
+		assertEquals(64, DEFAULT_GUN.getDamage());
+	}
+
+	@Test
+	void testFiringDecreasesMagazineByOne() {
+		int initialMagazineContent = DEFAULT_GUN.getMagazine();
+		DEFAULT_GUN.fireWeapon();
+		assertEquals(initialMagazineContent - 1, DEFAULT_GUN.getMagazine());
+	}
+
+	@Test
+	void testGunUpdate() {
+		// TODO check that the update produced the desired results
+		DEFAULT_GUN.update(100);
+	}
+
+	@Test
+	void testGunRender() {
+		// TODO check that the rendering produced the desired results
+		DEFAULT_GUN.render();
+	}
+
 }

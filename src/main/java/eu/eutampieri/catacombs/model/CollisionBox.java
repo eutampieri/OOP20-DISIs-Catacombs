@@ -127,9 +127,9 @@ public class CollisionBox {
      * @param x
      * @param y
      */
-    public void setLocation(final int x, final int y) {
-        this.posX = x;
-        this.posY = y;
+    public void setLocation(int x, int y) {
+        this.setPosX(x);
+        this.setPosY(y);
     }
 
     /**
@@ -138,8 +138,8 @@ public class CollisionBox {
      * @param height
      */
     public void setDimensions(final int width, final int height) {
-        this.width = width;
-        this.height = height;
+        this.setWidth(width);
+        this.setHeight(height);
     }
 
     /**
