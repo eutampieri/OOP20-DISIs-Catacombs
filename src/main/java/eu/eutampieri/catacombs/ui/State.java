@@ -11,6 +11,7 @@ public abstract class State {
     }
 
     public abstract void update(float delta);
+
     public abstract void render(Graphics2D g2);
 
     public DungeonGame getGame() {

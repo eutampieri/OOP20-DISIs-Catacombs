@@ -230,7 +230,6 @@ public abstract class Game implements Runnable {
         graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
     }
 
-
     public void addKeyAdapter(final KeyAdapter e) {
         mainFrame.getCanvas().addKeyListener(e);
         mainFrame.getFrame().addKeyListener(e);

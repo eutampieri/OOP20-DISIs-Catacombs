@@ -69,7 +69,7 @@ public final class CollisionBox {
         this.height = height;
     }
 
-    public void debugShowBox(){
+    public void debugShowBox() {
         // TODO
     }
 

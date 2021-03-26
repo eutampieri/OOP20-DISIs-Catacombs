@@ -16,15 +16,16 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Simple weapon constructor.
-     * @param damage The amount of damage (i.e. the change in health) that a character
-     * will have after being hit with this weapon
-     * @param name The weapon's name
+     * 
+     * @param damage   The amount of damage (i.e. the change in health) that a
+     *                 character will have after being hit with this weapon
+     * @param name     The weapon's name
      * @param fireRate weapon's rate of fire
-     * @param range weapon's range
+     * @param range    weapon's range
      * @param magazine weapon's number of bullets (if -1 infinite)
      */
-    SimpleWeapon(final int damage, final String name, final  int fireRate, final int range, final int magazine) {
-        super(0,0,ID.WEAPON);
+    SimpleWeapon(final int damage, final String name, final int fireRate, final int range, final int magazine) {
+        super(0, 0, ID.WEAPON);
         this.damage = damage;
         this.name = name;
         this.fireRate = fireRate;
@@ -126,7 +127,5 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
         // TODO
 
     }
-
-
 
 }

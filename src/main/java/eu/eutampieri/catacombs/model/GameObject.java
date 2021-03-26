@@ -14,8 +14,8 @@ public abstract class GameObject {
     /**
      * GameObject constructor base
      *
-     * @param x object X position
-     * @param y	object Y position
+     * @param x  object X position
+     * @param y  object Y position
      * @param id object ID @see eu.eutampieri.catacombs.model.ID
      */
     public GameObject(final int x, final int y, final ID id) {
@@ -29,6 +29,7 @@ public abstract class GameObject {
      * @param delta time between updates
      */
     public abstract void update(int delta);
+
     public abstract void render();
 
     /**

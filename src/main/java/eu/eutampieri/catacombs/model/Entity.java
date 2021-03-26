@@ -16,7 +16,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     protected int width, height;
 
     protected TileMap tileMap;
-    //protected CollisionBox box;
+    // protected CollisionBox box;
 
     public Entity(final int x, final int y, final TileMap tileMap) {
         super(x, y, ID.ENEMY);
@@ -57,25 +57,25 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     protected void move() {
         if (up) {
             if (!isUpCollision(velY)) {
-                //box.y -= velY;
+                // box.y -= velY;
             }
             face = FACE_UP;
         }
         if (down) {
             if (!isDownCollision(velY)) {
-                //box.y += velY;
+                // box.y += velY;
             }
             face = FACE_DOWN;
         }
         if (left) {
             if (!isLeftCollision(velX)) {
-                //box.x -= velX;
+                // box.x -= velX;
             }
             face = FACE_LEFT;
         }
         if (right) {
             if (!isRightCollision(velX)) {
-                //box.x += velX;
+                // box.x += velX;
             }
             face = FACE_RIGHT;
         }
@@ -98,8 +98,8 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     }
 
     protected void updateSpriteLocation() {
-        //this.posX = box.x;
-        //this.posY = box.y;
+        // this.posX = box.x;
+        // this.posY = box.y;
     }
 
     protected void resetMovement() {
