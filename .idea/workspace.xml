@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Fixed code after merge&#10;&#10;Signed-off-by: Eugenio Tampieri &lt;eugenio@eutampieri.eu&gt;">
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Fixed code after merge of issue_5">
+      <change afterPath="$PROJECT_DIR$/src/test/java/CollisionBoxTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Gun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Gun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/CollisionBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/CollisionBox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,12 +65,12 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="fix_style_and_massively_increase_codecov" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -183,8 +183,11 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/config/pmd" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
   </component>
-  <component name="RunManager" selected="Gradle.Check">
+  <component name="RunManager" selected="Gradle.CollisionBoxTests">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -238,18 +241,17 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="EquipmentTest.testSimplePotionAfterWeapon" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CollisionBoxTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;EquipmentTest.testSimplePotionAfterWeapon&quot;" />
+        <option name="scriptParameters" value="--tests &quot;CollisionBoxTests&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value=":cleanTest" />
             <option value=":test" />
           </list>
         </option>
@@ -328,19 +330,19 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.All tests" />
-      <item itemvalue="Gradle.EquipmentTest.testSimplePotionAfterWeapon" />
       <item itemvalue="Gradle.EquipmentTest.testSimpleWeapon" />
       <item itemvalue="Gradle.GameTests" />
       <item itemvalue="Gradle.MapTests" />
       <item itemvalue="Gradle.Check" />
+      <item itemvalue="Gradle.CollisionBoxTests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CollisionBoxTests" />
         <item itemvalue="Gradle.Check" />
         <item itemvalue="Gradle.MapTests" />
         <item itemvalue="Gradle.GameTests" />
         <item itemvalue="Gradle.EquipmentTest.testSimpleWeapon" />
-        <item itemvalue="Gradle.EquipmentTest.testSimplePotionAfterWeapon" />
       </list>
     </recent_temporary>
   </component>
@@ -663,7 +665,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616754422269</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Fixed code after merge of issue_5">
+      <created>1616754688794</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1616754688794</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -795,7 +804,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="WIP Fix SimpleWeapon for checkstyle" />
     <MESSAGE value="Fix typo" />
     <MESSAGE value="WIP improve Game" />
     <MESSAGE value="Renamed renderfpsCount to renderFpsCount" />
@@ -820,12 +828,14 @@
     <MESSAGE value="WIP" />
     <MESSAGE value="Fixed code after merge" />
     <MESSAGE value="Fixed code after merge&#10;&#10;Signed-off-by: Eugenio Tampieri &lt;eugenio@eutampieri.eu&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed code after merge&#10;&#10;Signed-off-by: Eugenio Tampieri &lt;eugenio@eutampieri.eu&gt;" />
+    <MESSAGE value="Fixed code after merge of issue_5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed code after merge of issue_5" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest.ic" NAME="EquipmentTest Coverage Results" MODIFIED="1616584997634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1616604970237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$CollisionBoxTests.ic" NAME="CollisionBoxTests Coverage Results" MODIFIED="1616756791504" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1616755599965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest_testSimplePotionAfterWeapon.ic" NAME="EquipmentTest.testSimplePotionAfterWeapon Coverage Results" MODIFIED="1616584983342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">

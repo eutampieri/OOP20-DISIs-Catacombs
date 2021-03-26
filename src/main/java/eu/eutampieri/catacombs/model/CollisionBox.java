@@ -60,13 +60,13 @@ public class CollisionBox {
     }
 
     public void setLocation(int x, int y) {
-        this.posX = x;
-        this.posY = y;
+        this.setPosX(x);
+        this.setPosY(y);
     }
 
     public void setDimensions(int width, int height) {
-        this.width = width;
-        this.height = height;
+        this.setWidth(width);
+        this.setHeight(height);
     }
 
     public void debugShowBox(){
