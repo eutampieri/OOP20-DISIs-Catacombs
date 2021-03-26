@@ -229,7 +229,7 @@ public final class TileMapFactoryImpl implements TileMapFactory {
      * @return a TileMap with the default settings using a given seed
      */
     @Override
-    public TileMap seededDef(long seed) {
+    public TileMap seededDef(final long seed) {
         rand.setSeed(seed);
         return normal(NORMAL_N_ROOMS, NORMAL_MIN_ROOM_SIDE, NORMAL_MAX_ROOM_SIDE, NORMAL_MIN_ROOM_DIST,
                 NORMAL_MAX_ROOM_DIST); // and call the normal builder with default parameters
@@ -247,7 +247,7 @@ public final class TileMapFactoryImpl implements TileMapFactory {
      * @return an hxw TileMap with walls on the borders and floor inside
      */
     @Override
-    public TileMap empty(int h, int w) {
+    public TileMap empty(final int h, final int w) {
         if (h < 1 || w < 1) {
             throw new IllegalArgumentException();
         }

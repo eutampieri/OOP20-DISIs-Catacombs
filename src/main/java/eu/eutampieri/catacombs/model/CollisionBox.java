@@ -127,7 +127,7 @@ public class CollisionBox {
      * @param x
      * @param y
      */
-    public void setLocation(int x, int y) {
+    public void setLocation(final int x, final int y) {
         this.setPosX(x);
         this.setPosY(y);
     }

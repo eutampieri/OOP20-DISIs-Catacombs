@@ -108,7 +108,7 @@ public abstract class GameObject {
      * Set both speeds to a specified value (both X and Y).
      * @param speed Speed to be set
      */
-    public void setSpeed(int vel) {
+    public void setSpeed(final int vel) {
         this.setSpeedX(vel);
         this.setSpeedY(vel);
     }
@@ -122,7 +122,7 @@ public abstract class GameObject {
         return id;
     }
 
-    public void setId(ID id) {
+    public void setId(final ID id) {
         this.id = id;
     }
 
