@@ -33,4 +33,19 @@ class MapTests {
         assertEquals(tiles[0].length, tm.width());
         assertEquals(tiles.length, tm.height());
     }
+
+    @Test
+    public void testEmptyMap() {
+        TileMap tm = new TileMapFactoryImpl().empty(3, 3);
+        assertEquals(Tile.FLOOR, tm.at(1,1));
+        for(int x = 0; x < 3; x++) {
+            for(int y = 0; y < 3; y++) {
+                if (x == y && x == 1) {
+                    continue;
+                } else {
+                    assertEquals(Tile.WALL, tm.at(x, y));
+                }
+            }
+        }
+    }
 }

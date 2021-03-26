@@ -60,7 +60,7 @@ class CharactersTests {
 
     @Test
     void testBatUpdate() {
-        BAT.update(1000);
+        BAT.update(10);
         // TODO implement checks
     }
 }
