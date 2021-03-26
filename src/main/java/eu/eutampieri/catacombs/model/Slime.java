@@ -7,7 +7,7 @@ import eu.eutampieri.catacombs.model.map.TileMap;
  * Enemy Slime class.
  *
  */
-public final class Slime extends Entity{
+public final class Slime extends Entity {
 
     private static final int HEIGHT = 3;
     private static final int WIDTH = 3;
@@ -77,7 +77,7 @@ public final class Slime extends Entity{
      * Makes Slime path towards the Character(Entity) to follow.
      */
     private void follow() {
-        if (characterToFollow == null){
+        if (characterToFollow == null) {
             return;
         }
         if (characterToFollow.getPosX() < posX) {
@@ -87,7 +87,7 @@ public final class Slime extends Entity{
         }
         if (characterToFollow.getPosX() < posY) {
             up = true;
-        } else if (characterToFollow.getPosX() > posY){
+        } else if (characterToFollow.getPosX() > posY) {
             down = true;
         }
     }
