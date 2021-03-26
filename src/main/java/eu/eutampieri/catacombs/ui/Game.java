@@ -28,7 +28,7 @@ public abstract class Game implements Runnable {
     private GraphicsConfiguration gc;
     private VolatileImage vImage;
     private int framesThisSecond;
-    private final boolean running = true;
+    private boolean running = true;
     private Graphics2D graphics;
     private int fps;
     private Thread gameThread;
@@ -249,6 +249,10 @@ public abstract class Game implements Runnable {
 
     public Graphics2D getGraphics() {
         return graphics;
+    }
+
+    public void stopGame() {
+        this.running = false;
     }
 
 }
