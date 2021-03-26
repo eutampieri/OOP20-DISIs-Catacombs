@@ -105,11 +105,11 @@ public abstract class Game implements Runnable {
             vImage = gc.createCompatibleVolatileImage(gameConfiguration.getGameWidth(),
                     gameConfiguration.getGameHeight());
         }
-        if (vImage == null) {
+        /*if (vImage == null) {
             gc = mainFrame.getCanvas().getGraphicsConfiguration();
             vImage = gc.createCompatibleVolatileImage(gameConfiguration.getGameWidth(),
                     gameConfiguration.getGameHeight());
-        }
+        }*/
     }
 
     private void show() {
@@ -171,7 +171,7 @@ public abstract class Game implements Runnable {
         int updates;
         final int maxUpdates = 5;
 
-        tickPerTime = 1_000_000_000 / fps;
+        tickPerTime = 1_000_000_000d / fps;
         lastTime = System.nanoTime();
         lastUpdateTime = System.nanoTime();
         timer = 0;
