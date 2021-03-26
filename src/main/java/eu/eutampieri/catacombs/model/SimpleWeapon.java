@@ -106,6 +106,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      * Makes weapon fire on key press.
      */
     public void fireWeapon() {
+        this.magazine--;
         // TODO 
         
     }
