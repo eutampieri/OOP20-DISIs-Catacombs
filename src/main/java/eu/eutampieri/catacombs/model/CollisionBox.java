@@ -1,29 +1,29 @@
 package eu.eutampieri.catacombs.model;
 
-public class CollisionBox {
+public final class CollisionBox {
     public int posX, posY;
     public int width, height;
 
-    public CollisionBox(int posX, int posY, int width, int height) {
+    public CollisionBox(final int posX, final int posY, final int width, final int height) {
         this.posX = posX;
         this.posY = posY;
         this.width = width;
         this.height = height;
     }
 
-    public CollisionBox(CollisionBox box) {
+    public CollisionBox(final CollisionBox box) {
         this.posX = box.posX;
         this.posY = box.posY;
         this.width = box.width;
         this.height = box.height;
     }
 
-    public void move(int dx, int dy) {
+    public void move(final int dx, final int dy) {
         this.posX += dx;
         this.posY += dy;
     }
 
-    public boolean overlaps(CollisionBox r) {
+    public boolean overlaps(final CollisionBox r) {
         return posX < r.posX + r.width && posX + width > r.posX && posY < r.posY + r.height && posY + height > r.posY;
     }
 
@@ -31,7 +31,7 @@ public class CollisionBox {
         return posX;
     }
 
-    public void setPosX(int posX) {
+    public void setPosX(final int posX) {
         this.posX = posX;
     }
 
@@ -39,7 +39,7 @@ public class CollisionBox {
         return posY;
     }
 
-    public void setPosY(int posY) {
+    public void setPosY(final int posY) {
         this.posY = posY;
     }
 
@@ -47,7 +47,7 @@ public class CollisionBox {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(final int width) {
         this.width = width;
     }
 
@@ -55,16 +55,16 @@ public class CollisionBox {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(final int height) {
         this.height = height;
     }
 
-    public void setLocation(int x, int y) {
+    public void setLocation(final int x, final int y) {
         this.posX = x;
         this.posY = y;
     }
 
-    public void setDimensions(int width, int height) {
+    public void setDimensions(final int width, final int height) {
         this.width = width;
         this.height = height;
     }

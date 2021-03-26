@@ -18,12 +18,12 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     protected TileMap tileMap;
     //protected CollisionBox box;
 
-    public Entity(int x, int y, TileMap tileMap) {
+    public Entity(final int x, final int y, final TileMap tileMap) {
         super(x, y, ID.ENEMY);
         this.tileMap = tileMap;
     }
 
-    public void setAlive(boolean alive) {
+    public void setAlive(final boolean alive) {
         isAlive = alive;
     }
 
@@ -31,7 +31,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(final int width) {
         this.width = width;
     }
 
@@ -39,12 +39,12 @@ public abstract class Entity extends GameObject implements LivingCharacter {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(final int height) {
         this.height = height;
     }
 
     @Override
-    public void update(int delta) {
+    public void update(final int delta) {
         move();
         updateSpriteLocation();
     }
@@ -81,19 +81,19 @@ public abstract class Entity extends GameObject implements LivingCharacter {
         }
     }
 
-    protected boolean isUpCollision(float dy) {
+    protected boolean isUpCollision(final float dy) {
         return false;
     }
 
-    protected boolean isRightCollision(float dx) {
+    protected boolean isRightCollision(final float dx) {
         return false;
     }
 
-    protected boolean isDownCollision(float dy) {
+    protected boolean isDownCollision(final float dy) {
         return false;
     }
 
-    protected boolean isLeftCollision(float dx) {
+    protected boolean isLeftCollision(final float dx) {
         return false;
     }
 
