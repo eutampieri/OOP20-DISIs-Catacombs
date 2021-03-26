@@ -7,7 +7,7 @@ public class Player extends GameObject implements LivingCharacter{
     private String name;
 
 	public Player(int x, int y, String name) {
-		super(x, y, ID.Player);
+		super(x, y, ID.PLAYER);
 		setSpeed(BASE_MOVEMENT_SPEED);
 		this.setHealth(MAX_BASE_HP);
 		this.name = name;
