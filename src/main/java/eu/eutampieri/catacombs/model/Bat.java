@@ -27,7 +27,7 @@ public class Bat extends Entity {
 	}
 
 	@Override
-	public void update(float delta) {
+	public void update(int delta) {
 		// TODO Auto-generated method stub
 
 	}

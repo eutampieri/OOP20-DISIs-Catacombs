@@ -100,6 +100,8 @@
 		<exclude name="NullAssignment" />
 		<exclude name="ReturnEmptyArrayRatherThanNull" />
 		<exclude name="TestClassWithoutTestCases" />
+		<exclude name="DataflowAnomalyAnalysis" />
+		<exclude name="BeanMembersShouldSerialize" />
 	</rule>
 	<rule ref="category/java/multithreading.xml">
 		<exclude name="AvoidSynchronizedAtMethodLevel" />
