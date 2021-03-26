@@ -109,7 +109,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
             maxMovementUp = hitBox.getPosY();
         }
         if (hitBox.getPosY() + hitBox.getHeight() + speedY > tileMap.height() - 1) {
-            maxMovementDown = tileMap.height() - hitBox.getPosY() - hitBox.getHeight() -1;
+            maxMovementDown = tileMap.height() - hitBox.getPosY() - hitBox.getHeight() - 1;
         }
 
         if (up) {
@@ -179,7 +179,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      */
     protected boolean isLeftCollision(final int dx) {
         return tileMap.at(hitBox.getPosX() - dx, hitBox.getPosY()) == Tile.WALL
-            || tileMap.at(hitBox.getPosX()- dx, hitBox.getPosY() + hitBox.getHeight()) == Tile.WALL;
+            || tileMap.at(hitBox.getPosX() - dx, hitBox.getPosY() + hitBox.getHeight()) == Tile.WALL;
     }
 
     /**
