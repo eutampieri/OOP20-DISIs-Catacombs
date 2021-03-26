@@ -33,12 +33,8 @@ public abstract class Game implements Runnable {
     private BufferStrategy bs;
     private GraphicsConfiguration gc;
     private VolatileImage vImage;
-<<<<<<< HEAD
     private int framesThisSecond;
     private boolean running = true;
-=======
-    private static final boolean running = true;
->>>>>>> origin/increase_ui_code_quality
     private Graphics2D graphics;
     private int fps;
     private Thread gameThread;
@@ -100,17 +96,14 @@ public abstract class Game implements Runnable {
         this.fps = fps;
     }
 
-<<<<<<< HEAD
-    // TODO Is this warning really necessary? Isn't it bad design?
-    @SuppressFBWarnings("ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD")
-=======
     /**
      *
      * @param config
      *              the style choose for the frame
      */
 
->>>>>>> origin/increase_ui_code_quality
+    // TODO Is this warning really necessary? Isn't it bad design?
+    @SuppressFBWarnings("ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD")
     public final void initialize(final GameConfiguration config) {
         gameConfiguration = config;
         mainFrame = new MainWindow(config.getTitle(), config.getGameWidth(), config.getGameHeight(),
