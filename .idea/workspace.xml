@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Fixed PMD for tests">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ThreadTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/MenuState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ThreadTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/ThreadTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/HIDTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/HIDTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -372,7 +373,7 @@
       <workItem from="1616670107545" duration="2088000" />
       <workItem from="1616687466637" duration="5822000" />
       <workItem from="1616745567957" duration="5514000" />
-      <workItem from="1616794690474" duration="864000" />
+      <workItem from="1616794690474" duration="1776000" />
     </task>
     <task id="LOCAL-00006" summary="Moved JaCoCo reports">
       <created>1616671529729</created>

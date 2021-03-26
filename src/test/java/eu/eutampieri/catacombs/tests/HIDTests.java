@@ -1,4 +1,6 @@
-import eu.eutampieri.catacombs.ui.*;
+package eu.eutampieri.catacombs.tests;
+
+import eu.eutampieri.catacombs.ui.input.KeyManager;
 import eu.eutampieri.catacombs.ui.input.MouseManager;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -50,7 +52,7 @@ class HIDTests {
 
     @Test
     void testKeyPressed() {
-        KeyEvent k = new KeyEvent(EVENT_SOURCE, KeyEvent.KEY_PRESSED, 0, 0, KeyEvent.VK_W, 'w');
+        final KeyEvent k = new KeyEvent(EVENT_SOURCE, KeyEvent.KEY_PRESSED, 0, 0, KeyEvent.VK_W, 'w');
         KEY_MANAGER.keyPressed(k);
         assertTrue(KEY_MANAGER.isKeyPressed(k.getKeyCode()));
         assertFalse(KEY_MANAGER.isKeyJustPressed(k.getKeyCode()));

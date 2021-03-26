@@ -39,7 +39,7 @@ public final class MenuState extends State {
                 this.game.startGame();
                 break;
             case QUIT_GAME:
-                this.game.stopGame();
+                this.game.stop();
                 break;
             default:
                 break;

@@ -32,7 +32,7 @@ public abstract class Game implements Runnable {
     private GraphicsConfiguration gc;
     private VolatileImage vImage;
     private int framesThisSecond;
-    private boolean running = false;
+    private boolean running;
     private Graphics2D graphics;
     private int fps;
     private Thread gameThread;
@@ -276,7 +276,7 @@ public abstract class Game implements Runnable {
         }
     }
 
-    protected void renderFpsCount(final Color color) {
+    protected final void renderFpsCount(final Color color) {
         graphics.setFont(DEFAULT_FONT);
         graphics.setColor(color);
         graphics.drawString("FRAME PER SECOND : " + framesThisSecond,
