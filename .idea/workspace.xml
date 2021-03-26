@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Increased model coverage above the threshold">
-      <change afterPath="$PROJECT_DIR$/src/test/java/HIDTests.java" afterDir="false" />
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Mouse tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/input/MouseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/input/MouseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MapTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MapTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -691,7 +690,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616764564062</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Mouse tests">
+      <created>1616767043107</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1616767043107</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -823,7 +829,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added curly braces for ifs and removed magic numbers in TileMapFactoryImpl.java" />
     <MESSAGE value="Game configuration is now a final class" />
     <MESSAGE value="Refactored KeyManager.java and MouseManager.java" />
     <MESSAGE value="Refactored MenuState" />
@@ -848,7 +853,8 @@
     <MESSAGE value="Converting tabs to spaces" />
     <MESSAGE value="Various equipment and weapon tests" />
     <MESSAGE value="Increased model coverage above the threshold" />
-    <option name="LAST_COMMIT_MESSAGE" value="Increased model coverage above the threshold" />
+    <MESSAGE value="Mouse tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mouse tests" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$CharactersTests_testSlimeFollowBat.ic" NAME="CharactersTests.testSlimeFollowBat Coverage Results" MODIFIED="1616763852560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -857,7 +863,7 @@
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$CharactersTests.ic" NAME="CharactersTests Coverage Results" MODIFIED="1616757510094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest.ic" NAME="EquipmentTest Coverage Results" MODIFIED="1616584997634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$CollisionBoxTests.ic" NAME="CollisionBoxTests Coverage Results" MODIFIED="1616756838964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1616766515449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1616766996777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest_testSimplePotionAfterWeapon.ic" NAME="EquipmentTest.testSimplePotionAfterWeapon Coverage Results" MODIFIED="1616584983342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
