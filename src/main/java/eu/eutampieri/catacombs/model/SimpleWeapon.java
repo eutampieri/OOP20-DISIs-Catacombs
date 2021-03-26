@@ -1,5 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
  * A simple weapon that subtracts a given value from a player's health.
  */
@@ -15,6 +17,8 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
     /**
      * Timer between each shot.
      */
+    // TODO remove suppress when implemented game loop
+    @SuppressFBWarnings("UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD")
     protected int fireDelay;
     /**
      * Weapon range as distance a bullet travels.
@@ -27,6 +31,8 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
     /**
      * Reload timer - keeps track of time reloading.
      */
+    // TODO remove suppress when implemented game loop
+    @SuppressFBWarnings("UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD")
     protected int reloadDelay;
     /**
      * Weapon magazine.

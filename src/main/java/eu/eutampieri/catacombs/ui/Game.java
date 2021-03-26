@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.image.BufferStrategy;
 import java.awt.image.VolatileImage;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import eu.eutampieri.catacombs.ui.input.KeyManager;
 import eu.eutampieri.catacombs.ui.input.MouseManager;
 import eu.eutampieri.catacombs.window.MainWindow;
@@ -59,6 +60,8 @@ public abstract class Game implements Runnable {
         this.fps = fps;
     }
 
+    // TODO Is this warning really necessary? Isn't it bad design?
+    @SuppressFBWarnings("ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD")
     public final void initialize(final GameConfiguration config) {
         gameConfiguration = config;
         mainFrame = new MainWindow(config.getTitle(), config.getGameWidth(), config.getGameHeight(),

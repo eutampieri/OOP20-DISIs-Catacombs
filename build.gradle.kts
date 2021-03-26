@@ -23,6 +23,10 @@ dependencies {
     
     //runtimeOnly("org.slf4j:slf4j-log4j12:1.7.30")
 
+    compileOnly("com.github.spotbugs:spotbugs-annotations:4.2.2")
+    compileOnly("net.jcip:jcip-annotations:1.0")
+
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 
