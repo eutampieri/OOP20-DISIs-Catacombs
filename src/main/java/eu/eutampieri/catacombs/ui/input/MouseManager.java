@@ -39,10 +39,10 @@ public final class MouseManager extends MouseAdapter {
     @Override
     public void mouseReleased(final MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
-            this.leftPress = true;
+            this.leftPress = false;
         }
         if (e.getButton() == MouseEvent.BUTTON3) {
-            this.rightPress = true;
+            this.rightPress = false;
         }
     }
 
