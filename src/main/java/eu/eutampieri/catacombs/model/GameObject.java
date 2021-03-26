@@ -18,7 +18,7 @@ public abstract class GameObject {
      * @param y	object Y position
      * @param id object ID @see eu.eutampieri.catacombs.model.ID
      */
-    public GameObject(int x, int y, ID id) {
+    public GameObject(final int x, final int y, final ID id) {
         this.posX = x;
         this.posY = y;
         this.id = id;
@@ -28,7 +28,7 @@ public abstract class GameObject {
      *
      * @param delta time between updates
      */
-    public abstract void update(final int delta);
+    public abstract void update(int delta);
     public abstract void render();
 
     /**
@@ -59,7 +59,7 @@ public abstract class GameObject {
      *
      * @param posY set object Y position
      */
-    public void setPosY(int posY) {
+    public void setPosY(final int posY) {
         this.posY = posY;
     }
 
@@ -67,7 +67,7 @@ public abstract class GameObject {
         return velX;
     }
 
-    public void setVelX(int velX) {
+    public void setVelX(final int velX) {
         this.velX = velX;
     }
 
@@ -75,11 +75,11 @@ public abstract class GameObject {
         return velY;
     }
 
-    public void setVelY(int velY) {
+    public void setVelY(final int velY) {
         this.velY = velY;
     }
 
-    public void setBothVelAsEquals(int vel) {
+    public void setBothVelAsEquals(final int vel) {
         this.velX = vel;
         this.velY = vel;
     }
@@ -88,7 +88,7 @@ public abstract class GameObject {
         return id;
     }
 
-    public void setId(ID id) {
+    public void setId(final ID id) {
         this.id = id;
     }
 
