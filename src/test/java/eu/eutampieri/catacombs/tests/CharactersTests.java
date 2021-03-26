@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CharactersTests {
 
     private final static TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
-    private final static Bat BAT = new Bat(3, 3, TILE_MAP);
+    private final static Bat BAT = new Bat(1, 1, TILE_MAP);
     private final static Slime SLIME = new Slime(1, 1, TILE_MAP);
     private final static HealthModifier ONE_HP_SUB = new Gun(1, "1xp", 1, 1, 1000);
 
