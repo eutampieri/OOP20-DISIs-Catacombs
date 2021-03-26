@@ -11,10 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CharactersTests {
 
-    private final TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
-    private final Bat BAT = new Bat(3, 3, TILE_MAP);
-    private final Slime SLIME = new Slime(1, 1, TILE_MAP);
-    private final HealthModifier ONE_HP_SUB = new Gun(1, "1xp", 1, 1, 1000);
+    private final static TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
+    private final static Bat BAT = new Bat(3, 3, TILE_MAP);
+    private final static Slime SLIME = new Slime(1, 1, TILE_MAP);
+    private final static HealthModifier ONE_HP_SUB = new Gun(1, "1xp", 1, 1, 1000);
 
 
     @Test
