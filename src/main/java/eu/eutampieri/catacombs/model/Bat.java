@@ -14,11 +14,11 @@ public final class Bat extends Entity {
     private static final int HEALTH = 8;
     private static final String NAME = "Bat";
 
-    private SimpleWeapon weapon;
+    private final SimpleWeapon weapon;
     private boolean isMoving;
     private int moveDelay, delayCounter;
     private int pauseDelay, pauseCounter;
-    private CollisionBox radarBox;
+    private final CollisionBox radarBox;
 
     /**
      * Bat constructor.
@@ -43,7 +43,7 @@ public final class Bat extends Entity {
     }
 
     @Override
-    public void update(int delta) {
+    public void update(final int delta) {
         if (isMoving) {
             delayCounter += delta;
             if (delayCounter >= moveDelay) {
@@ -76,7 +76,7 @@ public final class Bat extends Entity {
     }
 
     @Override
-    public void setHealth(int health) {
+    public void setHealth(final int health) {
         this.hp = health;
     }
 
@@ -100,6 +100,10 @@ public final class Bat extends Entity {
      */
     private void updateRadarBoxLocation() {
         radarBox.setLocation(posX - width * 4, posY - height * 4);
+    }
+
+    public String getName() {
+        return this.NAME;
     }
 
 }

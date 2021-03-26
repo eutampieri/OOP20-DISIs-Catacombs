@@ -2,17 +2,18 @@ package eu.eutampieri.catacombs.model;
 
 /**
  * 
- * A simple weapon that substracts a given value from a player's health
+ * A simple weapon that subtracts a given value from a player's health
  *
  */
 public abstract class SimpleWeapon extends GameObject implements HealthModifier {
-    private int damage;
-    private int fireRate;
-    private int fireDelay; // timer between shots
-    private int range;
-    private int reloadSpeed; // time taken to reload
-    private int magazine; // number of bullets 
-    private final String name; 
+    protected int damage;
+    protected int fireRate;
+    protected int fireDelay; // timer between shots
+    protected int range;
+    protected int reloadSpeed; // time taken to reload
+    protected int reloadDelay;
+    protected int magazine; // number of bullets
+    protected final String name;
     
     /**
      * Simple weapon constructor.
@@ -23,7 +24,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      * @param range weapon's range
      * @param magazine weapon's number of bullets (if -1 infinite)
      */
-    SimpleWeapon(int damage, String name, int fireRate, int range, int magazine) {
+    SimpleWeapon(final int damage, final String name, final int fireRate, final int range, final int magazine) {
         super(0,0,ID.WEAPON);
         this.damage = damage;
         this.name = name;
@@ -43,7 +44,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
     }
 
     @Override
-    public void update(int delta) {
+    public void update(final int delta) {
         // TODO Auto-generated method stub
         
     }
@@ -54,51 +55,83 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
         
     }
 
+    /**
+     * Getter for weapon damage.
+     * @return Weapon damage
+     */
     public int getDamage() {
         return damage;
     }
 
-    public void setDamage(int damage) {
+    /**
+     * Setter for weapon damage.
+     * @param damage Weapon damage to be set
+     */
+    public void setDamage(final int damage) {
         this.damage = damage;
     }
 
+    /**
+     * Getter for weapon fire rate.
+     * @return Weapon fire rate
+     */
     public int getFireRate() {
         return fireRate;
     }
 
-    public void setFireRate(int fireRate) {
+    /**
+     * Setter for weapon fire rate.
+     * @param fireRate Weapon fire rate to be set
+     */
+    public void setFireRate(final int fireRate) {
         this.fireRate = fireRate;
     }
 
-    public int getFireDelay() {
-        return fireDelay;
-    }
-
-    public void setFireDelay(int fireDelay) {
-        this.fireDelay = fireDelay;
-    }
-
+    /**
+     * Getter for weapon range.
+     * @return Weapon range as an integer specifying the distance a bullet can travel
+     */
     public int getRange() {
         return range;
     }
 
-    public void setRange(int range) {
+    /**
+     * Setter for weapon range.
+     * @param range Weapon range to be set
+     */
+    public void setRange(final int range) {
         this.range = range;
     }
 
+    /**
+     * Getter for weapon reload speed.
+     * @return Weapon reload speed as the time taken to reload the weapon
+     */
     public int getReloadSpeed() {
         return reloadSpeed;
     }
 
-    public void setReloadSpeed(int reloadSpeed) {
+    /**
+     * Setter for weapon reload speed.
+     * @param reloadSpeed Weapon reload speed to be set
+     */
+    public void setReloadSpeed(final int reloadSpeed) {
         this.reloadSpeed = reloadSpeed;
     }
 
+    /**
+     * Getter for weapon magazine size
+     * @return Weapon magazine size as number of bullets the weapon can shoot before reloading
+     */
     public int getMagazine() {
         return magazine;
     }
 
-    public void setMagazine(int magazine) {
+    /**
+     * Setter for weapon magazine
+     * @param magazine Weapone magazine to be set
+     */
+    public void setMagazine(final int magazine) {
         this.magazine = magazine;
     }
 

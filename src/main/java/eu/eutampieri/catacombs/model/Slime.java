@@ -16,7 +16,7 @@ public final class Slime extends Entity{
 	private static final String NAME = "Slime";
 
 	private Entity characterToFollow;
-	private CollisionBox radarBox;
+	private final CollisionBox radarBox;
 
 	/**
 	 * Slime constructor.
@@ -24,7 +24,7 @@ public final class Slime extends Entity{
 	 * @param y Y spawn position
 	 * @param tileMap Tile map in which Slime is spawned
 	 */
-	public Slime(int x, int y, TileMap tileMap) {
+	public Slime(final int x, final int y, final TileMap tileMap) {
 		super(x, y, tileMap);
 		setHeight(HEIGHT);
 		setWidth(WIDTH);
@@ -39,7 +39,7 @@ public final class Slime extends Entity{
 	}
 
 	@Override
-	public void update(int delta) {
+	public void update(final int delta) {
 		resetMovement();
 		follow();
 		super.update(delta);
@@ -59,7 +59,7 @@ public final class Slime extends Entity{
 	}
 
 	@Override
-	public void setHealth(int health) {
+	public void setHealth(final int health) {
 		this.hp = health;
 	}
 
@@ -68,9 +68,10 @@ public final class Slime extends Entity{
 	 * 		With this method Slimes can follow every entity.
 	 * @param e Entity to follow
 	 */
-	public void follow(Entity e) {
-		if (radarBox.overlaps(e.getHitBox()))
+	public void follow(final Entity e) {
+		if (radarBox.overlaps(e.getHitBox())) {
 			characterToFollow = e;
+		}
 	}
 
 	/**
@@ -97,6 +98,10 @@ public final class Slime extends Entity{
 	 */
 	public void updateRadarBoxLocation() {
 		radarBox.setLocation(posX - width * 2, posY - height * 2);
+	}
+
+	public String getName() {
+		return this.NAME;
 	}
 	
 }

@@ -28,7 +28,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * @param y Y spawn position
      * @param tileMap Tile map in which Entity is spawned
      */
-    public Entity(int x, int y, TileMap tileMap) {
+    public Entity(final int x, final int y, final TileMap tileMap) {
         super(x, y, ID.ENEMY);
         this.tileMap = tileMap;
     }
@@ -37,7 +37,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * Setter for isAlive.
      * @param alive true if the entity is alive (hp>0); false if the entity is dead
      */
-    public void setAlive(boolean alive) {
+    public void setAlive(final boolean alive) {
         isAlive = alive;
     }
 
@@ -53,7 +53,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * Setter for width.
      * @param width Width dimension for the entity
      */
-    public void setWidth(int width) {
+    public void setWidth(final int width) {
         this.width = width;
     }
 
@@ -69,12 +69,12 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * Setter for height.
      * @param height Height dimension for the entity
      */
-    public void setHeight(int height) {
+    public void setHeight(final int height) {
         this.height = height;
     }
 
     @Override
-    public void update(int delta) {
+    public void update(final int delta) {
         move();
         updateSpriteLocation();
     }
@@ -119,7 +119,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * @param dy Entity speedY
      * @return true if moving into a wall; false otherwise
      */
-    protected boolean isUpCollision(int dy) {
+    protected boolean isUpCollision(final int dy) {
         return tileMap.at(posX, posY-dy)==Tile.WALL;
     }
 
@@ -128,7 +128,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * @param dx Entity speedX
      * @return true if moving into a wall; false otherwise
      */
-    protected boolean isRightCollision(int dx) {
+    protected boolean isRightCollision(final int dx) {
         return tileMap.at(posX+dx, posY)==Tile.WALL;
     }
 
@@ -137,7 +137,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * @param dy Entity speedY
      * @return true if moving into a wall; false otherwise
      */
-    protected boolean isDownCollision(int dy) {
+    protected boolean isDownCollision(final int dy) {
         return tileMap.at(posX, posY+dy)==Tile.WALL;
     }
 
@@ -146,7 +146,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * @param dx Entity speedX
      * @return true if moving into a wall; false otherwise
      */
-    protected boolean isLeftCollision(int dx) {
+    protected boolean isLeftCollision(final int dx) {
         return tileMap.at(posX-dx, posY)==Tile.WALL;
     }
 
