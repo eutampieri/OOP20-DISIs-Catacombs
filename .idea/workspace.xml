@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Fixed tests">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CharactersTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CharactersTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/MapTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MapTests.java" afterDir="false" />
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Removed PMD violations on test module">
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Entity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,6 +174,9 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/config/pmd" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="eu.eutampieri.catacombs.tests" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
@@ -354,27 +355,6 @@
       <workItem from="1616670107545" duration="2088000" />
       <workItem from="1616687466637" duration="5822000" />
       <workItem from="1616745567957" duration="5514000" />
-    </task>
-    <task id="LOCAL-00002" summary="Enable PMD and SpotBugs">
-      <created>1616668903193</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1616668903193</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions">
-      <created>1616669512767</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1616669512767</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Configured Checkstyle">
-      <created>1616670951074</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1616670951074</updated>
     </task>
     <task id="LOCAL-00005" summary="Configured PMD">
       <created>1616671342769</created>
@@ -698,7 +678,28 @@
       <option name="project" value="LOCAL" />
       <updated>1616770523092</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Implemented empty map test">
+      <created>1616771119612</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1616771119613</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Removed PMD violations on main module">
+      <created>1616771958307</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1616771958307</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Removed PMD violations on test module">
+      <created>1616772661920</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1616772661920</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -830,9 +831,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactored KeyManager.java and MouseManager.java" />
-    <MESSAGE value="Refactored MenuState" />
-    <MESSAGE value="Refactored MainWindow" />
     <MESSAGE value="Refactored DungeonGame.java" />
     <MESSAGE value="Refactored Slime.java" />
     <MESSAGE value="Added doc to Tile" />
@@ -855,7 +853,10 @@
     <MESSAGE value="Increased model coverage above the threshold" />
     <MESSAGE value="Mouse tests" />
     <MESSAGE value="Fixed tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed tests" />
+    <MESSAGE value="Implemented empty map test" />
+    <MESSAGE value="Removed PMD violations on main module" />
+    <MESSAGE value="Removed PMD violations on test module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed PMD violations on test module" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$CharactersTests_testSlimeFollowBat.ic" NAME="CharactersTests.testSlimeFollowBat Coverage Results" MODIFIED="1616763852560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -864,7 +865,7 @@
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$CharactersTests.ic" NAME="CharactersTests Coverage Results" MODIFIED="1616757510094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest.ic" NAME="EquipmentTest Coverage Results" MODIFIED="1616584997634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$CollisionBoxTests.ic" NAME="CollisionBoxTests Coverage Results" MODIFIED="1616756838964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1616771029990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1616771085180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest_testSimplePotionAfterWeapon.ic" NAME="EquipmentTest.testSimplePotionAfterWeapon Coverage Results" MODIFIED="1616584983342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">

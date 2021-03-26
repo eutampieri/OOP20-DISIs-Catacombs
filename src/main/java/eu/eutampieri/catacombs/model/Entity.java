@@ -20,10 +20,6 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      */
     protected int hp;
     /**
-     * Liveness status of the entity.
-     */
-    protected boolean isAlive;
-    /**
      * Entity dimensions.
      */
     protected int width, height; //Entity width and height

@@ -1,3 +1,5 @@
+package eu.eutampieri.catacombs.tests;
+
 import eu.eutampieri.catacombs.model.map.TileMapImpl;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +10,7 @@ import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MapTests {
-    private void checkMap(TileMap m){
+    private void checkMap(final TileMap m){
         for(int y=0; y<m.height(); y++){
             for(int x=0; x<m.width(); x++){
                 assertTrue(m.at(x,y)==Tile.FLOOR || m.at(x,y)==Tile.WALL);
@@ -20,7 +22,7 @@ class MapTests {
     }
     @Test
     public void testGameLaunch() {
-        TileMapFactoryImpl mf = new TileMapFactoryImpl();
+        final TileMapFactoryImpl mf = new TileMapFactoryImpl();
         for(int i=0; i<32; i++){
             checkMap(mf.def());
         }
@@ -28,15 +30,15 @@ class MapTests {
 
     @Test
     public void testMapClone() {
-        TileMapImpl tm = (TileMapImpl) new TileMapFactoryImpl().def();
-        Tile[][] tiles = tm.getMap();
+        final TileMapImpl tm = (TileMapImpl) new TileMapFactoryImpl().def();
+        final Tile[][] tiles = tm.getMap();
         assertEquals(tiles[0].length, tm.width());
         assertEquals(tiles.length, tm.height());
     }
 
     @Test
     public void testEmptyMap() {
-        TileMap tm = new TileMapFactoryImpl().empty(3, 3);
+        final TileMap tm = new TileMapFactoryImpl().empty(3, 3);
         assertEquals(Tile.FLOOR, tm.at(1,1));
         for(int x = 0; x < 3; x++) {
             for(int y = 0; y < 3; y++) {
