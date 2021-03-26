@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Refactored Game-related classes">
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Fixed from cherrypick (leftover)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/pmd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/pmd.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Bat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Bat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Gun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Gun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/SimpleWeapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/SimpleWeapon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/EquipmentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/EquipmentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/pmd.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/pmd/pmd.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,6 +179,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.github/workflows" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config/pmd" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.Check">
@@ -360,7 +360,7 @@
       <workItem from="1616669928686" duration="125000" />
       <workItem from="1616670107545" duration="2088000" />
       <workItem from="1616687466637" duration="5822000" />
-      <workItem from="1616745567957" duration="4107000" />
+      <workItem from="1616745567957" duration="4645000" />
     </task>
     <task id="LOCAL-00001" summary="Removed Eclipse's config files">
       <created>1616595875480</created>
@@ -614,7 +614,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616748853114</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Fixed from cherrypick (leftover)">
+      <created>1616750682284</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1616750682285</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -746,7 +753,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix GameObject for checkstyle" />
     <MESSAGE value="Fix Gun for checkstyle" />
     <MESSAGE value="Fix HealthModifier for checkstyle" />
     <MESSAGE value="Fix ID for checkstyle" />
@@ -771,7 +777,8 @@
     <MESSAGE value="Refactored TileMapImpl.java" />
     <MESSAGE value="Refactored Game-related classes" />
     <MESSAGE value="Fixed changes from cherry-pick" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed changes from cherry-pick" />
+    <MESSAGE value="Fixed from cherrypick (leftover)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed from cherrypick (leftover)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

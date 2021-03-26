@@ -90,7 +90,8 @@ pmd {
     isConsoleOutput = true
     toolVersion = "6.32.0"
     rulesMinimumPriority.set(5)
-    ruleSetFiles(file("$projectDir/config/pmd.xml"))
+    ruleSets.clear()
+    ruleSetFiles(file("$projectDir/config/pmd/pmd.xml"))
 }
 
 tasks.spotbugsMain {
