@@ -29,7 +29,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * @param tileMap Tile map in which Entity is spawned
      */
     public Entity(int x, int y, TileMap tileMap) {
-        super(x, y, ID.Enemy);
+        super(x, y, ID.ENEMY);
         this.tileMap = tileMap;
     }
 
