@@ -17,11 +17,13 @@ public final class Bat extends Entity {
     private static final int BASE_FIRE_RATE = 2;
     private static final int BASE_RANGE = 2;
     private static final String NAME = "Bat";
+    private static final int MOVE_DELAY = 5;
+    private static final int PAUSE_DELAY = 5;
 
     private final SimpleWeapon weapon;
     private boolean isMoving;
-    private int moveDelay, delayCounter;
-    private int pauseDelay, pauseCounter;
+    private int delayCounter;
+    private int pauseCounter;
     private final CollisionBox radarBox;
 
     /**
@@ -35,7 +37,6 @@ public final class Bat extends Entity {
         setWidth(WIDTH);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
-        setAlive(true);
         face = Face.FACE_RIGHT;
         hitBox = new CollisionBox(posX, posY, width, height);
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD, height * CB_DIM_MOD);
@@ -49,14 +50,14 @@ public final class Bat extends Entity {
     public void update(final int delta) {
         if (isMoving) {
             delayCounter += delta;
-            if (delayCounter >= moveDelay) {
-                moveDelay = 0;
+            if (delayCounter >= MOVE_DELAY) {
+                delayCounter = 0;
                 isMoving = false;
                 resetMovement();
             }
         } else {
             pauseCounter += delta;
-            if (pauseCounter >= pauseDelay) {
+            if (pauseCounter >= PAUSE_DELAY) {
                 pauseCounter = 0;
                 isMoving = true;
                 changeDirection();
@@ -102,7 +103,7 @@ public final class Bat extends Entity {
      * Updates the aggro radar's Bat box.
      */
     private void updateRadarBoxLocation() {
-        radarBox.setLocation(posX - width * 4, posY - height * 4);
+        radarBox.setLocation(posX - width * CB_POS_MOD, posY - height * CB_POS_MOD);
     }
 
     public String getName() {

@@ -45,8 +45,10 @@ public class CollisionBox {
      * @param dy Movement made in the Y axis
      */
     public void move(final int dx, final int dy) {
-        this.posX += dx;
-        this.posY += dy;
+        if (posX + dx > 0 && posY + dy > 0) {
+            posX += dx;
+            posY += dy;
+        }
     }
 
     /**

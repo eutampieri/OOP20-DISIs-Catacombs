@@ -73,6 +73,16 @@ public abstract class GameObject {
     }
 
     /**
+     * Set position corresponding to coordinates (posX, posY).
+     * @param posX Position on the X axis
+     * @param posY Position on the Y axis
+     */
+    public void setPos(final int posX, final int posY) {
+        this.posX = posX;
+        this.posY = posY;
+    }
+
+    /**
      * Getter for object speed on the X axis.
      * @return Object X speed
      */
@@ -108,11 +118,10 @@ public abstract class GameObject {
      * Set both speeds to a specified value (both X and Y).
      * @param speed Speed to be set
      */
-    public void setSpeed(final int vel) {
-        this.setSpeedX(vel);
-        this.setSpeedY(vel);
+    public void setSpeed(final int speed) {
+        this.setSpeedX(speed);
+        this.setSpeedY(speed);
     }
-
 
     /**
      * Getter for object ID.
@@ -121,9 +130,4 @@ public abstract class GameObject {
     public ID getId() {
         return id;
     }
-
-    public void setId(final ID id) {
-        this.id = id;
-    }
-
 }

@@ -1,3 +1,4 @@
+import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CharactersTests {
 
     private final TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
-    private final Bat BAT = new Bat(1, 1, TILE_MAP);
+    private final Bat BAT = new Bat(3, 3, TILE_MAP);
     private final Slime SLIME = new Slime(1, 1, TILE_MAP);
     private final HealthModifier ONE_HP_SUB = new Gun(1, "1xp", 1, 1, 1000);
 
@@ -30,6 +31,18 @@ class CharactersTests {
     }
 
     @Test
+    void testEnemyNames() {
+        assertEquals("Slime", SLIME.getName());
+        assertEquals("Bat", BAT.getName());
+    }
+
+    @Test
+    void testEnemyID() {
+        assertEquals(ID.ENEMY, SLIME.getId());
+        assertEquals(ID.ENEMY, SLIME.getId());
+    }
+
+    @Test
     void testBatGettersSetters() {
         int initialHealth = BAT.getHealth();
         ONE_HP_SUB.useOn(BAT);
@@ -46,6 +59,14 @@ class CharactersTests {
         assertEquals(0, SLIME.getHeight() & (SLIME.getHeight() - 1));
 
     }
+
+    /*@Test
+    void testBoxSize() {
+        assertEquals(BAT.getHitBox().getHeight(), 32);
+        assertEquals(BAT.getHitBox().getWidth(), 32);
+        assertEquals(SLIME.getHitBox().getHeight(), 32);
+        assertEquals(SLIME.getHitBox().getWidth(), 32);
+    }*/
 
     @Test
     void testSlimeFollowBat() {

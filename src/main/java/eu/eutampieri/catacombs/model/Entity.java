@@ -47,14 +47,6 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     }
 
     /**
-     * Setter for isAlive.
-     * @param alive true if the entity is alive (hp>0); false if the entity is dead
-     */
-    public void setAlive(final boolean alive) {
-        isAlive = alive;
-    }
-
-    /**
      * Getter for width.
      * @return Entity width
      */
@@ -107,25 +99,29 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     protected void move() {
         if (up) {
             if (!isUpCollision(speedY)) {
-                hitBox.setPosX(-speedY);
+                hitBox.move(0, -speedY);
+                //setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_UP;
         }
         if (down) {
             if (!isDownCollision(speedY)) {
-                hitBox.setPosX(speedY);
+                hitBox.move(0, speedY);
+                //setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_DOWN;
         }
         if (left) {
-            if (!isLeftCollision(speedX)) {
-                hitBox.setPosX(-speedX);
+            if (isLeftCollision(speedX)) {
+                hitBox.move(-speedX, 0);
+                //setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_LEFT;
         }
         if (right) {
             if (!isRightCollision(speedX)) {
-                hitBox.setPosX(speedX);
+                hitBox.move(speedX, 0);
+                //setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_RIGHT;
         }
@@ -137,7 +133,8 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isUpCollision(final int dy) {
-        return tileMap.at(posX, posY - dy) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX(), hitBox.getPosY() - dy) == Tile.WALL
+            || tileMap.at(hitBox.getPosX() + hitBox.getWidth(), hitBox.getPosY() - dy) == Tile.WALL;
     }
 
     /**
@@ -146,7 +143,8 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isRightCollision(final int dx) {
-        return tileMap.at(posX + dx, posY) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX() + hitBox.getWidth() + dx, hitBox.getPosY()) == Tile.WALL
+            || tileMap.at(hitBox.getPosX() + hitBox.getWidth() + dx, hitBox.getPosY() + hitBox.getHeight()) == Tile.WALL;
     }
 
     /**
@@ -155,7 +153,8 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isDownCollision(final int dy) {
-        return tileMap.at(posX, posY + dy) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX(), hitBox.getPosY() + hitBox.getHeight() + dy) == Tile.WALL
+            || tileMap.at(hitBox.getPosX() + hitBox.getWidth(), hitBox.getPosY() + hitBox.getHeight() + dy) == Tile.WALL;
     }
 
     /**
@@ -164,7 +163,8 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isLeftCollision(final int dx) {
-        return tileMap.at(posX - dx, posY) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX() - dx, hitBox.getPosY()) == Tile.WALL
+            || tileMap.at(hitBox.getPosX()- dx, hitBox.getPosY() + hitBox.getHeight()) == Tile.WALL;
     }
 
     /**

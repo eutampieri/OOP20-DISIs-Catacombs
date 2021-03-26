@@ -36,7 +36,6 @@ public final class Slime extends Entity {
         setWidth(WIDTH);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
-        setAlive(true);
         face = Face.FACE_RIGHT;
         hitBox = new CollisionBox(posX, posY, width, height);
         radarBox = new CollisionBox(posX - (width * CB_POS_MOD), posY - (height * CB_POS_MOD), width * CB_DIM_MOD, height * CB_POS_MOD);
