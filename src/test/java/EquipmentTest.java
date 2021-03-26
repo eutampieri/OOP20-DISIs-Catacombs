@@ -55,8 +55,6 @@ class EquipmentTest {
 		assertEquals(64, DEFAULT_GUN.getReloadSpeed());
 		DEFAULT_GUN.setRange(64);
 		assertEquals(64, DEFAULT_GUN.getRange());
-		DEFAULT_GUN.setFireDelay(64);
-		assertEquals(64, DEFAULT_GUN.getFireDelay());
 		DEFAULT_GUN.setFireRate(64);
 		assertEquals(64, DEFAULT_GUN.getFireRate());
 		DEFAULT_GUN.setDamage(64);
