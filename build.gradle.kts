@@ -88,7 +88,7 @@ tasks.jacocoTestCoverageVerification {
 
 pmd {
     isConsoleOutput = true
-    toolVersion = "6.21.0"
+    toolVersion = "6.32.0"
     rulesMinimumPriority.set(5)
     ruleSetFiles(file("$projectDir/config/pmd.xml"))
 }
