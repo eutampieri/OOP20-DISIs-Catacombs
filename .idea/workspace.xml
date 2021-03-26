@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Implemented empty map test">
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Removed PMD violations on main module">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/MenuState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CharactersTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/CharactersTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CollisionBoxTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/CollisionBoxTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/EquipmentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/EquipmentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GameTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/GameTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/HIDTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/HIDTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MapTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/MapTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,6 +180,9 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/config/pmd" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="eu.eutampieri.catacombs.tests" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
@@ -354,13 +361,6 @@
       <workItem from="1616670107545" duration="2088000" />
       <workItem from="1616687466637" duration="5822000" />
       <workItem from="1616745567957" duration="5514000" />
-    </task>
-    <task id="LOCAL-00003" summary="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions">
-      <created>1616669512767</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1616669512767</updated>
     </task>
     <task id="LOCAL-00004" summary="Configured Checkstyle">
       <created>1616670951074</created>
@@ -698,7 +698,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616771119613</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Removed PMD violations on main module">
+      <created>1616771958307</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1616771958307</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -830,7 +837,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactored MenuState" />
     <MESSAGE value="Refactored MainWindow" />
     <MESSAGE value="Refactored DungeonGame.java" />
     <MESSAGE value="Refactored Slime.java" />
@@ -855,7 +861,8 @@
     <MESSAGE value="Mouse tests" />
     <MESSAGE value="Fixed tests" />
     <MESSAGE value="Implemented empty map test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented empty map test" />
+    <MESSAGE value="Removed PMD violations on main module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed PMD violations on main module" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$CharactersTests_testSlimeFollowBat.ic" NAME="CharactersTests.testSlimeFollowBat Coverage Results" MODIFIED="1616763852560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -1,5 +1,6 @@
+package eu.eutampieri.catacombs.tests;
+
 import eu.eutampieri.catacombs.model.CollisionBox;
-import eu.eutampieri.catacombs.model.Player;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -17,28 +18,28 @@ class CollisionBoxTests {
 
     @Test
     void testDoesntOverlapWithNonOverlappingBox() {
-        CollisionBox nonOverlapping = new CollisionBox(MY_BOX);
+        final CollisionBox nonOverlapping = new CollisionBox(MY_BOX);
         nonOverlapping.move(MY_BOX.getWidth() * 2, MY_BOX.getHeight() * 2);
         assertFalse(MY_BOX.overlaps(nonOverlapping));
     }
 
     @Test
     void testOverlapsWithOverlappingBox() {
-        CollisionBox overlapping = new CollisionBox(MY_BOX);
+        final CollisionBox overlapping = new CollisionBox(MY_BOX);
         overlapping.move(MY_BOX.getWidth() / 2, MY_BOX.getHeight() / 2);
         assertTrue(MY_BOX.overlaps(overlapping));
     }
 
     @Test
     void testDoesntOverlapWithTouchingBox() {
-        CollisionBox touching = new CollisionBox(MY_BOX);
+        final CollisionBox touching = new CollisionBox(MY_BOX);
         touching.move(MY_BOX.getWidth(), MY_BOX.getHeight());
         assertFalse(MY_BOX.overlaps(touching));
     }
 
     @Test
     void testGetterSetters() {
-        CollisionBox newBox = new CollisionBox(MY_BOX);
+        final CollisionBox newBox = new CollisionBox(MY_BOX);
         newBox.setLocation(0, 0);
         assertEquals(0, newBox.getPosX());
         assertEquals(0, newBox.getPosY());

@@ -1,5 +1,10 @@
+package eu.eutampieri.catacombs.tests;
+
+import eu.eutampieri.catacombs.model.Gun;
+import eu.eutampieri.catacombs.model.HealthModifier;
+import eu.eutampieri.catacombs.model.Player;
+import eu.eutampieri.catacombs.model.SimplePotion;
 import org.junit.jupiter.api.Test;
-import eu.eutampieri.catacombs.model.*;
 import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,26 +16,24 @@ class EquipmentTest {
 
 	@Test
 	void testSimpleWeapon() {
-		Player p = new Player(0,0, "Alice");
+		final Player p = new Player(0,0, "Alice");
 		final int healthOnCreation = p.getHealth();
-		final HealthModifier h = DEFAULT_GUN;
-		h.useOn(p);
+		DEFAULT_GUN.useOn(p);
 		assertEquals(p.getHealth(), healthOnCreation - 21);
 	}
 	
 	@Test
 	void testHealthUnderflow() {
-		Player p = new Player(0,0, "Bob");
-		final HealthModifier h = DEFAULT_GUN;
+		final Player p = new Player(0,0, "Bob");
 		for(int i = 0; i < 5; i++) {
-			h.useOn(p);
+			DEFAULT_GUN.useOn(p);
 		}
 		assertEquals(p.getHealth(), 0);
 	}
 	
 	@Test
 	void testHealthOverflow() {
-		Player p = new Player(0,0, "Charles");
+		final Player p = new Player(0,0, "Charles");
 		final HealthModifier h = new SimplePotion(10, "Potion10");
 		h.useOn(p);
 		assertEquals(p.getHealth(), 100);
@@ -38,7 +41,7 @@ class EquipmentTest {
 	
 	@Test
 	void testSimplePotionAfterWeapon() {
-		Player p = new Player(0,0, "Dan");
+		final Player p = new Player(0,0, "Dan");
 		final int healthOnCreation = p.getHealth();
 		final HealthModifier w = DEFAULT_GUN;
 		final HealthModifier o = new SimplePotion(20, "Potion20");
@@ -63,7 +66,7 @@ class EquipmentTest {
 
 	@Test
 	void testFiringDecreasesMagazineByOne() {
-		int initialMagazineContent = DEFAULT_GUN.getMagazine();
+		final int initialMagazineContent = DEFAULT_GUN.getMagazine();
 		DEFAULT_GUN.fireWeapon();
 		assertEquals(initialMagazineContent - 1, DEFAULT_GUN.getMagazine());
 	}
