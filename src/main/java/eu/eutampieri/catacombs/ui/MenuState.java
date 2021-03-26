@@ -57,22 +57,22 @@ public final class MenuState extends State {
     @Override
     public void render(final Graphics2D g2) {
         g2.setColor(Color.black);
-        g2.fillRect(0, 0, Game.getGameWidth(), Game.getGameHeight());
+        g2.fillRect(0, 0, game.getGameWidth(), game.getGameHeight());
         g2.setColor(Color.white);
 
         // title
         g2.setFont(this.titleFont);
         final String title = "CATACOMBS";
-        final float x = (float) (Game.getWidth() - FontUtils.getTextWidth(titleFont, title)) / 2f;
+        final float x = (float) (game.getWidth() - FontUtils.getTextWidth(titleFont, title)) / 2f;
         g2.drawString(title, x, titleFont.getSize() * 2);
 
         // options
         g2.setFont(this.font);
         final String start = "Start";
-        final float x1 = (float) (Game.getWidth() - FontUtils.getTextWidth(font, start)) / 2f;
+        final float x1 = (float) (game.getWidth() - FontUtils.getTextWidth(font, start)) / 2f;
         g2.drawString(start, x1, titleFont.getSize() * 2);
         final String quit = "Quit";
-        final float x2 = (float) (Game.getWidth() - FontUtils.getTextWidth(font, quit)) / 2f;
+        final float x2 = (float) (game.getWidth() - FontUtils.getTextWidth(font, quit)) / 2f;
         g2.drawString(quit, x2, titleFont.getSize() + font.getSize() + 100);
 
         // selection

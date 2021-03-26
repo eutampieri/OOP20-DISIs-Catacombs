@@ -4,17 +4,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.MouseAdapter;
+import java.awt.event.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.VolatileImage;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import eu.eutampieri.catacombs.ui.input.KeyManager;
 import eu.eutampieri.catacombs.ui.input.MouseManager;
 import eu.eutampieri.catacombs.window.MainWindow;
+
+import javax.swing.*;
 
 public abstract class Game implements Runnable {
 
@@ -27,14 +25,14 @@ public abstract class Game implements Runnable {
     public static final KeyManager KEY_MANAGER = new KeyManager();
     public static final MouseManager MOUSE_MANAGER = new MouseManager();
 
-    private static MainWindow mainFrame;
-    private static GameConfiguration gameConfiguration;
+    private MainWindow mainFrame;
+    private GameConfiguration gameConfiguration;
 
     private BufferStrategy bs;
     private GraphicsConfiguration gc;
     private VolatileImage vImage;
     private int framesThisSecond;
-    private boolean running = true;
+    private boolean running = false;
     private Graphics2D graphics;
     private int fps;
     private Thread gameThread;
@@ -54,9 +52,8 @@ public abstract class Game implements Runnable {
      *
      * @return width of the main frame
      */
-
-    public static int getWidth() {
-        return mainFrame.getCanvas().getWidth();
+    public int getWidth() {
+        return this.mainFrame.getCanvas().getWidth();
     }
 
     /**
@@ -64,17 +61,16 @@ public abstract class Game implements Runnable {
      * @return height of the main fraim
      */
 
-    public static int getHeight() {
-        return mainFrame.getCanvas().getHeight();
+    public int getHeight() {
+        return this.mainFrame.getCanvas().getHeight();
     }
 
     /**
      *
      * @return width of game configuration
      */
-
-    public static int getGameWidth() {
-        return gameConfiguration.getGameWidth();
+    public int getGameWidth() {
+        return this.gameConfiguration.getGameWidth();
     }
 
     /**
@@ -82,8 +78,8 @@ public abstract class Game implements Runnable {
      * @return height of game configuration
      */
 
-    public static int getGameHeight() {
-        return gameConfiguration.getGameHeight();
+    public int getGameHeight() {
+        return this.gameConfiguration.getGameHeight();
     }
 
     /**
@@ -98,12 +94,8 @@ public abstract class Game implements Runnable {
 
     /**
      *
-     * @param config
-     *              the style choose for the frame
+     * @param config the style choose for the frame
      */
-
-    // TODO Is this warning really necessary? Isn't it bad design?
-    @SuppressFBWarnings("ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD")
     public final void initialize(final GameConfiguration config) {
         gameConfiguration = config;
         mainFrame = new MainWindow(config.getTitle(), config.getGameWidth(), config.getGameHeight(),
@@ -145,8 +137,12 @@ public abstract class Game implements Runnable {
     /**
      * rendering of basics aspects
      */
-
     private void preRender() {
+        if (vImage == null) {
+            gc = mainFrame.getCanvas().getGraphicsConfiguration();
+            vImage = gc.createCompatibleVolatileImage(gameConfiguration.getGameWidth(),
+                    gameConfiguration.getGameHeight());
+        }
         this.graphics = (Graphics2D) vImage.getGraphics();
         this.graphics.setColor(Color.BLACK);
         this.graphics.fillRect(0, 0, getWidth(), getHeight());
@@ -154,11 +150,6 @@ public abstract class Game implements Runnable {
             vImage = gc.createCompatibleVolatileImage(gameConfiguration.getGameWidth(),
                     gameConfiguration.getGameHeight());
         }
-        /*if (vImage == null) {
-            gc = mainFrame.getCanvas().getGraphicsConfiguration();
-            vImage = gc.createCompatibleVolatileImage(gameConfiguration.getGameWidth(),
-                    gameConfiguration.getGameHeight());
-        }*/
     }
 
     /**
@@ -203,7 +194,8 @@ public abstract class Game implements Runnable {
      * start the main thread
      */
 
-    public synchronized final void start() {
+    public final void start() {
+        this.running = true;
         this.gameThread = new Thread(this);
         this.gameThread.start();
     }
@@ -212,12 +204,18 @@ public abstract class Game implements Runnable {
      * stop the main thread
      */
 
-    public synchronized final void stop() {
+    public final void stop() {
         try {
+            running = false;
             this.gameThread.join();
+            mainFrame.getFrame().dispatchEvent(new WindowEvent(mainFrame.getFrame(), WindowEvent.WINDOW_CLOSING));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public JFrame getMainFrame() {
+        return mainFrame.getFrame();
     }
 
     @Override
@@ -277,7 +275,7 @@ public abstract class Game implements Runnable {
             }
         }
     }
-/*
+
     protected void renderFpsCount(final Color color) {
         graphics.setFont(DEFAULT_FONT);
         graphics.setColor(color);
@@ -291,7 +289,6 @@ public abstract class Game implements Runnable {
         graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
     }
 
- */
 
     /**
      * add key listener to main frame
@@ -337,10 +334,6 @@ public abstract class Game implements Runnable {
 
     public final Graphics2D getGraphics() {
         return graphics;
-    }
-
-    public void stopGame() {
-        this.running = false;
     }
 
 }
