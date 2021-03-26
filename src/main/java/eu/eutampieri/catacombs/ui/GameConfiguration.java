@@ -2,7 +2,7 @@ package eu.eutampieri.catacombs.ui;
 
 public final class GameConfiguration {
 
-    static final int DEFAULT_FPS = 60;
+    private static final int DEFAULT_FPS = 60;
     private int gameHeight, gameWidth;
     private int fps = DEFAULT_FPS;
     private String title;
