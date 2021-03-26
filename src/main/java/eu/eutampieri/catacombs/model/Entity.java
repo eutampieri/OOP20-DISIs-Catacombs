@@ -6,7 +6,7 @@ import eu.eutampieri.catacombs.model.map.TileMap;
 /**
  * Abstract class for every living game Entity.
  */
-public abstract class Entity extends GameObject implements LivingCharacter {
+public abstract class Entity extends GameObject implements LivingCharacter{
 
     public static final int FACE_RIGHT = 0;
     public static final int FACE_LEFT = 1;
@@ -30,8 +30,6 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      */
     public Entity(int x, int y, TileMap tileMap) {
         super(x, y, ID.Enemy);
-    public Entity(final int x, final int y, final TileMap tileMap) {
-        super(x, y, ID.ENEMY);
         this.tileMap = tileMap;
     }
 
@@ -40,7 +38,6 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      * @param alive true if the entity is alive (hp>0); false if the entity is dead
      */
     public void setAlive(boolean alive) {
-    public void setAlive(final boolean alive) {
         isAlive = alive;
     }
 
@@ -57,7 +54,6 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      * @param width Width dimension for the entity
      */
     public void setWidth(int width) {
-    public void setWidth(final int width) {
         this.width = width;
     }
 
@@ -74,12 +70,11 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      * @param height Height dimension for the entity
      */
     public void setHeight(int height) {
-    public void setHeight(final int height) {
         this.height = height;
     }
 
     @Override
-    public void update(final int delta) {
+    public void update(int delta) {
         move();
         updateSpriteLocation();
     }
@@ -93,34 +88,32 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      * Move the Entity based on its speed and direction facing.
      */
     protected void move() {
-        if (up) {
-            if (!isUpCollision(velY)) {
-                // box.y -= velY;
+        if(up) {
+            if (!isUpCollision(speedY)) {
+                hitBox.posY -= speedY;
             }
             face = FACE_UP;
         }
-        if (down) {
-            if (!isDownCollision(velY)) {
-                // box.y += velY;
+        if(down) {
+            if (!isDownCollision(speedY)) {
+                hitBox.posY += speedY;
             }
             face = FACE_DOWN;
         }
-        if (left) {
-            if (!isLeftCollision(velX)) {
-                // box.x -= velX;
+        if(left) {
+            if (!isLeftCollision(speedX)) {
+                hitBox.posX -= speedX;
             }
             face = FACE_LEFT;
         }
-        if (right) {
-            if (!isRightCollision(velX)) {
-                // box.x += velX;
+        if(right) {
+            if (!isRightCollision(speedX)) {
+                hitBox.posX += speedX;
             }
             face = FACE_RIGHT;
         }
     }
 
-    protected boolean isUpCollision(final float dy) {
-        return false;
     /**
      * Checks if the Entity is going to collide into a wall while moving up.
      * @param dy Entity speedY
@@ -130,8 +123,6 @@ public abstract class Entity extends GameObject implements LivingCharacter {
         return tileMap.at(posX, posY-dy)==Tile.WALL;
     }
 
-    protected boolean isRightCollision(final float dx) {
-        return false;
     /**
      * Checks if the Entity is going to collide into a wall while moving right.
      * @param dx Entity speedX
@@ -141,8 +132,6 @@ public abstract class Entity extends GameObject implements LivingCharacter {
         return tileMap.at(posX+dx, posY)==Tile.WALL;
     }
 
-    protected boolean isDownCollision(final float dy) {
-        return false;
     /**
      * Checks if the Entity is going to collide into a wall while moving down.
      * @param dy Entity speedY
@@ -159,8 +148,6 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      */
     protected boolean isLeftCollision(int dx) {
         return tileMap.at(posX-dx, posY)==Tile.WALL;
-    protected boolean isLeftCollision(final float dx) {
-        return false;
     }
 
     /**

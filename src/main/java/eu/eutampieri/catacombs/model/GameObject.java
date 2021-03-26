@@ -1,7 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
 /**
- *
  * Abstract class for every game object (ex: Player, enemies, items, ecc...).
  */
 public abstract class GameObject {
@@ -23,45 +22,44 @@ public abstract class GameObject {
 		this.id = id;
 	}
 
-    /**
-     *
-     * @param delta time between updates
-     */
-    public abstract void update(int delta);
+	/**
+	 *
+	 * @param delta time between updates
+	 */
+	public abstract void update(int delta);
+	public abstract void render();
 
-    public abstract void render();
+	/**
+	 * 
+	 * @return Object X position
+	 */
+	public int getPosX() {
+		return posX;
+	}
 
-    /**
-     *
-     * @return Object X position
-     */
-    public int getPosX() {
-        return posX;
-    }
+	/**
+	 * 
+	 * @param posX set object X position
+	 */
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
 
-    /**
-     *
-     * @param posX set object X position
-     */
-    public void setPosX(final int posX) {
-        this.posX = posX;
-    }
+	/**
+	 * 
+	 * @return Object Y position
+	 */
+	public int getPosY() {
+		return posY;
+	}
 
-    /**
-     *
-     * @return Object Y position
-     */
-    public int getPosY() {
-        return posY;
-    }
-
-    /**
-     *
-     * @param posY set object Y position
-     */
-    public void setPosY(final int posY) {
-        this.posY = posY;
-    }
+	/**
+	 * 
+	 * @param posY set object Y position
+	 */
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
 
 	public int getSpeedX() {
 		return speedX;
@@ -75,22 +73,22 @@ public abstract class GameObject {
 		return speedY;
 	}
 
-	public void setSpeedY(final int velY) {
+	public void setSpeedY(int velY) {
 		this.speedY = velY;
 	}
 
-	public void setSpeed(final int vel) {
+	public void setSpeed(int vel) {
 		this.speedX = vel;
 		this.speedY = vel;
 
 	}
 
-    public ID getId() {
-        return id;
-    }
+	public ID getId() {
+		return id;
+	}
 
-    public void setId(final ID id) {
-        this.id = id;
-    }
+	public void setId(ID id) {
+		this.id = id;
+	}
 
 }
