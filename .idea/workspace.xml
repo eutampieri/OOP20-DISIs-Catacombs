@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Fixed code after merge&#10;&#10;Signed-off-by: Eugenio Tampieri &lt;eugenio@eutampieri.eu&gt;">
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="optimized AssetManager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Gun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Gun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/MenuState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/State.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +49,7 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="OOP20-procedural-dungeon" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="other" type="c8890929:TasksNode$1" />
+                <item name="verification" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -103,6 +104,7 @@
     <option name="height" value="900" />
   </component>
   <component name="ProjectId" id="1qDCh7C13jEHrKABwCQ6iphkv40" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -823,10 +825,12 @@
     <option name="LAST_COMMIT_MESSAGE" value="Fixed code after merge&#10;&#10;Signed-off-by: Eugenio Tampieri &lt;eugenio@eutampieri.eu&gt;" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$OOP20_procedural_dungeon__test_.ic" NAME="OOP20-procedural-dungeon [test] Coverage Results" MODIFIED="1616605031613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest.ic" NAME="EquipmentTest Coverage Results" MODIFIED="1616584997634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1616604970237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest_testSimplePotionAfterWeapon.ic" NAME="EquipmentTest.testSimplePotionAfterWeapon Coverage Results" MODIFIED="1616584983342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1616606169047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$OOP20_procedural_dungeon__test_.exec" NAME="OOP20-procedural-dungeon [test] Coverage Results" MODIFIED="1616604951218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Bat.java">

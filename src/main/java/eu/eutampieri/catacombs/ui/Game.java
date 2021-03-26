@@ -17,6 +17,11 @@ import eu.eutampieri.catacombs.window.MainWindow;
 
 public abstract class Game implements Runnable {
 
+    protected static final double FPS_CONST = 1_000_000_000d;
+    protected static final float DELTA_CONST = 1_000_000_000.0f;
+    protected static final float DELTA_MIN = 0.016f;
+    protected static final float THREAD_SLEEP_CONST = 1_000_000f;
+
     public static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
     public static final KeyManager KEY_MANAGER = new KeyManager();
     public static final MouseManager MOUSE_MANAGER = new MouseManager();
@@ -27,37 +32,73 @@ public abstract class Game implements Runnable {
     private BufferStrategy bs;
     private GraphicsConfiguration gc;
     private VolatileImage vImage;
-    private int framesThisSecond;
-    private final boolean running = true;
+    private static final boolean running = true;
     private Graphics2D graphics;
     private int fps;
     private Thread gameThread;
 
     public abstract void create();
 
+    /**
+     *
+     * @param delta gap time from previous render
+     */
+
     public abstract void update(float delta);
 
     public abstract void render();
+
+    /**
+     *
+     * @return width of the main frame
+     */
 
     public static int getWidth() {
         return mainFrame.getCanvas().getWidth();
     }
 
+    /**
+     *
+     * @return height of the main fraim
+     */
+
     public static int getHeight() {
         return mainFrame.getCanvas().getHeight();
     }
+
+    /**
+     *
+     * @return width of game configuration
+     */
 
     public static int getGameWidth() {
         return gameConfiguration.getGameWidth();
     }
 
+    /**
+     *
+     * @return height of game configuration
+     */
+
     public static int getGameHeight() {
         return gameConfiguration.getGameHeight();
     }
 
-    protected void setFps(final int fps) {
+    /**
+     *
+     * @param fps
+     *           frames per second used
+     */
+
+    protected final void setFps(final int fps) {
         this.fps = fps;
     }
+
+    /**
+     *
+     * @param config
+     *              the style choose for the frame
+     */
 
     public final void initialize(final GameConfiguration config) {
         gameConfiguration = config;
@@ -97,6 +138,10 @@ public abstract class Game implements Runnable {
         addMouseAdapter(MOUSE_MANAGER);
     }
 
+    /**
+     * rendering of basics aspects
+     */
+
     private void preRender() {
         this.graphics = (Graphics2D) vImage.getGraphics();
         this.graphics.setColor(Color.BLACK);
@@ -111,6 +156,10 @@ public abstract class Game implements Runnable {
                     gameConfiguration.getGameHeight());
         }*/
     }
+
+    /**
+     * managing of scaling
+     */
 
     private void show() {
         this.graphics.dispose();
@@ -146,12 +195,20 @@ public abstract class Game implements Runnable {
         this.bs.show();
     }
 
-    public synchronized void start() {
+    /**
+     * start the main thread
+     */
+
+    public synchronized final void start() {
         this.gameThread = new Thread(this);
         this.gameThread.start();
     }
 
-    public synchronized void stop() {
+    /**
+     * stop the main thread
+     */
+
+    public synchronized final void stop() {
         try {
             this.gameThread.join();
         } catch (InterruptedException e) {
@@ -160,7 +217,7 @@ public abstract class Game implements Runnable {
     }
 
     @Override
-    public void run() {
+    public final void run() {
         create();
         double tickPerTime;
         long lastTime;
@@ -171,7 +228,7 @@ public abstract class Game implements Runnable {
         int updates;
         final int maxUpdates = 5;
 
-        tickPerTime = 1_000_000_000d / fps;
+        tickPerTime = FPS_CONST / fps;
         lastTime = System.nanoTime();
         lastUpdateTime = System.nanoTime();
         timer = 0;
@@ -182,9 +239,9 @@ public abstract class Game implements Runnable {
             updates = 0;
             while ((now - lastUpdateTime) >= tickPerTime) {
                 float delta;
-                delta = (now - lastUpdateTime) / 1_000_000_000.0f;
+                delta = (now - lastUpdateTime) / DELTA_CONST;
                 KEY_MANAGER.update(delta);
-                delta = delta <= 0.016f ? delta : 0.016f;
+                delta = delta <= DELTA_MIN ? delta : DELTA_MIN;
                 update(delta);
                 lastUpdateTime += tickPerTime;
                 updates++;
@@ -202,21 +259,21 @@ public abstract class Game implements Runnable {
             timeTake = System.nanoTime() - now;
             if (tickPerTime > timeTake) {
                 try {
-                    Thread.sleep((long) ((tickPerTime - timeTake) / 1_000_000f));
+                    Thread.sleep((long) ((tickPerTime - timeTake) / THREAD_SLEEP_CONST));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
 
-            if (timer >= 1_000_000_000) {
+            /*if (timer >= FPS_CONST) {
                 // mainFrame.getFrame().setTitle("Frame Per Seconds : " + ticks);
                 this.framesThisSecond = ticks;
                 ticks = 0;
                 timer = 0;
-            }
+            }*/
         }
     }
-
+/*
     protected void renderFpsCount(final Color color) {
         graphics.setFont(DEFAULT_FONT);
         graphics.setColor(color);
@@ -225,29 +282,56 @@ public abstract class Game implements Runnable {
                 10 + graphics.getFont().getSize());
     }
 
-    protected void renderFpsCount(final Color color, final int x, final int y) {
+    protected final void renderFpsCount(final Color color, final int x, final int y) {
         graphics.setColor(color);
         graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
     }
 
-    public void addKeyAdapter(final KeyAdapter e) {
+ */
+
+    /**
+     * add key listener to main frame
+     *
+     * @param e
+     *          KeyAdapter
+     */
+    public final void addKeyAdapter(final KeyAdapter e) {
         mainFrame.getCanvas().addKeyListener(e);
         mainFrame.getFrame().addKeyListener(e);
     }
 
-    public void addMouseAdapter(final MouseAdapter e) {
+    /**
+     * add mouse listener to main frame
+     *
+     * @param e
+     *          MouseAdapter
+     */
+
+    public final void addMouseAdapter(final MouseAdapter e) {
         mainFrame.getCanvas().addMouseListener(e);
         mainFrame.getFrame().addMouseListener(e);
         mainFrame.getCanvas().addMouseMotionListener(e);
         mainFrame.getFrame().addMouseMotionListener(e);
     }
 
-    public void removeKeyAdapter(final KeyAdapter e) {
+    /**
+     * remove key listener from main frame
+     *
+     * @param e
+     *          KeyAdapter
+     */
+
+    public final void removeKeyAdapter(final KeyAdapter e) {
         mainFrame.getCanvas().removeKeyListener(e);
         mainFrame.getFrame().removeKeyListener(e);
     }
 
-    public Graphics2D getGraphics() {
+    /**
+     *
+     * @return modified graphic
+     */
+
+    public final Graphics2D getGraphics() {
         return graphics;
     }
 
