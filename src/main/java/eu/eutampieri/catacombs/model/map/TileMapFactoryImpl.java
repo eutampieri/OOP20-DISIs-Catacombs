@@ -120,7 +120,8 @@ public final class TileMapFactoryImpl implements TileMapFactory {
      * @return A Tilemap with nRooms square rooms connected by corridors in a tree,
      *         plus some random corridors minRoomDist > maxRoomSide is recommended
      */
-    private TileMap normal(final int nRooms, final int minRoomSide, final int maxRoomSide, final int minRoomDist, final int maxRoomDist) {
+    private TileMap normal(final int nRooms, final int minRoomSide, final int maxRoomSide, final int minRoomDist,
+            final int maxRoomDist) {
         if (nRooms <= 0) {
             throw new IllegalArgumentException();
         }
@@ -136,7 +137,8 @@ public final class TileMapFactoryImpl implements TileMapFactory {
         if (maxRoomDist < minRoomDist) {
             throw new IllegalArgumentException();
         }
-        final ArrayList<Point> pool = new ArrayList<>(); // pool of all points at acceptable distances from the already selected
+        final ArrayList<Point> pool = new ArrayList<>(); // pool of all points at acceptable distances from the already
+                                                         // selected
         // rooms
         final var centers = new ArrayList<Point>(); // selected rooms' centers
         final var dist = new HashMap<Point, Integer>(); // distance to closest selected center for all points
@@ -224,12 +226,46 @@ public final class TileMapFactoryImpl implements TileMapFactory {
     }
 
     /**
-     * @return a TileMap with the default settings and a random seed based on time
+     * @return a TileMap with the default settings using a given seed
+     */
+    @Override
+    public TileMap seededDef(long seed) {
+        rand.setSeed(seed);
+        return normal(NORMAL_N_ROOMS, NORMAL_MIN_ROOM_SIDE, NORMAL_MAX_ROOM_SIDE, NORMAL_MIN_ROOM_DIST,
+                NORMAL_MAX_ROOM_DIST); // and call the normal builder with default parameters
+    }
+
+    /**
+     * @return a TileMap with the default settings using a seed based on time
      */
     @Override
     public TileMap def() {
-        rand.setSeed(System.currentTimeMillis()); // seed the prng based on time
-        return normal(NORMAL_N_ROOMS, NORMAL_MIN_ROOM_SIDE, NORMAL_MAX_ROOM_SIDE, NORMAL_MIN_ROOM_DIST, NORMAL_MAX_ROOM_DIST); // and call the normal builder with default parameters
+        return seededDef(System.currentTimeMillis());
+    }
+
+    /**
+     * @return an hxw TileMap with walls on the borders and floor inside
+     */
+    @Override
+    public TileMap empty(int h, int w) {
+        if (h < 1 || w < 1) {
+            throw new IllegalArgumentException();
+        }
+        final var res = new Tile[h][w];
+        for (int y = 0; y < h; y++) {
+            res[y][0] = Tile.WALL;
+            res[y][w - 1] = Tile.WALL;
+        }
+        for (int x = 0; x < w; x++) {
+            res[0][x] = Tile.WALL;
+            res[h - 1][x] = Tile.WALL;
+        }
+        for (int y = 1; y < h - 1; y++) {
+            for (int x = 1; x < w - 1; x++) {
+                res[y][x] = Tile.FLOOR;
+            }
+        }
+        return new TileMapImpl(res);
     }
 
 }
