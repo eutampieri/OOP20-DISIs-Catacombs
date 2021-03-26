@@ -168,13 +168,12 @@ public abstract class Game implements Runnable {
         long now;
         long timer;
         int ticks;
-        int updates = 0;
+        int updates;
         final int maxUpdates = 5;
 
         tickPerTime = 1_000_000_000 / fps;
         lastTime = System.nanoTime();
         lastUpdateTime = System.nanoTime();
-        now = 0;
         timer = 0;
         ticks = 0;
         while (running) {
