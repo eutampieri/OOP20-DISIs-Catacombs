@@ -1,9 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
-/**
- * player entity class
- */
-public class Player extends GameObject implements LivingCharacter{
+public class Player extends GameObject implements LivingCharacter {
 	private static final int BASE_MOVEMENT_SPEED = 2;
 	private static final int MAX_BASE_HP = 100;
 	private int health;
@@ -16,22 +13,32 @@ public class Player extends GameObject implements LivingCharacter{
 		this.name = name;
 	}
 
+	/**
+	 * @return Player current health
+	 */
 	@Override
 	public int getHealth() {
 		return this.health;
 	}
 
+	/**
+	 * @param health the new health value
+	 */
 	@Override
 	public void setHealth(final int health) {
 		this.health = health;
-		if(this.health > 100) {
+		if (this.health > 100) {
 			this.health = 100;
-		} else if(this.health < 0) {
+		} else if (this.health < 0) {
 			this.health = 0;
 		}
 
 	}
 
+	/**
+	 * Updates player status in game loop.
+	 * @param delta time between updates
+	 */
 	@Override
 	public void update(final int delta) {
 		// TODO Auto-generated method stub
@@ -43,6 +50,10 @@ public class Player extends GameObject implements LivingCharacter{
 		// TODO Auto-generated method stub
 
 	}
+
+	/**
+	 * @return Player name
+	 */
     public String getName() {
         return name;
     }

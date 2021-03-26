@@ -1,11 +1,18 @@
 package eu.eutampieri.catacombs.model;
 
 /**
- * A general class for GameObjects boxes.
+ * A general class for GameObjects boxes which define an imaginary outline used for
+ * collision detection and aggro detection.
  */
 public class CollisionBox {
-    public int posX, posY;
-    public int width, height;
+    /**
+     * The (X,Y) positions of CollisionBox top-left corner.
+     */
+    private int posX, posY;
+    /**
+     * Dimensions of the CollisionBox.
+     */
+    private int width, height;
 
     /**
      * General collision box constructor.
@@ -138,7 +145,7 @@ public class CollisionBox {
     /**
      * DEBUG method that shows the box in-game.
      */
-    public void debugShowBox(){
+    public void debugShowBox() {
         // TODO
     }
 

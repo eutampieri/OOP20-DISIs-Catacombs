@@ -6,24 +6,37 @@ import eu.eutampieri.catacombs.model.map.TileMap;
 /**
  * Abstract class for every living game Entity.
  */
-public abstract class Entity extends GameObject implements LivingCharacter{
-
-    public static final int FACE_RIGHT = 0;
-    public static final int FACE_LEFT = 1;
-    public static final int FACE_DOWN = 2;
-    public static final int FACE_UP = 3;
-    protected boolean up, down, right, left; //Booleans to keep track of face direction
-    protected int face; //Stores which face the Entity is facing
-
-    protected int hp; //Entity health
+public abstract class Entity extends GameObject implements LivingCharacter {
+    /**
+     * Booleans to keep track of face direction.
+     */
+    protected boolean up, down, right, left;
+    /**
+     * Stores where the entity is facing.
+     */
+    protected Face face;
+    /**
+     * Entity current health.
+     */
+    protected int hp;
+    /**
+     * Liveness status of the entity.
+     */
     protected boolean isAlive;
+    /**
+     * Entity dimensions.
+     */
     protected int width, height; //Entity width and height
-
+    /**
+     * Tile map where the entity is.
+     */
     protected TileMap tileMap;
+    /**
+     * Entity hit box.
+     */
     protected CollisionBox hitBox; //Entity hit box
 
     /**
-     * Entity constructor.
      * @param x X spawn position
      * @param y Y spawn position
      * @param tileMap Tile map in which Entity is spawned
@@ -73,6 +86,10 @@ public abstract class Entity extends GameObject implements LivingCharacter{
         this.height = height;
     }
 
+    /**
+     * Updates entity status in game loop.
+     * @param delta time between updates
+     */
     @Override
     public void update(final int delta) {
         move();
@@ -88,29 +105,29 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * Move the Entity based on its speed and direction facing.
      */
     protected void move() {
-        if(up) {
+        if (up) {
             if (!isUpCollision(speedY)) {
-                hitBox.posY -= speedY;
+                hitBox.setPosX(-speedY);
             }
-            face = FACE_UP;
+            face = Face.FACE_UP;
         }
-        if(down) {
+        if (down) {
             if (!isDownCollision(speedY)) {
-                hitBox.posY += speedY;
+                hitBox.setPosX(speedY);
             }
-            face = FACE_DOWN;
+            face = Face.FACE_DOWN;
         }
-        if(left) {
+        if (left) {
             if (!isLeftCollision(speedX)) {
-                hitBox.posX -= speedX;
+                hitBox.setPosX(-speedX);
             }
-            face = FACE_LEFT;
+            face = Face.FACE_LEFT;
         }
-        if(right) {
+        if (right) {
             if (!isRightCollision(speedX)) {
-                hitBox.posX += speedX;
+                hitBox.setPosX(speedX);
             }
-            face = FACE_RIGHT;
+            face = Face.FACE_RIGHT;
         }
     }
 
@@ -120,7 +137,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isUpCollision(final int dy) {
-        return tileMap.at(posX, posY-dy)==Tile.WALL;
+        return tileMap.at(posX, posY - dy) == Tile.WALL;
     }
 
     /**
@@ -129,7 +146,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isRightCollision(final int dx) {
-        return tileMap.at(posX+dx, posY)==Tile.WALL;
+        return tileMap.at(posX + dx, posY) == Tile.WALL;
     }
 
     /**
@@ -138,7 +155,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isDownCollision(final int dy) {
-        return tileMap.at(posX, posY+dy)==Tile.WALL;
+        return tileMap.at(posX, posY + dy) == Tile.WALL;
     }
 
     /**
@@ -147,19 +164,19 @@ public abstract class Entity extends GameObject implements LivingCharacter{
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isLeftCollision(final int dx) {
-        return tileMap.at(posX-dx, posY)==Tile.WALL;
+        return tileMap.at(posX - dx, posY) == Tile.WALL;
     }
 
     /**
      * Updates sprite location to coincide with Entity position.
      */
     protected void updateSpriteLocation() {
-        this.posX = hitBox.posX;
-        this.posY = hitBox.posY;
+        this.posX = hitBox.getPosX();
+        this.posY = hitBox.getPosY();
     }
 
     /**
-     * Utility method that reset direction;
+     * Utility method that reset movement direction.
      */
     protected void resetMovement() {
         up = false;
@@ -169,7 +186,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
     }
 
     /**
-     * Getter for Entity hit box
+     * Getter for Entity hit box.
      * @return Entity hit box
      */
     public CollisionBox getHitBox() {

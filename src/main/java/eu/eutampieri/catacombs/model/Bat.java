@@ -3,15 +3,19 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 
 /**
- * Enemy Bat class.
- *
+ * Bat class - the bat is an enemy that mostly stands still and fires bullets.
  */
 public final class Bat extends Entity {
 
-    private static final int HEIGHT = 2;
-    private static final int WIDTH = 2;
-    private static final int MOVEMENT_SPEED = 1;
+    private static final int HEIGHT = 32;
+    private static final int WIDTH = 32;
+    private static final int MOVEMENT_SPEED = 4;
     private static final int HEALTH = 8;
+    private static final int CB_POS_MOD = 4;
+    private static final int CB_DIM_MOD = 8;
+    private static final int BASE_DAMAGE = 2;
+    private static final int BASE_FIRE_RATE = 2;
+    private static final int BASE_RANGE = 2;
     private static final String NAME = "Bat";
 
     private final SimpleWeapon weapon;
@@ -21,7 +25,6 @@ public final class Bat extends Entity {
     private final CollisionBox radarBox;
 
     /**
-     * Bat constructor.
      * @param x X spawn position
      * @param y Y spawn position
      * @param tileMap Tile map in which Bat is spawned
@@ -33,10 +36,10 @@ public final class Bat extends Entity {
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         setAlive(true);
-        face = FACE_RIGHT;
+        face = Face.FACE_RIGHT;
         hitBox = new CollisionBox(posX, posY, width, height);
-        radarBox = new CollisionBox(posX - width * 4, posY - width * 4, width * 9, height * 9);
-        weapon = new SimpleWeapon(4, "bat_wpn", 4, 9, -1){};
+        radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD, height * CB_DIM_MOD);
+        weapon = new SimpleWeapon(BASE_DAMAGE, "bat_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) { };
 
         // TODO Animations
 
@@ -84,14 +87,14 @@ public final class Bat extends Entity {
      * Utility class that makes the bat change movement direction. As of now bats can only go left or right.
      */
     private void changeDirection() {
-        if (face == FACE_RIGHT) {
+        if (face == Face.FACE_RIGHT) {
             left = true;
             right = false;
-            face = FACE_LEFT;
+            face = Face.FACE_LEFT;
         } else {
             right = true;
             left = false;
-            face = FACE_RIGHT;
+            face = Face.FACE_RIGHT;
         }
     }
 

@@ -3,19 +3,25 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 
 /**
- *
- * Enemy Slime class.
- *
+ * Slime class - the slime is an enemy that walks toward the targeted character and deals damage on contact (through hit boxes).
  */
-public final class Slime extends Entity{
+public final class Slime extends Entity {
 
-	private static final int HEIGHT = 3;
-	private static final int WIDTH = 3;
+	private static final int HEIGHT = 32;
+	private static final int WIDTH = 32;
 	private static final int MOVEMENT_SPEED = 1;
 	private static final int HEALTH = 10;
 	private static final String NAME = "Slime";
+	private static final int CB_POS_MOD = 4;
+	private static final int CB_DIM_MOD = 8;
 
+	/**
+	 * Character followed by the slime.
+	 */
 	private Entity characterToFollow;
+	/**
+	 * Slime aggro box.
+	 */
 	private final CollisionBox radarBox;
 
 	/**
@@ -31,9 +37,9 @@ public final class Slime extends Entity{
 		setSpeed(MOVEMENT_SPEED);
 		setHealth(HEALTH);
 		setAlive(true);
-		face = FACE_RIGHT;
+		face = Face.FACE_RIGHT;
 		hitBox = new CollisionBox(posX, posY, width, height);
-		radarBox = new CollisionBox(posX - (width * 2), posY - (height * 2), width * 5, height * 5);
+		radarBox = new CollisionBox(posX - (width * CB_POS_MOD), posY - (height * CB_POS_MOD), width * CB_DIM_MOD, height * CB_POS_MOD);
 
 		// TODO Animations
 	}
@@ -44,13 +50,11 @@ public final class Slime extends Entity{
 		follow();
 		super.update(delta);
 		updateRadarBoxLocation();
-		
 	}
 
 	@Override
 	public void render() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -78,7 +82,7 @@ public final class Slime extends Entity{
 	 * Makes Slime path towards the Character(Entity) to follow.
 	 */
 	private void follow() {
-		if (characterToFollow == null){
+		if (characterToFollow == null) {
 			return;
 		}
 		if (characterToFollow.getPosX() < posX) {
@@ -88,7 +92,7 @@ public final class Slime extends Entity{
 		}
 		if (characterToFollow.getPosX() < posY) {
 			up = true;
-		} else if (characterToFollow.getPosX() > posY){
+		} else if (characterToFollow.getPosX() > posY) {
 			down = true;
 		}
 	}

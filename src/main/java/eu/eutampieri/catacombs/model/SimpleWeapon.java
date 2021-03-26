@@ -1,22 +1,43 @@
 package eu.eutampieri.catacombs.model;
 
 /**
- * 
- * A simple weapon that subtracts a given value from a player's health
- *
+ * A simple weapon that subtracts a given value from a player's health.
  */
 public abstract class SimpleWeapon extends GameObject implements HealthModifier {
-    protected int damage;
-    protected int fireRate;
-    protected int fireDelay; // timer between shots
-    protected int range;
-    protected int reloadSpeed; // time taken to reload
-    protected int reloadDelay;
-    protected int magazine; // number of bullets
-    protected final String name;
-    
     /**
-     * Simple weapon constructor.
+     * Weapon damage.
+     */
+    protected int damage;
+    /**
+     * Weapon rate of fire.
+     */
+    protected int fireRate;
+    /**
+     * Timer between each shot.
+     */
+    protected int fireDelay;
+    /**
+     * Weapon range as distance a bullet travels.
+     */
+    protected int range;
+    /**
+     * Weapon reload speed as time taken to reload.
+     */
+    protected int reloadSpeed;
+    /**
+     * Reload timer - keeps track of time reloading.
+     */
+    protected int reloadDelay;
+    /**
+     * Weapon magazine.
+     */
+    protected int magazine;
+    /**
+     * Weapon name.
+     */
+    protected final String name;
+
+    /**
      * @param damage The amount of damage (i.e. the change in health) that a character
      * will have after being hit with this weapon
      * @param name The weapon's name
@@ -25,7 +46,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      * @param magazine weapon's number of bullets (if -1 infinite)
      */
     SimpleWeapon(final int damage, final String name, final int fireRate, final int range, final int magazine) {
-        super(0,0,ID.WEAPON);
+        super(0, 0, ID.WEAPON);
         this.damage = damage;
         this.name = name;
         this.fireRate = fireRate;
@@ -33,26 +54,34 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
         this.magazine = magazine;
     }
 
+    /**
+     * @return Damage as hp delta
+     */
     @Override
     public int getHealthDelta() {
         return damage * -1;
     }
 
+    /**
+     * @return Weapon name
+     */
     @Override
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Updates status of weapon in game loop.
+     * @param delta time between updates
+     */
     @Override
     public void update(final int delta) {
         // TODO Auto-generated method stub
-        
     }
 
     @Override
     public void render() {
         // TODO Auto-generated method stub
-        
     }
 
     /**
@@ -120,7 +149,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
     }
 
     /**
-     * Getter for weapon magazine size
+     * Getter for weapon magazine size.
      * @return Weapon magazine size as number of bullets the weapon can shoot before reloading
      */
     public int getMagazine() {
@@ -128,7 +157,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
     }
 
     /**
-     * Setter for weapon magazine
+     * Setter for weapon magazine.
      * @param magazine Weapone magazine to be set
      */
     public void setMagazine(final int magazine) {
@@ -139,27 +168,21 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      * Makes weapon fire on key press.
      */
     public void fireWeapon() {
-        // TODO 
-        
+        // TODO
     }
-    
+
     /**
-     * 
      * @return true if magazine > 0 and fireDelay timer passed
      */
     public boolean canFire() {
         return false;
         // TODO 
     }
-    
+
     /**
-     * Reloads weapon on key press
+     * Reloads weapon on key press.
      */
     public void reloadWeapon() {
-        // TODO 
-        
+        // TODO
     }
-    
-    
-
 }

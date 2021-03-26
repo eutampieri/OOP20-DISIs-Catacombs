@@ -5,13 +5,20 @@ package eu.eutampieri.catacombs.model;
  */
 public abstract class GameObject {
 
+	/**
+	 * Object positions.
+	 */
 	protected int posX, posY;
+	/**
+	 * Object id.
+	 */
 	protected ID id;
+	/**
+	 * Object speed.
+	 */
 	protected int speedX, speedY;
 	
 	/**
-	 * GameObject constructor.
-	 * 
 	 * @param x object X position
 	 * @param y	object Y position
 	 * @param id object ID @see eu.eutampieri.catacombs.model.ID
@@ -23,10 +30,14 @@ public abstract class GameObject {
 	}
 
 	/**
-	 * Method used in the game while that updates all elements of a game obj.
+	 * Method used in the game loop that updates all elements of a game obj.
 	 * @param delta time between updates
 	 */
 	public abstract void update(int delta);
+
+	/**
+	 * Renders object with the corresponding sprite.
+	 */
 	public abstract void render();
 
 	/**
