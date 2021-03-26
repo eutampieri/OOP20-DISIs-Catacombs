@@ -2,11 +2,11 @@ package eu.eutampieri.catacombs.model.map;
 
 public class TileMapImpl implements TileMap {
 	Tile[][] m;
-	
+
 	public TileMapImpl(Tile[][] mm) {
-		m=mm;
+		m = mm;
 	}
-	
+
 	@Override
 	public int height() {
 		return m.length;
@@ -19,6 +19,9 @@ public class TileMapImpl implements TileMap {
 
 	@Override
 	public Tile at(int x, int y) {
+		if (y < 0 || x < 0 || y >= this.height() || x >= this.width()) {
+			return Tile.VOID;
+		}
 		return m[y][x];
 	}
 
