@@ -2,7 +2,7 @@ package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
 
-public abstract class Entity extends GameObject implements LivingCharacter{
+public abstract class Entity extends GameObject implements LivingCharacter {
 
     public static final int FACE_RIGHT = 0;
     public static final int FACE_LEFT = 1;
@@ -19,7 +19,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
     //protected CollisionBox box;
 
     public Entity(int x, int y, TileMap tileMap) {
-        super(x, y, ID.Enemy);
+        super(x, y, ID.ENEMY);
         this.tileMap = tileMap;
     }
 
@@ -44,7 +44,7 @@ public abstract class Entity extends GameObject implements LivingCharacter{
     }
 
     @Override
-    public void update(float delta) {
+    public void update(int delta) {
         move();
         updateSpriteLocation();
     }
