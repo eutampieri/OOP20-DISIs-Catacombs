@@ -93,31 +93,50 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      * Move the Entity based on its speed and direction facing.
      */
     protected void move() {
+
+        int maxMovementUp = speedY;
+        int maxMovementRight = speedX;
+        int maxMovementDown = speedY;
+        int maxMovementLeft = speedX;
+
+        if (hitBox.getPosX() - speedX < 0) {
+            maxMovementLeft = hitBox.getPosX();
+        }
+        if (hitBox.getPosX() + hitBox.getWidth() + speedX > tileMap.width() - 1) {
+            maxMovementRight = tileMap.width() - hitBox.getPosX() - hitBox.getWidth() - 1;
+        }
+        if (hitBox.getPosY() - speedY < 0) {
+            maxMovementUp = hitBox.getPosY();
+        }
+        if (hitBox.getPosY() + hitBox.getHeight() + speedY > tileMap.height() - 1) {
+            maxMovementDown = tileMap.height() - hitBox.getPosY() - hitBox.getHeight() -1;
+        }
+
         if (up) {
-            if (!isUpCollision(speedY)) {
-                hitBox.move(0, -speedY);
-                //setPos(hitBox.getPosX(), hitBox.getPosY());
+            if (!isUpCollision(maxMovementUp)) {
+                hitBox.move(0, -maxMovementUp);
+                setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_UP;
         }
         if (down) {
-            if (!isDownCollision(speedY)) {
-                hitBox.move(0, speedY);
-                //setPos(hitBox.getPosX(), hitBox.getPosY());
+            if (!isDownCollision(maxMovementDown)) {
+                hitBox.move(0, maxMovementDown);
+                setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_DOWN;
         }
         if (left) {
-            if (isLeftCollision(speedX)) {
-                hitBox.move(-speedX, 0);
-                //setPos(hitBox.getPosX(), hitBox.getPosY());
+            if (isLeftCollision(maxMovementLeft)) {
+                hitBox.move(-maxMovementLeft, 0);
+                setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_LEFT;
         }
         if (right) {
-            if (!isRightCollision(speedX)) {
-                hitBox.move(speedX, 0);
-                //setPos(hitBox.getPosX(), hitBox.getPosY());
+            if (!isRightCollision(maxMovementRight)) {
+                hitBox.move(maxMovementRight, 0);
+                setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_RIGHT;
         }
@@ -188,5 +207,4 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     public CollisionBox getHitBox() {
         return hitBox;
     }
-
 }
