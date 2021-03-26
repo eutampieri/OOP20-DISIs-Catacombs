@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Removed PMD violations on main module">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CharactersTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/CharactersTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CollisionBoxTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/CollisionBoxTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/EquipmentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/EquipmentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GameTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/GameTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/HIDTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/HIDTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/MapTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/MapTests.java" afterDir="false" />
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Removed PMD violations on test module">
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Entity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -362,13 +356,6 @@
       <workItem from="1616687466637" duration="5822000" />
       <workItem from="1616745567957" duration="5514000" />
     </task>
-    <task id="LOCAL-00004" summary="Configured Checkstyle">
-      <created>1616670951074</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1616670951074</updated>
-    </task>
     <task id="LOCAL-00005" summary="Configured PMD">
       <created>1616671342769</created>
       <option name="number" value="00005" />
@@ -705,7 +692,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616771958307</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Removed PMD violations on test module">
+      <created>1616772661920</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1616772661920</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -837,7 +831,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactored MainWindow" />
     <MESSAGE value="Refactored DungeonGame.java" />
     <MESSAGE value="Refactored Slime.java" />
     <MESSAGE value="Added doc to Tile" />
@@ -862,7 +855,8 @@
     <MESSAGE value="Fixed tests" />
     <MESSAGE value="Implemented empty map test" />
     <MESSAGE value="Removed PMD violations on main module" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed PMD violations on main module" />
+    <MESSAGE value="Removed PMD violations on test module" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed PMD violations on test module" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$CharactersTests_testSlimeFollowBat.ic" NAME="CharactersTests.testSlimeFollowBat Coverage Results" MODIFIED="1616763852560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

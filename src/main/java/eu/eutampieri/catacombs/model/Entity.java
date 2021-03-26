@@ -20,10 +20,6 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      */
     protected int hp;
     /**
-     * Liveness status of the entity.
-     */
-    protected boolean isAlive;
-    /**
      * Entity dimensions.
      */
     protected int width, height; //Entity width and height
@@ -44,14 +40,6 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     public Entity(final int x, final int y, final TileMap tileMap) {
         super(x, y, ID.ENEMY);
         this.tileMap = tileMap;
-    }
-
-    /**
-     * Setter for isAlive.
-     * @param alive true if the entity is alive (hp>0); false if the entity is dead
-     */
-    public void setAlive(final boolean alive) {
-        isAlive = alive;
     }
 
     /**
