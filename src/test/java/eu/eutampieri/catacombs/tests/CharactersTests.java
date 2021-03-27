@@ -62,13 +62,13 @@ class CharactersTests {
 
     }
 
-    /*@Test
+    @Test
     void testBoxSize() {
         assertEquals(BAT.getHitBox().getHeight(), 32);
         assertEquals(BAT.getHitBox().getWidth(), 32);
         assertEquals(SLIME.getHitBox().getHeight(), 32);
         assertEquals(SLIME.getHitBox().getWidth(), 32);
-    }*/
+    }
 
     @Test
     void testSlimeFollowBat() {

@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Fixed PMD for tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/MenuState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ThreadTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/ThreadTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/HIDTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/HIDTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/CharactersTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/CharactersTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,14 +370,7 @@
       <workItem from="1616670107545" duration="2088000" />
       <workItem from="1616687466637" duration="5822000" />
       <workItem from="1616745567957" duration="5514000" />
-      <workItem from="1616794690474" duration="1776000" />
-    </task>
-    <task id="LOCAL-00006" summary="Moved JaCoCo reports">
-      <created>1616671529729</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1616671529730</updated>
+      <workItem from="1616794690474" duration="2188000" />
     </task>
     <task id="LOCAL-00007" summary="Configured spotbugs to output HTML">
       <created>1616672479575</created>
@@ -718,7 +708,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616779036358</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Fixed after merge; disabled ThreadTest because it doesn't work!">
+      <created>1616797182711</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1616797182713</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -850,7 +847,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactored Slime.java" />
     <MESSAGE value="Added doc to Tile" />
     <MESSAGE value="Minor refactors" />
     <MESSAGE value="Refactored TileMapFactoryImpl.java" />
@@ -875,7 +871,8 @@
     <MESSAGE value="Removed PMD violations on main module" />
     <MESSAGE value="Removed PMD violations on test module" />
     <MESSAGE value="Fixed PMD for tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed PMD for tests" />
+    <MESSAGE value="Fixed after merge; disabled ThreadTest because it doesn't work!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed after merge; disabled ThreadTest because it doesn't work!" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$CharactersTests_testEntitiesSizesPowersOfTwo.ic" NAME="CharactersTests.testEntitiesSizesPowersOfTwo Coverage Results" MODIFIED="1616758295146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
