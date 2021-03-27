@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.model.map;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -112,33 +113,17 @@ public final class TileMapFactoryImpl implements TileMapFactory {
 
     /**
      * @param nRooms      number of rooms to generate
-     * @param minRoomSide minimum side length of a room
      * @param maxRoomSide maximum side length of a room
      * @param minRoomDist minimum distance between two rooms' centers
      * @param maxRoomDist maximum distance with the closest room's center for each
      *                    room center
-     * @return A Tilemap with nRooms square rooms connected by corridors in a tree,
-     *         plus some random corridors minRoomDist > maxRoomSide is recommended
+     * @return A List with nRooms points for room centers according to the
+     *         parameters
      */
-    private TileMap normal(final int nRooms, final int minRoomSide, final int maxRoomSide, final int minRoomDist,
+    private List<Point> decideRoomCenters(final int nRooms, final int maxRoomSide, final int minRoomDist,
             final int maxRoomDist) {
-        if (nRooms <= 0) {
-            throw new IllegalArgumentException();
-        }
-        if (minRoomSide <= 0) {
-            throw new IllegalArgumentException();
-        }
-        if (maxRoomSide < minRoomSide) {
-            throw new IllegalArgumentException();
-        }
-        if (minRoomDist < 0) {
-            throw new IllegalArgumentException();
-        }
-        if (maxRoomDist < minRoomDist) {
-            throw new IllegalArgumentException();
-        }
-        final ArrayList<Point> pool = new ArrayList<>(); // pool of all points at acceptable distances from the already
-                                                         // selected
+        final List<Point> pool = new ArrayList<>(); // pool of all points at acceptable distances from the already
+                                                    // selected
         // rooms
         final var centers = new ArrayList<Point>(); // selected rooms' centers
         final var dist = new HashMap<Point, Integer>(); // distance to closest selected center for all points
@@ -168,29 +153,42 @@ public final class TileMapFactoryImpl implements TileMapFactory {
                 }
             }
         }
-        int minY = 0, minX = 0, maxY = 0, maxX = 0; // get map boundaries to shift coordinates and calculate map size
-        for (final Point p : centers) {
-            if (p.y < minY) {
-                minY = p.y;
-            }
-            if (p.x < minX) {
-                minX = p.x;
-            }
-            if (p.y > maxY) {
-                maxY = p.y;
-            }
-            if (p.x > maxX) {
-                maxX = p.x;
-            }
-        }
-        final int w = maxX - minX + maxRoomSide + 4; // this way a room should not touch the edges
-        final int h = maxY - minY + maxRoomSide + 4;
+        // get map boundaries to shift coordinates and calculate map size
+        final int minY = centers.stream().map(p -> p.y).min((a, b) -> a.compareTo(b)).get();
+        final int minX = centers.stream().map(p -> p.x).min((a, b) -> a.compareTo(b)).get();
         final int dx = 2 + (maxRoomSide + 1) / 2 - minX;
         final int dy = 2 + (maxRoomSide + 1) / 2 - minY;
         for (int i = 0; i < centers.size(); i++) {
             final var p = centers.get(i);
             centers.set(i, new Point(p.x + dx, p.y + dy));
         }
+        return centers;
+    }
+
+    /**
+     * @param nRooms      number of rooms to generate
+     * @param minRoomSide minimum side length of a room
+     * @param maxRoomSide maximum side length of a room
+     * @param minRoomDist minimum distance between two rooms' centers
+     * @param maxRoomDist maximum distance with the closest room's center for each
+     *                    room center
+     * @return A Tilemap with nRooms square rooms connected by corridors in a tree,
+     *         plus some random corridors minRoomDist > maxRoomSide is recommended
+     */
+    private TileMap normal(final int nRooms, final int minRoomSide, final int maxRoomSide, final int minRoomDist,
+            final int maxRoomDist) {
+        if (nRooms <= 0 || minRoomSide <= 0 || maxRoomSide < minRoomSide || minRoomDist < 0
+                || maxRoomDist < minRoomDist) {
+            throw new IllegalArgumentException();
+        }
+        final List<Point> centers = decideRoomCenters(nRooms, maxRoomSide, minRoomDist, maxRoomDist);
+        final int minY = centers.stream().map(p -> p.y).min((a, b) -> a.compareTo(b)).get();
+        final int maxY = centers.stream().map(p -> p.y).max((a, b) -> a.compareTo(b)).get();
+        final int minX = centers.stream().map(p -> p.x).min((a, b) -> a.compareTo(b)).get();
+        final int maxX = centers.stream().map(p -> p.x).max((a, b) -> a.compareTo(b)).get();
+
+        final int w = maxX - minX + maxRoomSide + 4; // this way a room should not touch the edges
+        final int h = maxY - minY + maxRoomSide + 4;
         final var res = new Tile[h][w]; // new tile map initially filled with wall
         for (int y = 0; y < h; y++) {
             for (int x = 0; x < w; x++) {
