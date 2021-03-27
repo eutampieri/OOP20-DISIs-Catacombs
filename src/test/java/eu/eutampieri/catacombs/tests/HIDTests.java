@@ -63,4 +63,9 @@ class HIDTests {
         KEY_MANAGER.keyReleased(k);
         assertFalse(KEY_MANAGER.isKeyPressed(k.getKeyCode()));
     }
+
+    @Test
+    void testUpdate() {
+        KEY_MANAGER.update(0.1f);
+    }
 }
