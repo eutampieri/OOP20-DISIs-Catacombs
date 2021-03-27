@@ -10,9 +10,9 @@ public abstract class GameObject {
      */
     protected int posX, posY;
     /**
-     * Object id.
+     * Entity kind.
      */
-    protected ID id;
+    protected EntityKind kind;
     /**
      * Object speed.
      */
@@ -21,12 +21,12 @@ public abstract class GameObject {
     /**
      * @param x  object X position
      * @param y  object Y position
-     * @param id object ID @see eu.eutampieri.catacombs.model.ID
+     * @param kind Entity Kind @see eu.eutampieri.catacombs.model.EntityKind
      */
-    public GameObject(final int x, final int y, final ID id) {
+    public GameObject(final int x, final int y, final EntityKind kind) {
         this.setPosX(x);
         this.setPosY(y);
-        this.id = id;
+        this.kind = kind;
     }
 
     /**
@@ -135,11 +135,11 @@ public abstract class GameObject {
     }
 
     /**
-     * Getter for object ID.
+     * Getter for Entity Kind.
      * 
-     * @return Object id
+     * @return Entity Kind
      */
-    public ID getId() {
-        return id;
+    public EntityKind getKind() {
+        return kind;
     }
 }
