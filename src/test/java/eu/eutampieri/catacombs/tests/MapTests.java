@@ -50,4 +50,12 @@ class MapTests {
             }
         }
     }
+
+    @Test
+    public final void testOutOfBounds() {
+        final TileMap tm = (TileMapImpl) new TileMapFactoryImpl().empty(5, 5);
+        assertEquals(Tile.VOID, tm.at(-1, -1));
+        assertEquals(Tile.VOID, tm.at(6, 6));
+        assertEquals(Tile.VOID, tm.at(-1, 0));
+    }
 }

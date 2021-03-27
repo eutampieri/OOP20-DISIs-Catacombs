@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Fixed PMD for tests">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/CharactersTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/CharactersTests.java" afterDir="false" />
-    </list>
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="Fixed PMD for tests" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -208,7 +205,18 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.OOP20-procedural-dungeon [check]">
+  <component name="RunManager" selected="Gradle.MapTests.testOutOfBounds">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All tests" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -226,6 +234,27 @@
         <option name="vmOptions" value="" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MapTests.testOutOfBounds" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;eu.eutampieri.catacombs.tests.MapTests.testOutOfBounds&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -263,27 +292,6 @@
         <option name="taskNames">
           <list>
             <option value="check" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="OOP20-procedural-dungeon [classes]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="classes" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -337,19 +345,19 @@
     </configuration>
     <list>
       <item itemvalue="Gradle.All tests" />
-      <item itemvalue="Gradle.OOP20-procedural-dungeon [classes]" />
       <item itemvalue="Gradle.OOP20-procedural-dungeon [build]" />
       <item itemvalue="Gradle.OOP20-procedural-dungeon [pmdMain]" />
       <item itemvalue="Gradle.OOP20-procedural-dungeon [spotbugsMain]" />
       <item itemvalue="Gradle.OOP20-procedural-dungeon [check]" />
+      <item itemvalue="Gradle.MapTests.testOutOfBounds" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.MapTests.testOutOfBounds" />
         <item itemvalue="Gradle.OOP20-procedural-dungeon [check]" />
         <item itemvalue="Gradle.OOP20-procedural-dungeon [spotbugsMain]" />
         <item itemvalue="Gradle.OOP20-procedural-dungeon [pmdMain]" />
         <item itemvalue="Gradle.OOP20-procedural-dungeon [build]" />
-        <item itemvalue="Gradle.OOP20-procedural-dungeon [classes]" />
       </list>
     </recent_temporary>
   </component>
@@ -370,14 +378,7 @@
       <workItem from="1616670107545" duration="2088000" />
       <workItem from="1616687466637" duration="5822000" />
       <workItem from="1616745567957" duration="5514000" />
-      <workItem from="1616794690474" duration="2188000" />
-    </task>
-    <task id="LOCAL-00007" summary="Configured spotbugs to output HTML">
-      <created>1616672479575</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1616672479575</updated>
+      <workItem from="1616794690474" duration="2227000" />
     </task>
     <task id="LOCAL-00008" summary="\t to 4 spaces indentation">
       <created>1616680641084</created>
@@ -715,7 +716,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616797182713</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Increased coverage">
+      <created>1616833677728</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1616833677728</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -847,7 +855,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added doc to Tile" />
     <MESSAGE value="Minor refactors" />
     <MESSAGE value="Refactored TileMapFactoryImpl.java" />
     <MESSAGE value="Refactored TileMapImpl.java" />
@@ -872,7 +879,8 @@
     <MESSAGE value="Removed PMD violations on test module" />
     <MESSAGE value="Fixed PMD for tests" />
     <MESSAGE value="Fixed after merge; disabled ThreadTest because it doesn't work!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed after merge; disabled ThreadTest because it doesn't work!" />
+    <MESSAGE value="Increased coverage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Increased coverage" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$CharactersTests_testEntitiesSizesPowersOfTwo.ic" NAME="CharactersTests.testEntitiesSizesPowersOfTwo Coverage Results" MODIFIED="1616758295146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
