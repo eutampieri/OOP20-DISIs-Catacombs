@@ -37,6 +37,12 @@ public abstract class Game implements Runnable {
     private int fps;
     private Thread gameThread;
 
+    private boolean isTest;
+
+    public void setTest() {
+        isTest = true;
+    }
+
     public abstract void create();
 
     /**
@@ -271,6 +277,9 @@ public abstract class Game implements Runnable {
                 mainFrame.getFrame().setTitle("Frame Per Seconds : " + framesThisSecond);
                 ticks = 0;
                 timer = 0;
+            }
+            if (updates > 0 && isTest) {
+                break;
             }
         }
     }

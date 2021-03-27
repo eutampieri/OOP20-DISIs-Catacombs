@@ -5,14 +5,12 @@ import eu.eutampieri.catacombs.ui.GameConfiguration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class DungeonGameTests {
     @Test
     void testInitialize() {
-        DungeonGame mygame = new DungeonGame();
-        GameConfiguration gc = new GameConfiguration();
+        final DungeonGame mygame = new DungeonGame();
+        final GameConfiguration gc = new GameConfiguration();
         gc.setFps(60);
         gc.setFullScreen(false);
         gc.setGameHeight(600);
@@ -20,9 +18,10 @@ class DungeonGameTests {
         gc.setResizeable(true);
         gc.setScaling(true);
         gc.setTitle("Game");
+        mygame.setTest();
         mygame.initialize(gc);
-        mygame.run();
         mygame.start();
+        mygame.run();
         // mygame.stop();
         mygame.getGameHeight();
         mygame.getGameWidth();
