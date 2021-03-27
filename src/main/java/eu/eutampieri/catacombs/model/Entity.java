@@ -14,7 +14,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     /**
      * Stores where the entity is facing.
      */
-    protected Face face;
+    protected Direction face;
     /**
      * Entity current health.
      */
@@ -121,25 +121,25 @@ public abstract class Entity extends GameObject implements LivingCharacter {
             if (!isUpCollision(maxMovementUp)) {
                 hitBox.move(0, -maxMovementUp);
             }
-            face = Face.FACE_UP;
+            face = Direction.UP;
         }
         if (down) {
             if (!isDownCollision(maxMovementDown)) {
                 hitBox.move(0, maxMovementDown);
             }
-            face = Face.FACE_DOWN;
+            face = Direction.DOWN;
         }
         if (left) {
             if (isLeftCollision(maxMovementLeft)) {
                 hitBox.move(-maxMovementLeft, 0);
             }
-            face = Face.FACE_LEFT;
+            face = Direction.LEFT;
         }
         if (right) {
             if (!isRightCollision(maxMovementRight)) {
                 hitBox.move(maxMovementRight, 0);
             }
-            face = Face.FACE_RIGHT;
+            face = Direction.RIGHT;
         }
     }
 

@@ -1,20 +1,20 @@
 package eu.eutampieri.catacombs.model;
 
-public enum Face {
+public enum Direction {
     /**
      * Entity is facing right.
      */
-    FACE_RIGHT,
+    RIGHT,
     /**
      * Entity is facing left.
      */
-    FACE_LEFT,
+    LEFT,
     /**
      * Entity is facing down.
      */
-    FACE_DOWN,
+    DOWN,
     /**
      * Entity is facing up.
      */
-    FACE_UP,
+    UP,
 }

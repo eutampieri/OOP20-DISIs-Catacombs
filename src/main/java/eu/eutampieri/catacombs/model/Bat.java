@@ -37,7 +37,7 @@ public final class Bat extends Entity {
         setWidth(WIDTH);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
-        face = Face.FACE_RIGHT;
+        face = Direction.RIGHT;
         hitBox = new CollisionBox(posX, posY, width, height);
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
@@ -91,14 +91,14 @@ public final class Bat extends Entity {
      * can only go left or right.
      */
     private void changeDirection() {
-        if (face == Face.FACE_RIGHT) {
+        if (face == Direction.RIGHT) {
             left = true;
             right = false;
-            face = Face.FACE_LEFT;
+            face = Direction.LEFT;
         } else {
             right = true;
             left = false;
-            face = Face.FACE_RIGHT;
+            face = Direction.RIGHT;
         }
     }
 
