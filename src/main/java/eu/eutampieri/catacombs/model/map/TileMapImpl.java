@@ -17,10 +17,13 @@ public final class TileMapImpl implements TileMap {
         return map[0].length;
     }
 
-    @Override
-    public Tile at(final int x, final int y) {
-        return map[y][x];
-    }
+	@Override
+	public Tile at(final int x, final int y) {
+		if (y < 0 || x < 0 || y >= this.height() || x >= this.width()) {
+			return Tile.VOID;
+		}
+		return map[y][x];
+	}
 
     public Tile[][] getMap() {
         return map.clone();
