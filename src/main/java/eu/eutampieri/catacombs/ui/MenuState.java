@@ -9,8 +9,10 @@ import eu.eutampieri.catacombs.ui.utils.FontUtils;
 
 public final class MenuState extends State {
 
-    private static final int START_GAME = 1;
-    private static final int QUIT_GAME = 2;
+    private enum MenuOption {
+        START_GAME, QUIT_GAME,
+    }
+
     private static final int TITLE_FONT_SIZE = 50;
     private static final int DEFAULT_FONT_SIZE = 40;
     private static final int OVAL_SIZE = 20;
@@ -21,7 +23,7 @@ public final class MenuState extends State {
     private final transient Font titleFont = new Font("Times New Roman", Font.PLAIN, TITLE_FONT_SIZE);
     private final transient Font font = new Font("Arial", Font.PLAIN, DEFAULT_FONT_SIZE);
 
-    private int optionSelected = START_GAME;
+    private MenuOption optionSelected = MenuOption.START_GAME;
 
     private final DungeonGame game;
 
@@ -45,10 +47,10 @@ public final class MenuState extends State {
             }
         }
         if (Game.KEY_MANAGER.isKeyPressed(KeyEvent.VK_S)) {
-            this.optionSelected = QUIT_GAME;
+            this.optionSelected = MenuOption.QUIT_GAME;
         }
         if (Game.KEY_MANAGER.isKeyPressed(KeyEvent.VK_W)) {
-            this.optionSelected = START_GAME;
+            this.optionSelected = MenuOption.START_GAME;
         }
 
     }
@@ -75,8 +77,9 @@ public final class MenuState extends State {
         g2.drawString(quit, x2, titleFont.getSize() + font.getSize() + 100);
 
         // selection
-        final int x3 = (int) (this.optionSelected == START_GAME ? x1 - MIDDLE_OF_OPTION : x2 - MIDDLE_OF_OPTION);
-        final int y = this.optionSelected == START_GAME ? this.titleFont.getSize() + START_OFFSET
+        final int x3 = (int) (this.optionSelected == MenuOption.START_GAME ? x1 - MIDDLE_OF_OPTION
+                : x2 - MIDDLE_OF_OPTION);
+        final int y = this.optionSelected == MenuOption.START_GAME ? this.titleFont.getSize() + START_OFFSET
                 : this.titleFont.getSize() + font.getSize() + QUIT_OFFSET;
         g2.fillOval(x3, y, OVAL_SIZE, OVAL_SIZE);
 
