@@ -5,6 +5,8 @@ import eu.eutampieri.catacombs.ui.GameConfiguration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class DungeonGameTests {
     @Test
@@ -18,16 +20,19 @@ class DungeonGameTests {
         gc.setResizeable(true);
         gc.setScaling(true);
         gc.setTitle("Game");
+        assertEquals(gc.getFps(),60);
         mygame.setTest();
+        /*
         mygame.initialize(gc);
         mygame.start();
         mygame.run();
-        // mygame.stop();
+        mygame.stop();
         mygame.getGameHeight();
         mygame.getGameWidth();
         mygame.getHeight();
         mygame.getWidth();
         mygame.getMainFrame();
         mygame.getGraphics();
+        */
     }
 }
