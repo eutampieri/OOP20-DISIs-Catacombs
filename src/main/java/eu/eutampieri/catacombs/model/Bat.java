@@ -107,7 +107,7 @@ public final class Bat extends Entity {
     }
 
     public String getName() {
-        return this.NAME;
+        return Bat.NAME;
     }
 
 }

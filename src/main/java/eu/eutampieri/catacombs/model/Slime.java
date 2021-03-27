@@ -110,6 +110,6 @@ public final class Slime extends Entity {
     }
 
     public String getName() {
-        return this.NAME;
+        return Slime.NAME;
     }
 }
