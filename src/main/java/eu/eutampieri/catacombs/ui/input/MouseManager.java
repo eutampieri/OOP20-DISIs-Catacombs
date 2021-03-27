@@ -52,6 +52,4 @@ public final class MouseManager extends MouseAdapter {
         this.y = e.getY();
     }
 
-
-
 }

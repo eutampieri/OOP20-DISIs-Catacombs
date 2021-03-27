@@ -45,11 +45,12 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Simple weapon constructor.
-     * @param damage The amount of damage (i.e. the change in health) that a character
-     * will have after being hit with this weapon
-     * @param name The weapon's name
+     * 
+     * @param damage   The amount of damage (i.e. the change in health) that a
+     *                 character will have after being hit with this weapon
+     * @param name     The weapon's name
      * @param fireRate weapon's rate of fire
-     * @param range weapon's range
+     * @param range    weapon's range
      * @param magazine weapon's number of bullets (if -1 infinite)
      */
     SimpleWeapon(final int damage, final String name, final int fireRate, final int range, final int magazine) {
@@ -79,6 +80,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Updates status of weapon in game loop.
+     * 
      * @param delta time between updates
      */
     @Override
@@ -93,6 +95,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Getter for weapon damage.
+     * 
      * @return Weapon damage
      */
     public int getDamage() {
@@ -101,6 +104,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Setter for weapon damage.
+     * 
      * @param damage Weapon damage to be set
      */
     public void setDamage(final int damage) {
@@ -109,6 +113,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Getter for weapon fire rate.
+     * 
      * @return Weapon fire rate
      */
     public int getFireRate() {
@@ -117,6 +122,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Setter for weapon fire rate.
+     * 
      * @param fireRate Weapon fire rate to be set
      */
     public void setFireRate(final int fireRate) {
@@ -125,7 +131,9 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Getter for weapon range.
-     * @return Weapon range as an integer specifying the distance a bullet can travel
+     * 
+     * @return Weapon range as an integer specifying the distance a bullet can
+     *         travel
      */
     public int getRange() {
         return range;
@@ -133,6 +141,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Setter for weapon range.
+     * 
      * @param range Weapon range to be set
      */
     public void setRange(final int range) {
@@ -141,6 +150,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Getter for weapon reload speed.
+     * 
      * @return Weapon reload speed as the time taken to reload the weapon
      */
     public int getReloadSpeed() {
@@ -149,6 +159,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Setter for weapon reload speed.
+     * 
      * @param reloadSpeed Weapon reload speed to be set
      */
     public void setReloadSpeed(final int reloadSpeed) {
@@ -157,7 +168,9 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Getter for weapon magazine size.
-     * @return Weapon magazine size as number of bullets the weapon can shoot before reloading
+     * 
+     * @return Weapon magazine size as number of bullets the weapon can shoot before
+     *         reloading
      */
     public int getMagazine() {
         return magazine;
@@ -165,6 +178,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
 
     /**
      * Setter for weapon magazine.
+     * 
      * @param magazine Weapone magazine to be set
      */
     public void setMagazine(final int magazine) {
@@ -184,7 +198,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      */
     public boolean canFire() {
         return false;
-        // TODO 
+        // TODO
     }
 
     /**

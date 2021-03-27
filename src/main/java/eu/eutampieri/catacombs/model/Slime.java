@@ -3,7 +3,8 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 
 /**
- * Slime class - the slime is an enemy that walks toward the targeted character and deals damage on contact (through hit boxes).
+ * Slime class - the slime is an enemy that walks toward the targeted character
+ * and deals damage on contact (through hit boxes).
  */
 public final class Slime extends Entity {
 
@@ -14,7 +15,7 @@ public final class Slime extends Entity {
     private static final String NAME = "Slime";
     private static final int CB_POS_MOD = 4;
     private static final int CB_DIM_MOD = 9;
-    /*private static final int DAMAGE_ON_HIT = 5;*/
+    /* private static final int DAMAGE_ON_HIT = 5; */
 
     /**
      * Character followed by the slime.
@@ -27,8 +28,9 @@ public final class Slime extends Entity {
 
     /**
      * Slime constructor.
-     * @param x X spawn position
-     * @param y Y spawn position
+     * 
+     * @param x       X spawn position
+     * @param y       Y spawn position
      * @param tileMap Tile map in which Slime is spawned
      */
     public Slime(final int x, final int y, final TileMap tileMap) {
@@ -39,7 +41,8 @@ public final class Slime extends Entity {
         setHealth(HEALTH);
         face = Face.FACE_RIGHT;
         hitBox = new CollisionBox(posX, posY, width, height);
-        radarBox = new CollisionBox(posX - (width * CB_POS_MOD), posY - (height * CB_POS_MOD), width * CB_DIM_MOD, height * CB_POS_MOD);
+        radarBox = new CollisionBox(posX - (width * CB_POS_MOD), posY - (height * CB_POS_MOD), width * CB_DIM_MOD,
+                height * CB_POS_MOD);
 
         // TODO Animations
     }
@@ -68,8 +71,10 @@ public final class Slime extends Entity {
     }
 
     /**
-     * Utility method useful and used in GameState to make the Slime follow an Entity (most likely the Player).
-     *         With this method Slimes can follow every entity.
+     * Utility method useful and used in GameState to make the Slime follow an
+     * Entity (most likely the Player). With this method Slimes can follow every
+     * entity.
+     * 
      * @param e Entity to follow
      */
     public void setCharacterToFollow(final Entity e) {

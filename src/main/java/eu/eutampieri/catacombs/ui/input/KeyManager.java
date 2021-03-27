@@ -47,8 +47,8 @@ public final class KeyManager extends KeyAdapter {
         this.keys[e.getKeyCode()] = false;
     }
 
-    /*@Override
-    public void keyTyped(KeyEvent e) {
-    }*/
+    /*
+     * @Override public void keyTyped(KeyEvent e) { }
+     */
 
 }

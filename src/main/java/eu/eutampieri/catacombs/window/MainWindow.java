@@ -11,7 +11,8 @@ public final class MainWindow {
     private JFrame frame;
     private Canvas canvas;
 
-    public MainWindow(final String name, final int width, final int height, final boolean fullScreen, final boolean resizeable) {
+    public MainWindow(final String name, final int width, final int height, final boolean fullScreen,
+            final boolean resizeable) {
 
         this.frame = new JFrame(name);
         this.canvas = new Canvas();
@@ -55,8 +56,5 @@ public final class MainWindow {
             gd.setFullScreenWindow(this.frame);
         }
     }
-
-
-
 
 }

@@ -18,8 +18,8 @@ public enum ID {
      */
     PICKUP,
     /**
-     * A weapon, i.e. an object which, if used, reduces the health of
-     * the character it's used against.
+     * A weapon, i.e. an object which, if used, reduces the health of the character
+     * it's used against.
      */
     WEAPON,
     /**

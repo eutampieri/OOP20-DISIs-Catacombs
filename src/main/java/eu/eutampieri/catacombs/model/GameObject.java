@@ -17,10 +17,10 @@ public abstract class GameObject {
      * Object speed.
      */
     protected int speedX, speedY;
-    
+
     /**
-     * @param x object X position
-     * @param y    object Y position
+     * @param x  object X position
+     * @param y  object Y position
      * @param id object ID @see eu.eutampieri.catacombs.model.ID
      */
     public GameObject(final int x, final int y, final ID id) {
@@ -31,6 +31,7 @@ public abstract class GameObject {
 
     /**
      * Method used in the game loop that updates all elements of a game obj.
+     * 
      * @param delta time between updates
      */
     public abstract void update(int delta);
@@ -42,6 +43,7 @@ public abstract class GameObject {
 
     /**
      * Getter for object X position.
+     * 
      * @return Object X position
      */
     public int getPosX() {
@@ -50,6 +52,7 @@ public abstract class GameObject {
 
     /**
      * Setter for object X position.
+     * 
      * @param posX Object X position to be set
      */
     public void setPosX(final int posX) {
@@ -58,6 +61,7 @@ public abstract class GameObject {
 
     /**
      * Getter for object Y position.
+     * 
      * @return Object Y position
      */
     public int getPosY() {
@@ -66,6 +70,7 @@ public abstract class GameObject {
 
     /**
      * Setter for object Y position.
+     * 
      * @param posY Object Y position to be set
      */
     public void setPosY(final int posY) {
@@ -74,6 +79,7 @@ public abstract class GameObject {
 
     /**
      * Set position corresponding to coordinates (posX, posY).
+     * 
      * @param posX Position on the X axis
      * @param posY Position on the Y axis
      */
@@ -84,6 +90,7 @@ public abstract class GameObject {
 
     /**
      * Getter for object speed on the X axis.
+     * 
      * @return Object X speed
      */
     public int getSpeedX() {
@@ -92,6 +99,7 @@ public abstract class GameObject {
 
     /**
      * Setter for object speed on the X axis.
+     * 
      * @param speedX Speed to be set
      */
     public void setSpeedX(final int speedX) {
@@ -100,6 +108,7 @@ public abstract class GameObject {
 
     /**
      * Getter for object speed on the Y axis.
+     * 
      * @return Object Y speed
      */
     public int getSpeedY() {
@@ -108,6 +117,7 @@ public abstract class GameObject {
 
     /**
      * Setter for object speed on the Y axis.
+     * 
      * @param speedY Speed to be set
      */
     public void setSpeedY(final int speedY) {
@@ -116,6 +126,7 @@ public abstract class GameObject {
 
     /**
      * Set both speeds to a specified value (both X and Y).
+     * 
      * @param speed Speed to be set
      */
     public void setSpeed(final int speed) {
@@ -125,6 +136,7 @@ public abstract class GameObject {
 
     /**
      * Getter for object ID.
+     * 
      * @return Object id
      */
     public ID getId() {

@@ -6,7 +6,7 @@ public abstract class State {
 
     /**
      *
-     * var used in the constructor
+     * var used in the constructor.
      *
      */
 
@@ -15,8 +15,7 @@ public abstract class State {
     /**
      *
      *
-     * @param game
-     *             manages the states
+     * @param game manages the states
      */
 
     public State(final DungeonGame game) {
@@ -25,16 +24,14 @@ public abstract class State {
 
     /**
      *
-     * @param delta
-     *              gap time from the previous render
+     * @param delta gap time from the previous render
      */
 
     public abstract void update(float delta);
 
     /**
      *
-     * @param g2
-     *              use to generate graphics
+     * @param g2 use to generate graphics
      */
 
     public abstract void render(Graphics2D g2);

@@ -41,6 +41,7 @@ public final class GameConfiguration {
     public void setFullScreen(final boolean fullScreen) {
         this.fullScreen = fullScreen;
     }
+
     public void setGameWidth(final int gameWidth) {
         this.gameWidth = gameWidth;
     }

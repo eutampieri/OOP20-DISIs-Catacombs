@@ -1,7 +1,8 @@
 package eu.eutampieri.catacombs.game;
 
 public final class Catacombs {
-    private Catacombs() { }
+    private Catacombs() {
+    }
 
     public static void main(final String[] args) {
         // TODO Auto-generated method stub

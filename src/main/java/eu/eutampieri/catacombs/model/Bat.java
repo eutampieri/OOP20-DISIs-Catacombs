@@ -27,8 +27,8 @@ public final class Bat extends Entity {
     private final CollisionBox radarBox;
 
     /**
-     * @param x X spawn position
-     * @param y Y spawn position
+     * @param x       X spawn position
+     * @param y       Y spawn position
      * @param tileMap Tile map in which Bat is spawned
      */
     public Bat(final int x, final int y, final TileMap tileMap) {
@@ -39,8 +39,10 @@ public final class Bat extends Entity {
         setHealth(HEALTH);
         face = Face.FACE_RIGHT;
         hitBox = new CollisionBox(posX, posY, width, height);
-        radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD, height * CB_DIM_MOD);
-        weapon = new SimpleWeapon(BASE_DAMAGE, "bat_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) { };
+        radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
+                height * CB_DIM_MOD);
+        weapon = new SimpleWeapon(BASE_DAMAGE, "bat_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
+        };
 
         // TODO Animations
 
@@ -85,7 +87,8 @@ public final class Bat extends Entity {
     }
 
     /**
-     * Utility class that makes the bat change movement direction. As of now bats can only go left or right.
+     * Utility class that makes the bat change movement direction. As of now bats
+     * can only go left or right.
      */
     private void changeDirection() {
         if (face == Face.FACE_RIGHT) {

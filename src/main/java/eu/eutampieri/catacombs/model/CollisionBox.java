@@ -1,8 +1,8 @@
 package eu.eutampieri.catacombs.model;
 
 /**
- * A general class for GameObjects boxes which define an imaginary outline used for
- * collision detection and aggro detection.
+ * A general class for GameObjects boxes which define an imaginary outline used
+ * for collision detection and aggro detection.
  */
 public class CollisionBox {
     /**
@@ -16,9 +16,10 @@ public class CollisionBox {
 
     /**
      * General collision box constructor.
-     * @param posX Box X position
-     * @param posY Box Y position
-     * @param width Box width dimension
+     * 
+     * @param posX   Box X position
+     * @param posY   Box Y position
+     * @param width  Box width dimension
      * @param height Box height dimension
      */
     public CollisionBox(final int posX, final int posY, final int width, final int height) {
@@ -30,6 +31,7 @@ public class CollisionBox {
 
     /**
      * Collision box constructor that copies values from another CollisionBox.
+     * 
      * @param box The collision box to duplicate
      */
     public CollisionBox(final CollisionBox box) {
@@ -41,6 +43,7 @@ public class CollisionBox {
 
     /**
      * Method that moves the collision box by specified values.
+     * 
      * @param dx Movement made in the X axis
      * @param dy Movement made in the Y axis
      */
@@ -53,6 +56,7 @@ public class CollisionBox {
 
     /**
      * Looks if two boxes overlaps.
+     * 
      * @param r CollisionBox that may overlap
      * @return true if the two boxes overlaps; false otherwise
      */
@@ -62,6 +66,7 @@ public class CollisionBox {
 
     /**
      * Getter for box X position.
+     * 
      * @return Box X position
      */
     public int getPosX() {
@@ -70,6 +75,7 @@ public class CollisionBox {
 
     /**
      * Setter for box X position.
+     * 
      * @param posX X position to set
      */
     public void setPosX(final int posX) {
@@ -78,6 +84,7 @@ public class CollisionBox {
 
     /**
      * Getter for box Y position.
+     * 
      * @return Box Y position
      */
     public int getPosY() {
@@ -86,6 +93,7 @@ public class CollisionBox {
 
     /**
      * Setter for box Y position.
+     * 
      * @param posY Y position to set
      */
     public void setPosY(final int posY) {
@@ -94,6 +102,7 @@ public class CollisionBox {
 
     /**
      * Getter for box width.
+     * 
      * @return Box width
      */
     public int getWidth() {
@@ -102,6 +111,7 @@ public class CollisionBox {
 
     /**
      * Setter for box width.
+     * 
      * @param width Width dimension to set
      */
     public void setWidth(final int width) {
@@ -110,6 +120,7 @@ public class CollisionBox {
 
     /**
      * Getter for box height.
+     * 
      * @return Box height
      */
     public int getHeight() {
@@ -118,6 +129,7 @@ public class CollisionBox {
 
     /**
      * Setter for box width.
+     * 
      * @param height Width dimension to set
      */
     public void setHeight(final int height) {
@@ -126,6 +138,7 @@ public class CollisionBox {
 
     /**
      * Method that set box location to a specified (x,y).
+     * 
      * @param x X position
      * @param y Y position
      */
@@ -136,7 +149,8 @@ public class CollisionBox {
 
     /**
      * Method that set box dimensions ot a specified width and height.
-     * @param width Box width dimension
+     * 
+     * @param width  Box width dimension
      * @param height Box height dimension
      */
     public void setDimensions(final int width, final int height) {

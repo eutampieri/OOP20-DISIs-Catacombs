@@ -22,7 +22,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     /**
      * Entity dimensions.
      */
-    protected int width, height; //Entity width and height
+    protected int width, height; // Entity width and height
     /**
      * Tile map where the entity is.
      */
@@ -30,11 +30,11 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     /**
      * Entity hit box.
      */
-    protected CollisionBox hitBox; //Entity hit box
+    protected CollisionBox hitBox; // Entity hit box
 
     /**
-     * @param x X spawn position
-     * @param y Y spawn position
+     * @param x       X spawn position
+     * @param y       Y spawn position
      * @param tileMap Tile map in which Entity is spawned
      */
     public Entity(final int x, final int y, final TileMap tileMap) {
@@ -44,6 +44,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
 
     /**
      * Getter for width.
+     * 
      * @return Entity width
      */
     public int getWidth() {
@@ -52,6 +53,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
 
     /**
      * Setter for width.
+     * 
      * @param width Width dimension for the entity
      */
     public void setWidth(final int width) {
@@ -60,6 +62,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
 
     /**
      * Getter for height.
+     * 
      * @return Entity height
      */
     public int getHeight() {
@@ -68,6 +71,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
 
     /**
      * Setter for height.
+     * 
      * @param height Height dimension for the entity
      */
     public void setHeight(final int height) {
@@ -76,6 +80,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
 
     /**
      * Updates entity status in game loop.
+     * 
      * @param delta time between updates
      */
     @Override
@@ -140,42 +145,46 @@ public abstract class Entity extends GameObject implements LivingCharacter {
 
     /**
      * Checks if the Entity is going to collide into a wall while moving up.
+     * 
      * @param dy Entity speedY
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isUpCollision(final int dy) {
         return tileMap.at(hitBox.getPosX(), hitBox.getPosY() - dy) == Tile.WALL
-            || tileMap.at(hitBox.getPosX() + hitBox.getWidth(), hitBox.getPosY() - dy) == Tile.WALL;
+                || tileMap.at(hitBox.getPosX() + hitBox.getWidth(), hitBox.getPosY() - dy) == Tile.WALL;
     }
 
     /**
      * Checks if the Entity is going to collide into a wall while moving right.
+     * 
      * @param dx Entity speedX
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isRightCollision(final int dx) {
-        return tileMap.at(hitBox.getPosX() + hitBox.getWidth() + dx, hitBox.getPosY()) == Tile.WALL
-            || tileMap.at(hitBox.getPosX() + hitBox.getWidth() + dx, hitBox.getPosY() + hitBox.getHeight()) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX() + hitBox.getWidth() + dx, hitBox.getPosY()) == Tile.WALL || tileMap
+                .at(hitBox.getPosX() + hitBox.getWidth() + dx, hitBox.getPosY() + hitBox.getHeight()) == Tile.WALL;
     }
 
     /**
      * Checks if the Entity is going to collide into a wall while moving down.
+     * 
      * @param dy Entity speedY
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isDownCollision(final int dy) {
-        return tileMap.at(hitBox.getPosX(), hitBox.getPosY() + hitBox.getHeight() + dy) == Tile.WALL
-            || tileMap.at(hitBox.getPosX() + hitBox.getWidth(), hitBox.getPosY() + hitBox.getHeight() + dy) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX(), hitBox.getPosY() + hitBox.getHeight() + dy) == Tile.WALL || tileMap
+                .at(hitBox.getPosX() + hitBox.getWidth(), hitBox.getPosY() + hitBox.getHeight() + dy) == Tile.WALL;
     }
 
     /**
      * Checks if the Entity is going to collide into a wall while moving left.
+     * 
      * @param dx Entity speedX
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isLeftCollision(final int dx) {
         return tileMap.at(hitBox.getPosX() - dx, hitBox.getPosY()) == Tile.WALL
-            || tileMap.at(hitBox.getPosX() - dx, hitBox.getPosY() + hitBox.getHeight()) == Tile.WALL;
+                || tileMap.at(hitBox.getPosX() - dx, hitBox.getPosY() + hitBox.getHeight()) == Tile.WALL;
     }
 
     /**
@@ -198,6 +207,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
 
     /**
      * Getter for Entity hit box.
+     * 
      * @return Entity hit box
      */
     public CollisionBox getHitBox() {

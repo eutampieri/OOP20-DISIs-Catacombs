@@ -84,8 +84,7 @@ public abstract class Game implements Runnable {
 
     /**
      *
-     * @param fps
-     *           frames per second used
+     * @param fps frames per second used
      */
 
     protected final void setFps(final int fps) {
@@ -135,7 +134,7 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     * rendering of basics aspects
+     * rendering of basics aspects.
      */
     private void preRender() {
         if (vImage == null) {
@@ -153,7 +152,7 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     * managing of scaling
+     * managing of scaling.
      */
 
     private void show() {
@@ -191,7 +190,7 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     * start the main thread
+     * start the main thread.
      */
 
     public final void start() {
@@ -201,7 +200,7 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     * stop the main thread
+     * stop the main thread.
      */
 
     public final void stop() {
@@ -289,12 +288,10 @@ public abstract class Game implements Runnable {
         graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
     }
 
-
     /**
-     * add key listener to main frame
+     * add key listener to main frame.
      *
-     * @param e
-     *          KeyAdapter
+     * @param e KeyAdapter
      */
     public final void addKeyAdapter(final KeyAdapter e) {
         mainFrame.getCanvas().addKeyListener(e);
@@ -302,10 +299,9 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     * add mouse listener to main frame
+     * add mouse listener to main frame.
      *
-     * @param e
-     *          MouseAdapter
+     * @param e MouseAdapter
      */
 
     public final void addMouseAdapter(final MouseAdapter e) {
@@ -316,10 +312,9 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     * remove key listener from main frame
+     * remove key listener from main frame.
      *
-     * @param e
-     *          KeyAdapter
+     * @param e KeyAdapter
      */
 
     public final void removeKeyAdapter(final KeyAdapter e) {

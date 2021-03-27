@@ -18,7 +18,6 @@ public final class MenuState extends State {
     private static final int START_OFFSET = 55;
     private static final int QUIT_OFFSET = 75;
 
-
     private final transient Font titleFont = new Font("Times New Roman", Font.PLAIN, TITLE_FONT_SIZE);
     private final transient Font font = new Font("Arial", Font.PLAIN, DEFAULT_FONT_SIZE);
 
@@ -28,7 +27,7 @@ public final class MenuState extends State {
 
     public MenuState(final DungeonGame game) {
         super(game);
-        this.game  = game;
+        this.game = game;
     }
 
     @Override
