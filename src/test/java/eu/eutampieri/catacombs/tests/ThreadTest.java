@@ -1,12 +1,12 @@
 package eu.eutampieri.catacombs.tests;
 
-import eu.eutampieri.catacombs.ui.DungeonGame;
+/*import eu.eutampieri.catacombs.ui.DungeonGame;
 import eu.eutampieri.catacombs.ui.GameConfiguration;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.WindowConstants;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;*/
 
 public class ThreadTest {
     /*@Test
