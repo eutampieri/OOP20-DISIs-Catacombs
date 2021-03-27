@@ -14,7 +14,7 @@ public final class Slime extends Entity {
     private static final String NAME = "Slime";
     private static final int CB_POS_MOD = 4;
     private static final int CB_DIM_MOD = 9;
-    private static final int DAMAGE_ON_HIT = 5;
+    /*private static final int DAMAGE_ON_HIT = 5;*/
 
     /**
      * Character followed by the slime.
@@ -79,7 +79,7 @@ public final class Slime extends Entity {
     /**
      * @return Character followed by the slime
      */
-    public Entity getCharacterToFollow(){
+    public Entity getCharacterToFollow() {
         return characterToFollow;
     }
 
@@ -112,5 +112,4 @@ public final class Slime extends Entity {
     public String getName() {
         return this.NAME;
     }
-    
 }
