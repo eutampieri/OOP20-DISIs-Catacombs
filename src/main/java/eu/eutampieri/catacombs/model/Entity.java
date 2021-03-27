@@ -115,28 +115,24 @@ public abstract class Entity extends GameObject implements LivingCharacter {
         if (up) {
             if (!isUpCollision(maxMovementUp)) {
                 hitBox.move(0, -maxMovementUp);
-                setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_UP;
         }
         if (down) {
             if (!isDownCollision(maxMovementDown)) {
                 hitBox.move(0, maxMovementDown);
-                setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_DOWN;
         }
         if (left) {
             if (isLeftCollision(maxMovementLeft)) {
                 hitBox.move(-maxMovementLeft, 0);
-                setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_LEFT;
         }
         if (right) {
             if (!isRightCollision(maxMovementRight)) {
                 hitBox.move(maxMovementRight, 0);
-                setPos(hitBox.getPosX(), hitBox.getPosY());
             }
             face = Face.FACE_RIGHT;
         }
@@ -183,11 +179,11 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     }
 
     /**
-     * Updates sprite location to coincide with Entity position.
+     * Updates GameObject location to coincide with hit box position.
      */
     protected void updateSpriteLocation() {
-        this.posX = hitBox.getPosX();
-        this.posY = hitBox.getPosY();
+        posX = hitBox.getPosX();
+        posY = hitBox.getPosY();
     }
 
     /**

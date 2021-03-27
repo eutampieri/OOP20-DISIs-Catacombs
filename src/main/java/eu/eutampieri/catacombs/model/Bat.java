@@ -7,12 +7,12 @@ import eu.eutampieri.catacombs.model.map.TileMap;
  */
 public final class Bat extends Entity {
 
-    private static final int HEIGHT = 32;
-    private static final int WIDTH = 32;
+    private static final int HEIGHT = 1;
+    private static final int WIDTH = 1;
     private static final int MOVEMENT_SPEED = 4;
     private static final int HEALTH = 8;
     private static final int CB_POS_MOD = 4;
-    private static final int CB_DIM_MOD = 8;
+    private static final int CB_DIM_MOD = 9;
     private static final int BASE_DAMAGE = 2;
     private static final int BASE_FIRE_RATE = 2;
     private static final int BASE_RANGE = 2;

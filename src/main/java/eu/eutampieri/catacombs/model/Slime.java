@@ -7,13 +7,14 @@ import eu.eutampieri.catacombs.model.map.TileMap;
  */
 public final class Slime extends Entity {
 
-    private static final int HEIGHT = 32;
-    private static final int WIDTH = 32;
-    private static final int MOVEMENT_SPEED = 1;
+    private static final int HEIGHT = 1;
+    private static final int WIDTH = 1;
+    private static final int MOVEMENT_SPEED = 4;
     private static final int HEALTH = 10;
     private static final String NAME = "Slime";
     private static final int CB_POS_MOD = 4;
-    private static final int CB_DIM_MOD = 8;
+    private static final int CB_DIM_MOD = 9;
+    private static final int DAMAGE_ON_HIT = 5;
 
     /**
      * Character followed by the slime.
@@ -71,10 +72,15 @@ public final class Slime extends Entity {
      *         With this method Slimes can follow every entity.
      * @param e Entity to follow
      */
-    public void follow(final Entity e) {
-        if (radarBox.overlaps(e.getHitBox())) {
-            characterToFollow = e;
-        }
+    public void setCharacterToFollow(final Entity e) {
+        characterToFollow = e;
+    }
+
+    /**
+     * @return Character followed by the slime
+     */
+    public Entity getCharacterToFollow(){
+        return characterToFollow;
     }
 
     /**
@@ -86,12 +92,12 @@ public final class Slime extends Entity {
         }
         if (characterToFollow.getPosX() < posX) {
             left = true;
-        } else if (characterToFollow.getPosX() > posX) {
+        } else if (characterToFollow.getPosX() >= posX) {
             right = true;
         }
         if (characterToFollow.getPosX() < posY) {
             up = true;
-        } else if (characterToFollow.getPosX() > posY) {
+        } else if (characterToFollow.getPosX() >= posY) {
             down = true;
         }
     }

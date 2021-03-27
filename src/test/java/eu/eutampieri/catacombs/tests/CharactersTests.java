@@ -64,10 +64,10 @@ class CharactersTests {
 
     @Test
     void testBoxSize() {
-        assertEquals(BAT.getHitBox().getHeight(), 32);
-        assertEquals(BAT.getHitBox().getWidth(), 32);
-        assertEquals(SLIME.getHitBox().getHeight(), 32);
-        assertEquals(SLIME.getHitBox().getWidth(), 32);
+        assertEquals(BAT.getHitBox().getHeight(), BAT.getHeight());
+        assertEquals(BAT.getHitBox().getWidth(), BAT.getWidth());
+        assertEquals(SLIME.getHitBox().getHeight(), SLIME.getHeight());
+        assertEquals(SLIME.getHitBox().getWidth(), SLIME.getWidth());
     }
 
     @Test
@@ -75,7 +75,8 @@ class CharactersTests {
         final Bat bat = new Bat(3, 3, TILE_MAP);
         final int initialX = SLIME.getPosX();
         final int initialY = SLIME.getPosY();
-        SLIME.follow(bat);
+        SLIME.setCharacterToFollow(bat);
+        assertEquals(SLIME.getCharacterToFollow(), bat);
         SLIME.update(100);
         assertNotEquals(initialX, SLIME.getPosX());
         assertNotEquals(initialY, SLIME.getPosY());
