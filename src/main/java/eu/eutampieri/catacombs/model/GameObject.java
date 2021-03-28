@@ -1,86 +1,145 @@
 package eu.eutampieri.catacombs.model;
 
 /**
- * 
- * Abstract class for every game object (ex: Player, enemies, items, ecc...)
- *
+ * Abstract class for every game object (ex: Player, enemies, items, ecc...).
  */
 public abstract class GameObject {
 
-	protected int posX, posY;
-	protected ID id;
-	protected int velX, velY;
-	
-	/**
-	 * GameObject constructor base
-	 * 
-	 * @param x object X position
-	 * @param y	object Y position
-	 * @param id object ID @see eu.tampieri.catacombs.model.ID
-	 */
-	public GameObject(int x, int y, ID id) {
-		this.posX = x;
-		this.posY = y;
-		this.id = id;
-	}
+    /**
+     * Object positions.
+     */
+    protected int posX, posY;
+    /**
+     * Entity kind.
+     */
+    protected EntityKind kind;
+    /**
+     * Object speed.
+     */
+    protected int speedX, speedY;
 
-	public abstract void update();
-	public abstract void render();
+    /**
+     * @param x  object X position
+     * @param y  object Y position
+     * @param kind Entity Kind @see eu.eutampieri.catacombs.model.EntityKind
+     */
+    public GameObject(final int x, final int y, final EntityKind kind) {
+        this.setPosX(x);
+        this.setPosY(y);
+        this.kind = kind;
+    }
 
-	/**
-	 * 
-	 * @return Object X position
-	 */
-	public int getPosX() {
-		return posX;
-	}
+    /**
+     * Method used in the game loop that updates all elements of a game obj.
+     * 
+     * @param delta time between updates
+     */
+    public abstract void update(int delta);
 
-	/**
-	 * 
-	 * @param posX set object X position
-	 */
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
+    /**
+     * Renders object with the corresponding sprite.
+     */
+    public abstract void render();
 
-	/**
-	 * 
-	 * @return Object Y position
-	 */
-	public int getPosY() {
-		return posY;
-	}
+    /**
+     * Getter for object X position.
+     * 
+     * @return Object X position
+     */
+    public int getPosX() {
+        return posX;
+    }
 
-	/**
-	 * 
-	 * @param posY set object Y position
-	 */
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}
+    /**
+     * Setter for object X position.
+     * 
+     * @param posX Object X position to be set
+     */
+    public void setPosX(final int posX) {
+        this.posX = posX;
+    }
 
-	public int getVelX() {
-		return velX;
-	}
+    /**
+     * Getter for object Y position.
+     * 
+     * @return Object Y position
+     */
+    public int getPosY() {
+        return posY;
+    }
 
-	public void setVelX(int velX) {
-		this.velX = velX;
-	}
+    /**
+     * Setter for object Y position.
+     * 
+     * @param posY Object Y position to be set
+     */
+    public void setPosY(final int posY) {
+        this.posY = posY;
+    }
 
-	public int getVelY() {
-		return velY;
-	}
+    /**
+     * Set position corresponding to coordinates (posX, posY).
+     * 
+     * @param posX Position on the X axis
+     * @param posY Position on the Y axis
+     */
+    public void setPos(final int posX, final int posY) {
+        this.posX = posX;
+        this.posY = posY;
+    }
 
-	public void setVelY(int velY) {
-		this.velY = velY;
-	}
+    /**
+     * Getter for object speed on the X axis.
+     * 
+     * @return Object X speed
+     */
+    public int getSpeedX() {
+        return speedX;
+    }
 
-	public ID getId() {
-		return id;
-	}
+    /**
+     * Setter for object speed on the X axis.
+     * 
+     * @param speedX Speed to be set
+     */
+    public void setSpeedX(final int speedX) {
+        this.speedX = speedX;
+    }
 
-	public void setId(ID id) {
-		this.id = id;
-	}
+    /**
+     * Getter for object speed on the Y axis.
+     * 
+     * @return Object Y speed
+     */
+    public int getSpeedY() {
+        return speedY;
+    }
 
+    /**
+     * Setter for object speed on the Y axis.
+     * 
+     * @param speedY Speed to be set
+     */
+    public void setSpeedY(final int speedY) {
+        this.speedY = speedY;
+    }
+
+    /**
+     * Set both speeds to a specified value (both X and Y).
+     * 
+     * @param speed Speed to be set
+     */
+    public void setSpeed(final int speed) {
+        this.setSpeedX(speed);
+        this.setSpeedY(speed);
+    }
+
+    /**
+     * Getter for Entity Kind.
+     * 
+     * @return Entity Kind
+     */
+    public EntityKind getKind() {
+        return kind;
+    }
 }
