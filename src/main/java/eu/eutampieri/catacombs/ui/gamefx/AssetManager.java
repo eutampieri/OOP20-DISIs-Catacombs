@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import eu.eutampieri.catacombs.ui.utils.ImageLoader;
 import eu.eutampieri.catacombs.ui.utils.ImageRotator;
 
 public class AssetManager {
@@ -33,25 +34,36 @@ public class AssetManager {
 	}
 	
 	public void load() {
-		loadAnimations("Walk_up", "/playersheet.png", 8, 96, 32, false);
-		loadAnimations("Walk_down", "/playersheet.png", 8, 64, 32, false );
-		loadAnimations("Walk_left", "/playersheet.png", 8, 32, 32, false );
+		loadAnimations("Walk_up", "/playersheet.png", 8, 3, 32, false);
+		loadAnimations("Walk_down", "/playersheet.png", 8, 2, 32, false );
+		loadAnimations("Walk_left", "/playersheet.png", 8, 1, 32, false );
 		loadAnimations("Walk_right", "/playersheet.png",8, 0, 32, false );
 
 		loadAnimations("Die", "/playersheet.png", 8, 128, 32, false );
 
-		loadAnimations("Attack_up", "/playersheet.png", 8, 160, 32, false );
-		loadAnimations("Attack_down", "/playersheet.png", 8, 192, 32, false );
-		loadAnimations("Attack_left", "/playersheet.png", 8, 256, 32, false );
-		loadAnimations("Attack_right", "/playersheet.png", 8, 224, 32, false );
+		loadAnimations("Attack_up", "/playersheet.png", 8, 5, 32, false );
+		loadAnimations("Attack_down", "/playersheet.png", 8, 6, 32, false );
+		loadAnimations("Attack_left", "/playersheet.png", 8, 8, 32, false );
+		loadAnimations("Attack_right", "/playersheet.png", 8, 7, 32, false );
 
-		loadAnimations("Slime_up", "/slimesheet.png", 4, 63, 32, false );
+		loadAnimations("Slime_up", "/slimesheet.png", 4, 2, 32, false );
 		loadAnimations("Slime_down", "/slimesheet.png", 4, 0, 32, false );
-		loadAnimations("Slime_left", "/slimesheet.png", 4, 96, 32, false );
-		loadAnimations("Slime_right", "/slimesheet.png", 4, 32, 32, false );
+		loadAnimations("Slime_left", "/slimesheet.png", 4, 3, 32, false );
+		loadAnimations("Slime_right", "/slimesheet.png", 4, 1, 32, false );
 
-		loadAnimations("Bat_right", "/batsheet.png", 3, 224, 32, false );
-		loadAnimations("Bat_left", "/batsheet.png", 3, 224, 32, true );
+		loadAnimations("Bat_right", "/batsheet.png", 3, 7, 32, false );
+		loadAnimations("Bat_left", "/batsheet.png", 3, 7, 32, true );
+
+		loadBossAnimations("Boss_Idle_right",  6, false, true);
+		loadBossAnimations("Boss_Idle_left",  6, true, true);
+		loadBossAnimations("Boss_Walk_right",  6, false, false);
+		loadBossAnimations("Boss_Walk_right",  6, true, false);
+
+		loadGunAnimations("Projectile_1", "/projectiles.png", 3, 1226, 64, 26);
+		loadGunAnimations("Projectile_2", "/projectiles.png", 5, 1418, 46, 118);
+		loadGunAnimations("Projectile_3", "/projectiles.png", 3, 1798, 37, 1187);
+		loadGunAnimations("Projectile_4", "/projectiles.png", 5, 2636, 64, 0);
+
 		loadImages();
 	}
 	
@@ -119,5 +131,39 @@ public class AssetManager {
 		}
 		allAnimations.put(name, res);
 	}
+
+	public void loadBossAnimations(String name, int numFrames, boolean flip, boolean idle) {
+		BufferedImage[] res = new BufferedImage[numFrames];
+		for (int i = 0; i < numFrames; i++) {
+			if (idle) {
+				if (!flip) {
+					res[i] = ImageLoader.loadImage("/boss/Golem_Idle_" + (i + 1) + ".png");
+				} else {
+					res[i] = horizontalFlip(ImageLoader.loadImage("/boss/Golem_Idle_" + (i + 1) + ".png"));
+				}
+			} else {
+				if (!flip) {
+					res[i] = ImageLoader.loadImage("/boss/Golem_Walk_" + (i + 1) + ".png");
+				} else {
+					res[i] = horizontalFlip(ImageLoader.loadImage("/boss/Golem_Walk_" + (i + 1) + ".png"));
+				}
+			}
+
+
+
+		}
+		allAnimations.put(name, res);
+	}
+
+	public void loadGunAnimations(String name, String image, int numFrames, int y, int dimension, int offset) {
+		GameSheets sheet = new GameSheets(image);
+		BufferedImage[] res = new BufferedImage[numFrames];
+		for (int i = 0; i < numFrames; i++) {
+			res[i] = sheet.cutImage( offset + ( dimension * i ), y, dimension, dimension);
+		}
+		allAnimations.put(name, res);
+	}
+
+
 
 }
