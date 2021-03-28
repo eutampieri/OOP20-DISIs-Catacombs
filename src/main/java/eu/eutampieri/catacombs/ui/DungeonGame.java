@@ -4,7 +4,7 @@ import eu.eutampieri.catacombs.ui.MenuState;
 import eu.eutampieri.catacombs.ui.State;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 
-public class DungeonGame extends Game {
+public final class DungeonGame extends Game {
 	
 	private MenuState menuState;
 	private State state;
@@ -47,4 +47,12 @@ public class DungeonGame extends Game {
 	public void nextLevels() {
 		
 	}
+
+    public MenuState getMenuState() {
+        return menuState;
+    }
+
+    public State getState() {
+        return state;
+    }
 }
