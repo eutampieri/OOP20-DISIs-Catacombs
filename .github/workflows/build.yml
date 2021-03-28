@@ -1,7 +1,7 @@
-name: tests
+name: build
 on: push
 jobs:
-  run_tests:
+  build_jar:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -16,5 +16,10 @@ jobs:
           #     path: ~/.m2
           #     key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           #     restore-keys: ${{ runner.os }}-m2
-      - name: Build with Gradle
-        run: ./gradlew build
+      - name: Build JAR with Gradle
+        run: ./gradlew jar
+      - name: 'Archive production artifacts'
+        uses: actions/upload-artifact@v2
+        with:
+          name: jar
+          path: build/libs/OOP20-procedural-dungeon.jar
