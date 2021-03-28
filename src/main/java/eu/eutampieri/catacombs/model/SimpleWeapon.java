@@ -1,126 +1,210 @@
 package eu.eutampieri.catacombs.model;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 /**
- * 
- * A simple weapon that substracts a given value from a player's health
- *
+ * A simple weapon that subtracts a given value from a player's health.
  */
 public abstract class SimpleWeapon extends GameObject implements HealthModifier {
-	private int damage;
-	private int fireRate;
-	private int fireDelay; // timer between shots
-	private int range;
-	private int reloadSpeed; // time taken to reload
-	private int magazine; // number of bullets 
-	private final String name; 
-	
-	/**
-	 * 
-	 * @param damage The amount of damage (i.e. the change in health) that a character
-	 * will have after being hit with this weapon
-	 * @param name The weapon's name
-	 */
-	SimpleWeapon(int damage, String name) {
-		super(0,0,ID.Weapon);
-		this.damage = damage;
-		this.name = name;
-	}
+    /**
+     * Weapon damage.
+     */
+    protected int damage;
+    /**
+     * Weapon rate of fire.
+     */
+    protected int fireRate;
+    /**
+     * Timer between each shot.
+     */
+    // TODO remove suppress when implemented game loop
+    @SuppressFBWarnings("UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD")
+    protected int fireDelay;
+    /**
+     * Weapon range as distance a bullet travels.
+     */
+    protected int range;
+    /**
+     * Weapon reload speed as time taken to reload.
+     */
+    protected int reloadSpeed;
+    /**
+     * Reload timer - keeps track of time reloading.
+     */
+    // TODO remove suppress when implemented game loop
+    @SuppressFBWarnings("UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD")
+    protected int reloadDelay;
+    /**
+     * Weapon magazine.
+     */
+    protected int magazine;
+    /**
+     * Weapon name.
+     */
+    protected final String name;
 
-	@Override
-	public int getHealthDelta() {
-		return damage * -1;
-	}
+    /**
+     * Simple weapon constructor.
+     * 
+     * @param damage   The amount of damage (i.e. the change in health) that a
+     *                 character will have after being hit with this weapon
+     * @param name     The weapon's name
+     * @param fireRate weapon's rate of fire
+     * @param range    weapon's range
+     * @param magazine weapon's number of bullets (if -1 infinite)
+     */
+    SimpleWeapon(final int damage, final String name, final int fireRate, final int range, final int magazine) {
+        super(0, 0, EntityKind.WEAPON);
+        this.damage = damage;
+        this.name = name;
+        this.fireRate = fireRate;
+        this.range = range;
+        this.magazine = magazine;
+    }
 
-	@Override
-	public String getName() {
-		return this.name;
-	}
+    /**
+     * @return Damage as hp delta
+     */
+    @Override
+    public int getHealthDelta() {
+        return damage * -1;
+    }
 
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * @return Weapon name
+     */
+    @Override
+    public String getName() {
+        return this.name;
+    }
 
-	@Override
-	public void render() {
-		// TODO Auto-generated method stub
-		
-	}
+    /**
+     * Updates status of weapon in game loop.
+     * 
+     * @param delta time between updates
+     */
+    @Override
+    public void update(final int delta) {
+        // TODO Auto-generated method stub
+    }
 
-	public int getDamage() {
-		return damage;
-	}
+    @Override
+    public void render() {
+        // TODO Auto-generated method stub
+    }
 
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
+    /**
+     * Getter for weapon damage.
+     * 
+     * @return Weapon damage
+     */
+    public int getDamage() {
+        return damage;
+    }
 
-	public int getFireRate() {
-		return fireRate;
-	}
+    /**
+     * Setter for weapon damage.
+     * 
+     * @param damage Weapon damage to be set
+     */
+    public void setDamage(final int damage) {
+        this.damage = damage;
+    }
 
-	public void setFireRate(int fireRate) {
-		this.fireRate = fireRate;
-	}
+    /**
+     * Getter for weapon fire rate.
+     * 
+     * @return Weapon fire rate
+     */
+    public int getFireRate() {
+        return fireRate;
+    }
 
-	public int getFireDelay() {
-		return fireDelay;
-	}
+    /**
+     * Setter for weapon fire rate.
+     * 
+     * @param fireRate Weapon fire rate to be set
+     */
+    public void setFireRate(final int fireRate) {
+        this.fireRate = fireRate;
+    }
 
-	public void setFireDelay(int fireDelay) {
-		this.fireDelay = fireDelay;
-	}
+    /**
+     * Getter for weapon range.
+     * 
+     * @return Weapon range as an integer specifying the distance a bullet can
+     *         travel
+     */
+    public int getRange() {
+        return range;
+    }
 
-	public int getRange() {
-		return range;
-	}
+    /**
+     * Setter for weapon range.
+     * 
+     * @param range Weapon range to be set
+     */
+    public void setRange(final int range) {
+        this.range = range;
+    }
 
-	public void setRange(int range) {
-		this.range = range;
-	}
+    /**
+     * Getter for weapon reload speed.
+     * 
+     * @return Weapon reload speed as the time taken to reload the weapon
+     */
+    public int getReloadSpeed() {
+        return reloadSpeed;
+    }
 
-	public int getReloadSpeed() {
-		return reloadSpeed;
-	}
+    /**
+     * Setter for weapon reload speed.
+     * 
+     * @param reloadSpeed Weapon reload speed to be set
+     */
+    public void setReloadSpeed(final int reloadSpeed) {
+        this.reloadSpeed = reloadSpeed;
+    }
 
-	public void setReloadSpeed(int reloadSpeed) {
-		this.reloadSpeed = reloadSpeed;
-	}
+    /**
+     * Getter for weapon magazine size.
+     * 
+     * @return Weapon magazine size as number of bullets the weapon can shoot before
+     *         reloading
+     */
+    public int getMagazine() {
+        return magazine;
+    }
 
-	public int getMagazine() {
-		return magazine;
-	}
+    /**
+     * Setter for weapon magazine.
+     * 
+     * @param magazine Weapone magazine to be set
+     */
+    public void setMagazine(final int magazine) {
+        this.magazine = magazine;
+    }
 
-	public void setMagazine(int magazine) {
-		this.magazine = magazine;
-	}
+    /**
+     * Makes weapon fire on key press.
+     */
+    public void fireWeapon() {
+        this.magazine--;
+        // TODO
+    }
 
-	/**
-	 * Makes weapon fire on key press
-	 */
-	public void fireWeapon() {
-		// TODO 
-		
-	}
-	
-	/**
-	 * 
-	 * @return true if magazine > 0 and fireDelay timer passed
-	 */
-	public boolean canFire() {
-		return false;
-		// TODO 
-	}
-	
-	/**
-	 * Reloads weapon on key press
-	 */
-	public void reloadWeapon() {
-		// TODO 
-		
-	}
-	
-	
+    /**
+     * @return true if magazine > 0 and fireDelay timer passed
+     */
+    public boolean canFire() {
+        return false;
+        // TODO
+    }
 
+    /**
+     * Reloads weapon on key press.
+     */
+    public void reloadWeapon() {
+        // TODO
+    }
 }

@@ -23,6 +23,10 @@ dependencies {
     
     //runtimeOnly("org.slf4j:slf4j-log4j12:1.7.30")
 
+    compileOnly("com.github.spotbugs:spotbugs-annotations:4.2.2")
+    compileOnly("net.jcip:jcip-annotations:1.0")
+
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
 
@@ -80,7 +84,7 @@ tasks.jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-                minimum = "0.85".toBigDecimal()
+                minimum = "0.5".toBigDecimal()
             }
         }
     }
@@ -88,7 +92,16 @@ tasks.jacocoTestCoverageVerification {
 
 pmd {
     isConsoleOutput = true
-    toolVersion = "6.21.0"
+    toolVersion = "6.32.0"
     rulesMinimumPriority.set(5)
-    ruleSetFiles(file("$projectDir/config/pmd.xml"))
+    ruleSets.clear()
+    ruleSetFiles(file("$projectDir/config/pmd/pmd.xml"))
 }
+
+tasks.spotbugsMain {
+    reports.create("html") {
+        isEnabled = true
+        setStylesheet("fancy-hist.xsl")
+    }
+}
+
