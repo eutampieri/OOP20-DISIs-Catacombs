@@ -6,7 +6,8 @@ import java.awt.font.FontRenderContext;
 public class FontUtils {
 	
 	public static int getTextWidth(Font font, String text) {
-		return (int) font.getStringBounds(text, new FontRenderContext(font.getTransform(), true, true)).getWidth();
+		final FontRenderContext frc = new FontRenderContext(font.getTransform(), true, true);
+		return (int) font.getStringBounds(text, frc).getWidth();
 	}
 
 }
