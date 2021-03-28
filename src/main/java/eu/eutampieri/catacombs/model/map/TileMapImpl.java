@@ -1,25 +1,31 @@
 package eu.eutampieri.catacombs.model.map;
 
-public class TileMapImpl implements TileMap {
-	Tile[][] m;
-	
-	public TileMapImpl(Tile[][] mm) {
-		m=mm;
-	}
-	
-	@Override
-	public int height() {
-		return m.length;
-	}
+public final class TileMapImpl implements TileMap {
+    private final Tile[][] map;
 
-	@Override
-	public int width() {
-		return m[0].length;
-	}
+    public TileMapImpl(final Tile[][] m) {
+        map = m.clone();
+    }
 
-	@Override
-	public Tile at(int x, int y) {
-		return m[y][x];
-	}
+    @Override
+    public int height() {
+        return map.length;
+    }
 
+    @Override
+    public int width() {
+        return map[0].length;
+    }
+
+    @Override
+    public Tile at(final int x, final int y) {
+        if (y < 0 || x < 0 || y >= this.height() || x >= this.width()) {
+            return Tile.VOID;
+        }
+        return map[y][x];
+    }
+
+    public Tile[][] getMap() {
+        return map.clone();
+    }
 }
