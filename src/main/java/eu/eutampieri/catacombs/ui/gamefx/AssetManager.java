@@ -16,12 +16,11 @@ public class AssetManager {
 	private static final Path BAT_SHEET = Path.of("/batsheet.png");
 	private static final Path GUN_SHEET = Path.of("/projectiles.png");
 	private static final String PNG = ".png";
+	private static final ImageRotator IMAGE_ROTATOR = new ImageRotator();
 
 	
 	private static Map<String,ArrayList<Optional<BufferedImage>>> allAnimations = new HashMap<>();
 	private final Map<String,BufferedImage> allImages = new HashMap<>();
-	
-	private ImageRotator imageRot;
 	
 	public static List<Optional<BufferedImage>> getFrames(final String key) {
 		return allAnimations.get(key);
@@ -91,8 +90,8 @@ public class AssetManager {
 		final Optional<BufferedImage> image = Optional.of(tileSheet.cutImage(112, 0, 16, 16));
 		
 		allImages.put(String.valueOf(count++), image.get());
-		allImages.put(String.valueOf(count++), imageRot.rotate(image.get(), 90));
-		allImages.put(String.valueOf(count++), imageRot.rotate(image.get(), 180));
+		allImages.put(String.valueOf(count++), IMAGE_ROTATOR.rotate(image.get(), 90));
+		allImages.put(String.valueOf(count++), IMAGE_ROTATOR.rotate(image.get(), 180));
 		allImages.put(String.valueOf(count++), tileSheet.cutImage(112 + 16, 0, 16, 16));
 		allImages.put(String.valueOf(count++), tileSheet.cutImage(112 + 16, 0, 16, 16));
 		allImages.put(String.valueOf(count++), tileSheet.cutImage(112, 16, 16, 16));
@@ -100,14 +99,14 @@ public class AssetManager {
 		allImages.put(String.valueOf(count++), tileSheet.cutImage(112 + 16, 16, 16, 16));
 		
 		for (int i = 0; i < 8; i++) {
-			for (int j = 0; i < 7; j++) {
+			for (int j = 0; j < 7; j++) {
 				if (i == 0 && j < 3) {
 					Optional<BufferedImage> img;
 					img = Optional.of(tileSheet.cutImage(j * 16, i * 16, 16, 16));
 					this.allImages.put(String.valueOf(count++), img.get());
-					this.allImages.put(String.valueOf(count++), imageRot.rotate(image.get(), 90));
-					this.allImages.put(String.valueOf(count++), imageRot.rotate(image.get(), 180));
-					this.allImages.put(String.valueOf(count++), imageRot.rotate(image.get(), 270));
+					this.allImages.put(String.valueOf(count++), IMAGE_ROTATOR.rotate(image.get(), 90));
+					this.allImages.put(String.valueOf(count++), IMAGE_ROTATOR.rotate(image.get(), 180));
+					this.allImages.put(String.valueOf(count++), IMAGE_ROTATOR.rotate(image.get(), 270));
 				} else {
 					this.allImages.put(String.valueOf(count++), tileSheet.cutImage(j * 16, i * 16, 16, 16));
 				}

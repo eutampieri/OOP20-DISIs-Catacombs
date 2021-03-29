@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class GameSheetTest {
 
     @Test
-    public void TestGameSheets() {
-        GameSheets gs = new GameSheets(Path.of("res/playersheet.png"));
+    public void testGameSheets() {
+        final GameSheets gs = new GameSheets(Path.of("res/playersheet.png"));
         assertTrue(gs.getImage().isPresent());
     }
 }
