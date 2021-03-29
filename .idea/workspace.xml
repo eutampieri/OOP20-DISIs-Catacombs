@@ -4,23 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/pmd.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Launcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/gamefx/AssetManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/gamefx/GameSheets.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/ImageLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/ImageRotator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/TextLoader.java" afterDir="false" />
+    <list default="true" id="b01f600c-f9c7-4d2b-ae94-c4526cd2882d" name="Default Changelist" comment="fixed merge conflict">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/gamefx/AssetManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/gamefx/GameSheets.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/utils/ImageLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/utils/ImageRotator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/eu/eutampieri/catacombs/ui/utils/TextLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/DungeonGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/DungeonGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/gamefx/AssetManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/gamefx/GameSheets.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/ImageLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/ImageRotator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/TextLoader.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +67,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="world_generator" />
+        <entry key="$PROJECT_DIR$" value="Main_Launch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -96,9 +89,6 @@
         <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
@@ -179,6 +169,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/.github/workflows" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\39342\Desktop\FINAL\OOP20-procedural-dungeon\src\main\java" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.Check">
@@ -336,7 +329,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="" />
+      <changelist id="b01f600c-f9c7-4d2b-ae94-c4526cd2882d" name="Default Changelist" comment="added Boss and Projectiles animations" />
       <created>1616584609124</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -381,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616678956919</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed merge conflict">
+      <created>1616943864224</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1616943864224</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -518,7 +518,8 @@
     <MESSAGE value="Refactored game.Catcombs and model.{GameObject, Player} to implement PMD suggestions" />
     <MESSAGE value="Configured Checkstyle" />
     <MESSAGE value="cherry picked code style conf" />
-    <option name="LAST_COMMIT_MESSAGE" value="cherry picked code style conf" />
+    <MESSAGE value="fixed merge conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed merge conflict" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$OOP20_procedural_dungeon__test_.ic" NAME="OOP20-procedural-dungeon [test] Coverage Results" MODIFIED="1616605031613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
