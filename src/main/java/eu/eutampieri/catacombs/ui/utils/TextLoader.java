@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public final class TextLoader {
 
-	private static StringBuilder sb = new StringBuilder();
 	private static Game game = new DungeonGame();
 	private TextLoader() {
 
@@ -15,6 +14,7 @@ public final class TextLoader {
 
 	public static String loadText(final String path) {
 		try (Scanner scan = new Scanner(TextLoader.class.getResourceAsStream(path))){
+			final StringBuilder sb = new StringBuilder();
 			final String file = "";
 			while (scan.hasNext()) {
 				final String str = scan.next() + " ";
