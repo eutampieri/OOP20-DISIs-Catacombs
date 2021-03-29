@@ -2,6 +2,7 @@ package eu.eutampieri.catacombs.ui.gamefx;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -10,10 +11,10 @@ import eu.eutampieri.catacombs.ui.utils.ImageRotator;
 
 public class AssetManager {
 
-	private static final String PLAYER_SHEET = "/playersheet.png";
-	private static final String SLIME_SHEET = "/slimesheet.png";
-	private static final String BAT_SHEET = "/batsheet.png";
-	private static final String GUN_SHEET = "/projectiles.png";
+	private static final Path PLAYER_SHEET = Path.of("/playersheet.png");
+	private static final Path SLIME_SHEET = Path.of("/slimesheet.png");
+	private static final Path BAT_SHEET = Path.of("/batsheet.png");
+	private static final Path GUN_SHEET = Path.of("/projectiles.png");
 	private static final String PNG = ".png";
 
 	
@@ -85,7 +86,7 @@ public class AssetManager {
 	
 	public void loadImages() {
 		// Tiles
-		final GameSheets tileSheet = new GameSheets("/tileSheet.png");
+		final GameSheets tileSheet = new GameSheets(Path.of("/tileSheet.png"));
 		int count = 1;
 		final Optional<BufferedImage> image = Optional.of(tileSheet.cutImage(112, 0, 16, 16));
 		
@@ -124,7 +125,7 @@ public class AssetManager {
 		allImages.put("gun", tileSheet.cutImage(0, 193, 21, 17));
 	}
 
-	public void loadAnimations(final String name, final String image, final int numFrames, final int offset, final int dimension, final boolean flip) {
+	public void loadAnimations(final String name, final Path image, final int numFrames, final int offset, final int dimension, final boolean flip) {
 		final GameSheets sheet = new GameSheets(image);
 		final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
 		for (int i = 0; i < numFrames; i++) {
@@ -143,15 +144,15 @@ public class AssetManager {
 		for (int i = 0; i < numFrames; i++) {
 			if (idle) {
 				if (!flip) {
-					res.set(i,ImageLoader.loadImage("/boss/Golem_Idle_" + (i + 1) + PNG));
+					res.set(i,ImageLoader.loadImage(Path.of("/boss/Golem_Idle_" + (i + 1) + PNG)));
 				} else {
-					res.set(i, horizontalFlip(ImageLoader.loadImage("/boss/Golem_Idle_" + (i + 1) + PNG)));
+					res.set(i, horizontalFlip(ImageLoader.loadImage(Path.of("/boss/Golem_Idle_" + (i + 1) + PNG))));
 				}
 			} else {
 				if (!flip) {
-					res.set(i,ImageLoader.loadImage("/boss/Golem_Walk_" + (i + 1) + PNG));
+					res.set(i,ImageLoader.loadImage(Path.of("/boss/Golem_Walk_" + (i + 1) + PNG)));
 				} else {
-					res.set(i, horizontalFlip(ImageLoader.loadImage("/boss/Golem_Walk_" + (i + 1) + PNG)));
+					res.set(i, horizontalFlip(ImageLoader.loadImage(Path.of("/boss/Golem_Walk_" + (i + 1) + PNG))));
 				}
 			}
 
@@ -161,7 +162,7 @@ public class AssetManager {
 		allAnimations.put(name, res);
 	}
 
-	public void loadGunAnimations(final String name, final String image, final int numFrames, final int y, final int dimension, final int offset) {
+	public void loadGunAnimations(final String name, final Path image, final int numFrames, final int y, final int dimension, final int offset) {
 		final GameSheets sheet = new GameSheets(image);
 		final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
 		for (int i = 0; i < numFrames; i++) {

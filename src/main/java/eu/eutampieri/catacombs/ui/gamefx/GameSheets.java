@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.ui.gamefx;
 
 import java.awt.image.BufferedImage;
+import java.nio.file.Path;
 import java.util.Optional;
 
 import eu.eutampieri.catacombs.ui.utils.ImageLoader;
@@ -9,7 +10,7 @@ public class GameSheets {
 	
 	private final BufferedImage sheet;
 	
-	public GameSheets(final String path) {
+	public GameSheets(final Path path) {
 		this.sheet = ImageLoader.loadImage(path).get();
 	}
 	
