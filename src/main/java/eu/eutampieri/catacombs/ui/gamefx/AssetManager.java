@@ -2,8 +2,7 @@ package eu.eutampieri.catacombs.ui.gamefx;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 import eu.eutampieri.catacombs.ui.utils.ImageLoader;
@@ -18,12 +17,12 @@ public class AssetManager {
 	private static final String PNG = ".png";
 
 	
-	private static Map<String,BufferedImage[]> allAnimations = new HashMap<>();
+	private static Map<String,ArrayList<Optional<BufferedImage>>> allAnimations = new HashMap<>();
 	private final Map<String,BufferedImage> allImages = new HashMap<>();
 	
 	private ImageRotator imageRot;
 	
-	public static BufferedImage[] getFrames(final String key) {
+	public static List<Optional<BufferedImage>> getFrames(final String key) {
 		return allAnimations.get(key);
 	}
 	
@@ -74,25 +73,25 @@ public class AssetManager {
 		loadImages();
 	}
 	
-	public BufferedImage horizontalFlip(final BufferedImage image) {
-		final int width = image.getWidth();
-		final int height = image.getHeight();
-		final BufferedImage flippedImage = new BufferedImage(width, height, image.getType());
+	public Optional<BufferedImage> horizontalFlip(final Optional<BufferedImage> image) {
+		final int width = image.get().getWidth();
+		final int height = image.get().getHeight();
+		final BufferedImage flippedImage = new BufferedImage(width, height, image.get().getType());
 		final Graphics2D g = flippedImage.createGraphics();
-		g.drawImage(image ,0 ,0 ,width ,height ,width ,0 ,0 ,height , null);
+		g.drawImage(image.get() ,0 ,0 ,width ,height ,width ,0 ,0 ,height , null);
 		g.dispose();
-		return flippedImage;
+		return Optional.of(flippedImage);
 	}
 	
 	public void loadImages() {
 		// Tiles
 		final GameSheets tileSheet = new GameSheets("/tileSheet.png");
 		int count = 1;
-		final BufferedImage image = tileSheet.cutImage(112, 0, 16, 16);
+		final Optional<BufferedImage> image = Optional.of(tileSheet.cutImage(112, 0, 16, 16));
 		
-		allImages.put(String.valueOf(count++), image);
-		allImages.put(String.valueOf(count++), imageRot.rotate(image, 90));
-		allImages.put(String.valueOf(count++), imageRot.rotate(image, 180));
+		allImages.put(String.valueOf(count++), image.get());
+		allImages.put(String.valueOf(count++), imageRot.rotate(image.get(), 90));
+		allImages.put(String.valueOf(count++), imageRot.rotate(image.get(), 180));
 		allImages.put(String.valueOf(count++), tileSheet.cutImage(112 + 16, 0, 16, 16));
 		allImages.put(String.valueOf(count++), tileSheet.cutImage(112 + 16, 0, 16, 16));
 		allImages.put(String.valueOf(count++), tileSheet.cutImage(112, 16, 16, 16));
@@ -102,12 +101,12 @@ public class AssetManager {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; i < 7; j++) {
 				if (i == 0 && j < 3) {
-					BufferedImage img;
-					img = tileSheet.cutImage(j * 16, i * 16, 16, 16);
-					this.allImages.put(String.valueOf(count++), img);
-					this.allImages.put(String.valueOf(count++), imageRot.rotate(image, 90));
-					this.allImages.put(String.valueOf(count++), imageRot.rotate(image, 180));
-					this.allImages.put(String.valueOf(count++), imageRot.rotate(image, 270));
+					Optional<BufferedImage> img;
+					img = Optional.of(tileSheet.cutImage(j * 16, i * 16, 16, 16));
+					this.allImages.put(String.valueOf(count++), img.get());
+					this.allImages.put(String.valueOf(count++), imageRot.rotate(image.get(), 90));
+					this.allImages.put(String.valueOf(count++), imageRot.rotate(image.get(), 180));
+					this.allImages.put(String.valueOf(count++), imageRot.rotate(image.get(), 270));
 				} else {
 					this.allImages.put(String.valueOf(count++), tileSheet.cutImage(j * 16, i * 16, 16, 16));
 				}
@@ -127,12 +126,12 @@ public class AssetManager {
 
 	public void loadAnimations(final String name, final String image, final int numFrames, final int offset, final int dimension, final boolean flip) {
 		final GameSheets sheet = new GameSheets(image);
-		BufferedImage[] res = new BufferedImage[numFrames];
+		final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
 		for (int i = 0; i < numFrames; i++) {
 			if (!flip){
-				res[i] = sheet.cutImage(dimension * i, offset * dimension, dimension, dimension);
+				res.set(i, Optional.of(sheet.cutImage(dimension * i, offset * dimension, dimension, dimension)));
 			} else {
-				res[i] = horizontalFlip(sheet.cutImage(dimension * i, offset * dimension, dimension, dimension));
+				res.set(i,horizontalFlip(Optional.of(sheet.cutImage(dimension * i, offset * dimension, dimension, dimension))));
 			}
 
 		}
@@ -140,19 +139,19 @@ public class AssetManager {
 	}
 
 	public void loadBossAnimations(final String name, final int numFrames, final boolean flip, final boolean idle) {
-		BufferedImage[] res = new BufferedImage[numFrames];
+		final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
 		for (int i = 0; i < numFrames; i++) {
 			if (idle) {
 				if (!flip) {
-					res[i] = ImageLoader.loadImage("/boss/Golem_Idle_" + (i + 1) + PNG);
+					res.set(i,ImageLoader.loadImage("/boss/Golem_Idle_" + (i + 1) + PNG));
 				} else {
-					res[i] = horizontalFlip(ImageLoader.loadImage("/boss/Golem_Idle_" + (i + 1) + PNG));
+					res.set(i, horizontalFlip(ImageLoader.loadImage("/boss/Golem_Idle_" + (i + 1) + PNG)));
 				}
 			} else {
 				if (!flip) {
-					res[i] = ImageLoader.loadImage("/boss/Golem_Walk_" + (i + 1) + PNG);
+					res.set(i,ImageLoader.loadImage("/boss/Golem_Walk_" + (i + 1) + PNG));
 				} else {
-					res[i] = horizontalFlip(ImageLoader.loadImage("/boss/Golem_Walk_" + (i + 1) + PNG));
+					res.set(i, horizontalFlip(ImageLoader.loadImage("/boss/Golem_Walk_" + (i + 1) + PNG)));
 				}
 			}
 
@@ -164,9 +163,9 @@ public class AssetManager {
 
 	public void loadGunAnimations(final String name, final String image, final int numFrames, final int y, final int dimension, final int offset) {
 		final GameSheets sheet = new GameSheets(image);
-		BufferedImage[] res = new BufferedImage[numFrames];
+		final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
 		for (int i = 0; i < numFrames; i++) {
-			res[i] = sheet.cutImage( offset + ( dimension * i ), y, dimension, dimension);
+			res.set(i, Optional.of(sheet.cutImage( offset + ( dimension * i ), y, dimension, dimension)));
 		}
 		allAnimations.put(name, res);
 	}

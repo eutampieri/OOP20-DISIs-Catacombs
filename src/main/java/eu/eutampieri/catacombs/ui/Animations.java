@@ -2,11 +2,13 @@ package eu.eutampieri.catacombs.ui;
 
 import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 import java.awt.image.BufferedImage;
+import java.util.List;
+import java.util.Optional;
 
 
 public class Animations {
 
-    private BufferedImage[] frames;
+    private List<Optional<BufferedImage>> frames;
     private float frameDelay;
     private float timer;
     private int index;
@@ -14,8 +16,8 @@ public class Animations {
     private boolean reverse;
     private boolean reverseMode;
 
-    public Animations(final BufferedImage[] frames, final float frameDelay) {
-        this.frames = frames.clone();
+    public Animations(final List<Optional<BufferedImage>> frames, final float frameDelay) {
+        this.frames = frames;
         this.index = 0;
         this.frameDelay = frameDelay;
     }
@@ -24,24 +26,24 @@ public class Animations {
         this(AssetManager.getFrames(frameskey), frameDelay);
     }
 
-    public BufferedImage[] getFrames() {
-        return this.frames.clone();
+    public List<Optional<BufferedImage>> getFrames() {
+        return this.frames;
     }
 
     public float getFrameDelay() {
         return frameDelay;
     }
 
-    public BufferedImage getCurrentFrame(){
-        return this.frames[this.index];
+    public Optional<BufferedImage> getCurrentFrame(){
+        return this.frames.get(this.index);
     }
 
-    public BufferedImage getCurrentFrame(final float stateTime) {
+    public Optional<BufferedImage> getCurrentFrame(final float stateTime) {
         int i = (int) (stateTime / this.frameDelay);
-        if (i >= this.frames.length) {
-            i = this.frames.length -1;
+        if (i >= this.frames.size()) {
+            i = this.frames.size() -1;
         }
-        return this.frames[i];
+        return this.frames.get(i);
     }
 
     public int getIndex() {
@@ -65,7 +67,7 @@ public class Animations {
     }
 
     public boolean isAtLastIndex() {
-        return this.index == this.frames.length - 1;
+        return this.index == this.frames.size() - 1;
     }
 
     public boolean isComplete() {
@@ -79,16 +81,16 @@ public class Animations {
             this.index = 0; // TODO test index
             this.reverseMode = false;
         }
-        if(this.index >= this.frames.length) {
+        if(this.index >= this.frames.size()) {
             if (this.restart) {
                 if (this.reverse) {
-                    this.index = this.frames.length - 1;
+                    this.index = this.frames.size() - 1;
                     this.reverseMode = true;
                 } else {
                     this.index = 0;
                 }
             } else {
-                this.index = this.frames.length - 1;
+                this.index = this.frames.size() - 1;
             }
         }
         if(this.timer >= this.frameDelay) {
