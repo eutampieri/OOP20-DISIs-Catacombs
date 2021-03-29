@@ -17,7 +17,6 @@ public final class TextLoader {
 	public static Optional<String> loadText(final Path path) {
 		try (Scanner scan = new Scanner(path, StandardCharsets.UTF_8)) {
 			final StringBuilder sb = new StringBuilder();
-			final String file = "";
 			while (scan.hasNext()) {
 				final String str = scan.next() + " ";
 				sb.append(str);
