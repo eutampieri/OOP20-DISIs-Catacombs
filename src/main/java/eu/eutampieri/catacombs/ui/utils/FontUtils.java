@@ -8,8 +8,8 @@ public final class FontUtils {
     private FontUtils() { }
 
     public static int getTextWidth(final Font font, final String text) {
-        return (int) font.getStringBounds(text, new FontRenderContext(font.getTransform(),
-                true, true)).getWidth();
+		final FontRenderContext frc = new FontRenderContext(font.getTransform(), true, true);
+		return (int) font.getStringBounds(text, frc).getWidth();
     }
 
 }
