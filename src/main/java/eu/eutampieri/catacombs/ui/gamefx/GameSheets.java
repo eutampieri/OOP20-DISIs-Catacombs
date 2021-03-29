@@ -5,9 +5,9 @@ import eu.eutampieri.catacombs.ui.utils.ImageLoader;
 
 public class GameSheets {
 	
-	private BufferedImage sheet;
+	private final BufferedImage sheet;
 	
-	public GameSheets(String path) {
+	public GameSheets(final String path) {
 		this.sheet = ImageLoader.loadImage(path);
 	}
 	
@@ -15,7 +15,7 @@ public class GameSheets {
 		return this.sheet;
 	}
 	
-	public BufferedImage cutImage(int x, int y, int width, int height) {
+	public BufferedImage cutImage(final int x, final int y, final int width, final int height) {
 		return this.sheet.getSubimage(x, y, width, height);
 	}
 

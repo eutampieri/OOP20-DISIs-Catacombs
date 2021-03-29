@@ -9,24 +9,23 @@ public class Animations {
     private BufferedImage[] frames;
     private float frameDelay;
     private float timer;
-    private int step = 1;
     private int index;
     private boolean restart = true;
     private boolean reverse;
     private boolean reverseMode;
 
-    public Animations(BufferedImage[] frames, float frameDelay) {
-        this.frames = frames;
+    public Animations(final BufferedImage[] frames, final float frameDelay) {
+        this.frames = frames.clone();
         this.index = 0;
         this.frameDelay = frameDelay;
     }
 
-    public Animations(String frameskey, float frameDelay) {
+    public Animations(final String frameskey,final float frameDelay) {
         this(AssetManager.getFrames(frameskey), frameDelay);
     }
 
     public BufferedImage[] getFrames() {
-        return this.frames;
+        return this.frames.clone();
     }
 
     public float getFrameDelay() {
@@ -37,7 +36,7 @@ public class Animations {
         return this.frames[this.index];
     }
 
-    public BufferedImage getCurrentFrame(float stateTime) {
+    public BufferedImage getCurrentFrame(final float stateTime) {
         int i = (int) (stateTime / this.frameDelay);
         if (i >= this.frames.length) {
             i = this.frames.length -1;
@@ -53,15 +52,15 @@ public class Animations {
         return this.timer;
     }
 
-    public void SetReverseAble(boolean reverseAble) {
+    public void setReverseAble(final boolean reverseAble) {
         this.reverse = reverseAble;
     }
 
-    public void setIndex(int i) {
+    public void setIndex(final int i) {
         this.index = i;
     }
 
-    public void setFrameDelay(float frameDelay) {
+    public void setFrameDelay(final float frameDelay) {
         this.frameDelay = frameDelay;
     }
 
@@ -73,7 +72,8 @@ public class Animations {
         return this.isAtLastIndex();
     }
 
-    public void update(float delta){
+    public void update(final float delta){
+        final int step = 1;
         this.timer +=delta;
         if (this.index < 0) {
             this.index = 0; // TODO test index
@@ -92,12 +92,12 @@ public class Animations {
             }
         }
         if(this.timer >= this.frameDelay) {
-            this.index += reverseMode ? -this.step : this.step;
+            this.index += reverseMode ? - step : step;
             this.timer = 0;
         }
     }
 
-    public void setRestartAble(boolean restartAble) {
+    public void setRestartAble(final boolean restartAble) {
         this.restart = restartAble;
     }
 
@@ -107,7 +107,7 @@ public class Animations {
 
     }
 
-    public void copyState(Animations animation) {
+    public void copyState(final Animations animation) {
         this.timer = animation.getTimer();
         this.index = animation.getIndex();
     }
