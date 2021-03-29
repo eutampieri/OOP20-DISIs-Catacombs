@@ -6,14 +6,14 @@ import eu.eutampieri.catacombs.ui.Game;
 import java.util.Scanner;
 
 public final class TextLoader {
-
 	private static Game game = new DungeonGame();
+
 	private TextLoader() {
 
 	}
 
 	public static String loadText(final String path) {
-		try (Scanner scan = new Scanner(TextLoader.class.getResourceAsStream(path))){
+		try (Scanner scan = new Scanner(TextLoader.class.getResourceAsStream(path), "utf-8")){
 			final StringBuilder sb = new StringBuilder();
 			final String file = "";
 			while (scan.hasNext()) {
@@ -21,7 +21,7 @@ public final class TextLoader {
 				sb.insert(file.length(), str);
 
 			}
-			return file;
+			return sb.toString();
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 			game.stop();
