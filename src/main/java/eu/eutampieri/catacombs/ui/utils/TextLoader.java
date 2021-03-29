@@ -1,19 +1,30 @@
 package eu.eutampieri.catacombs.ui.utils;
 
+import eu.eutampieri.catacombs.ui.DungeonGame;
+import eu.eutampieri.catacombs.ui.Game;
+
 import java.util.Scanner;
 
-public class TextLoader {
-	
-	public static String loadText(String path) {
+public final class TextLoader {
+
+	private static StringBuilder sb = new StringBuilder();
+	private static Game game = new DungeonGame();
+	private TextLoader() {
+
+	}
+
+	public static String loadText(final String path) {
 		try (Scanner scan = new Scanner(TextLoader.class.getResourceAsStream(path))){
-			String file = "";
+			final String file = "";
 			while (scan.hasNext()) {
-				file += scan.next() + " ";
+				final String str = scan.next() + " ";
+				sb.insert(file.length(), str);
+
 			}
 			return file;
-		} catch (Exception e) {
+		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
-			System.exit(0);
+			game.stop();
 		}
 		
 		return null;

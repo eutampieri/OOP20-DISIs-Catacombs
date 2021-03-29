@@ -5,9 +5,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class ImageLoader {
+public final class ImageLoader {
+
+	private ImageLoader() {
+
+	}
 	
-	public static BufferedImage loadImage(String path) {
+	public static BufferedImage loadImage(final String path) {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(TextLoader.class.getResourceAsStream(path));
