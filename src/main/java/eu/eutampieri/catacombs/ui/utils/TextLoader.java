@@ -1,6 +1,9 @@
 package eu.eutampieri.catacombs.ui.utils;
 
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -11,17 +14,17 @@ public final class TextLoader {
 
 	}
 
-	public static Optional<String> loadText(final String path) {
-		try (Scanner scan = new Scanner(TextLoader.class.getResourceAsStream(path), "utf-8")){
+	public static Optional<String> loadText(final Path path) {
+		try (Scanner scan = new Scanner(path, StandardCharsets.UTF_8)) {
 			final StringBuilder sb = new StringBuilder();
 			final String file = "";
 			while (scan.hasNext()) {
 				final String str = scan.next() + " ";
-				sb.insert(file.length(), str);
+				sb.append(str);
 
 			}
 			return Optional.of(sb.toString());
-		} catch (IllegalArgumentException e) {
+		} catch (IOException e) {
 			return Optional.empty();
 		}
 	}
