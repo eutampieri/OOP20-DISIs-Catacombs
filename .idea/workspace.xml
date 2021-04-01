@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b01f600c-f9c7-4d2b-ae94-c4526cd2882d" name="Default Changelist" comment="fixed spotbugs">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/DungeonGameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/DungeonGameTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="b01f600c-f9c7-4d2b-ae94-c4526cd2882d" name="Default Changelist" comment="fixed spotbugs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -377,7 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616943864224</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="wip">
+      <created>1617283290455</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1617283290455</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -515,7 +516,8 @@
     <MESSAGE value="Configured Checkstyle" />
     <MESSAGE value="cherry picked code style conf" />
     <MESSAGE value="fixed merge conflict" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed merge conflict" />
+    <MESSAGE value="wip" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$OOP20_procedural_dungeon__test_.ic" NAME="OOP20-procedural-dungeon [test] Coverage Results" MODIFIED="1617034276140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
