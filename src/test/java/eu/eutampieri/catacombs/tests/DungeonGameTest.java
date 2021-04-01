@@ -21,7 +21,7 @@ class DungeonGameTests {
         gc.setScaling(true);
         gc.setTitle("Game");
         assertEquals(gc.getFps(),60);
-        //mygame.setTest();
+        mygame.setTest();
         /*
         mygame.initialize(gc);
         mygame.start();

@@ -36,11 +36,11 @@ public abstract class Game implements Runnable {
     private Graphics2D graphics;
     private int fps;
     private Thread gameThread;
-    /*private boolean isTest;
+    private boolean isTest;
 
     public void setTest() {
         this.isTest = true;
-    }*/
+    }
 
     public Graphics2D getGraphics() {
         return this.graphics;
@@ -281,6 +281,9 @@ public abstract class Game implements Runnable {
 				ticks = 0;
 				timer = 0;
 			}
+			if (updates > 0 && isTest) {
+			    break;
+            }
 		}
 	}
 	
