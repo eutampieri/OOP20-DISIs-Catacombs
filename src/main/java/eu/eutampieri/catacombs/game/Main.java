@@ -3,10 +3,13 @@ package eu.eutampieri.catacombs.game;
 import eu.eutampieri.catacombs.ui.DungeonGame;
 import eu.eutampieri.catacombs.ui.GameConfiguration;
 
-public class Main {
+public final class Main {
 
-    public static void main(String[] args) {
-        GameConfiguration gc = new GameConfiguration();
+    private Main() {
+
+    }
+    public static void main(final String[] args) {
+        final GameConfiguration gc = new GameConfiguration();
         gc.setFps(60);
         gc.setFullScreen(false);
 
@@ -18,7 +21,7 @@ public class Main {
 
         gc.setTitle("CATACOMBS");
 
-        DungeonGame game = new DungeonGame();
+        final DungeonGame game = new DungeonGame();
         Launcher.launch(gc, game);
     }
 }

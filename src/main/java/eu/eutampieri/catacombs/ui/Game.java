@@ -36,11 +36,10 @@ public abstract class Game implements Runnable {
     private Graphics2D graphics;
     private int fps;
     private Thread gameThread;
-
     private boolean isTest;
 
     public void setTest() {
-        isTest = true;
+        this.isTest = true;
     }
 
     public Graphics2D getGraphics() {
@@ -276,7 +275,7 @@ public abstract class Game implements Runnable {
                 }
             }
 
-			if (timer >= 1000000000) {
+			if (timer >= 1_000_000_000) {
 				// mainFrame.getFrame().setTitle("Frame Per Seconds : " + ticks);
 				this.framesThisSecond = ticks;
 				ticks = 0;
@@ -285,7 +284,7 @@ public abstract class Game implements Runnable {
 		}
 	}
 	
-	protected void renderfpsCount(Color color) {
+	protected void renderfpsCount(final Color color) {
 		graphics.setFont(DEFAULT_FONT);
 		graphics.setColor(color);
 		graphics.drawString("FRAME PER SECOND : " + framesThisSecond,
@@ -293,25 +292,25 @@ public abstract class Game implements Runnable {
 				10 + graphics.getFont().getSize());
 	}
 
-	protected void renderfpsCount(Color color, int x, int y) {
+	protected void renderfpsCount(final Color color, final int x, final int y) {
 		graphics.setColor(color);
 		graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
 	}
 
 	
-	public void addKeyAdapter(KeyAdapter e) {
+	public void addKeyAdapter(final KeyAdapter e) {
 		mainFrame.getCanvas().addKeyListener(e);
 		mainFrame.getFrame().addKeyListener(e);
 	}
 	
-	public void addMouseAdapter(MouseAdapter e) {
+	public void addMouseAdapter(final MouseAdapter e) {
 		mainFrame.getCanvas().addMouseListener(e);
 		mainFrame.getFrame().addMouseListener(e);		
 		mainFrame.getCanvas().addMouseMotionListener(e);
 		mainFrame.getFrame().addMouseMotionListener(e);
 	}
 
-	public void removeKeyAdapter(KeyAdapter e) {
+	public void removeKeyAdapter(final KeyAdapter e) {
 		mainFrame.getCanvas().removeKeyListener(e);
 		mainFrame.getFrame().removeKeyListener(e);
 	}	

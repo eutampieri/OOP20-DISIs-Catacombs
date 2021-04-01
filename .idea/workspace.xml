@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b01f600c-f9c7-4d2b-ae94-c4526cd2882d" name="Default Changelist" comment="fixed merge conflict">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="b01f600c-f9c7-4d2b-ae94-c4526cd2882d" name="Default Changelist" comment="fixed spotbugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/game/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/gamefx/AssetManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/gamefx/GameSheets.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/ImageLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/ImageRotator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/utils/TextLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/DungeonGameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eu/eutampieri/catacombs/tests/DungeonGameTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +63,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Main_Launch" />
+        <entry key="$PROJECT_DIR$" value="issue_23_AssMan_optimization" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -522,9 +518,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="fixed merge conflict" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$OOP20_procedural_dungeon__test_.ic" NAME="OOP20-procedural-dungeon [test] Coverage Results" MODIFIED="1616605031613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$OOP20_procedural_dungeon__test_.ic" NAME="OOP20-procedural-dungeon [test] Coverage Results" MODIFIED="1617034276140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$GameSheetTest_TestGameSheets.ic" NAME="GameSheetTest.TestGameSheets Coverage Results" MODIFIED="1617035578236" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest.ic" NAME="EquipmentTest Coverage Results" MODIFIED="1616584997634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$ImageLoaderTest_TestLoadImage.ic" NAME="ImageLoaderTest.TestLoadImage Coverage Results" MODIFIED="1617033073195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$OOP20_procedural_dungeon__check_.ic" NAME="OOP20-procedural-dungeon [check] Coverage Results" MODIFIED="1617033146472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$HIDTests_testKeyJustPressed.ic" NAME="HIDTests.testKeyJustPressed Coverage Results" MODIFIED="1617033441552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$UIutilsTest.ic" NAME="UIutilsTest Coverage Results" MODIFIED="1617034445864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$EquipmentTest_testSimplePotionAfterWeapon.ic" NAME="EquipmentTest.testSimplePotionAfterWeapon Coverage Results" MODIFIED="1616584983342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$UIutilsTest_TestLoadText.ic" NAME="UIutilsTest.TestLoadText Coverage Results" MODIFIED="1617034241547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.ic" NAME="All tests Coverage Results" MODIFIED="1616606169047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$OOP20_procedural_dungeon__test_.exec" NAME="OOP20-procedural-dungeon [test] Coverage Results" MODIFIED="1616604951218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP20_procedural_dungeon$All_tests.exec" NAME="All tests Coverage Results" MODIFIED="1616596500286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

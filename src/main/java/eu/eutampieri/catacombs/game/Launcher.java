@@ -4,7 +4,10 @@ import eu.eutampieri.catacombs.ui.Game;
 import eu.eutampieri.catacombs.ui.GameConfiguration;
 
 public final class Launcher {
-    public static final void launch(GameConfiguration config, Game game){
+    private Launcher(){
+
+    }
+    public static void launch(final GameConfiguration config, final Game game){
         game.initialize(config);
         game.start();
     }
