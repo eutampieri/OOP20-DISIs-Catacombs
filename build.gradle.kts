@@ -20,7 +20,10 @@ dependencies {
     //implementation("com.diffplug.durian:durian:2.0") // one-line lambda exception handling
     //implementation("com.google.apis:google-api-services-books:v1-rev20201021-1.30.10")
     //implementation("com.omertron:API-OMDB:1.5")
-    
+    // https://mvnrepository.com/artifact/me.grison/jtoml
+    implementation("me.grison:jtoml:1.0.0")
+    implementation("org.apache.commons:commons-lang3:3.12.0")
+
     //runtimeOnly("org.slf4j:slf4j-log4j12:1.7.30")
 
     compileOnly("com.github.spotbugs:spotbugs-annotations:4.2.2")

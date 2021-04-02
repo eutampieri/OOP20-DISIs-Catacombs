@@ -1,5 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
+import java.util.List;
+
 /**
  * Abstract class for every game object (ex: Player, enemies, items, ecc...).
  */

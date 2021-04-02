@@ -1,5 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
+import java.util.List;
+
 public class Player extends GameObject implements LivingCharacter {
     private static final int BASE_MOVEMENT_SPEED = 2;
     private static final int MAX_BASE_HP = 100;
@@ -58,5 +60,6 @@ public class Player extends GameObject implements LivingCharacter {
     public String getName() {
         return name;
     }
+
 
 }
