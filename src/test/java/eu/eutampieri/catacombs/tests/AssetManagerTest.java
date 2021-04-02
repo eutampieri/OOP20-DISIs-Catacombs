@@ -3,18 +3,13 @@ package eu.eutampieri.catacombs.tests;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 
 public class AssetManagerTest {
     @Test
     void assetManagerTest() {
-        AssetManager am = new AssetManager();
-            try {
-                am.load();
-            } catch (Exception e) {
-                //
-            }
-            assertTrue(true);
+        final AssetManager am = new AssetManager();
+        assertDoesNotThrow(am::load);
     }
 }

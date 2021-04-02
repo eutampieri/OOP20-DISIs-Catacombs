@@ -11,11 +11,11 @@ import eu.eutampieri.catacombs.ui.utils.ImageRotator;
 
 public class AssetManager {
 
-	private static final Path PLAYER_SHEET = Path.of("/playersheet.png");
-	private static final Path SLIME_SHEET = Path.of("/slimesheet.png");
-	private static final Path BAT_SHEET = Path.of("/batsheet.png");
-	private static final Path GUN_SHEET = Path.of("/projectiles.png");
-	private static final String PNG = ".png";
+	private static final Path PLAYER_SHEET = Path.of("res/playersheet.png");
+	private static final Path SLIME_SHEET = Path.of("res/slimesheet.png");
+	private static final Path BAT_SHEET = Path.of("res/batsheet.png");
+	private static final Path GUN_SHEET = Path.of("res/projectiles.png");
+	private static final String EXTENSION = ".png";
 	private static final ImageRotator IMAGE_ROTATOR = new ImageRotator();
 
 	
@@ -45,7 +45,7 @@ public class AssetManager {
 		loadAnimations("Walk_left", PLAYER_SHEET, 8, 1, 32, false );
 		loadAnimations("Walk_right", PLAYER_SHEET,8, 0, 32, false );
 
-		loadAnimations("Die", PLAYER_SHEET, 8, 128, 32, false );
+		loadAnimations("Die", PLAYER_SHEET, 8, 4, 32, false );
 
 		loadAnimations("Attack_up", PLAYER_SHEET, 8, 5, 32, false );
 		loadAnimations("Attack_down", PLAYER_SHEET, 8, 6, 32, false );
@@ -57,8 +57,8 @@ public class AssetManager {
 		loadAnimations("Slime_left", SLIME_SHEET, 4, 3, 32, false );
 		loadAnimations("Slime_right", SLIME_SHEET, 4, 1, 32, false );
 
-		loadAnimations("Bat_right", BAT_SHEET, 3, 7, 32, false );
-		loadAnimations("Bat_left", BAT_SHEET, 3, 7, 32, true );
+		loadAnimations("Bat_right", BAT_SHEET, 3, 0, 16, false );
+		loadAnimations("Bat_left", BAT_SHEET, 3, 0, 16, true );
 
 		loadBossAnimations("Boss_Idle_right",  6, false, true);
 		loadBossAnimations("Boss_Idle_left",  6, true, true);
@@ -85,7 +85,7 @@ public class AssetManager {
 	
 	public void loadImages() {
 		// Tiles
-		final GameSheets tileSheet = new GameSheets(Path.of("/tileSheet.png"));
+		final GameSheets tileSheet = new GameSheets(Path.of("res/tileSheet.png"));
 		int count = 1;
 		final Optional<BufferedImage> image = Optional.of(tileSheet.cutImage(112, 0, 16, 16));
 		
@@ -129,9 +129,9 @@ public class AssetManager {
 		final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
 		for (int i = 0; i < numFrames; i++) {
 			if (!flip){
-				res.set(i, Optional.of(sheet.cutImage(dimension * i, offset * dimension, dimension, dimension)));
+				res.add(Optional.of(sheet.cutImage(dimension * i, offset * dimension, dimension, dimension)));
 			} else {
-				res.set(i,horizontalFlip(Optional.of(sheet.cutImage(dimension * i, offset * dimension, dimension, dimension))));
+				res.add(horizontalFlip(Optional.of(sheet.cutImage(dimension * i, offset * dimension, dimension, dimension))));
 			}
 
 		}
@@ -143,15 +143,15 @@ public class AssetManager {
 		for (int i = 0; i < numFrames; i++) {
 			if (idle) {
 				if (!flip) {
-					res.set(i,ImageLoader.loadImage(Path.of("/boss/Golem_Idle_" + (i + 1) + PNG)));
+					res.add(ImageLoader.loadImage(Path.of("res/boss/Golem_Idle_" + (i + 1) + EXTENSION)));
 				} else {
-					res.set(i, horizontalFlip(ImageLoader.loadImage(Path.of("/boss/Golem_Idle_" + (i + 1) + PNG))));
+					res.add(horizontalFlip(ImageLoader.loadImage(Path.of("res/boss/Golem_Idle_" + (i + 1) + EXTENSION))));
 				}
 			} else {
 				if (!flip) {
-					res.set(i,ImageLoader.loadImage(Path.of("/boss/Golem_Walk_" + (i + 1) + PNG)));
+					res.add(ImageLoader.loadImage(Path.of("res/boss/Golem_Walk_" + (i + 1) + EXTENSION)));
 				} else {
-					res.set(i, horizontalFlip(ImageLoader.loadImage(Path.of("/boss/Golem_Walk_" + (i + 1) + PNG))));
+					res.add(horizontalFlip(ImageLoader.loadImage(Path.of("res/boss/Golem_Walk_" + (i + 1) + EXTENSION))));
 				}
 			}
 
@@ -165,7 +165,7 @@ public class AssetManager {
 		final GameSheets sheet = new GameSheets(image);
 		final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
 		for (int i = 0; i < numFrames; i++) {
-			res.set(i, Optional.of(sheet.cutImage( offset + ( dimension * i ), y, dimension, dimension)));
+			res.add(Optional.of(sheet.cutImage( offset + ( dimension * i ), y, dimension, dimension)));
 		}
 		allAnimations.put(name, res);
 	}
