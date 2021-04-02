@@ -8,7 +8,7 @@ import org.junit.jupiter.api.TestInstance;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class DungeonGameTests {
+class DungeonGameTest {
     @Test
     void testInitialize() {
         final DungeonGame mygame = new DungeonGame();
@@ -22,17 +22,19 @@ class DungeonGameTests {
         gc.setTitle("Game");
         assertEquals(gc.getFps(),60);
         mygame.setTest();
-        /*
-        mygame.initialize(gc);
-        mygame.start();
-        mygame.run();
-        mygame.stop();
-        mygame.getGameHeight();
-        mygame.getGameWidth();
-        mygame.getHeight();
-        mygame.getWidth();
-        mygame.getMainFrame();
-        mygame.getGraphics();
-        */
+        /*try {
+            mygame.initialize(gc);
+            mygame.start();
+            mygame.run();
+            mygame.stop();
+            mygame.getGameHeight();
+            mygame.getGameWidth();
+            mygame.getHeight();
+            mygame.getWidth();
+            mygame.getMainFrame();
+            mygame.getGraphics();
+        } catch (Exception e) {
+            assertTrue(true);
+        }*/
     }
 }
