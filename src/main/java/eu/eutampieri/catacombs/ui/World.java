@@ -1,8 +1,8 @@
 package eu.eutampieri.catacombs.ui;
 
-import eu.eutampieri.catacombs.model.Bat;
+
+import eu.eutampieri.catacombs.model.GameObject;
 import eu.eutampieri.catacombs.model.Player;
-import eu.eutampieri.catacombs.model.Slime;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 
@@ -19,17 +19,15 @@ public class World {
     //TODO Camera
     //private Camera camera;
 
-    private List<Slime> slimes;
-    private List<Bat> bats;
+    private final List<GameObject> entities;
 
     private Player player;
 
-    public World(final TileMap tileMap, final List<Slime> slimes, final List<Bat> bats) {
+    public World(final TileMap tileMap, final List<GameObject> entities) {
         this.background = am.getImage("background");
         this.tileMap = tileMap;
         //camera = new Camera();
-        this.slimes = slimes;
-        this.bats = bats;
+        this.entities = entities;
     }
     // TODO getCamera
     /*public Camera getCamera() {
@@ -38,22 +36,6 @@ public class World {
 
     public TileMap getTileMap() {
         return this.tileMap;
-    }
-
-    public List<Slime> getSlimes() {
-        return this.slimes;
-    }
-
-    public void setSlimes(final List<Slime> slimes) {
-        this.slimes = slimes;
-    }
-
-    public List<Bat> getBats() {
-        return this.bats;
-    }
-
-    public void setBats(final List<Bat> bats) {
-        this.bats = bats;
     }
 
     public Player getPlayer() {
@@ -67,11 +49,8 @@ public class World {
     public void update(final float delta)  {
         player.update(delta);
 
-        for (int i = 0; i < slimes.size(); i++) {
-            this.slimes.get(i).update(delta);
-        }
-        for (int i = 0; i < bats.size(); i++) {
-            this.bats.get(i).update(delta);
+        for (int i = 0; i < this.entities.size(); i++) {
+            this.entities.get(i).update(delta);
         }
     }
 
@@ -81,14 +60,9 @@ public class World {
         // this.tileMap.render(g2, camera);
 
         // slimes
-        /*for (int i = 0; i < slimes.size(); i++) {
-            // TODO slime.render parameters
-            // this.slimes.get(i).render(g2, camera);
-        }*/
-
-        /*for (int i = 0; i < bats.size(); i++) {
-            // TODO slime.render parameters
-            // this.bats.get(i).render(g2, camera);
+        /*for (int i = 0; i < entities.size(); i++) {
+            // TODO entities.render parameters
+            // this.entities.get(i).render(g2, camera);
         }*/
 
         // TODO player.render parameters
