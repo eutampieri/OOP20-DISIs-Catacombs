@@ -213,13 +213,13 @@ public abstract class Game implements Runnable {
      */
 
     public final void stop() {
-        try {
+       // try {
             running = false;
-            this.gameThread.join();
+            //this.gameThread.join();
             mainFrame.getFrame().dispatchEvent(new WindowEvent(mainFrame.getFrame(), WindowEvent.WINDOW_CLOSING));
-        } catch (InterruptedException e) {
+       /* } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public JFrame getMainFrame() {
