@@ -14,7 +14,7 @@ public class World {
 
     private final BufferedImage background;
     private final TileMap tileMap;
-    private AssetManager am;
+    private final AssetManager am = new AssetManager();
     private final DungeonGame game = new DungeonGame();
     //TODO Camera
     //private Camera camera;

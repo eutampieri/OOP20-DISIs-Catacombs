@@ -43,15 +43,15 @@ public class EndGameState extends State {
         g2.setFont(font);
         g2.setColor(Color.WHITE);
 
-        float x = (game.getGameWidth() - FontUtils.getTextWidth(this.font, level))/2;
-        float y = (game.getGameHeight() - this.font.getSize())/2;
+        float x = (game.getGameWidth() - FontUtils.getTextWidth(this.font, level)) / 2f;
+        float y = (game.getGameHeight() - this.font.getSize()) / 2f;
         g2.drawString(level, x, y);
 
         if (this.blink){
             return;
         }
         final String msg = "Press space to continue";
-        x = (game.getGameWidth() - FontUtils.getTextWidth(this.font, msg)) / 2;
+        x = (game.getGameWidth() - FontUtils.getTextWidth(this.font, msg)) / 2f;
         y = y + font.getSize() * 3;
         g2.drawString(msg, x, y);
     }

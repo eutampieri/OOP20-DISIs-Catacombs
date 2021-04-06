@@ -34,7 +34,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = "eu.eutampieri.catacombs.game.Catcombs"
+    mainClassName = "eu.eutampieri.catacombs.game.Main"
 }
 
 tasks.register("listPlugins") {

@@ -7,7 +7,7 @@ public final class DungeonGame extends Game {
     private MenuState menuState;
     private StartTransition startGame;
     private State state;
-    private AssetManager am;
+    private final AssetManager am = new AssetManager();
 
 
     public MenuState getMenuState() {
@@ -52,9 +52,6 @@ public final class DungeonGame extends Game {
         final GameState newGame = new GameState(this);
         this.startGame.startTransition(newGame);
         setState(startGame);
-
-
-
     }
 
     public void restartLevel() {
