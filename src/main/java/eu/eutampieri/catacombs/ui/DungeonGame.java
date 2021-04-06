@@ -6,7 +6,7 @@ public final class DungeonGame extends Game {
 
     private MenuState menuState;
     private State state;
-    private AssetManager am = new AssetManager();
+    private final AssetManager am = new AssetManager();
 
     @Override
     public void create() {
