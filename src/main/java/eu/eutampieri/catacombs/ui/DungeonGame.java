@@ -5,8 +5,6 @@ import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 public final class DungeonGame extends Game {
 
     private MenuState menuState;
-    private GameState newGame;
-    private EndGameState endGame;
     private StartTransition startGame;
     private State state;
     private AssetManager am;
@@ -25,7 +23,8 @@ public final class DungeonGame extends Game {
         am.load();
 
         this.startGame = new StartTransition(this);
-        this.endGame = new EndGameState(this);
+        // to use when game ends
+        //final EndGameState endGame = new EndGameState(this);
         this.menuState = new MenuState(this);
         setState(this.menuState);
 
@@ -50,8 +49,8 @@ public final class DungeonGame extends Game {
     }
 
     public void startGame() {
-        this.newGame = new GameState(this);
-        this.startGame.startTransition(this.newGame);
+        final GameState newGame = new GameState(this);
+        this.startGame.startTransition(newGame);
         setState(startGame);
 
 

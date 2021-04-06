@@ -12,20 +12,21 @@ import java.awt.event.KeyEvent;
 public class GameState extends State {
 
     private World world;
-    private Player player;
+    private final Player player;
     private boolean paused;
 
-    private Font font = new Font("Arial", Font.BOLD, 15);
-    private Font pauseFont = new Font("Monospace", Font.BOLD, 30);
-    private DungeonGame game = new DungeonGame();
+    private final Font font = new Font("Arial", Font.BOLD, 15);
+    private final Font pauseFont = new Font("Monospace", Font.BOLD, 30);
+    private final DungeonGame game;
 
-    public GameState(DungeonGame game){
+    public GameState(final DungeonGame game){
         super(game);
         this.game = game;
         player = world.getPlayer();
     }
 
-    public void update(float delta){
+    @Override
+    public void update(final float delta){
         if(Game.KEY_MANAGER.isKeyJustPressed(KeyEvent.VK_ESCAPE)) {
             this.paused = !paused;
         }
@@ -35,18 +36,19 @@ public class GameState extends State {
         this.world.update(delta);
     }
 
-    public void render(Graphics2D g2){
+    @Override
+    public void render(final Graphics2D g2){
         this.world.render(g2);
         g2.setColor(Color.orange);
-        g2.setFont((font));
-        g2.drawString(("HEALTH : ") + (int) this.player.getHealth(), 5, font.getSize());
+        g2.setFont(font);
+        g2.drawString("HEALTH : " + (int) this.player.getHealth(), 5, font.getSize());
         //g2.drawString("COINS : " + player.getCoins(), 5, font.getSize() * 2 + 10);
 
         if (this.paused) {
             g2.setFont(this.pauseFont);
-            String msg = "Paused";
-            float x = (game.getGameWidth() - FontUtils.getTextWidth(pauseFont, msg))/2;
-            float y = (game.getGameHeight() - this.pauseFont.getSize())/2;
+            final String msg = "Paused";
+            final float x = (game.getGameWidth() - FontUtils.getTextWidth(pauseFont, msg))/2;
+            final float y = (game.getGameHeight() - this.pauseFont.getSize())/2;
             g2.drawString("Paused", x, y);
         }
     }

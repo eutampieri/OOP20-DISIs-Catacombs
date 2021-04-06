@@ -40,6 +40,7 @@ public class Player extends GameObject implements LivingCharacter {
      * 
      * @param delta time between updates
      */
+    @Override
     public void update(final float delta) {
         // TODO Auto-generated method stub
 

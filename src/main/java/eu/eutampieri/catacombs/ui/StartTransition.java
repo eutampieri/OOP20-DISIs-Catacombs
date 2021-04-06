@@ -10,16 +10,16 @@ public class StartTransition extends State{
 
     private GameState levelState;
     private float waitTimer;
-    private Font font = new Font("Monospace", Font.PLAIN, 40);
-    private DungeonGame game = new DungeonGame();
+    private final Font font = new Font("Monospace", Font.PLAIN, 40);
+    private final DungeonGame game;
 
-    public StartTransition(DungeonGame game) {
+    public StartTransition(final DungeonGame game) {
         super(game);
         this.game = game;
     }
 
     @Override
-    public void update(float delta) {
+    public void update(final float delta) {
         this.waitTimer += delta;
 
         if (this.waitTimer >= WAIT_TIME) {
@@ -29,16 +29,16 @@ public class StartTransition extends State{
     }
 
     @Override
-    public void render(Graphics2D g2) {
+    public void render(final Graphics2D g2) {
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, this.game.getGameWidth(), this.game.getGameHeight());
-        String newGame = "New Game";
+        final String newGame = "New Game";
         g2.setFont(this.font);
         g2.setColor(Color.WHITE);
         g2.drawString(newGame, (this.game.getGameWidth() - FontUtils.getTextWidth(font, newGame)) / 2, (this.game.getGameHeight() - font.getSize()) / 2);
     }
 
-    public void startTransition(GameState levelState) {
+    public void startTransition(final GameState levelState) {
         this.levelState = levelState;
     }
 

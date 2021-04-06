@@ -7,20 +7,22 @@ import java.awt.event.KeyEvent;
 
 public class EndGameState extends State {
 
-    private Font font = new Font("Monospace", Font.PLAIN, 40);
-    private float blinkDelayCount;
-    private float blinkDelay = 1f;
-    private boolean blink = true;
-    private DungeonGame game = new DungeonGame();
+    private static final float BLINK_DELAY = 1f;
 
-    public EndGameState(DungeonGame game) {
+    private final Font font = new Font("Monospace", Font.PLAIN, 40);
+    private float blinkDelayCount;
+    private boolean blink = true;
+    private final DungeonGame game;
+
+    public EndGameState(final DungeonGame game) {
         super(game);
         this.game = game;
     }
 
-    public void update (float delta) {
+    @Override
+    public void update (final float delta) {
         this.blinkDelayCount *= delta;
-        if (this.blinkDelayCount >= this.blinkDelay) {
+        if (this.blinkDelayCount >= BLINK_DELAY) {
             this.blinkDelayCount = 0;
             this.blink = !this.blink;
         }
@@ -33,10 +35,11 @@ public class EndGameState extends State {
 
     }
 
-    public void render (Graphics2D g2) {
+    @Override
+    public void render (final Graphics2D g2) {
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, game.getGameWidth(), game.getGameHeight());
-        String level = "GAME COMPLETED!";
+        final String level = "GAME COMPLETED!";
         g2.setFont(font);
         g2.setColor(Color.WHITE);
 
@@ -47,7 +50,7 @@ public class EndGameState extends State {
         if (this.blink){
             return;
         }
-        String msg = "Press space to continue";
+        final String msg = "Press space to continue";
         x = (game.getGameWidth() - FontUtils.getTextWidth(this.font, msg)) / 2;
         y = y + font.getSize() * 3;
         g2.drawString(msg, x, y);

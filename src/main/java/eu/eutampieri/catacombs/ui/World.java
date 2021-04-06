@@ -12,10 +12,10 @@ import java.util.List;
 
 public class World {
 
-    private BufferedImage background;
-    private TileMap tileMap;
+    private final BufferedImage background;
+    private final TileMap tileMap;
     private AssetManager am;
-    private DungeonGame game = new DungeonGame();
+    private final DungeonGame game = new DungeonGame();
     //TODO Camera
     //private Camera camera;
 
@@ -24,7 +24,7 @@ public class World {
 
     private Player player;
 
-    public World(TileMap tileMap, List<Slime> slimes, List<Bat> bats) {
+    public World(final TileMap tileMap, final List<Slime> slimes, final List<Bat> bats) {
         this.background = am.getImage("background");
         this.tileMap = tileMap;
         //camera = new Camera();
@@ -44,7 +44,7 @@ public class World {
         return this.slimes;
     }
 
-    public void setSlimes(List<Slime> slimes) {
+    public void setSlimes(final List<Slime> slimes) {
         this.slimes = slimes;
     }
 
@@ -52,7 +52,7 @@ public class World {
         return this.bats;
     }
 
-    public void setBats(List<Bat> bats) {
+    public void setBats(final List<Bat> bats) {
         this.bats = bats;
     }
 
@@ -60,11 +60,11 @@ public class World {
         return this.player;
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(final Player player) {
         this.player = player;
     }
 
-    public void update(float delta)  {
+    public void update(final float delta)  {
         player.update(delta);
 
         for (int i = 0; i < slimes.size(); i++) {
@@ -75,20 +75,21 @@ public class World {
         }
     }
 
-    public void render(Graphics2D g2) {
+    public void render(final Graphics2D g2) {
         g2.drawImage(background, 0, 0, game.getGameWidth(), game.getGameHeight(), null);
         // TODO render method
         // this.tileMap.render(g2, camera);
 
         // slimes
-        for (int i = 0; i < slimes.size(); i++) {
+        /*for (int i = 0; i < slimes.size(); i++) {
             // TODO slime.render parameters
             // this.slimes.get(i).render(g2, camera);
-        }
-        for (int i = 0; i < bats.size(); i++) {
+        }*/
+
+        /*for (int i = 0; i < bats.size(); i++) {
             // TODO slime.render parameters
             // this.bats.get(i).render(g2, camera);
-        }
+        }*/
 
         // TODO player.render parameters
         // this.player.render(g2, camera);
