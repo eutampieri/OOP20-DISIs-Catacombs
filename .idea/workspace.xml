@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="added World class and Starting transition">
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/StartTransition.java" afterDir="false" />
-    </list>
+    <list default="true" id="8c79fdf8-ea4d-441f-90e1-840e5ae33391" name="Default Changelist" comment="wip in World class" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,6 +45,18 @@
                 <item name="OOP20-procedural-dungeon" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="OOP20-procedural-dungeon" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="help" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="OOP20-procedural-dungeon" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -212,28 +222,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="EquipmentTest.testSimplePotionAfterWeapon" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;EquipmentTest.testSimplePotionAfterWeapon&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":cleanTest" />
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="EquipmentTest.testSimpleWeapon" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -300,21 +288,42 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="OOP20-procedural-dungeon [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Gradle.All tests" />
-      <item itemvalue="Gradle.EquipmentTest.testSimplePotionAfterWeapon" />
       <item itemvalue="Gradle.EquipmentTest.testSimpleWeapon" />
       <item itemvalue="Gradle.GameTests" />
       <item itemvalue="Gradle.MapTests" />
       <item itemvalue="Gradle.Check" />
+      <item itemvalue="Gradle.OOP20-procedural-dungeon [run]" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Check" />
+        <item itemvalue="Gradle.OOP20-procedural-dungeon [run]" />
         <item itemvalue="Gradle.MapTests" />
         <item itemvalue="Gradle.GameTests" />
         <item itemvalue="Gradle.EquipmentTest.testSimpleWeapon" />
-        <item itemvalue="Gradle.EquipmentTest.testSimplePotionAfterWeapon" />
       </list>
     </recent_temporary>
   </component>
