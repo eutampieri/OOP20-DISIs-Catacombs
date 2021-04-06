@@ -14,7 +14,7 @@ public class Gun extends SimpleWeapon {
     }
 
     @Override
-    public void update(final int delta) {
+    public void update(final float delta) {
         // TODO Auto-generated method stub
     }
 
