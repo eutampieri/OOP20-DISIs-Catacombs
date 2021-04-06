@@ -85,7 +85,7 @@ public class AssetManager {
 	
 	public void loadImages() {
 		// Tiles
-		final GameSheets tileSheet = new GameSheets(Path.of("res/tileSheet.png"));
+		final GameSheets tileSheet = new GameSheets(Path.of("res/tilesheet.png"));
 		int count = 1;
 		final Optional<BufferedImage> image = Optional.of(tileSheet.cutImage(112, 0, 16, 16));
 		
