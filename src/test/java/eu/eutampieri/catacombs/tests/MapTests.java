@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MapTests {
     private void checkMap(final TileMap m) {
         for (int y = 0; y < m.height(); y++) {
@@ -22,7 +24,7 @@ class MapTests {
     }
 
     @Test
-    public void testGameLaunch() {
+    public void testMultipleMapWontFail() {
         final TileMapFactoryImpl mf = new TileMapFactoryImpl();
         for (int i = 0; i < 32; i++) {
             checkMap(mf.def());

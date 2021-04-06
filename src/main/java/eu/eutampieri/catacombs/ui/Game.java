@@ -36,11 +36,14 @@ public abstract class Game implements Runnable {
     private Graphics2D graphics;
     private int fps;
     private Thread gameThread;
-
     private boolean isTest;
 
     public void setTest() {
-        isTest = true;
+        this.isTest = true;
+    }
+
+    public Graphics2D getGraphics() {
+        return this.graphics;
     }
 
     public abstract void create();
@@ -272,72 +275,47 @@ public abstract class Game implements Runnable {
                 }
             }
 
-            if (timer >= FPS_CONST) {
-                this.framesThisSecond = ticks;
-                mainFrame.getFrame().setTitle("Frame Per Seconds : " + framesThisSecond);
-                ticks = 0;
-                timer = 0;
+			if (timer >= 1_000_000_000) {
+				// mainFrame.getFrame().setTitle("Frame Per Seconds : " + ticks);
+				this.framesThisSecond = ticks;
+				ticks = 0;
+				timer = 0;
+			}
+			if (updates > 0 && isTest) {
+			    break;
             }
-            if (updates > 0 && isTest) {
-                break;
-            }
-        }
-    }
+		}
+	}
+	
+	protected void renderfpsCount(final Color color) {
+		graphics.setFont(DEFAULT_FONT);
+		graphics.setColor(color);
+		graphics.drawString("FRAME PER SECOND : " + framesThisSecond,
+				gameConfiguration.isScaling() ? gameConfiguration.getGameWidth() - 160 : getWidth() - 160,
+				10 + graphics.getFont().getSize());
+	}
 
-    protected final void renderFpsCount(final Color color) {
-        graphics.setFont(DEFAULT_FONT);
-        graphics.setColor(color);
-        graphics.drawString("FRAME PER SECOND : " + framesThisSecond,
-                gameConfiguration.isScaling() ? gameConfiguration.getGameWidth() - 160 : getWidth() - 160,
-                10 + graphics.getFont().getSize());
-    }
+	protected void renderfpsCount(final Color color, final int x, final int y) {
+		graphics.setColor(color);
+		graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
+	}
 
-    protected final void renderFpsCount(final Color color, final int x, final int y) {
-        graphics.setColor(color);
-        graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
-    }
+	
+	public void addKeyAdapter(final KeyAdapter e) {
+		mainFrame.getCanvas().addKeyListener(e);
+		mainFrame.getFrame().addKeyListener(e);
+	}
+	
+	public void addMouseAdapter(final MouseAdapter e) {
+		mainFrame.getCanvas().addMouseListener(e);
+		mainFrame.getFrame().addMouseListener(e);		
+		mainFrame.getCanvas().addMouseMotionListener(e);
+		mainFrame.getFrame().addMouseMotionListener(e);
+	}
 
-    /**
-     * add key listener to main frame.
-     *
-     * @param e KeyAdapter
-     */
-    public final void addKeyAdapter(final KeyAdapter e) {
-        mainFrame.getCanvas().addKeyListener(e);
-        mainFrame.getFrame().addKeyListener(e);
-    }
-
-    /**
-     * add mouse listener to main frame.
-     *
-     * @param e MouseAdapter
-     */
-
-    public final void addMouseAdapter(final MouseAdapter e) {
-        mainFrame.getCanvas().addMouseListener(e);
-        mainFrame.getFrame().addMouseListener(e);
-        mainFrame.getCanvas().addMouseMotionListener(e);
-        mainFrame.getFrame().addMouseMotionListener(e);
-    }
-
-    /**
-     * remove key listener from main frame.
-     *
-     * @param e KeyAdapter
-     */
-
-    public final void removeKeyAdapter(final KeyAdapter e) {
-        mainFrame.getCanvas().removeKeyListener(e);
-        mainFrame.getFrame().removeKeyListener(e);
-    }
-
-    /**
-     *
-     * @return modified graphic
-     */
-
-    public final Graphics2D getGraphics() {
-        return graphics;
-    }
-
+	public void removeKeyAdapter(final KeyAdapter e) {
+		mainFrame.getCanvas().removeKeyListener(e);
+		mainFrame.getFrame().removeKeyListener(e);
+	}	
+	
 }

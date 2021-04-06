@@ -4,6 +4,8 @@
 .gradle
 .settings
 /build/*
-.idea/
 .project
 .classpath
+.project
+.classpath
+
