@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="added Launcher and Main">
+    <list default="true" id="c34528d3-49bd-4a26-a907-cdd5ad128705" name="Default Changelist" comment="added World class and Starting transition">
       <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/StartTransition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/DungeonGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/DungeonGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/EndGameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/EndGameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eu/eutampieri/catacombs/ui/GameState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -385,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616680748888</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added World class and Starting transition">
+      <created>1617704926890</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1617704926890</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -523,7 +521,8 @@
     <MESSAGE value="Configured Checkstyle" />
     <MESSAGE value="cherry picked code style conf" />
     <MESSAGE value="added Launcher and Main" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Launcher and Main" />
+    <MESSAGE value="added World class and Starting transition" />
+    <option name="LAST_COMMIT_MESSAGE" value="added World class and Starting transition" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
