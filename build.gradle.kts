@@ -121,3 +121,19 @@ tasks.spotbugsMain {
     }
 }
 
+
+pmd {
+    isConsoleOutput = true
+    toolVersion = "6.32.0"
+    rulesMinimumPriority.set(5)
+    ruleSets.clear()
+    ruleSetFiles(file("$projectDir/config/pmd/pmd.xml"))
+}
+
+tasks.spotbugsMain {
+    reports.create("html") {
+        isEnabled = true
+        setStylesheet("fancy-hist.xsl")
+    }
+}
+

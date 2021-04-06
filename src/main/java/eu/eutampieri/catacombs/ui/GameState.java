@@ -2,7 +2,7 @@ package eu.eutampieri.catacombs.ui;
 
 import eu.eutampieri.catacombs.model.Player;
 import eu.eutampieri.catacombs.ui.utils.FontUtils;
-import eu.eutampieri.catacombs.ui.world.World;
+//import eu.eutampieri.catacombs.ui.world.World;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -17,14 +17,16 @@ public class GameState extends State {
 
     private Font font = new Font("Arial", Font.BOLD, 15);
     private Font pauseFont = new Font("Monospace", Font.BOLD, 30);
+    private DungeonGame game = new DungeonGame();
 
     public GameState(DungeonGame game){
         super(game);
+        this.game = game;
         player = world.getPlayer();
     }
 
     public void update(float delta){
-        if(Game.keyManager.isKeyJustPressed(KeyEvent.VK_ESCAPE)) {
+        if(Game.KEY_MANAGER.isKeyJustPressed(KeyEvent.VK_ESCAPE)) {
             this.paused = !paused;
         }
         if (this.paused){
@@ -43,8 +45,8 @@ public class GameState extends State {
         if (this.paused) {
             g2.setFont(this.pauseFont);
             String msg = "Paused";
-            float x = (Game.getGameWidth() - FontUtils.getTextWidth(pauseFont, msg))/2;
-            float y = (Game.getGameHeight() - this.pauseFont.getSize())/2;
+            float x = (game.getGameWidth() - FontUtils.getTextWidth(pauseFont, msg))/2;
+            float y = (game.getGameHeight() - this.pauseFont.getSize())/2;
             g2.drawString("Paused", x, y);
         }
     }
