@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 import eu.eutampieri.catacombs.ui.utils.ImageLoader;
 import eu.eutampieri.catacombs.ui.utils.ImageRotator;
 
-public class AssetManager {
+public final class AssetManager {
 
 	private static final Path PLAYER_SHEET = Path.of("res/playersheet.png");
 	private static final Path SLIME_SHEET = Path.of("res/slimesheet.png");
@@ -18,11 +18,20 @@ public class AssetManager {
 	private static final String EXTENSION = ".png";
 	private static final ImageRotator IMAGE_ROTATOR = new ImageRotator();
 
+	private static final AssetManager SINGLETON_MANAGER = new AssetManager();
 	
-	private static Map<String,ArrayList<Optional<BufferedImage>>> allAnimations = new HashMap<>();
+	private final Map<String,ArrayList<Optional<BufferedImage>>> allAnimations = new HashMap<>();
 	private final Map<String,BufferedImage> allImages = new HashMap<>();
+
+	private AssetManager() {
+		load();
+	}
+
+	public static AssetManager getAssetManager() {
+		return SINGLETON_MANAGER;
+	}
 	
-	public static List<Optional<BufferedImage>> getFrames(final String key) {
+	public List<Optional<BufferedImage>> getFrames(final String key) {
 		return allAnimations.get(key);
 	}
 	
@@ -39,7 +48,7 @@ public class AssetManager {
 		return null;
 	}
 	
-	public void load() {
+	private void load() {
 		loadAnimations("Walk_up", PLAYER_SHEET, 8, 3, 32, false);
 		loadAnimations("Walk_down", PLAYER_SHEET, 8, 2, 32, false );
 		loadAnimations("Walk_left", PLAYER_SHEET, 8, 1, 32, false );

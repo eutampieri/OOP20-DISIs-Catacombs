@@ -1,13 +1,11 @@
 package eu.eutampieri.catacombs.ui;
 
-import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 
 public final class DungeonGame extends Game {
 
     private MenuState menuState;
     private StartTransition startGame;
     private State state;
-    private final AssetManager am = new AssetManager();
 
     public MenuState getMenuState() {
         return menuState;
@@ -19,7 +17,6 @@ public final class DungeonGame extends Game {
 
     @Override
     public void create() {
-        am.load();
 
         this.startGame = new StartTransition(this);
         // to use when game ends
