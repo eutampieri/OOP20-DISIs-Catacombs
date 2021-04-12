@@ -53,7 +53,7 @@ public abstract class Game implements Runnable {
      * @param delta gap time from previous render
      */
 
-    public abstract void update(int delta);
+    public abstract void update(float delta);
 
     public abstract void render();
 
@@ -248,10 +248,10 @@ public abstract class Game implements Runnable {
             timer += now - lastTime;
             updates = 0;
             while ((now - lastUpdateTime) >= tickPerTime) {
-                int delta;
-                delta = Math.round((now - lastUpdateTime) / DELTA_CONST);
+                float delta;
+                delta = (now - lastUpdateTime) / DELTA_CONST;
                 KEY_MANAGER.update(delta);
-                delta = Math.round(delta <= DELTA_MIN ? delta : DELTA_MIN);
+                delta = delta <= DELTA_MIN ? delta : DELTA_MIN;
                 update(delta);
                 lastUpdateTime += tickPerTime;
                 updates++;

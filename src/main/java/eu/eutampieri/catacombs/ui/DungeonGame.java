@@ -39,7 +39,7 @@ public final class DungeonGame extends Game {
     }
 
     @Override
-    public void update(final int delta) {
+    public void update(final float delta) {
         this.state.update(delta);
     }
 

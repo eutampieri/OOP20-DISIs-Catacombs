@@ -20,8 +20,8 @@ public class EndGameState extends State {
     }
 
     @Override
-    public void update (final int delta) {
-        this.blinkDelayCount *= delta;
+    public void update (final float delta) {
+        this.blinkDelayCount += delta;
         if (this.blinkDelayCount >= BLINK_DELAY) {
             this.blinkDelayCount = 0;
             this.blink = !this.blink;

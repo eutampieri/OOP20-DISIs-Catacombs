@@ -33,7 +33,7 @@ public final class MenuState extends State {
     }
 
     @Override
-    public void update(final int delta) {
+    public void update(final float delta) {
         if (Game.KEY_MANAGER.isKeyJustPressed(KeyEvent.VK_ENTER)) {
             switch (this.optionSelected) {
             case START_GAME:
