@@ -22,8 +22,8 @@ public class Animations {
         this.frameDelay = frameDelay;
     }
 
-    public Animations(final String frameskey,final float frameDelay) {
-        this(AssetManager.getFrames(frameskey), frameDelay);
+    public Animations(final String frameskey, final float frameDelay) {
+        this(AssetManager.getAssetManager().getFrames(frameskey), frameDelay);
     }
 
     public List<Optional<BufferedImage>> getFrames() {

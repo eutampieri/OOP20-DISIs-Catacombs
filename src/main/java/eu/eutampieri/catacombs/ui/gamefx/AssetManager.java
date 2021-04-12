@@ -20,7 +20,7 @@ public final class AssetManager {
 
 	private static final AssetManager SINGLETON_MANAGER = new AssetManager();
 	
-	private static Map<String,ArrayList<Optional<BufferedImage>>> allAnimations = new HashMap<>();
+	private final Map<String,ArrayList<Optional<BufferedImage>>> allAnimations = new HashMap<>();
 	private final Map<String,BufferedImage> allImages = new HashMap<>();
 
 	private AssetManager() {
@@ -31,7 +31,7 @@ public final class AssetManager {
 		return SINGLETON_MANAGER;
 	}
 	
-	public static List<Optional<BufferedImage>> getFrames(final String key) {
+	public List<Optional<BufferedImage>> getFrames(final String key) {
 		return allAnimations.get(key);
 	}
 	
