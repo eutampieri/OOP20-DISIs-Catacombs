@@ -16,5 +16,9 @@ public enum Tile {
     /**
      * A stair tile, which will form flight of stairs.
      */
-    STAIRS,
+    STAIRS;
+
+    public boolean isWalkable() {
+        return this == Tile.FLOOR || this == Tile.STAIRS;
+    }
 }
