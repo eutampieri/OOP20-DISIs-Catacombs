@@ -16,9 +16,7 @@ import javax.swing.*;
 
 public abstract class Game implements Runnable {
 
-    protected static final double FPS_CONST = 1_000_000_000d;
-    protected static final float DELTA_CONST = 1_000_000_000.0f;
-    protected static final float DELTA_MIN = 0.016f;
+    protected static final long DELTA_MIN = 16_000_000;
     protected static final float THREAD_SLEEP_CONST = 1_000_000f;
 
     public static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
@@ -53,7 +51,7 @@ public abstract class Game implements Runnable {
      * @param delta gap time from previous render
      */
 
-    public abstract void update(float delta);
+    public abstract void update(long delta);
 
     public abstract void render();
 
@@ -213,11 +211,11 @@ public abstract class Game implements Runnable {
      */
 
     public final void stop() {
-        try {
+       try {
             running = false;
             this.gameThread.join();
             mainFrame.getFrame().dispatchEvent(new WindowEvent(mainFrame.getFrame(), WindowEvent.WINDOW_CLOSING));
-        } catch (InterruptedException e) {
+       } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -229,7 +227,6 @@ public abstract class Game implements Runnable {
     @Override
     public final void run() {
         create();
-        double tickPerTime;
         long lastTime;
         long lastUpdateTime;
         long now;
@@ -238,7 +235,7 @@ public abstract class Game implements Runnable {
         int updates;
         final int maxUpdates = 5;
 
-        tickPerTime = FPS_CONST / fps;
+        final double tickPerTime = 1f / fps;
         lastTime = System.nanoTime();
         lastUpdateTime = System.nanoTime();
         timer = 0;
@@ -248,10 +245,10 @@ public abstract class Game implements Runnable {
             timer += now - lastTime;
             updates = 0;
             while ((now - lastUpdateTime) >= tickPerTime) {
-                float delta;
-                delta = (now - lastUpdateTime) / DELTA_CONST;
+                long delta;
+                delta = now - lastUpdateTime;
                 KEY_MANAGER.update(delta);
-                delta = delta <= DELTA_MIN ? delta : DELTA_MIN;
+                delta = Math.min(delta, DELTA_MIN);
                 update(delta);
                 lastUpdateTime += tickPerTime;
                 updates++;
@@ -286,7 +283,7 @@ public abstract class Game implements Runnable {
             }
 		}
 	}
-	
+
 	protected void renderfpsCount(final Color color) {
 		graphics.setFont(DEFAULT_FONT);
 		graphics.setColor(color);

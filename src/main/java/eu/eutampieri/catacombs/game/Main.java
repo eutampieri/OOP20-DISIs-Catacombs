@@ -22,6 +22,7 @@ public final class Main {
         gc.setTitle("CATACOMBS");
 
         final DungeonGame game = new DungeonGame();
+
         Launcher.launch(gc, game);
     }
 }

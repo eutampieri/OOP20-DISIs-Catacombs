@@ -7,7 +7,6 @@ import java.util.Optional;
 
 import javax.imageio.ImageIO;
 
-
 public final class ImageLoader {
 
 	private ImageLoader() {
@@ -22,8 +21,7 @@ public final class ImageLoader {
 			return Optional.empty();
 		}
 
-		return Optional.of(image);
-		
+		return Optional.of(image);		
 	}
 
 }

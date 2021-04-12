@@ -1,12 +1,10 @@
 package eu.eutampieri.catacombs.ui.utils;
 
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.Scanner;
-
 
 public final class TextLoader {
 
@@ -21,7 +19,7 @@ public final class TextLoader {
 				final String str = scan.next() + " ";
 				sb.append(str);
 
-			}
+		  }
 			return Optional.of(sb.toString());
 		} catch (IOException e) {
 			return Optional.empty();

@@ -5,13 +5,25 @@ import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 public final class DungeonGame extends Game {
 
     private MenuState menuState;
+    private StartTransition startGame;
     private State state;
     private final AssetManager am = new AssetManager();
+
+    public MenuState getMenuState() {
+        return menuState;
+    }
+
+    public State getState() {
+        return state;
+    }
 
     @Override
     public void create() {
         am.load();
 
+        this.startGame = new StartTransition(this);
+        // to use when game ends
+        //final EndGameState endGame = new EndGameState(this);
         this.menuState = new MenuState(this);
         setState(this.menuState);
 
@@ -26,7 +38,7 @@ public final class DungeonGame extends Game {
     }
 
     @Override
-    public void update(final float delta) {
+    public void update(final long delta) {
         this.state.update(delta);
     }
 
@@ -35,10 +47,10 @@ public final class DungeonGame extends Game {
         this.state.render(this.getGraphics());
     }
 
-    // da implementare nextLevel startGame e restartLevel
-
     public void startGame() {
-
+        final GameState newGame = new GameState(this);
+        this.startGame.startTransition(newGame);
+        setState(startGame);
     }
 
     public void restartLevel() {
@@ -47,13 +59,5 @@ public final class DungeonGame extends Game {
 
     public void nextLevels() {
 
-    }
-
-    public MenuState getMenuState() {
-        return menuState;
-    }
-
-    public State getState() {
-        return state;
     }
 }

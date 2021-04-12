@@ -123,7 +123,6 @@ public class AssetManager {
 		allImages.put("potion", tileSheet.cutImage(0,181,9,11));
 		allImages.put("gun", tileSheet.cutImage(0, 193, 21, 17));
 	}
-
 	public void loadAnimations(final String name, final Path image, final int numFrames, final int offset, final int dimension, final boolean flip) {
 		final GameSheets sheet = new GameSheets(image);
 		final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
@@ -169,7 +168,5 @@ public class AssetManager {
 		}
 		allAnimations.put(name, res);
 	}
-
-
 
 }

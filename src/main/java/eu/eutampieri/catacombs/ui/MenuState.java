@@ -42,16 +42,16 @@ public final class MenuState extends State {
         // title
         g2.setFont(this.titleFont);
         final String title = "CATACOMBS";
-        final float x = (float) (game.getWidth() - FontUtils.getTextWidth(titleFont, title)) / 2f;
+        final float x = (float) (game.getGameWidth() - FontUtils.getTextWidth(titleFont, title)) / 2f;
         g2.drawString(title, x, titleFont.getSize() + 20);
 
         // options
         g2.setFont(this.font);
         final String start = "Start";
-        final float x1 = (float) (game.getWidth() - FontUtils.getTextWidth(font, start)) / 2f;
+        final float x1 = (float) (game.getGameWidth() - FontUtils.getTextWidth(font, start)) / 2f;
         g2.drawString(start, x1, titleFont.getSize() + 80);
         final String quit = "Quit";
-        final float x2 = (float) (game.getWidth() - FontUtils.getTextWidth(font, quit)) / 2f;
+        final float x2 = (float) (game.getGameWidth() - FontUtils.getTextWidth(font, quit)) / 2f;
         g2.drawString(quit, x2, titleFont.getSize() + font.getSize() + 100);
 
         // selection
