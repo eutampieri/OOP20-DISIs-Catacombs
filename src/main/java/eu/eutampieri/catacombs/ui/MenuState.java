@@ -3,15 +3,10 @@ package eu.eutampieri.catacombs.ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 
 import eu.eutampieri.catacombs.ui.utils.FontUtils;
 
 public final class MenuState extends State {
-
-    private enum MenuOption {
-        START_GAME, QUIT_GAME,
-    }
 
     private static final int TITLE_FONT_SIZE = 50;
     private static final int DEFAULT_FONT_SIZE = 40;
@@ -23,36 +18,19 @@ public final class MenuState extends State {
     private final transient Font titleFont = new Font("Times New Roman", Font.PLAIN, TITLE_FONT_SIZE);
     private final transient Font font = new Font("Arial", Font.PLAIN, DEFAULT_FONT_SIZE);
 
-    private MenuOption optionSelected = MenuOption.START_GAME;
-
     private final DungeonGame game;
+    private final LogicMenu logic;
 
     public MenuState(final DungeonGame game) {
         super(game);
         this.game = game;
+        this.logic = new LogicMenuImpl(this.game);
+
     }
 
     @Override
     public void update(final float delta) {
-        if (Game.KEY_MANAGER.isKeyJustPressed(KeyEvent.VK_ENTER)) {
-            switch (this.optionSelected) {
-            case START_GAME:
-                this.game.startGame();
-                break;
-            case QUIT_GAME:
-                this.game.stop();
-                break;
-            default:
-                break;
-            }
-        }
-        if (Game.KEY_MANAGER.isKeyPressed(KeyEvent.VK_S)) {
-            this.optionSelected = MenuOption.QUIT_GAME;
-        }
-        if (Game.KEY_MANAGER.isKeyPressed(KeyEvent.VK_W)) {
-            this.optionSelected = MenuOption.START_GAME;
-        }
-
+        this.logic.selectOption();
     }
 
     @Override
@@ -77,9 +55,9 @@ public final class MenuState extends State {
         g2.drawString(quit, x2, titleFont.getSize() + font.getSize() + 100);
 
         // selection
-        final int x3 = (int) (this.optionSelected == MenuOption.START_GAME ? x1 - MIDDLE_OF_OPTION
+        final int x3 = (int) (this.logic.isOptionStart() ? x1 - MIDDLE_OF_OPTION
                 : x2 - MIDDLE_OF_OPTION);
-        final int y = this.optionSelected == MenuOption.START_GAME ? this.titleFont.getSize() + START_OFFSET
+        final int y = this.logic.isOptionStart() ? this.titleFont.getSize() + START_OFFSET
                 : this.titleFont.getSize() + font.getSize() + QUIT_OFFSET;
         g2.fillOval(x3, y, OVAL_SIZE, OVAL_SIZE);
 

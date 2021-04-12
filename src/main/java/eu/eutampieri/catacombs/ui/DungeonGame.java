@@ -9,7 +9,6 @@ public final class DungeonGame extends Game {
     private State state;
     private final AssetManager am = new AssetManager();
 
-
     public MenuState getMenuState() {
         return menuState;
     }

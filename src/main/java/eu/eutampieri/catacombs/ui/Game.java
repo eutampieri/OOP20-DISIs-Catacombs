@@ -65,7 +65,7 @@ public abstract class Game implements Runnable {
 
     /**
      *
-     * @return height of the main fraim
+     * @return height of the main frame
      */
 
     public int getHeight() {
