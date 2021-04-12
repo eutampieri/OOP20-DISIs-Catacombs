@@ -235,7 +235,7 @@ public abstract class Game implements Runnable {
         int updates;
         final int maxUpdates = 5;
 
-        double tickPerTime = 1f / fps;
+        final double tickPerTime = 1f / fps;
         lastTime = System.nanoTime();
         lastUpdateTime = System.nanoTime();
         timer = 0;
