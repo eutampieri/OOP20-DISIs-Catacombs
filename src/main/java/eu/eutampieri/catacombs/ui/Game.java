@@ -16,9 +16,7 @@ import javax.swing.*;
 
 public abstract class Game implements Runnable {
 
-    protected static final double FPS_CONST = 1_000_000_000d;
-    protected static final float DELTA_CONST = 1_000_000_000.0f;
-    protected static final float DELTA_MIN = 0.016f;
+    protected static final long DELTA_MIN = 16_000_000;
     protected static final float THREAD_SLEEP_CONST = 1_000_000f;
 
     public static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
@@ -53,7 +51,7 @@ public abstract class Game implements Runnable {
      * @param delta gap time from previous render
      */
 
-    public abstract void update(float delta);
+    public abstract void update(long delta);
 
     public abstract void render();
 
@@ -238,7 +236,7 @@ public abstract class Game implements Runnable {
         int updates;
         final int maxUpdates = 5;
 
-        tickPerTime = FPS_CONST / fps;
+        tickPerTime = 1 / fps;
         lastTime = System.nanoTime();
         lastUpdateTime = System.nanoTime();
         timer = 0;
@@ -248,8 +246,8 @@ public abstract class Game implements Runnable {
             timer += now - lastTime;
             updates = 0;
             while ((now - lastUpdateTime) >= tickPerTime) {
-                float delta;
-                delta = (now - lastUpdateTime) / DELTA_CONST;
+                long delta;
+                delta = (now - lastUpdateTime);
                 KEY_MANAGER.update(delta);
                 delta = delta <= DELTA_MIN ? delta : DELTA_MIN;
                 update(delta);
