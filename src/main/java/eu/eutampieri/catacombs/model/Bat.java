@@ -49,7 +49,7 @@ public final class Bat extends Entity {
     }
 
     @Override
-    public void update(final float delta) {
+    public void update(final long delta) {
         if (isMoving) {
             delayCounter += delta;
             if (delayCounter >= MOVE_DELAY) {

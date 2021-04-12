@@ -48,7 +48,7 @@ public final class Slime extends Entity {
     }
 
     @Override
-    public void update(final float delta) {
+    public void update(final long delta) {
         resetMovement();
         follow();
         super.update(delta);

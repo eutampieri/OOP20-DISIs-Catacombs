@@ -46,7 +46,7 @@ public class World {
         this.player = player;
     }
 
-    public void update(final float delta)  {
+    public void update(final long delta)  {
         player.update(delta);
 
         for (int i = 0; i < this.entities.size(); i++) {
