@@ -227,7 +227,6 @@ public abstract class Game implements Runnable {
     @Override
     public final void run() {
         create();
-        double tickPerTime;
         long lastTime;
         long lastUpdateTime;
         long now;
@@ -236,7 +235,7 @@ public abstract class Game implements Runnable {
         int updates;
         final int maxUpdates = 5;
 
-        tickPerTime = 1 / fps;
+        double tickPerTime = 1f / fps;
         lastTime = System.nanoTime();
         lastUpdateTime = System.nanoTime();
         timer = 0;
@@ -247,9 +246,9 @@ public abstract class Game implements Runnable {
             updates = 0;
             while ((now - lastUpdateTime) >= tickPerTime) {
                 long delta;
-                delta = (now - lastUpdateTime);
+                delta = now - lastUpdateTime;
                 KEY_MANAGER.update(delta);
-                delta = delta <= DELTA_MIN ? delta : DELTA_MIN;
+                delta = Math.min(delta, DELTA_MIN);
                 update(delta);
                 lastUpdateTime += tickPerTime;
                 updates++;
