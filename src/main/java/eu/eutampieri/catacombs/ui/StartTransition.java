@@ -19,7 +19,7 @@ public class StartTransition extends State{
     }
 
     @Override
-    public void update(final float delta) {
+    public void update(final int delta) {
         this.waitTimer += delta;
 
         if (this.waitTimer >= WAIT_TIME) {

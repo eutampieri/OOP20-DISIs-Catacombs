@@ -34,7 +34,7 @@ public abstract class GameObject {
      * 
      * @param delta time between updates
      */
-    public abstract void update(float delta);
+    public abstract void update(int delta);
 
     /**
      * Renders object with the corresponding sprite.

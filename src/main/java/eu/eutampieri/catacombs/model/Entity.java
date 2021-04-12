@@ -84,7 +84,7 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      * @param delta time between updates
      */
     @Override
-    public void update(final float delta) {
+    public void update(final int delta) {
         move();
         updateSpriteLocation();
     }
