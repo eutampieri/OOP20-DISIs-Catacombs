@@ -21,7 +21,7 @@ public class LogicMenuImpl implements LogicMenu {
 
     @Override
     public void start() {
-        this.game.start();
+        this.game.startGame();
     }
 
     @Override

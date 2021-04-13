@@ -27,7 +27,7 @@ public class GameState extends State {
     }
 
     @Override
-    public void update(final float delta){
+    public void update(final long delta){
         if(Game.KEY_MANAGER.isKeyJustPressed(KeyEvent.VK_ESCAPE)) {
             this.paused = !paused;
         }

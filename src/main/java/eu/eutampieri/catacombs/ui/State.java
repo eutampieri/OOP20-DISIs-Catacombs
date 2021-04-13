@@ -27,7 +27,7 @@ public abstract class State {
      * @param delta gap time from the previous render
      */
 
-    public abstract void update(float delta);
+    public abstract void update(long delta);
 
     /**
      *
