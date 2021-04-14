@@ -29,7 +29,7 @@ public final class MenuState extends State {
     }
 
     @Override
-    public void update(final float delta) {
+    public void update(final long delta) {
         this.logic.selectOption();
     }
 
