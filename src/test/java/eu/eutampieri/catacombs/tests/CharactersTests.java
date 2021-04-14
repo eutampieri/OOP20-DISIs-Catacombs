@@ -14,6 +14,7 @@ class CharactersTests {
     private final static TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
     private final static Bat BAT = new Bat(1, 1, TILE_MAP);
     private final static Slime SLIME = new Slime(1, 1, TILE_MAP);
+    private final static Boss BOSS = new Boss(5, 5, TILE_MAP);
     private final static HealthModifier ONE_HP_SUB = new Gun(1, "1xp", 1, 1, 1000);
 
     @Test
@@ -35,6 +36,7 @@ class CharactersTests {
     void testEnemyNames() {
         assertEquals("Slime", SLIME.getName());
         assertEquals("Bat", BAT.getName());
+        assertEquals("Boss", BOSS.getName());
     }
 
     @Test
@@ -67,6 +69,8 @@ class CharactersTests {
         assertEquals(BAT.getHitBox().getWidth(), BAT.getWidth());
         assertEquals(SLIME.getHitBox().getHeight(), SLIME.getHeight());
         assertEquals(SLIME.getHitBox().getWidth(), SLIME.getWidth());
+        assertEquals(BOSS.getHitBox().getHeight(), BOSS.getHeight());
+        assertEquals(BOSS.getHitBox().getWidth(), BOSS.getWidth());
     }
 
     @Test
@@ -84,6 +88,12 @@ class CharactersTests {
     @Test
     void testBatUpdate() {
         BAT.update(10);
+        // TODO implement checks
+    }
+
+    @Test
+    void testBossUpdate() {
+        BOSS.update(10);
         // TODO implement checks
     }
 }
