@@ -17,7 +17,7 @@ public final class Main {
         gc.setGameHeight(480);
 
         gc.setScaling(true);
-        gc.setResizeable(true);
+        gc.setResizeable(false);
 
         gc.setTitle("CATACOMBS");
 
