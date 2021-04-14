@@ -1,7 +1,5 @@
 package eu.eutampieri.catacombs.tests;
 
-
-
 import eu.eutampieri.catacombs.ui.utils.ImageLoader;
 import eu.eutampieri.catacombs.ui.utils.TextLoader;
 import org.junit.jupiter.api.Test;

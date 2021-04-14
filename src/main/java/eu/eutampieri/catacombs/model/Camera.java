@@ -21,7 +21,7 @@ public final class Camera {
      * Centers the camera onto a specified Entity.
      * @param e Entity to center the camera upon
      */
-    public void centerOnEntity(final Entity e) {
+    public void centerOnEntity(final GameObject e) {
         xOffset = e.getPosX() - (game.getGameWidth() / 2);
         yOffset = e.getPosY() - (game.getGameHeight() / 2);
         if (xOffset < 0) {
@@ -34,5 +34,13 @@ public final class Camera {
         } else if (yOffset > mapHeight - game.getGameWidth()) {
             yOffset = mapHeight - game.getGameHeight();
         }
+    }
+
+    public int getXOffset() {
+        return xOffset;
+    }
+
+    public int getYOffset() {
+        return yOffset;
     }
 }
