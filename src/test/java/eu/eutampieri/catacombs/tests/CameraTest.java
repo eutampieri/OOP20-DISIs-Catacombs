@@ -17,17 +17,21 @@ class CameraTest {
 
     @Test
     void testCameraPosition() {
-        final Camera CAMERA = new Camera(0, 0, TILE_MAP.width(), TILE_MAP.height());
-        final int initialX = CAMERA.getXOffset();
-        final int initialY = CAMERA.getYOffset();
+        final Camera camera = new Camera(0, 0, TILE_MAP.width(), TILE_MAP.height());
+        final int initialX = camera.getXOffset();
+        final int initialY = camera.getYOffset();
         assertEquals(initialX, 0);
         assertEquals(initialY, 0);
-        CAMERA.centerOnEntity(BAT);
-        assertEquals(initialX, CAMERA.getXOffset());
-        assertEquals(initialY, CAMERA.getYOffset());
-        CAMERA.centerOnEntity(PLAYER1);
-        assertNotEquals(initialX, CAMERA.getXOffset());
-        assertNotEquals(initialY, CAMERA.getYOffset());
+        camera.centerOnEntity(BAT);
+        assertNotEquals(initialX, camera.getXOffset());
+        assertNotEquals(initialY, camera.getYOffset());
+        assertEquals(camera.getXOffset(), BAT.getPosX());
+        assertEquals(camera.getYOffset(), BAT.getPosY());
+        camera.centerOnEntity(PLAYER1);
+        assertNotEquals(initialX, camera.getXOffset());
+        assertNotEquals(initialY, camera.getYOffset());
+        assertEquals(camera.getXOffset(), PLAYER1.getPosX());
+        assertEquals(camera.getYOffset(), PLAYER1.getPosY());
     }
 
     // TODO add more camera tests

@@ -1,5 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
+import eu.eutampieri.catacombs.ui.Game;
 import eu.eutampieri.catacombs.ui.GameConfiguration;
 
 public final class Camera {
@@ -15,6 +16,7 @@ public final class Camera {
         this.yOffset = yOffset;
         this.mapWidth = mapWidth; //should be multiplied by tile dimensions
         this.mapHeight = mapHeight;
+        this.game = new GameConfiguration();
     }
 
     /**
