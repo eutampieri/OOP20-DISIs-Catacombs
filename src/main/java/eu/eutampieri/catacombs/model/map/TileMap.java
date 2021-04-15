@@ -6,4 +6,6 @@ public interface TileMap {
     int width();
 
     Tile at(int x, int y);
+
+    boolean canSpawnAt(int x, int y);
 }

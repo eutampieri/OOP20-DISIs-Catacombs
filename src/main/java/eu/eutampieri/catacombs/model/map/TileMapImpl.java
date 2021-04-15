@@ -28,4 +28,10 @@ public final class TileMapImpl implements TileMap {
     public Tile[][] getMap() {
         return map.clone();
     }
+
+    @Override
+    public boolean canSpawnAt(final int x, final int y) {
+        return this.at(x, y).isWalkable() && this.at(x - 1, y).isWalkable() && this.at(x + 1, y).isWalkable()
+                && this.at(x, y - 1).isWalkable() && this.at(x, y + 1).isWalkable();
+    }
 }
