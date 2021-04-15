@@ -55,6 +55,17 @@ class MapTests {
     }
 
     @Test
+    public void testSpawnPoints() {
+        final TileMap tm = new TileMapFactoryImpl().empty(8, 8);
+        assertEquals(Tile.FLOOR, tm.at(1, 1));
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
+                assertEquals(tm.canSpawnAt(x, y), y > 1 && x > 1 && y < 6 && x < 6);
+            }
+        }
+    }
+
+    @Test
     public final void testOutOfBounds() {
         final TileMap tm = (TileMapImpl) new TileMapFactoryImpl().empty(5, 5);
         assertEquals(Tile.VOID, tm.at(-1, -1));
