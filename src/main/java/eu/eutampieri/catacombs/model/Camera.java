@@ -1,13 +1,12 @@
 package eu.eutampieri.catacombs.model;
 
-import eu.eutampieri.catacombs.ui.Game;
 import eu.eutampieri.catacombs.ui.GameConfiguration;
 
 public final class Camera {
 
     private int xOffset;
     private int yOffset;
-    private GameConfiguration game;
+    private final GameConfiguration game;
 
     private final int mapWidth, mapHeight;
 
@@ -38,10 +37,18 @@ public final class Camera {
         }
     }
 
+    /**
+     *
+     * @return Camera x offset.
+     */
     public int getXOffset() {
         return xOffset;
     }
 
+    /**
+     *
+     * @return Camera y offset.
+     */
     public int getYOffset() {
         return yOffset;
     }
