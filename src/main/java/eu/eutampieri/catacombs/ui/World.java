@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class World {
 
@@ -45,21 +46,24 @@ public class World {
         this.player = player;
     }
 
+    private List<GameObject> getAllEntitiesExcept(final GameObject e) {
+        return Stream.concat(
+                this.entities.stream(),
+                Stream.of(this.player)
+        )
+                .filter((x) -> !e.equals(x))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     public void update(final long delta) {
         player.update(delta,
-                this.entities
-                        .stream()
-                        .filter((x) -> !player.equals(x))
-                        .collect(Collectors.toUnmodifiableList())
+                this.getAllEntitiesExcept(this.player)
         );
 
         for (final GameObject entity : this.entities) {
             entity.update(
                     delta,
-                    this.entities
-                            .stream()
-                            .filter((x) -> !entity.equals(x))
-                            .collect(Collectors.toUnmodifiableList())
+                    this.getAllEntitiesExcept(entity)
             );
         }
         this.entities = this.entities
