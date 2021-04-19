@@ -77,6 +77,16 @@ public final class Bat extends Entity {
     }
 
     @Override
+    public boolean canPerform(Action action) {
+        switch (action) {
+            case MOVE:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    @Override
     public int getHealth() {
         return this.hp;
     }

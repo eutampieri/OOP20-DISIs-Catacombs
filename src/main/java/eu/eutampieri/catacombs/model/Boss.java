@@ -69,6 +69,17 @@ public final class Boss extends Entity {
         weapon.update(delta);
     }
 
+    @Override
+    public boolean canPerform(Action action) {
+        switch (action) {
+            case IDLE:
+            case MOVE:
+                return true;
+            default:
+                return false;
+        }
+    }
+
     /**
      * Makes the boss change facing direction.
      */
