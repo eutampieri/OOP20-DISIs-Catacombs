@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
+import org.apache.commons.lang3.tuple.Pair;
 
 public final class Boss extends Entity {
 
@@ -67,6 +68,11 @@ public final class Boss extends Entity {
         super.update(delta);
         updateRadarBoxLocation();
         weapon.update(delta);
+    }
+
+    @Override
+    public Pair<Action, Direction> getActionwithDirection() {
+        return Pair.of(Action.MOVE, this.face);
     }
 
     @Override

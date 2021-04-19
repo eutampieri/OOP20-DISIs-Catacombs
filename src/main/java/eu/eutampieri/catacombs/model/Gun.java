@@ -20,10 +20,4 @@ public class Gun extends SimpleWeapon {
         // TODO Auto-generated method stub
     }
 
-    @Override
-    public Pair<Action, Direction> render() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }

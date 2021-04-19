@@ -91,11 +91,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
         updateSpriteLocation();
     }
 
-    @Override
-    public Pair<Action, Direction> render() {
-        return Pair.of(Action.MOVE, this.face);
-    }
-
     /**
      * Move the Entity based on its speed and direction facing.
      */
@@ -215,5 +210,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     public CollisionBox getHitBox() {
         return hitBox;
     }
+
+    /**
+     * Renders object with the corresponding sprite.
+     */
+    public abstract Pair<Action, Direction> getActionwithDirection();
 
 }

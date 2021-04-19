@@ -50,7 +50,7 @@ public class Player extends Entity {
     }
 
     @Override
-    public Pair<Action, Direction> render() {
+    public Pair<Action, Direction> getActionwithDirection() {
         // TODO Auto-generated method stub
         return Pair.of(Action.MOVE, Direction.RIGHT);
     }

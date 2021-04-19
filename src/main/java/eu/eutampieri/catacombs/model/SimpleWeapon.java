@@ -89,12 +89,6 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
         // TODO Auto-generated method stub
     }
 
-    @Override
-    public Pair<Action, Direction> render() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     /**
      * Getter for weapon damage.
      * 

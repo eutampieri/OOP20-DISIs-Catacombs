@@ -39,11 +39,6 @@ public abstract class GameObject {
     public abstract void update(long delta);
 
     /**
-     * Renders object with the corresponding sprite.
-     */
-    public abstract Pair<Action, Direction> render();
-
-    /**
      * Getter for object X position.
      * 
      * @return Object X position
