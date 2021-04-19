@@ -37,7 +37,7 @@ public final class Slime extends Entity {
      * @param tileMap Tile map in which Slime is spawned
      */
     public Slime(final int x, final int y, final TileMap tileMap) {
-        super(x, y, tileMap, EntityKind.ENEMY);
+        super(x, y, tileMap, GameObjectType.ENEMY);
         setHeight(HEIGHT);
         setWidth(WIDTH);
         setSpeed(MOVEMENT_SPEED);

@@ -43,8 +43,8 @@ class CharactersTests {
 
     @Test
     void testEnemyEntityKind() {
-        assertEquals(EntityKind.ENEMY, SLIME.getKind());
-        assertEquals(EntityKind.ENEMY, SLIME.getKind());
+        assertEquals(GameObjectType.ENEMY, SLIME.getKind());
+        assertEquals(GameObjectType.ENEMY, SLIME.getKind());
     }
 
     @Test

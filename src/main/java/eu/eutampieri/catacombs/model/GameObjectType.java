@@ -1,6 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
-public enum EntityKind {
+public enum GameObjectType {
     /**
      * The player, i.e. the person who is playing the game.
      */

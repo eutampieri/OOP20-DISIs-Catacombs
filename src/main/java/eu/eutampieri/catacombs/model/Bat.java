@@ -35,7 +35,7 @@ public final class Bat extends Entity {
      * @param tileMap Tile map in which Bat is spawned
      */
     public Bat(final int x, final int y, final TileMap tileMap) {
-        super(x, y, tileMap, EntityKind.ENEMY);
+        super(x, y, tileMap, GameObjectType.ENEMY);
         setHeight(HEIGHT);
         setWidth(WIDTH);
         setSpeed(MOVEMENT_SPEED);

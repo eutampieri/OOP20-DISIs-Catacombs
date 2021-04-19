@@ -12,7 +12,7 @@ public class Player extends Entity {
     private final String name;
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
-        super(x, y, tm, EntityKind.PLAYER);
+        super(x, y, tm, GameObjectType.PLAYER);
         setSpeed(BASE_MOVEMENT_SPEED);
         this.setHealth(MAX_BASE_HP);
         this.name = name;

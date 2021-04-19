@@ -14,7 +14,7 @@ public abstract class GameObject {
     /**
      * Entity kind.
      */
-    protected EntityKind kind;
+    protected GameObjectType kind;
     /**
      * Object speed.
      */
@@ -25,7 +25,7 @@ public abstract class GameObject {
      * @param y  object Y position
      * @param kind Entity Kind @see eu.eutampieri.catacombs.model.EntityKind
      */
-    public GameObject(final int x, final int y, final EntityKind kind) {
+    public GameObject(final int x, final int y, final GameObjectType kind) {
         this.setPosX(x);
         this.setPosY(y);
         this.kind = kind;
@@ -136,7 +136,7 @@ public abstract class GameObject {
      * 
      * @return Entity Kind
      */
-    public EntityKind getKind() {
+    public GameObjectType getKind() {
         return kind;
     }
 

@@ -56,7 +56,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      * @param magazine weapon's number of bullets (if -1 infinite)
      */
     SimpleWeapon(final int damage, final String name, final int fireRate, final int range, final int magazine) {
-        super(0, 0, EntityKind.WEAPON);
+        super(0, 0, GameObjectType.WEAPON);
         this.damage = damage;
         this.name = name;
         this.fireRate = fireRate;
