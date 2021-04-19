@@ -48,8 +48,8 @@ public class World<T extends GameObject & Animatable> {
     public void update(final long delta) {
         player.update(delta);
 
-        for (int i = 0; i < this.entities.size(); i++) {
-            this.entities.get(i).update(delta);
+        for (T entity : this.entities) {
+            entity.update(delta);
         }
     }
 
@@ -76,10 +76,9 @@ public class World<T extends GameObject & Animatable> {
 
         // slimes
 
-        for (int i = 0; i < entities.size(); i++) {
-            T currentEntity = this.entities.get(i);
-            Pair<Action, Direction> action = currentEntity.render();
-            BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
+        for (final T currentEntity : entities) {
+            final Pair<Action, Direction> action = currentEntity.render();
+            final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
             g2.drawImage(img, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
         }
 

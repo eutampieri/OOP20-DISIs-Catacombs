@@ -63,12 +63,8 @@ public final class Slime extends Entity {
     }
 
     @Override
-    public boolean canPerform(Action action) {
-        if(action == Action.MOVE) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean canPerform(final Action action) {
+        return action == Action.MOVE;
     }
 
     @Override

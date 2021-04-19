@@ -33,7 +33,7 @@ public enum Action {
         }
     }
 
-    public static Action fromString(String name) throws IllegalArgumentException {
+    public static Action fromString(final String name) {
         switch (name) {
             case "move":
                 return MOVE;
@@ -48,6 +48,7 @@ public enum Action {
         }
     }
 
+    @Override
     public String toString() {
         switch (this) {
             case DIE:

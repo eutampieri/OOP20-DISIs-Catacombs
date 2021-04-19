@@ -70,7 +70,7 @@ public final class Boss extends Entity {
     }
 
     @Override
-    public boolean canPerform(Action action) {
+    public boolean canPerform(final Action action) {
         switch (action) {
             case IDLE:
             case MOVE:

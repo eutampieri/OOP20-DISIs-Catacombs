@@ -17,6 +17,7 @@ public enum Direction {
      * Entity is facing up.
      */
     UP;
+    @Override
     public final String toString() {
         switch (this) {
             case DOWN:

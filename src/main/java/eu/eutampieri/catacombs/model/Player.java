@@ -1,7 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
-import eu.eutampieri.catacombs.ui.gamefx.Animatable;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class Player extends Entity {
@@ -57,7 +56,7 @@ public class Player extends Entity {
     }
 
     @Override
-    public boolean canPerform(Action action) {
+    public boolean canPerform(final Action action) {
         switch (action) {
             case ATTACK:
             case MOVE:

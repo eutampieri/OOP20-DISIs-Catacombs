@@ -39,7 +39,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @param y       Y spawn position
      * @param tileMap Tile map in which Entity is spawned
      */
-    public Entity(final int x, final int y, final TileMap tileMap, EntityKind kind) {
+    public Entity(final int x, final int y, final TileMap tileMap, final EntityKind kind) {
         super(x, y, kind);
         this.tileMap = tileMap;
     }
@@ -216,5 +216,4 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
         return hitBox;
     }
 
-    public abstract boolean canPerform(Action action);
 }
