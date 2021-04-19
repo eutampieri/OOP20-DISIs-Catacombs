@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
+import org.apache.commons.lang3.tuple.Pair;
 
 public final class Boss extends Entity {
 
@@ -29,7 +30,7 @@ public final class Boss extends Entity {
      * @param tileMap Tile map in which Entity is spawned
      */
     public Boss(final int x, final int y, final TileMap tileMap) {
-        super(x, y, tileMap);
+        super(x, y, tileMap, EntityKind.BOSS);
         setHeight(HEIGHT);
         setWidth(WIDTH);
         setSpeed(MOVEMENT_SPEED);
@@ -67,6 +68,22 @@ public final class Boss extends Entity {
         super.update(delta);
         updateRadarBoxLocation();
         weapon.update(delta);
+    }
+
+    @Override
+    public Pair<Action, Direction> getActionwithDirection() {
+        return Pair.of(Action.MOVE, this.face);
+    }
+
+    @Override
+    public boolean canPerform(final Action action) {
+        switch (action) {
+            case IDLE:
+            case MOVE:
+                return true;
+            default:
+                return false;
+        }
     }
 
     /**

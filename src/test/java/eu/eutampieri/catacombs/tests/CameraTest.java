@@ -13,7 +13,7 @@ class CameraTest {
 
     private final static TileMap TILE_MAP = new TileMapFactoryImpl().empty(100, 100);
     private final static Bat BAT = new Bat(15, 15, TILE_MAP);
-    private final static Player PLAYER1 = new Player(65, 65, "Player1");
+    private final static Player PLAYER1 = new Player(65, 65, "Player1", TILE_MAP);
 
     @Test
     void testCameraPosition() {

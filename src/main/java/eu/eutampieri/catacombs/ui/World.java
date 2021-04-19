@@ -1,13 +1,14 @@
 package eu.eutampieri.catacombs.ui;
 
-import eu.eutampieri.catacombs.model.GameObject;
-import eu.eutampieri.catacombs.model.Player;
+import eu.eutampieri.catacombs.model.*;
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
-import eu.eutampieri.catacombs.model.Camera;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 public class World {
@@ -28,7 +29,7 @@ public class World {
         this.tileMap = tileMap;
         camera = new Camera(0, 0, tileMap.width() * 16, tileMap.height() * 16);
         this.entities = entities;
-        this.player = new Player(1000, 1000, "");
+        this.player = new Player(1000, 1000, "", this.tileMap);
     }
 
     public TileMap getTileMap() {
@@ -46,8 +47,8 @@ public class World {
     public void update(final long delta) {
         player.update(delta);
 
-        for (int i = 0; i < this.entities.size(); i++) {
-            this.entities.get(i).update(delta);
+        for (final GameObject entity : this.entities) {
+            entity.update(delta);
         }
     }
 
@@ -73,10 +74,17 @@ public class World {
         // this.tileMap.render(g2, camera);
 
         // slimes
-        /*
-         * for (int i = 0; i < entities.size(); i++) { // TODO entities.render
-         * parameters // this.entities.get(i).render(g2, camera); }
-         */
+
+        for (final GameObject currentObj : entities) {
+            try {
+                Entity currentEntity = (Entity) currentObj;
+                final Pair<Action, Direction> action = currentEntity.getActionwithDirection();
+                final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
+                g2.drawImage(img, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
+            } catch (ClassCastException e) {
+                // Treat it as a game object
+            }
+        }
 
         // TODO player.render parameters
         // this.player.render(g2, camera);

@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
+import org.apache.commons.lang3.tuple.Pair;
 
 /**
  * Bat class - the bat is an enemy that mostly stands still and fires bullets.
@@ -32,7 +33,7 @@ public final class Bat extends Entity {
      * @param tileMap Tile map in which Bat is spawned
      */
     public Bat(final int x, final int y, final TileMap tileMap) {
-        super(x, y, tileMap);
+        super(x, y, tileMap, EntityKind.ENEMY);
         setHeight(HEIGHT);
         setWidth(WIDTH);
         setSpeed(MOVEMENT_SPEED);
@@ -71,9 +72,21 @@ public final class Bat extends Entity {
     }
 
     @Override
-    public void render() {
+    public Pair<Action, Direction> getActionwithDirection() {
         // TODO Auto-generated method stub
 
+        return null;
+    }
+
+    @Override
+    public boolean canPerform(final Action action) {
+        switch (action) {
+            case ATTACK:
+            case MOVE:
+                return true;
+            default:
+                return false;
+        }
     }
 
     @Override

@@ -1,5 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 public class Gun extends SimpleWeapon {
     /**
      * @param damage   Weapon damage
@@ -15,11 +17,6 @@ public class Gun extends SimpleWeapon {
 
     @Override
     public void update(final long delta) {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void render() {
         // TODO Auto-generated method stub
     }
 
