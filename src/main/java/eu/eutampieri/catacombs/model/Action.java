@@ -47,4 +47,19 @@ public enum Action {
                 throw new IllegalArgumentException();
         }
     }
+
+    public String toString() {
+        switch (this) {
+            case DIE:
+                return "die";
+            case IDLE:
+                return "idle";
+            case ATTACK:
+                return "attack";
+            case MOVE:
+                return "move";
+            default:
+                throw new IllegalStateException();
+        }
+    }
 }
