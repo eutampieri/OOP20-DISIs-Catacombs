@@ -48,7 +48,7 @@ public class World<T extends GameObject & Animatable> {
     public void update(final long delta) {
         player.update(delta);
 
-        for (T entity : this.entities) {
+        for (final T entity : this.entities) {
             entity.update(delta);
         }
     }
