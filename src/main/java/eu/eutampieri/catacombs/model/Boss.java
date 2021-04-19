@@ -29,7 +29,7 @@ public final class Boss extends Entity {
      * @param tileMap Tile map in which Entity is spawned
      */
     public Boss(final int x, final int y, final TileMap tileMap) {
-        super(x, y, tileMap);
+        super(x, y, tileMap, EntityKind.BOSS);
         setHeight(HEIGHT);
         setWidth(WIDTH);
         setSpeed(MOVEMENT_SPEED);

@@ -1,16 +1,17 @@
 package eu.eutampieri.catacombs.model;
 
+import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.Animatable;
 import org.apache.commons.lang3.tuple.Pair;
 
-public class Player extends GameObject implements LivingCharacter, Animatable {
+public class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 2;
     private static final int MAX_BASE_HP = 100;
     private int health;
     private final String name;
 
-    public Player(final int x, final int y, final String name) {
-        super(x, y, EntityKind.PLAYER);
+    public Player(final int x, final int y, final String name, final TileMap tm) {
+        super(x, y, tm, EntityKind.PLAYER);
         setSpeed(BASE_MOVEMENT_SPEED);
         this.setHealth(MAX_BASE_HP);
         this.name = name;

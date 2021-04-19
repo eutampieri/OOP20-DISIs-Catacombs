@@ -2,12 +2,13 @@ package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
+import eu.eutampieri.catacombs.ui.gamefx.Animatable;
 import org.apache.commons.lang3.tuple.Pair;
 
 /**
  * Abstract class for every living game Entity.
  */
-public abstract class Entity extends GameObject implements LivingCharacter {
+public abstract class Entity extends GameObject implements LivingCharacter, Animatable {
     /**
      * Booleans to keep track of face direction.
      */
@@ -38,8 +39,8 @@ public abstract class Entity extends GameObject implements LivingCharacter {
      * @param y       Y spawn position
      * @param tileMap Tile map in which Entity is spawned
      */
-    public Entity(final int x, final int y, final TileMap tileMap) {
-        super(x, y, EntityKind.ENEMY);
+    public Entity(final int x, final int y, final TileMap tileMap, EntityKind kind) {
+        super(x, y, kind);
         this.tileMap = tileMap;
     }
 

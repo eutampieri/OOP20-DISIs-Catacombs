@@ -30,7 +30,7 @@ public class World<T extends GameObject & Animatable> {
         this.tileMap = tileMap;
         camera = new Camera(0, 0, tileMap.width() * 16, tileMap.height() * 16);
         this.entities = entities;
-        this.player = new Player(1000, 1000, "");
+        this.player = new Player(1000, 1000, "", this.tileMap);
     }
 
     public TileMap getTileMap() {

@@ -20,14 +20,14 @@ class CharactersTests {
     @Test
     void testPlayerName() {
         final String name = "John Appleseed";
-        final Player p = new Player(0, 0, name);
+        final Player p = new Player(0, 0, name, TILE_MAP);
         assertEquals(p.getName(), name);
     }
 
     @Test
     void testPlayerHealth() {
         final String name = "John Appleseed";
-        final Player p = new Player(0, 0, name);
+        final Player p = new Player(0, 0, name, TILE_MAP);
         assertEquals(p.getHealth(), 100);
         assertTrue(p.isAlive());
     }
