@@ -213,4 +213,6 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     public CollisionBox getHitBox() {
         return hitBox;
     }
+
+    public abstract boolean canPerform(Action action);
 }
