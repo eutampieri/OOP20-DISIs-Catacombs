@@ -21,7 +21,7 @@ public class World {
     // TODO Camera
     private final Camera camera;
 
-    private final List<GameObject> entities;
+    private List<GameObject> entities;
 
     private Player player;
 
@@ -62,6 +62,10 @@ public class World {
                             .collect(Collectors.toUnmodifiableList())
             );
         }
+        this.entities = this.entities
+                .stream()
+                .filter((x) -> !x.isMarkedForDeletion())
+                .collect(Collectors.toList());
     }
 
     public void render(final Graphics2D g2) {
