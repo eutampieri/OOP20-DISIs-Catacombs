@@ -14,13 +14,19 @@ public enum Action {
     /**
      * When a character dies.
      */
-    DIE;
+    DIE,
+    /**
+     * When a character stands still
+     */
+    IDLE;
 
     public List<Direction> getDirections() {
         switch (this) {
             case ATTACK:
             case MOVE:
                 return List.of(Direction.DOWN, Direction.LEFT, Direction.UP, Direction.RIGHT);
+            case IDLE:
+                return List.of(Direction.LEFT, Direction.RIGHT);
             case DIE:
             default:
                 return List.of();
@@ -35,6 +41,8 @@ public enum Action {
                 return ATTACK;
             case "die":
                 return DIE;
+            case "idle":
+                return IDLE;
             default:
                 throw new IllegalArgumentException();
         }
