@@ -56,15 +56,10 @@ public class World {
     }
 
     public void update(final long delta) {
-        player.update(delta,
-                this.getAllEntitiesExcept(this.player)
-        );
+        player.update(delta, this.getAllEntitiesExcept(this.player));
 
         for (final GameObject entity : this.entities) {
-            entity.update(
-                    delta,
-                    this.getAllEntitiesExcept(entity)
-            );
+            entity.update(delta, this.getAllEntitiesExcept(entity));
         }
         this.entities = this.entities
                 .stream()
