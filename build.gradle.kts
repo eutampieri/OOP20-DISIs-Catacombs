@@ -105,3 +105,10 @@ tasks.spotbugsMain {
         setStylesheet("fancy-hist.xsl")
     }
 }
+tasks.spotbugsTest {
+    reports.create("html") {
+        isEnabled = true
+        setStylesheet("fancy-hist.xsl")
+    }
+}
+
