@@ -3,6 +3,7 @@ package eu.eutampieri.catacombs.ui.gamefx;
 import eu.eutampieri.catacombs.model.Action;
 import eu.eutampieri.catacombs.model.Direction;
 import eu.eutampieri.catacombs.model.Entity;
+import eu.eutampieri.catacombs.model.GameObject;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -13,7 +14,7 @@ public final class AssetManagerProxy {
     private static String capitalize(String str) {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
-    public static List<BufferedImage> getFrames(Entity entity, Action action, Direction direction) {
+    public static <T extends GameObject & Animatable> List<BufferedImage> getFrames(T entity, Action action, Direction direction) {
         AssetManager am = AssetManager.getAssetManager();
         if(entity.canPerform(action)) {
             if(direction == null && action.getDirections().size() != 0) {

@@ -1,5 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 /**
  * Abstract class for every game object (ex: Player, enemies, items, ecc...).
  */
@@ -39,7 +41,7 @@ public abstract class GameObject {
     /**
      * Renders object with the corresponding sprite.
      */
-    public abstract void render();
+    public abstract Pair<Action, Direction> render();
 
     /**
      * Getter for object X position.

@@ -1,6 +1,9 @@
 package eu.eutampieri.catacombs.model;
 
-public class Player extends GameObject implements LivingCharacter {
+import eu.eutampieri.catacombs.ui.gamefx.Animatable;
+import org.apache.commons.lang3.tuple.Pair;
+
+public class Player extends GameObject implements LivingCharacter, Animatable {
     private static final int BASE_MOVEMENT_SPEED = 2;
     private static final int MAX_BASE_HP = 100;
     private int health;
@@ -47,9 +50,21 @@ public class Player extends GameObject implements LivingCharacter {
     }
 
     @Override
-    public void render() {
+    public Pair<Action, Direction> render() {
         // TODO Auto-generated method stub
+        return Pair.of(Action.MOVE, Direction.RIGHT);
+    }
 
+    @Override
+    public boolean canPerform(Action action) {
+        switch (action) {
+            case ATTACK:
+            case MOVE:
+            case DIE:
+                return true;
+            default:
+                return false;
+        }
     }
 
     /**

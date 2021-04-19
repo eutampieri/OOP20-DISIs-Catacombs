@@ -1,16 +1,18 @@
 package eu.eutampieri.catacombs.ui;
 
-import eu.eutampieri.catacombs.model.GameObject;
-import eu.eutampieri.catacombs.model.Player;
+import eu.eutampieri.catacombs.model.*;
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
+import eu.eutampieri.catacombs.ui.gamefx.Animatable;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
-import eu.eutampieri.catacombs.model.Camera;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.List;
 
-public class World {
+public class World<T extends GameObject & Animatable> {
 
     // private final BufferedImage background;
     private final TileMap tileMap;
@@ -19,11 +21,11 @@ public class World {
     // TODO Camera
     private final Camera camera;
 
-    private final List<GameObject> entities;
+    private final List<T> entities;
 
     private Player player;
 
-    public World(final TileMap tileMap, final List<GameObject> entities) {
+    public World(final TileMap tileMap, final List<T> entities) {
         // this.background = am.getImage("background");
         this.tileMap = tileMap;
         camera = new Camera(0, 0, tileMap.width() * 16, tileMap.height() * 16);
@@ -73,10 +75,13 @@ public class World {
         // this.tileMap.render(g2, camera);
 
         // slimes
-        /*
-         * for (int i = 0; i < entities.size(); i++) { // TODO entities.render
-         * parameters // this.entities.get(i).render(g2, camera); }
-         */
+
+        for (int i = 0; i < entities.size(); i++) {
+            T currentEntity = this.entities.get(i);
+            Pair<Action, Direction> action = currentEntity.render();
+            BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
+            g2.drawImage(img, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
+        }
 
         // TODO player.render parameters
         // this.player.render(g2, camera);

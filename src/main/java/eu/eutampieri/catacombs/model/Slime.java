@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
+import org.apache.commons.lang3.tuple.Pair;
 
 /**
  * Slime class - the slime is an enemy that walks toward the targeted character
@@ -56,8 +57,9 @@ public final class Slime extends Entity {
     }
 
     @Override
-    public void render() {
+    public Pair<Action, Direction> render() {
         // TODO Auto-generated method stub
+        return null;
     }
 
     @Override

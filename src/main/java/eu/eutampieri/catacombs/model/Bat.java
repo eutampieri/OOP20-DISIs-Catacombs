@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
+import org.apache.commons.lang3.tuple.Pair;
 
 /**
  * Bat class - the bat is an enemy that mostly stands still and fires bullets.
@@ -71,9 +72,10 @@ public final class Bat extends Entity {
     }
 
     @Override
-    public void render() {
+    public Pair<Action, Direction> render() {
         // TODO Auto-generated method stub
 
+        return null;
     }
 
     @Override

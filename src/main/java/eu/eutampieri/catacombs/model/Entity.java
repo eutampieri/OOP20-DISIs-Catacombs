@@ -2,6 +2,7 @@ package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
+import org.apache.commons.lang3.tuple.Pair;
 
 /**
  * Abstract class for every living game Entity.
@@ -90,8 +91,8 @@ public abstract class Entity extends GameObject implements LivingCharacter {
     }
 
     @Override
-    public void render() {
-
+    public Pair<Action, Direction> render() {
+        return Pair.of(Action.MOVE, this.face);
     }
 
     /**
