@@ -3,6 +3,8 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.List;
+
 /**
  * Slime class - the slime is an enemy that walks toward the targeted character
  * and deals damage on contact (through hit boxes).
@@ -49,10 +51,10 @@ public final class Slime extends Entity {
     }
 
     @Override
-    public void update(final long delta) {
+    public void update(final long delta, final List<GameObject> others) {
         resetMovement();
         follow();
-        super.update(delta);
+        super.update(delta, others);
         updateRadarBoxLocation();
     }
 

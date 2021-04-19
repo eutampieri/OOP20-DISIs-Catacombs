@@ -50,4 +50,8 @@ public final class AssetManagerProxy {
         // We should never get here
         throw new IllegalStateException();
     }
+
+    public static BufferedImage getSprite(final GameObject entity) {
+        return null;
+    }
 }

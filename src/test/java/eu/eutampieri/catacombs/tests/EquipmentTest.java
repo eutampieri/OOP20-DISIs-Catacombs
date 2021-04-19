@@ -9,6 +9,8 @@ import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -46,9 +48,8 @@ class EquipmentTest {
     void testSimplePotionAfterWeapon() {
         final Player p = new Player(0, 0, "Dan", TILE_MAP);
         final int healthOnCreation = p.getHealth();
-        final HealthModifier w = DEFAULT_GUN;
         final HealthModifier o = new SimplePotion(20, "Potion20");
-        w.useOn(p);
+        DEFAULT_GUN.useOn(p);
         o.useOn(p);
         assertEquals(p.getHealth(), healthOnCreation - 21 + 20);
     }
@@ -77,7 +78,7 @@ class EquipmentTest {
     @Test
     void testGunUpdate() {
         // TODO check that the update produced the desired results
-        DEFAULT_GUN.update(100);
+        DEFAULT_GUN.update(100, List.of());
     }
 
     @Test

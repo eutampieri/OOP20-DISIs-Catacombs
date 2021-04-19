@@ -10,6 +10,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class World {
 
@@ -45,10 +46,21 @@ public class World {
     }
 
     public void update(final long delta) {
-        player.update(delta);
+        player.update(delta,
+                this.entities
+                        .stream()
+                        .filter((x) -> !player.equals(x))
+                        .collect(Collectors.toUnmodifiableList())
+        );
 
         for (final GameObject entity : this.entities) {
-            entity.update(delta);
+            entity.update(
+                    delta,
+                    this.entities
+                            .stream()
+                            .filter((x) -> !entity.equals(x))
+                            .collect(Collectors.toUnmodifiableList())
+            );
         }
     }
 
@@ -77,12 +89,14 @@ public class World {
 
         for (final GameObject currentObj : entities) {
             try {
-                Entity currentEntity = (Entity) currentObj;
+                final Entity currentEntity = (Entity) currentObj;
                 final Pair<Action, Direction> action = currentEntity.getActionwithDirection();
                 final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
                 g2.drawImage(img, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
             } catch (ClassCastException e) {
                 // Treat it as a game object
+                final BufferedImage img = AssetManagerProxy.getSprite(currentObj);
+                g2.drawImage(img, null, currentObj.getPosX() - camera.getXOffset(), currentObj.getPosY() - camera.getYOffset());
             }
         }
 

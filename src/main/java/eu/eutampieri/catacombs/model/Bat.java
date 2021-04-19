@@ -3,6 +3,8 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.List;
+
 /**
  * Bat class - the bat is an enemy that mostly stands still and fires bullets.
  */
@@ -50,7 +52,7 @@ public final class Bat extends Entity {
     }
 
     @Override
-    public void update(final long delta) {
+    public void update(final long delta, final List<GameObject> others) {
         if (isMoving) {
             delayCounter += delta;
             if (delayCounter >= MOVE_DELAY) {
@@ -66,9 +68,9 @@ public final class Bat extends Entity {
                 changeDirection();
             }
         }
-        super.update(delta);
+        super.update(delta, others);
         updateRadarBoxLocation();
-        weapon.update(delta);
+        weapon.update(delta, others);
     }
 
     @Override

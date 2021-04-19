@@ -1,7 +1,8 @@
 package eu.eutampieri.catacombs.model;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.List;
 
 /**
  * A simple weapon that subtracts a given value from a player's health.
@@ -85,7 +86,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      * @param delta time between updates
      */
     @Override
-    public void update(final long delta) {
+    public void update(final long delta, final List<GameObject> others) {
         // TODO Auto-generated method stub
     }
 
