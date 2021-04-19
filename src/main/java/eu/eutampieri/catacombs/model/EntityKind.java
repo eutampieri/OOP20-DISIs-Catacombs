@@ -25,5 +25,13 @@ public enum EntityKind {
     /**
      * A generic item.
      */
-    ITEM;
+    ITEM,
+    /**
+     * A generic bullet
+     */
+    BULLET,
+    /**
+     * The boss's special bullet
+     */
+    BOSS_BULLET;
 }
