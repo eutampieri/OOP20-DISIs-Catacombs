@@ -72,7 +72,7 @@ public final class AssetManager {
 		loadBossAnimations("Boss_Idle_right",  6, false, true);
 		loadBossAnimations("Boss_Idle_left",  6, true, true);
 		loadBossAnimations("Boss_Walk_right",  6, false, false);
-		loadBossAnimations("Boss_Walk_right",  6, true, false);
+		loadBossAnimations("Boss_Walk_left",  6, true, false);
 
 		loadGunAnimations("Projectile_1", GUN_SHEET, 3, 1226, 64, 26);
 		loadGunAnimations("Projectile_2", GUN_SHEET, 5, 1418, 46, 118);
