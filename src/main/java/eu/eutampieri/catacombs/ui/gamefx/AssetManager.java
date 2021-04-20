@@ -83,13 +83,17 @@ public final class AssetManager {
 	}
 	
 	public Optional<BufferedImage> horizontalFlip(final Optional<BufferedImage> image) {
-		final int width = image.get().getWidth();
-		final int height = image.get().getHeight();
-		final BufferedImage flippedImage = new BufferedImage(width, height, image.get().getType());
-		final Graphics2D g = flippedImage.createGraphics();
-		g.drawImage(image.get() ,0 ,0 ,width ,height ,width ,0 ,0 ,height , null);
-		g.dispose();
-		return Optional.of(flippedImage);
+		if (image.isPresent()) {
+			final int width = image.get().getWidth();
+			final int height = image.get().getHeight();
+			final BufferedImage flippedImage = new BufferedImage(width, height, image.get().getType());
+			final Graphics2D g = flippedImage.createGraphics();
+			g.drawImage(image.get(), 0, 0, width, height, width, 0, 0, height, null);
+			g.dispose();
+			return Optional.of(flippedImage);
+		} else {
+			return Optional.empty();
+		}
 	}
 	
 	public void loadImages() {
