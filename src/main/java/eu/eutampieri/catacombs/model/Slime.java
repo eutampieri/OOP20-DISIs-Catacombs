@@ -45,7 +45,7 @@ public final class Slime extends Entity {
         face = Direction.RIGHT;
         radarBox = new CollisionBox(posX - (width * CB_POS_MOD), posY - (height * CB_POS_MOD), width * CB_DIM_MOD,
                 height * CB_POS_MOD);
-
+        this.initializeHitBox();
         // TODO Animations
     }
 

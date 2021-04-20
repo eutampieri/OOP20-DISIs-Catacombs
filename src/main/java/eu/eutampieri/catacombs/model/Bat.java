@@ -49,6 +49,7 @@ public final class Bat extends Entity {
                 this.hitBox = null;
             }
         };
+        this.initializeHitBox();
 
         // TODO Animations
 

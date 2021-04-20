@@ -46,6 +46,7 @@ public final class Boss extends Entity {
                 this.hitBox = null;
             }
         };
+        this.initializeHitBox();
     }
 
     @Override

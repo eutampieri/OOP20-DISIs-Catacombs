@@ -3,8 +3,6 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.List;
-
 public class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 2;
     private static final int MAX_BASE_HP = 100;
@@ -40,17 +38,6 @@ public class Player extends Entity {
         }
 
     }
-
-    /**
-     * Updates player status in game loop.
-     * 
-     * @param delta time between updates
-
-    @Override
-    public void update(final long delta, final List<GameObject> others) {
-        // TODO Auto-generated method stub
-
-    }*/
 
     @Override
     public Pair<Action, Direction> getActionWithDirection() {
