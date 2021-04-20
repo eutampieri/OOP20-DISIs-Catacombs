@@ -1,7 +1,5 @@
 package eu.eutampieri.catacombs.model;
 
-import eu.eutampieri.catacombs.model.map.TileMapImpl;
-
 public final class Camera {
 
     private int xOffset;
@@ -23,8 +21,8 @@ public final class Camera {
      * @param gameHeight game height
      */
     public void centerOnEntity(final GameObject e, final int gameWidth, final int gameHeight) {
-        xOffset = e.getPosX() - (gameWidth / 2);
-        yOffset = e.getPosY() - (gameHeight / 2);
+        xOffset = e.getPosX() + 8 - (gameWidth / 2);
+        yOffset = e.getPosY() + 8 - (gameHeight / 2);
         if (xOffset < 0) {
             xOffset = 0;
         } else if (xOffset > (mapWidth - gameWidth)) {
