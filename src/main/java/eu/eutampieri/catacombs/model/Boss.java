@@ -38,10 +38,13 @@ public final class Boss extends Entity {
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
-        hitBox = new CollisionBox(posX, posY, width, height);
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
         weapon = new SimpleWeapon(BASE_DAMAGE, "boss_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
+            @Override
+            public void initializeHitBox() {
+                this.hitBox = null;
+            }
         };
     }
 
@@ -70,6 +73,11 @@ public final class Boss extends Entity {
         super.update(delta, others);
         updateRadarBoxLocation();
         weapon.update(delta, others);
+    }
+
+    @Override
+    public void initializeHitBox() {
+        this.hitBox = new CollisionBox(posX, posY, width, height);
     }
 
     @Override

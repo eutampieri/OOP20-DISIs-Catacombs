@@ -43,7 +43,6 @@ public final class Slime extends Entity {
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
-        hitBox = new CollisionBox(posX, posY, width, height);
         radarBox = new CollisionBox(posX - (width * CB_POS_MOD), posY - (height * CB_POS_MOD), width * CB_DIM_MOD,
                 height * CB_POS_MOD);
 
@@ -56,6 +55,11 @@ public final class Slime extends Entity {
         follow();
         super.update(delta, others);
         updateRadarBoxLocation();
+    }
+
+    @Override
+    public void initializeHitBox() {
+        this.hitBox = new CollisionBox(posX, posY, width, height);
     }
 
     @Override

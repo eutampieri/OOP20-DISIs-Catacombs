@@ -20,4 +20,9 @@ public class Gun extends SimpleWeapon {
         // TODO Auto-generated method stub
     }
 
+    @Override
+    public void initializeHitBox() {
+        this.hitBox = new CollisionBox(this.getPosX(), this.getPosY(), 16, 16);
+    }
+
 }

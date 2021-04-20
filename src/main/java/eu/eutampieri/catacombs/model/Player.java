@@ -45,12 +45,12 @@ public class Player extends Entity {
      * Updates player status in game loop.
      * 
      * @param delta time between updates
-     */
+
     @Override
     public void update(final long delta, final List<GameObject> others) {
         // TODO Auto-generated method stub
 
-    }
+    }*/
 
     @Override
     public Pair<Action, Direction> getActionWithDirection() {
@@ -71,19 +71,22 @@ public class Player extends Entity {
     }
 
     public final void move(final Direction d) {
-        this.setSpeed(1);
         switch (d) {
             case UP:
                 this.up = true;
+                this.down = false;
                 break;
             case DOWN:
                 this.down = true;
+                this.up = false;
                 break;
             case LEFT:
                 this.left = true;
+                this.right = false;
                 break;
             case RIGHT:
                 this.right = true;
+                this.left = false;
                 break;
         }
     }
@@ -95,4 +98,8 @@ public class Player extends Entity {
         return name;
     }
 
+    @Override
+    public void initializeHitBox() {
+        this.hitBox = new CollisionBox(this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
+    }
 }
