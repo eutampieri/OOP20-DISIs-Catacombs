@@ -10,6 +10,7 @@ public class Player extends Entity {
     private static final int MAX_BASE_HP = 100;
     private int health;
     private final String name;
+    private CollisionBox hitbox;
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
         super(x, y, tm, GameObjectType.PLAYER);
@@ -17,6 +18,7 @@ public class Player extends Entity {
         this.setHealth(MAX_BASE_HP);
         this.name = name;
         this.face = Direction.RIGHT;
+        hitbox = new CollisionBox(getPosX(), getPosY(), getWidth(), getHeight());
     }
 
     /**

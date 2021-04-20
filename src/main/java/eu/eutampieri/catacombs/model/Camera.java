@@ -1,5 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
+import eu.eutampieri.catacombs.model.map.TileMapImpl;
+
 public final class Camera {
 
     private int xOffset;
@@ -10,7 +12,7 @@ public final class Camera {
     public Camera(final int xOffset, final int yOffset, final int mapWidth, final int mapHeight) {
         this.xOffset = xOffset;
         this.yOffset = yOffset;
-        this.mapWidth = mapWidth; //should be multiplied by tile dimensions
+        this.mapWidth = mapWidth;
         this.mapHeight = mapHeight;
     }
 

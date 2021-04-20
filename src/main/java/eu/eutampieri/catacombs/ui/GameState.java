@@ -23,7 +23,7 @@ public class GameState extends State {
         super(game);
         this.game = game;
         final TileMapFactory tmf = new TileMapFactoryImpl();
-        this.world = new World(tmf.def(), game);
+        this.world = new World(tmf.def(), this.game);
         // TODO WorldLoader class
         // this.player = world.getPlayer();
     }
