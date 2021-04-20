@@ -107,7 +107,7 @@ public class World {
     }
 
     public void render(final Graphics2D g2) {
-        camera.centerOnEntity(this.player, game.getHeight(), game.getWidth());
+        camera.centerOnEntity(this.player, game.getWidth(), game.getHeight());
         // g2.drawImage(background, 0, 0, game.getGameWidth(), game.getGameHeight(),
         // null);
         /*
