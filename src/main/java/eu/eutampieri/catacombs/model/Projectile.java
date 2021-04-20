@@ -11,7 +11,7 @@ public class Projectile extends GameObject implements HealthModifier {
 	private final static int BOX_SIZE = 8;
 
 	public Projectile(final int x, final int y, final int sx, final int sy, final int strength, final TileMap map){
-		super(x,y,GameObjectType.BULLET);
+		super(x,y,GameObjectType.BULLET, new CollisionBox(x, y, BOX_SIZE, BOX_SIZE));
 		this.speedX=sx;
 		this.speedY=sy;
 		this.strength=strength;
@@ -47,10 +47,5 @@ public class Projectile extends GameObject implements HealthModifier {
 	@Override
 	public String getName() {
 		return "bullet";
-	}
-
-	@Override
-	public void initializeHitBox() {
-		this.hitBox = new CollisionBox(this.posX, this.posY, BOX_SIZE, BOX_SIZE);
 	}
 }
