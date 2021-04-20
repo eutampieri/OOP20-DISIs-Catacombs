@@ -104,13 +104,13 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
         if (hitBox.getPosX() - speedX < 0) {
             maxMovementLeft = hitBox.getPosX();
         }
-        if (hitBox.getPosX() + hitBox.getWidth() + speedX > tileMap.width() - 1) {
+        if (hitBox.getPosX() + hitBox.getWidth()*16 + speedX > tileMap.width()*16 - 1) {
             maxMovementRight = tileMap.width()*16 - hitBox.getPosX() - hitBox.getWidth() - 1;
         }
         if (hitBox.getPosY() - speedY < 0) {
             maxMovementUp = hitBox.getPosY();
         }
-        if (hitBox.getPosY() + hitBox.getHeight() + speedY > tileMap.height() - 1) {
+        if (hitBox.getPosY() + hitBox.getHeight()*16 + speedY > tileMap.height()*16 - 1) {
             maxMovementDown = tileMap.height()*16 - hitBox.getPosY() - hitBox.getHeight() - 1;
         }
 
