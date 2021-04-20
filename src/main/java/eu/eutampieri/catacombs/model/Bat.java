@@ -35,9 +35,7 @@ public final class Bat extends Entity {
      * @param tileMap Tile map in which Bat is spawned
      */
     public Bat(final int x, final int y, final TileMap tileMap) {
-        super(x, y, tileMap, GameObjectType.ENEMY);
-        setHeight(HEIGHT);
-        setWidth(WIDTH);
+        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.ENEMY);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
@@ -49,7 +47,6 @@ public final class Bat extends Entity {
                 this.hitBox = null;
             }
         };
-        this.initializeHitBox();
 
         // TODO Animations
 
@@ -75,11 +72,6 @@ public final class Bat extends Entity {
         super.update(delta, others);
         updateRadarBoxLocation();
         weapon.update(delta, others);
-    }
-
-    @Override
-    public void initializeHitBox() {
-        this.hitBox = new CollisionBox(posX, posY, width, height);
     }
 
     @Override

@@ -37,15 +37,12 @@ public final class Slime extends Entity {
      * @param tileMap Tile map in which Slime is spawned
      */
     public Slime(final int x, final int y, final TileMap tileMap) {
-        super(x, y, tileMap, GameObjectType.ENEMY);
-        setHeight(HEIGHT);
-        setWidth(WIDTH);
+        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.ENEMY);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
         radarBox = new CollisionBox(posX - (width * CB_POS_MOD), posY - (height * CB_POS_MOD), width * CB_DIM_MOD,
                 height * CB_POS_MOD);
-        this.initializeHitBox();
         // TODO Animations
     }
 
@@ -55,11 +52,6 @@ public final class Slime extends Entity {
         follow();
         super.update(delta, others);
         updateRadarBoxLocation();
-    }
-
-    @Override
-    public void initializeHitBox() {
-        this.hitBox = new CollisionBox(posX, posY, width, height);
     }
 
     @Override

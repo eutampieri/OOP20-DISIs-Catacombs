@@ -32,9 +32,7 @@ public final class Boss extends Entity {
      * @param tileMap Tile map in which Entity is spawned
      */
     public Boss(final int x, final int y, final TileMap tileMap) {
-        super(x, y, tileMap, GameObjectType.BOSS);
-        setHeight(HEIGHT);
-        setWidth(WIDTH);
+        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.BOSS);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
@@ -46,7 +44,6 @@ public final class Boss extends Entity {
                 this.hitBox = null;
             }
         };
-        this.initializeHitBox();
     }
 
     @Override
@@ -74,11 +71,6 @@ public final class Boss extends Entity {
         super.update(delta, others);
         updateRadarBoxLocation();
         weapon.update(delta, others);
-    }
-
-    @Override
-    public void initializeHitBox() {
-        this.hitBox = new CollisionBox(posX, posY, width, height);
     }
 
     @Override

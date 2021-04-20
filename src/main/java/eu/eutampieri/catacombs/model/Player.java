@@ -11,7 +11,7 @@ public class Player extends Entity {
     private boolean isMoving;
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
-        super(x, y, tm, GameObjectType.PLAYER);
+        super(x, y, 16, 16, tm, GameObjectType.PLAYER);
         setSpeed(BASE_MOVEMENT_SPEED);
         this.setHealth(MAX_BASE_HP);
         this.name = name;
@@ -90,10 +90,5 @@ public class Player extends Entity {
      */
     public String getName() {
         return name;
-    }
-
-    @Override
-    public void initializeHitBox() {
-        this.hitBox = new CollisionBox(this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
     }
 }
