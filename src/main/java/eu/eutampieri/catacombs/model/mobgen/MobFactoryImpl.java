@@ -35,7 +35,7 @@ public final class MobFactoryImpl implements MobFactory {
             return List.of();
         }
         final List<Entity> enemies = new ArrayList<>();
-        enemies.add(f.create(x, y, this.tileMap));
+        enemies.add(f.create(x*16, y*16, this.tileMap));
         return enemies;
     }
 
