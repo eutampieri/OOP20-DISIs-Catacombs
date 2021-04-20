@@ -1,6 +1,8 @@
 package eu.eutampieri.catacombs.model.mobgen;
 
-import eu.eutampieri.catacombs.model.*;
+import eu.eutampieri.catacombs.model.Bat;
+import eu.eutampieri.catacombs.model.Entity;
+import eu.eutampieri.catacombs.model.Slime;
 import eu.eutampieri.catacombs.model.map.TileMap;
 
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.Random;
 
 public final class MobFactoryImpl implements MobFactory {
 
-    private static final int MAX_MOB_NUMBER = 40;
+    private static final int MAX_MOB_NUMBER = 69;
     private static final int MOB_KIND_NUMBER = 2;
 
     private TileMap tileMap;
@@ -19,25 +21,31 @@ public final class MobFactoryImpl implements MobFactory {
         this.setNewTileMap(tileMap);
     }
 
-    public void setNewTileMap(TileMap tileMap) {
+    /**
+     * Sets a new TileMap. Useful if you change map mid-game.
+     * @param tileMap The TileMap to be changed into
+     */
+    public void setNewTileMap(final TileMap tileMap) {
         this.tileMap = tileMap;
     }
 
-    public List<Entity> spawnAt(int x, int y, EntityFactory f) {
-        if (f == null){
+    @Override
+    public List<Entity> spawnAt(final int x, final int y, final EntityFactory f) {
+        if (f == null || !tileMap.canSpawnAt(x, y)) {
             return List.of();
         }
-        List<Entity> enemies = new ArrayList<Entity>();
+        final List<Entity> enemies = new ArrayList<>();
         enemies.add(f.create(x, y, this.tileMap));
         return enemies;
     }
 
-    public List<Entity> spawnSome(int n, EntityFactory f) {
-        if (f == null){
+    @Override
+    public List<Entity> spawnSome(final int n, final EntityFactory f) {
+        if (f == null) {
             return List.of();
         }
         int randX, randY;
-        List<Entity> enemies = new ArrayList<Entity>();
+        final List<Entity> enemies = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             do {
                 randX = rand.nextInt(tileMap.width());
@@ -48,21 +56,22 @@ public final class MobFactoryImpl implements MobFactory {
         return enemies;
     }
 
+    @Override
     public List<Entity> spawnRandom() {
         int randX, randY, randKind;
-        int mobNum = rand.nextInt(MAX_MOB_NUMBER);
+        final int mobNum = rand.nextInt(MAX_MOB_NUMBER);
 
-        List<Entity> enemies = new ArrayList<Entity>();
+        final List<Entity> enemies = new ArrayList<>();
         for (int i = 0; i < mobNum; i++) {
             do {
                 randX = rand.nextInt(tileMap.width());
                 randY = rand.nextInt(tileMap.height());
             } while (!tileMap.canSpawnAt(randX, randY));
             randKind = rand.nextInt(MOB_KIND_NUMBER);
-            if (randKind == 0){
+            if (randKind == 0) {
                 enemies.addAll(spawnAt(randX, randY, Bat::new));
             }
-            if (randKind == 1){
+            if (randKind == 1) {
                 enemies.addAll(spawnAt(randX, randY, Slime::new));
             }
         }
