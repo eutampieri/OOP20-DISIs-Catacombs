@@ -70,17 +70,21 @@ public class Player extends Entity {
         }
     }
 
-    public final void move(Direction d) {
+    public final void move(final Direction d) {
         this.setSpeed(1);
         switch (d) {
             case UP:
                 this.up = true;
+                break;
             case DOWN:
                 this.down = true;
+                break;
             case LEFT:
                 this.left = true;
+                break;
             case RIGHT:
                 this.right = true;
+                break;
         }
     }
 
