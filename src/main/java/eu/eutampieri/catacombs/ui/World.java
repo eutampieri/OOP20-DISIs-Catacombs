@@ -86,7 +86,8 @@ public class World {
     }
 
     public void update(final long delta) {
-        if(this.km.up()) {
+        this.player.stop();
+			  if(this.km.up()) {
             this.player.move(Direction.UP);
         } else if(this.km.down()) {
             this.player.move(Direction.DOWN);

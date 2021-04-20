@@ -20,8 +20,8 @@ public final class Bat extends Entity {
     private static final int BASE_FIRE_RATE = 2;
     private static final int BASE_RANGE = 2;
     private static final String NAME = "Bat";
-    private static final long MOVE_DELAY = 1000000000;
-    private static final long PAUSE_DELAY = 5L * 1000000000;
+    private static final long MOVE_DELAY = 1_000_000_000;
+    private static final long PAUSE_DELAY = 5L * 1_000_000_000;
 
     private final SimpleWeapon weapon;
     private boolean isMoving;

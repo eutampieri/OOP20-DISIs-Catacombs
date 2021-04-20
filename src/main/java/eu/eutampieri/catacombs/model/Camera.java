@@ -33,7 +33,6 @@ public final class Camera {
         } else if (yOffset > (mapHeight - gameHeight)) {
             yOffset = mapHeight - gameHeight;
         }
-        System.out.println(gameWidth + " x " + gameHeight + " and " + xOffset + " x " + yOffset);
     }
 
     /**

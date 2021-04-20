@@ -138,6 +138,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
             }
             face = Direction.RIGHT;
         }
+				updateSpriteLocation();
     }
 
     /**
@@ -158,7 +159,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isRightCollision(final int dx) {
-        return tileMap.at((hitBox.getPosX() + hitBox.getWidth() + dx)/16, (hitBox.getPosY()/16)) == Tile.WALL || tileMap
+        return tileMap.at((hitBox.getPosX() + hitBox.getWidth() + dx)/16, hitBox.getPosY()/16) == Tile.WALL || tileMap
                 .at((hitBox.getPosX() + hitBox.getWidth() + dx)/16, (hitBox.getPosY() + hitBox.getHeight())/16) == Tile.WALL;
     }
 

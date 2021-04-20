@@ -9,8 +9,6 @@ public class Player extends Entity {
     private static final int SIZE = 10;
     private int health;
     private final String name;
-    private boolean isMoving;
-
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
         super(x, y, SIZE, SIZE, tm, GameObjectType.PLAYER);
@@ -61,30 +59,27 @@ public class Player extends Entity {
     }
 
     public final void move(final Direction d) {
-        if(this.isMoving) {
-            this.resetMovement();
-            this.isMoving = false;
-            return;
-        }
+        this.resetMovement();
         switch (d) {
             case UP:
                 this.up = true;
-                this.down = false;
                 break;
             case DOWN:
                 this.down = true;
-                this.up = false;
                 break;
             case LEFT:
                 this.left = true;
-                this.right = false;
                 break;
             case RIGHT:
                 this.right = true;
-                this.left = false;
                 break;
         }
-        this.isMoving = this.right || this.left || this.up || this.down;
+    }
+		public void stop() {
+			this.resetMovement();
+		}
+    public boolean isMoving(){
+        return this.right || this.left || this.up || this.down;
     }
 
     /**
