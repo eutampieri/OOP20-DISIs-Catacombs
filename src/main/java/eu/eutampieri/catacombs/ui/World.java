@@ -79,13 +79,13 @@ public class World {
 
     public void update(final long delta) {
         if(this.km.up()) {
-            this.player.setPosY(this.player.getPosY() - 1);
+            this.player.move(Direction.UP);
         } else if(this.km.down()) {
-            this.player.setPosY(this.player.getPosY() + 1);
+            this.player.move(Direction.DOWN);
         } else if(this.km.left()) {
-            this.player.setPosX(this.player.getPosX() - 1);
+            this.player.move(Direction.LEFT);
         } else if(this.km.right()) {
-            this.player.setPosX(this.player.getPosX() + 1);
+            this.player.move(Direction.RIGHT);
         }
         player.update(delta, this.getAllEntitiesExcept(this.player));
 
