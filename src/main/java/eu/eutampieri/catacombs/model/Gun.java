@@ -1,6 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
-import org.apache.commons.lang3.tuple.Pair;
+import java.util.List;
 
 public class Gun extends SimpleWeapon {
     /**
@@ -16,7 +16,7 @@ public class Gun extends SimpleWeapon {
     }
 
     @Override
-    public void update(final long delta) {
+    public void update(final long delta, final List<GameObject> others) {
         // TODO Auto-generated method stub
     }
 

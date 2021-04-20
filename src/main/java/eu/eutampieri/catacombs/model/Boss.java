@@ -3,6 +3,8 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.List;
+
 public final class Boss extends Entity {
 
     private static final int HEIGHT = 4;
@@ -30,7 +32,7 @@ public final class Boss extends Entity {
      * @param tileMap Tile map in which Entity is spawned
      */
     public Boss(final int x, final int y, final TileMap tileMap) {
-        super(x, y, tileMap, EntityKind.BOSS);
+        super(x, y, tileMap, GameObjectType.BOSS);
         setHeight(HEIGHT);
         setWidth(WIDTH);
         setSpeed(MOVEMENT_SPEED);
@@ -44,7 +46,7 @@ public final class Boss extends Entity {
     }
 
     @Override
-    public void update(final long delta) {
+    public void update(final long delta, final List<GameObject> others) {
         if (!isAlive()) {
             return;
         }
@@ -65,9 +67,9 @@ public final class Boss extends Entity {
             }
         }
 
-        super.update(delta);
+        super.update(delta, others);
         updateRadarBoxLocation();
-        weapon.update(delta);
+        weapon.update(delta, others);
     }
 
     @Override

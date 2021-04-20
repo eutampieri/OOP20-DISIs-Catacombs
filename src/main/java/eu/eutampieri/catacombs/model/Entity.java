@@ -5,6 +5,8 @@ import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.Animatable;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.List;
+
 /**
  * Abstract class for every living game Entity.
  */
@@ -39,7 +41,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @param y       Y spawn position
      * @param tileMap Tile map in which Entity is spawned
      */
-    public Entity(final int x, final int y, final TileMap tileMap, final EntityKind kind) {
+    public Entity(final int x, final int y, final TileMap tileMap, final GameObjectType kind) {
         super(x, y, kind);
         this.tileMap = tileMap;
     }
@@ -86,7 +88,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @param delta time between updates
      */
     @Override
-    public void update(final long delta) {
+    public void update(final long delta, final List<GameObject> others) {
         move();
         updateSpriteLocation();
     }

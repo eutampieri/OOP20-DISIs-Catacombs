@@ -10,6 +10,8 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class World {
 
@@ -20,7 +22,7 @@ public class World {
     // TODO Camera
     private final Camera camera;
 
-    private final List<GameObject> entities;
+    private List<GameObject> entities;
 
     private Player player;
 
@@ -44,12 +46,25 @@ public class World {
         this.player = player;
     }
 
+    private List<GameObject> getAllEntitiesExcept(final GameObject e) {
+        return Stream.concat(
+                this.entities.stream(),
+                Stream.of(this.player)
+        )
+                .filter((x) -> !e.equals(x))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     public void update(final long delta) {
-        player.update(delta);
+        player.update(delta, this.getAllEntitiesExcept(this.player));
 
         for (final GameObject entity : this.entities) {
-            entity.update(delta);
+            entity.update(delta, this.getAllEntitiesExcept(entity));
         }
+        this.entities = this.entities
+                .stream()
+                .filter((x) -> !x.isMarkedForDeletion())
+                .collect(Collectors.toList());
     }
 
     public void render(final Graphics2D g2) {
@@ -77,12 +92,14 @@ public class World {
 
         for (final GameObject currentObj : entities) {
             try {
-                Entity currentEntity = (Entity) currentObj;
+                final Entity currentEntity = (Entity) currentObj;
                 final Pair<Action, Direction> action = currentEntity.getActionwithDirection();
                 final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
                 g2.drawImage(img, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
             } catch (ClassCastException e) {
                 // Treat it as a game object
+                final BufferedImage img = AssetManagerProxy.getSprite(currentObj);
+                g2.drawImage(img, null, currentObj.getPosX() - camera.getXOffset(), currentObj.getPosY() - camera.getYOffset());
             }
         }
 

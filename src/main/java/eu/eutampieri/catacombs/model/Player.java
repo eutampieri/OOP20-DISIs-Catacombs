@@ -3,6 +3,8 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.List;
+
 public class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 2;
     private static final int MAX_BASE_HP = 100;
@@ -10,7 +12,7 @@ public class Player extends Entity {
     private final String name;
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
-        super(x, y, tm, EntityKind.PLAYER);
+        super(x, y, tm, GameObjectType.PLAYER);
         setSpeed(BASE_MOVEMENT_SPEED);
         this.setHealth(MAX_BASE_HP);
         this.name = name;
@@ -44,7 +46,7 @@ public class Player extends Entity {
      * @param delta time between updates
      */
     @Override
-    public void update(final long delta) {
+    public void update(final long delta, final List<GameObject> others) {
         // TODO Auto-generated method stub
 
     }

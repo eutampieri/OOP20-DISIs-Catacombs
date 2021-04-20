@@ -1,6 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
-public enum EntityKind {
+public enum GameObjectType {
     /**
      * The player, i.e. the person who is playing the game.
      */
@@ -25,5 +25,13 @@ public enum EntityKind {
     /**
      * A generic item.
      */
-    ITEM;
+    ITEM,
+    /**
+     * A generic bullet
+     */
+    BULLET,
+    /**
+     * The boss's special bullet
+     */
+    BOSS_BULLET;
 }

@@ -1,6 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
-import org.apache.commons.lang3.tuple.Pair;
+import java.util.List;
 
 /**
  * Abstract class for every game object (ex: Player, enemies, items, ecc...).
@@ -14,7 +14,7 @@ public abstract class GameObject {
     /**
      * Entity kind.
      */
-    protected EntityKind kind;
+    protected GameObjectType kind;
     /**
      * Object speed.
      */
@@ -25,7 +25,7 @@ public abstract class GameObject {
      * @param y  object Y position
      * @param kind Entity Kind @see eu.eutampieri.catacombs.model.EntityKind
      */
-    public GameObject(final int x, final int y, final EntityKind kind) {
+    public GameObject(final int x, final int y, final GameObjectType kind) {
         this.setPosX(x);
         this.setPosY(y);
         this.kind = kind;
@@ -36,7 +36,7 @@ public abstract class GameObject {
      * 
      * @param delta time between updates
      */
-    public abstract void update(long delta);
+    public abstract void update(long delta, final List<GameObject> others);
 
     /**
      * Getter for object X position.
@@ -136,7 +136,14 @@ public abstract class GameObject {
      * 
      * @return Entity Kind
      */
-    public EntityKind getKind() {
+    public GameObjectType getKind() {
         return kind;
+    }
+
+    /**
+     * @return whether the object has to be removed from the entity list
+     */
+    public boolean isMarkedForDeletion() {
+        return false;
     }
 }

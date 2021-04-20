@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import eu.eutampieri.catacombs.model.*;
 import org.junit.jupiter.api.TestInstance;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -41,8 +43,8 @@ class CharactersTests {
 
     @Test
     void testEnemyEntityKind() {
-        assertEquals(EntityKind.ENEMY, SLIME.getKind());
-        assertEquals(EntityKind.ENEMY, SLIME.getKind());
+        assertEquals(GameObjectType.ENEMY, SLIME.getKind());
+        assertEquals(GameObjectType.ENEMY, SLIME.getKind());
     }
 
     @Test
@@ -80,20 +82,20 @@ class CharactersTests {
         final int initialY = SLIME.getPosY();
         SLIME.setCharacterToFollow(bat);
         assertEquals(SLIME.getCharacterToFollow(), bat);
-        SLIME.update(100);
+        SLIME.update(100, List.of());
         assertNotEquals(initialX, SLIME.getPosX());
         assertNotEquals(initialY, SLIME.getPosY());
     }
 
     @Test
     void testBatUpdate() {
-        BAT.update(10);
+        BAT.update(10, List.of());
         // TODO implement checks
     }
 
     @Test
     void testBossUpdate() {
-        BOSS.update(10);
+        BOSS.update(10, List.of());
         // TODO implement checks
     }
 }

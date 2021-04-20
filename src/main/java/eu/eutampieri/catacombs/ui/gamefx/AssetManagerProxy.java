@@ -34,20 +34,20 @@ public final class AssetManagerProxy {
                 case ENEMY:
                     frameKey = entity.getClass().getSimpleName() + "_" + direction.toString();
                     return am.getFrames(frameKey).stream().filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
-                case PICKUP:
-                    return null;
-                    //TODO
                 case PLAYER:
                     return null;
                     //TODO
-                case WEAPON:
-                    return null;
-                    //TODO
+                default:
+                    throw new IllegalArgumentException();
             }
-        } else {
-            throw new IllegalArgumentException();
         }
-        // We should never get here
-        throw new IllegalStateException();
+        throw new IllegalArgumentException();
+    }
+
+    public static BufferedImage getSprite(final GameObject entity) {
+        switch (entity.getKind()) {
+            default:
+                return null;
+        }
     }
 }
