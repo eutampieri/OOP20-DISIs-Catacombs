@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class HIDTests {
     private static final MouseManager MOUSE_MANAGER = new MouseManager();
-    private static final KeyManager KEY_MANAGER = new KeyManager();
     private static final Component EVENT_SOURCE = new Component() {
     };
 
@@ -57,16 +56,10 @@ class HIDTests {
     @Test
     void testKeyPressed() {
         final KeyEvent k = new KeyEvent(EVENT_SOURCE, KeyEvent.KEY_PRESSED, 0, 0, KeyEvent.VK_W, 'w');
-        KEY_MANAGER.keyPressed(k);
-        assertTrue(KEY_MANAGER.isKeyPressed(k.getKeyCode()));
-        assertFalse(KEY_MANAGER.isKeyJustPressed(k.getKeyCode()));
-        KEY_MANAGER.keyReleased(k);
-        assertFalse(KEY_MANAGER.isKeyPressed(k.getKeyCode()));
+        KeyManager.getKeyManager().keyPressed(k);
+        assertTrue(KeyManager.getKeyManager().isKeyPressed(k.getKeyCode()));
+        KeyManager.getKeyManager().keyReleased(k);
+        assertFalse(KeyManager.getKeyManager().isKeyPressed(k.getKeyCode()));
     }
 
-
-    @Test
-    void testUpdate() {
-        KEY_MANAGER.update(0.1f);
-    }
 }

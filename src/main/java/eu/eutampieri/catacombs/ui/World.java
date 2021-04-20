@@ -32,7 +32,7 @@ public class World {
     private Player player;
 
     private static final class KeyManagerProxy {
-        private final KeyManager km = Game.KEY_MANAGER;
+        private final KeyManager km = KeyManager.getKeyManager();
 
         public boolean up() {
             return this.km.isKeyPressed(KeyEvent.VK_W) || this.km.isKeyPressed(KeyEvent.VK_UP);
