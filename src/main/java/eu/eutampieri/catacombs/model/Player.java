@@ -16,6 +16,7 @@ public class Player extends Entity {
         setSpeed(BASE_MOVEMENT_SPEED);
         this.setHealth(MAX_BASE_HP);
         this.name = name;
+        this.face = Direction.RIGHT;
     }
 
     /**
@@ -52,9 +53,9 @@ public class Player extends Entity {
     }
 
     @Override
-    public Pair<Action, Direction> getActionwithDirection() {
+    public Pair<Action, Direction> getActionWithDirection() {
         // TODO Auto-generated method stub
-        return Pair.of(Action.MOVE, Direction.RIGHT);
+        return Pair.of(Action.MOVE, this.face);
     }
 
     @Override
@@ -66,6 +67,24 @@ public class Player extends Entity {
                 return true;
             default:
                 return false;
+        }
+    }
+
+    public final void move(final Direction d) {
+        this.setSpeed(1);
+        switch (d) {
+            case UP:
+                this.up = true;
+                break;
+            case DOWN:
+                this.down = true;
+                break;
+            case LEFT:
+                this.left = true;
+                break;
+            case RIGHT:
+                this.right = true;
+                break;
         }
     }
 

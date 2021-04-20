@@ -59,9 +59,8 @@ public final class Slime extends Entity {
     }
 
     @Override
-    public Pair<Action, Direction> getActionwithDirection() {
-        // TODO Auto-generated method stub
-        return null;
+    public Pair<Action, Direction> getActionWithDirection() {
+        return Pair.of(Action.MOVE, this.face);
     }
 
     @Override

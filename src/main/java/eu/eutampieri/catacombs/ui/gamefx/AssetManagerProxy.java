@@ -32,11 +32,12 @@ public final class AssetManagerProxy {
                 case ITEM:
                     break;
                 case ENEMY:
+                    assert direction != null;
                     frameKey = entity.getClass().getSimpleName() + "_" + direction.toString();
                     return am.getFrames(frameKey).stream().filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
                 case PLAYER:
-                    return null;
-                    //TODO
+                    assert direction != null;
+                    return am.getFrames("Walk_" + direction.toString()).stream().filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
                 default:
                     throw new IllegalArgumentException();
             }
@@ -45,7 +46,10 @@ public final class AssetManagerProxy {
     }
 
     public static BufferedImage getSprite(final GameObject entity) {
+        final AssetManager am = AssetManager.getAssetManager();
         switch (entity.getKind()) {
+            case BULLET:
+                return am.getImage("Projectile_1");
             default:
                 return null;
         }

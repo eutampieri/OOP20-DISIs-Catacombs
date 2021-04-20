@@ -1,6 +1,5 @@
 package eu.eutampieri.catacombs.ui;
 
-import eu.eutampieri.catacombs.model.GameObject;
 import eu.eutampieri.catacombs.model.map.TileMapFactory;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
 import eu.eutampieri.catacombs.ui.utils.FontUtils;
@@ -9,7 +8,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 public class GameState extends State {
 
@@ -25,7 +23,7 @@ public class GameState extends State {
         super(game);
         this.game = game;
         final TileMapFactory tmf = new TileMapFactoryImpl();
-        this.world = new World(tmf.def(), new ArrayList<GameObject>());
+        this.world = new World(tmf.def());
         // TODO WorldLoader class
         // this.player = world.getPlayer();
     }
