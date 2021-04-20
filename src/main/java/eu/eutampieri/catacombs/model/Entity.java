@@ -50,7 +50,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * 
      * @return Entity width
      */
-    public int getWidth() {
+    public final int getWidth() {
         return width;
     }
 
@@ -59,7 +59,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * 
      * @param width Width dimension for the entity
      */
-    public void setWidth(final int width) {
+    public final void setWidth(final int width) {
         this.width = width;
     }
 
@@ -68,7 +68,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * 
      * @return Entity height
      */
-    public int getHeight() {
+    public final int getHeight() {
         return height;
     }
 
@@ -77,7 +77,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * 
      * @param height Height dimension for the entity
      */
-    public void setHeight(final int height) {
+    public final void setHeight(final int height) {
         this.height = height;
     }
 
@@ -209,7 +209,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     public abstract Pair<Action, Direction> getActionWithDirection();
 
     @Override
-    public void initializeHitBox() {
+    public final void initializeHitBox() {
         this.hitBox = new CollisionBox(this.getPosX(), this.getPosY(), this.getWidth(), this.getHeight());
     }
 }
