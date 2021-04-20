@@ -8,6 +8,7 @@ public class Player extends Entity {
     private static final int MAX_BASE_HP = 100;
     private int health;
     private final String name;
+    private boolean isMoving = false;
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
         super(x, y, tm, GameObjectType.PLAYER);
@@ -58,6 +59,11 @@ public class Player extends Entity {
     }
 
     public final void move(final Direction d) {
+        if(this.isMoving) {
+            this.resetMovement();
+            this.isMoving = false;
+            return;
+        }
         switch (d) {
             case UP:
                 this.up = true;
@@ -76,6 +82,7 @@ public class Player extends Entity {
                 this.left = false;
                 break;
         }
+        this.isMoving = true;
     }
 
     /**
