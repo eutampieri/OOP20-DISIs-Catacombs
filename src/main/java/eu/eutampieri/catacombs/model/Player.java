@@ -9,9 +9,10 @@ public class Player extends Entity {
     private int health;
     private final String name;
     private boolean isMoving;
+    private final int SIZE = 16;
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
-        super(x, y, 16, 16, tm, GameObjectType.PLAYER);
+        super(x, y, SIZE, SIZE, tm, GameObjectType.PLAYER);
         setSpeed(BASE_MOVEMENT_SPEED);
         this.setHealth(MAX_BASE_HP);
         this.name = name;
