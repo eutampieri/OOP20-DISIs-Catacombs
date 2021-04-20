@@ -45,7 +45,10 @@ public final class AssetManagerProxy {
     }
 
     public static BufferedImage getSprite(final GameObject entity) {
+        final AssetManager am = AssetManager.getAssetManager();
         switch (entity.getKind()) {
+            case BULLET:
+                return am.getImage("Projectile_1");
             default:
                 return null;
         }
