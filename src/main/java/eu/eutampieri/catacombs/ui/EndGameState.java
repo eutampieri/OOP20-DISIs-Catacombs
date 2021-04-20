@@ -1,5 +1,6 @@
 package eu.eutampieri.catacombs.ui;
 
+import eu.eutampieri.catacombs.ui.input.KeyManager;
 import eu.eutampieri.catacombs.ui.utils.FontUtils;
 
 import java.awt.*;
@@ -26,7 +27,7 @@ public class EndGameState extends State {
             this.blinkDelayCount = 0;
             this.blink = !this.blink;
         }
-        if (Game.KEY_MANAGER.isKeyJustPressed(KeyEvent.VK_SPACE)) {
+        if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_SPACE)) {
             this.blinkDelayCount = 0;
             this.blink = false;
             this.game.setMenuState();

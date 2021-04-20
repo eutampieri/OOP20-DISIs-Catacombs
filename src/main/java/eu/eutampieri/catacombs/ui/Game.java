@@ -20,7 +20,6 @@ public abstract class Game implements Runnable {
     protected static final float THREAD_SLEEP_CONST = 1_000_000f;
 
     public static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
-    public static final KeyManager KEY_MANAGER = new KeyManager();
     public static final MouseManager MOUSE_MANAGER = new MouseManager();
 
     private MainWindow mainFrame;
@@ -136,7 +135,7 @@ public abstract class Game implements Runnable {
 
         });
 
-        addKeyAdapter(KEY_MANAGER);
+        addKeyAdapter(KeyManager.getKeyManager());
         addMouseAdapter(MOUSE_MANAGER);
     }
 
@@ -247,7 +246,6 @@ public abstract class Game implements Runnable {
             while ((now - lastUpdateTime) >= tickPerTime) {
                 long delta;
                 delta = now - lastUpdateTime;
-                KEY_MANAGER.update(delta);
                 delta = Math.min(delta, DELTA_MIN);
                 update(delta);
                 lastUpdateTime += tickPerTime;

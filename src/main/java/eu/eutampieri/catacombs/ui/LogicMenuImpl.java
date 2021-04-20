@@ -1,5 +1,7 @@
 package eu.eutampieri.catacombs.ui;
 
+import eu.eutampieri.catacombs.ui.input.KeyManager;
+
 import java.awt.event.KeyEvent;
 
 public class LogicMenuImpl implements LogicMenu {
@@ -26,7 +28,7 @@ public class LogicMenuImpl implements LogicMenu {
 
     @Override
     public void selectOption() {
-        if (Game.KEY_MANAGER.isKeyJustPressed(KeyEvent.VK_ENTER)) {
+        if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_ENTER)) {
             switch(this.optionSelected) {
                 case START_GAME:
                     start();
@@ -37,10 +39,10 @@ public class LogicMenuImpl implements LogicMenu {
                 default:
             }
         }
-        if (Game.KEY_MANAGER.isKeyPressed(KeyEvent.VK_S)) {
+        if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_S)) {
             this.optionSelected = MenuOption.QUIT_GAME;
         }
-        if (Game.KEY_MANAGER.isKeyPressed(KeyEvent.VK_W)) {
+        if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_W)) {
             this.optionSelected = MenuOption.START_GAME;
         }
 
