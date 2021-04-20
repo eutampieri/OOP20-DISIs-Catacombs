@@ -22,6 +22,7 @@ public class World {
     private final TileMap tileMap;
     private final AssetManager am = AssetManager.getAssetManager();
     private final KeyManagerProxy km = new KeyManagerProxy();
+    private final DungeonGame game;
     // private final DungeonGame game = new DungeonGame();
     // TODO Camera
     private final Camera camera;
@@ -50,7 +51,7 @@ public class World {
         }
     }
 
-    public World(final TileMap tileMap) {
+    public World(final TileMap tileMap, final DungeonGame game) {
         // this.background = am.getImage("background");
         this.tileMap = tileMap;
         final MobFactory mf = new MobFactoryImpl(this.tileMap);
@@ -59,6 +60,8 @@ public class World {
         this.player = (Player)mf
                 .spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm))
                 .get(0);
+
+        this.game = game;
     }
 
     public TileMap getTileMap() {
@@ -104,7 +107,7 @@ public class World {
     }
 
     public void render(final Graphics2D g2) {
-        camera.centerOnEntity(this.player);
+        camera.centerOnEntity(this.player, game.getHeight(), game.getWidth());
         // g2.drawImage(background, 0, 0, game.getGameWidth(), game.getGameHeight(),
         // null);
         /*
