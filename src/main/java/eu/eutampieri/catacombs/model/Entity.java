@@ -127,7 +127,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
             face = Direction.DOWN;
         }
         if (left) {
-            if (isLeftCollision(maxMovementLeft)) {
+            if (!isLeftCollision(maxMovementLeft)) {
                 hitBox.move(-maxMovementLeft, 0);
             }
             face = Direction.LEFT;
@@ -148,7 +148,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     protected boolean isUpCollision(final int dy) {
         return tileMap.at(hitBox.getPosX()/16, (hitBox.getPosY() - dy)/16) == Tile.WALL
-                || tileMap.at((hitBox.getPosX() + hitBox.getWidth()/16), (hitBox.getPosY() - dy)/16) == Tile.WALL;
+                || tileMap.at((hitBox.getPosX() + hitBox.getWidth())/16, (hitBox.getPosY() - dy)/16) == Tile.WALL;
     }
 
     /**
@@ -170,7 +170,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     protected boolean isDownCollision(final int dy) {
         return tileMap.at(hitBox.getPosX()/16, (hitBox.getPosY() + hitBox.getHeight() + dy)/16) == Tile.WALL || tileMap
-                .at((hitBox.getPosX() + hitBox.getWidth()/16), (hitBox.getPosY() + hitBox.getHeight() + dy)/16) == Tile.WALL;
+                .at((hitBox.getPosX() + hitBox.getWidth())/16, (hitBox.getPosY() + hitBox.getHeight() + dy)/16) == Tile.WALL;
     }
 
     /**

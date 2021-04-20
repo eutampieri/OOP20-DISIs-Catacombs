@@ -12,7 +12,7 @@ public final class Bat extends Entity {
 
     private static final int HEIGHT = 1;
     private static final int WIDTH = 1;
-    private static final int MOVEMENT_SPEED = 4;
+    private static final int MOVEMENT_SPEED = 1;
     private static final int HEALTH = 8;
     private static final int CB_POS_MOD = 4;
     private static final int CB_DIM_MOD = 9;
@@ -20,13 +20,13 @@ public final class Bat extends Entity {
     private static final int BASE_FIRE_RATE = 2;
     private static final int BASE_RANGE = 2;
     private static final String NAME = "Bat";
-    private static final int MOVE_DELAY = 5;
-    private static final int PAUSE_DELAY = 5;
+    private static final long MOVE_DELAY = 1000000000;
+    private static final long PAUSE_DELAY = 5L * 1000000000;
 
     private final SimpleWeapon weapon;
     private boolean isMoving;
-    private int delayCounter;
-    private int pauseCounter;
+    private long delayCounter;
+    private long pauseCounter;
     private final CollisionBox radarBox;
 
     /**
