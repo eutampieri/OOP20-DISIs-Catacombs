@@ -41,11 +41,7 @@ public final class Bat extends Entity {
         face = Direction.RIGHT;
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
-        weapon = new SimpleWeapon(BASE_DAMAGE, "bat_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
-            @Override
-            public void initializeHitBox() {
-                this.hitBox = null;
-            }
+        weapon = new SimpleWeapon(x, y, BASE_DAMAGE, "bat_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
         };
 
         // TODO Animations
