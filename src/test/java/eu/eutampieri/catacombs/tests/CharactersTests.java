@@ -17,7 +17,7 @@ class CharactersTests {
     private final static Bat BAT = new Bat(1, 1, TILE_MAP);
     private final static Slime SLIME = new Slime(1, 1, TILE_MAP);
     private final static Boss BOSS = new Boss(5, 5, TILE_MAP);
-    private final static HealthModifier ONE_HP_SUB = new Gun(1, "1xp", 1, 1, 1000);
+    private final static HealthModifier ONE_HP_SUB = new Gun(0, 0, 1, "1xp", 1, 1, 1000);
 
     @Test
     void testPlayerName() {

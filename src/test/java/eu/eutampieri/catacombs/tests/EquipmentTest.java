@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class EquipmentTest {
 
-    private final static Gun DEFAULT_GUN = new Gun(21, "Default gun", 1, 10, 1);
+    private final static Gun DEFAULT_GUN = new Gun(0, 0, 21, "Default gun", 1, 10, 1);
     private final static TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
 
     @Test

@@ -29,11 +29,11 @@ public abstract class GameObject {
      * @param y  object Y position
      * @param kind Entity Kind @see eu.eutampieri.catacombs.model.EntityKind
      */
-    public GameObject(final int x, final int y, final GameObjectType kind) {
+    public GameObject(final int x, final int y, final GameObjectType kind, final CollisionBox hitBox) {
         this.setPosX(x);
         this.setPosY(y);
         this.kind = kind;
-        this.initializeHitBox();
+        this.hitBox = hitBox;
     }
 
     /**
@@ -160,9 +160,4 @@ public abstract class GameObject {
     public CollisionBox getHitBox() {
         return hitBox;
     }
-
-    /**
-     * Called on startup
-     */
-    public abstract void initializeHitBox();
 }

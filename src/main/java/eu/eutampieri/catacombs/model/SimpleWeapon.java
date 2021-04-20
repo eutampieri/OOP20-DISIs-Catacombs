@@ -8,6 +8,7 @@ import java.util.List;
  * A simple weapon that subtracts a given value from a player's health.
  */
 public abstract class SimpleWeapon extends GameObject implements HealthModifier {
+    private static final int SIZE = 16;
     /**
      * Weapon damage.
      */
@@ -55,8 +56,8 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      * @param range    weapon's range
      * @param magazine weapon's number of bullets (if -1 infinite)
      */
-    SimpleWeapon(final int damage, final String name, final int fireRate, final int range, final int magazine) {
-        super(0, 0, GameObjectType.WEAPON);
+    SimpleWeapon(final int x, final int y, final int damage, final String name, final int fireRate, final int range, final int magazine) {
+        super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, SIZE, SIZE));
         this.damage = damage;
         this.name = name;
         this.fireRate = fireRate;
