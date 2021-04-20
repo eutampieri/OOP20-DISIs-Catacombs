@@ -1,13 +1,9 @@
 package eu.eutampieri.catacombs.model;
 
-import eu.eutampieri.catacombs.ui.Game;
-import eu.eutampieri.catacombs.ui.GameConfiguration;
-
 public final class Camera {
 
     private int xOffset;
     private int yOffset;
-    private final GameConfiguration game;
 
     private final int mapWidth, mapHeight;
 
@@ -16,12 +12,13 @@ public final class Camera {
         this.yOffset = yOffset;
         this.mapWidth = mapWidth; //should be multiplied by tile dimensions
         this.mapHeight = mapHeight;
-        this.game = new GameConfiguration();
     }
 
     /**
-     * Centers the camera onto a specified Entity.
-     * @param e Entity to center the camera upon
+     * Centers camera on selected entity.
+     * @param e Entity to center onto
+     * @param gameWidth game width
+     * @param gameHeight game height
      */
     public void centerOnEntity(final GameObject e, final int gameWidth, final int gameHeight) {
         xOffset = e.getPosX() - (gameWidth / 2);

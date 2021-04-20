@@ -3,7 +3,7 @@ package eu.eutampieri.catacombs.model.mobgen;
 import eu.eutampieri.catacombs.model.Entity;
 import java.util.List;
 
-public interface MobFactory{
+public interface MobFactory {
 
     /**
      * Spawns a specified enemy at a certain location.
