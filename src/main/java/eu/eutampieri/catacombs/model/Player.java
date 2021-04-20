@@ -84,7 +84,7 @@ public class Player extends Entity {
                 this.left = false;
                 break;
         }
-        this.isMoving = true;
+        this.isMoving = this.right || this.left || this.up || this.down;
     }
 
     /**
