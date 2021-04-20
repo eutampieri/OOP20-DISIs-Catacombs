@@ -129,7 +129,7 @@ public class World {
         Stream.concat(this.entities.stream(), Stream.of(this.player))
                 .forEach((currentObj) -> {try {
                     final Entity currentEntity = (Entity) currentObj;
-                    final Pair<Action, Direction> action = currentEntity.getActionwithDirection();
+                    final Pair<Action, Direction> action = currentEntity.getActionWithDirection();
                     final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
                     g2.drawImage(img, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
                 } catch (ClassCastException e) {

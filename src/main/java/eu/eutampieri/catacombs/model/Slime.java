@@ -59,7 +59,7 @@ public final class Slime extends Entity {
     }
 
     @Override
-    public Pair<Action, Direction> getActionwithDirection() {
+    public Pair<Action, Direction> getActionWithDirection() {
         return Pair.of(Action.MOVE, this.face);
     }
 
