@@ -77,7 +77,7 @@ public final class Bat extends Entity {
     public Pair<Action, Direction> getActionwithDirection() {
         // TODO Auto-generated method stub
 
-        return null;
+        return Pair.of(Action.MOVE, this.face);
     }
 
     @Override

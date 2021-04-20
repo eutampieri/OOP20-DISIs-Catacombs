@@ -3,6 +3,8 @@ package eu.eutampieri.catacombs.ui;
 import eu.eutampieri.catacombs.model.*;
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
+import eu.eutampieri.catacombs.model.mobgen.MobFactory;
+import eu.eutampieri.catacombs.model.mobgen.MobFactoryImpl;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import eu.eutampieri.catacombs.ui.input.KeyManager;
@@ -48,12 +50,15 @@ public class World {
         }
     }
 
-    public World(final TileMap tileMap, final List<GameObject> entities) {
+    public World(final TileMap tileMap) {
         // this.background = am.getImage("background");
         this.tileMap = tileMap;
+        final MobFactory mf = new MobFactoryImpl(this.tileMap);
         camera = new Camera(0, 0, tileMap.width() * 16, tileMap.height() * 16);
-        this.entities = entities;
-        this.player = new Player(1000, 1000, "", this.tileMap);
+        this.entities = mf.spawnRandom().stream().map((x) -> (GameObject)x).collect(Collectors.toList());
+        this.player = (Player)mf
+                .spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm))
+                .get(0);
     }
 
     public TileMap getTileMap() {
