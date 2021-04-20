@@ -5,19 +5,21 @@ import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
+import eu.eutampieri.catacombs.ui.input.KeyManager;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class World {
-
     // private final BufferedImage background;
     private final TileMap tileMap;
     private final AssetManager am = AssetManager.getAssetManager();
+    private final KeyManagerProxy km = new KeyManagerProxy();
     // private final DungeonGame game = new DungeonGame();
     // TODO Camera
     private final Camera camera;
@@ -25,6 +27,26 @@ public class World {
     private List<GameObject> entities;
 
     private Player player;
+
+    private static final class KeyManagerProxy {
+        private final KeyManager km = Game.KEY_MANAGER;
+
+        public boolean up() {
+            return this.km.isKeyPressed(KeyEvent.VK_W) || this.km.isKeyPressed(KeyEvent.VK_UP);
+        }
+
+        public boolean down() {
+            return this.km.isKeyPressed(KeyEvent.VK_S) || this.km.isKeyPressed(KeyEvent.VK_DOWN);
+        }
+
+        public boolean left() {
+            return this.km.isKeyPressed(KeyEvent.VK_A) || this.km.isKeyPressed(KeyEvent.VK_LEFT);
+        }
+
+        public boolean right() {
+            return this.km.isKeyPressed(KeyEvent.VK_D) || this.km.isKeyPressed(KeyEvent.VK_RIGHT);
+        }
+    }
 
     public World(final TileMap tileMap, final List<GameObject> entities) {
         // this.background = am.getImage("background");
@@ -56,6 +78,15 @@ public class World {
     }
 
     public void update(final long delta) {
+        if(this.km.up()) {
+            this.player.setPosY(this.player.getPosY() - 1);
+        } else if(this.km.down()) {
+            this.player.setPosY(this.player.getPosY() + 1);
+        } else if(this.km.left()) {
+            this.player.setPosX(this.player.getPosX() - 1);
+        } else if(this.km.right()) {
+            this.player.setPosX(this.player.getPosX() + 1);
+        }
         player.update(delta, this.getAllEntitiesExcept(this.player));
 
         for (final GameObject entity : this.entities) {
@@ -90,18 +121,17 @@ public class World {
 
         // slimes
 
-        for (final GameObject currentObj : entities) {
-            try {
-                final Entity currentEntity = (Entity) currentObj;
-                final Pair<Action, Direction> action = currentEntity.getActionwithDirection();
-                final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
-                g2.drawImage(img, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
-            } catch (ClassCastException e) {
-                // Treat it as a game object
-                final BufferedImage img = AssetManagerProxy.getSprite(currentObj);
-                g2.drawImage(img, null, currentObj.getPosX() - camera.getXOffset(), currentObj.getPosY() - camera.getYOffset());
-            }
-        }
+        Stream.concat(this.entities.stream(), Stream.of(this.player))
+                .forEach((currentObj) -> {try {
+                    final Entity currentEntity = (Entity) currentObj;
+                    final Pair<Action, Direction> action = currentEntity.getActionwithDirection();
+                    final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
+                    g2.drawImage(img, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
+                } catch (ClassCastException e) {
+                    // Treat it as a game object
+                    final BufferedImage img = AssetManagerProxy.getSprite(currentObj);
+                    g2.drawImage(img, null, currentObj.getPosX() - camera.getXOffset(), currentObj.getPosY() - camera.getYOffset());
+                }});
 
         // TODO player.render parameters
         // this.player.render(g2, camera);
