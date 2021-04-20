@@ -19,6 +19,10 @@ public abstract class GameObject {
      * Object speed.
      */
     protected int speedX, speedY;
+    /**
+     * Entity hit box.
+     */
+    protected CollisionBox hitBox; // Entity hit box
 
     /**
      * @param x  object X position
@@ -145,5 +149,14 @@ public abstract class GameObject {
      */
     public boolean isMarkedForDeletion() {
         return false;
+    }
+
+    /**
+     * Getter for Entity hit box.
+     *
+     * @return Entity hit box
+     */
+    public CollisionBox getHitBox() {
+        return hitBox;
     }
 }

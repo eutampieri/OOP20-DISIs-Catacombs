@@ -31,10 +31,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * Tile map where the entity is.
      */
     protected TileMap tileMap;
-    /**
-     * Entity hit box.
-     */
-    protected CollisionBox hitBox; // Entity hit box
 
     /**
      * @param x       X spawn position
@@ -202,15 +198,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
         down = false;
         right = false;
         left = false;
-    }
-
-    /**
-     * Getter for Entity hit box.
-     * 
-     * @return Entity hit box
-     */
-    public CollisionBox getHitBox() {
-        return hitBox;
     }
 
     /**
