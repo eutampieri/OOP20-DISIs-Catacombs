@@ -37,50 +37,52 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @param y       Y spawn position
      * @param tileMap Tile map in which Entity is spawned
      */
-    public Entity(final int x, final int y, final TileMap tileMap, final GameObjectType kind) {
-        super(x, y, kind);
+    public Entity(final int x, final int y, final int width, final int height, final TileMap tileMap, final GameObjectType kind) {
+        super(x, y, kind, new CollisionBox(x, y, width, height));
         this.tileMap = tileMap;
+        this.width = width;
+        this.height = height;
     }
 
     /**
      * Getter for width.
-     * 
+     *
      * @return Entity width
      */
-    public int getWidth() {
+    public final int getWidth() {
         return width;
     }
 
     /**
      * Setter for width.
-     * 
+     *
      * @param width Width dimension for the entity
      */
-    public void setWidth(final int width) {
+    public final void setWidth(final int width) {
         this.width = width;
     }
 
     /**
      * Getter for height.
-     * 
+     *
      * @return Entity height
      */
-    public int getHeight() {
+    public final int getHeight() {
         return height;
     }
 
     /**
      * Setter for height.
-     * 
+     *
      * @param height Height dimension for the entity
      */
-    public void setHeight(final int height) {
+    public final void setHeight(final int height) {
         this.height = height;
     }
 
     /**
      * Updates entity status in game loop.
-     * 
+     *
      * @param delta time between updates
      */
     @Override
@@ -140,7 +142,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     /**
      * Checks if the Entity is going to collide into a wall while moving up.
-     * 
+     *
      * @param dy Entity speedY
      * @return true if moving into a wall; false otherwise
      */
@@ -151,7 +153,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     /**
      * Checks if the Entity is going to collide into a wall while moving right.
-     * 
+     *
      * @param dx Entity speedX
      * @return true if moving into a wall; false otherwise
      */
@@ -162,7 +164,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     /**
      * Checks if the Entity is going to collide into a wall while moving down.
-     * 
+     *
      * @param dy Entity speedY
      * @return true if moving into a wall; false otherwise
      */
@@ -173,7 +175,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     /**
      * Checks if the Entity is going to collide into a wall while moving left.
-     * 
+     *
      * @param dx Entity speedX
      * @return true if moving into a wall; false otherwise
      */
@@ -204,5 +206,4 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * Renders object with the corresponding sprite.
      */
     public abstract Pair<Action, Direction> getActionWithDirection();
-
 }

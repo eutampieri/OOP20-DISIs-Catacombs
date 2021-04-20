@@ -11,8 +11,8 @@ public class Gun extends SimpleWeapon {
      * @param magazine Weapon magazine as the number of bullets contained and usable
      *                 before firing
      */
-    public Gun(final int damage, final String name, final int fireRate, final int range, final int magazine) {
-        super(damage, name, fireRate, range, magazine);
+    public Gun(final int x, final int y, final int damage, final String name, final int fireRate, final int range, final int magazine) {
+        super(x, y, damage, name, fireRate, range, magazine);
     }
 
     @Override

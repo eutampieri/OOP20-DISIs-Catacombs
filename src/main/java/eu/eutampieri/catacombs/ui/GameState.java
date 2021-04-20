@@ -46,7 +46,7 @@ public class GameState extends State {
         this.world.render(g2);
         g2.setColor(Color.orange);
         g2.setFont(font);
-        g2.drawString("HEALTH : "/* + (int) this.player.getHealth() */, 5, font.getSize());
+        g2.drawString("HEALTH : " + this.world.getPlayer().getHealth(), 5, font.getSize());
         // g2.drawString("COINS : " + player.getCoins(), 5, font.getSize() * 2 + 10);
 
         if (this.paused) {

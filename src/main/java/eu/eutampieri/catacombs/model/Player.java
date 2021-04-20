@@ -3,22 +3,21 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.List;
-
 public class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 2;
     private static final int MAX_BASE_HP = 100;
+    private static final int SIZE = 16;
     private int health;
     private final String name;
-    private CollisionBox hitbox;
+    private boolean isMoving;
+
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
-        super(x, y, tm, GameObjectType.PLAYER);
+        super(x, y, SIZE, SIZE, tm, GameObjectType.PLAYER);
         setSpeed(BASE_MOVEMENT_SPEED);
         this.setHealth(MAX_BASE_HP);
         this.name = name;
         this.face = Direction.RIGHT;
-        hitbox = new CollisionBox(getPosX(), getPosY(), getWidth(), getHeight());
     }
 
     /**
@@ -43,17 +42,6 @@ public class Player extends Entity {
 
     }
 
-    /**
-     * Updates player status in game loop.
-     * 
-     * @param delta time between updates
-     */
-    @Override
-    public void update(final long delta, final List<GameObject> others) {
-        // TODO Auto-generated method stub
-
-    }
-
     @Override
     public Pair<Action, Direction> getActionWithDirection() {
         // TODO Auto-generated method stub
@@ -73,21 +61,30 @@ public class Player extends Entity {
     }
 
     public final void move(final Direction d) {
-        this.setSpeed(1);
+        if(this.isMoving) {
+            this.resetMovement();
+            this.isMoving = false;
+            return;
+        }
         switch (d) {
             case UP:
                 this.up = true;
+                this.down = false;
                 break;
             case DOWN:
                 this.down = true;
+                this.up = false;
                 break;
             case LEFT:
                 this.left = true;
+                this.right = false;
                 break;
             case RIGHT:
                 this.right = true;
+                this.left = false;
                 break;
         }
+        this.isMoving = true;
     }
 
     /**
@@ -96,5 +93,4 @@ public class Player extends Entity {
     public String getName() {
         return name;
     }
-
 }

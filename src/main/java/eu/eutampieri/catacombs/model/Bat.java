@@ -35,16 +35,13 @@ public final class Bat extends Entity {
      * @param tileMap Tile map in which Bat is spawned
      */
     public Bat(final int x, final int y, final TileMap tileMap) {
-        super(x, y, tileMap, GameObjectType.ENEMY);
-        setHeight(HEIGHT);
-        setWidth(WIDTH);
+        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.ENEMY);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
-        hitBox = new CollisionBox(posX, posY, width, height);
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
-        weapon = new SimpleWeapon(BASE_DAMAGE, "bat_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
+        weapon = new SimpleWeapon(x, y, BASE_DAMAGE, "bat_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
         };
 
         // TODO Animations
