@@ -16,6 +16,7 @@ public class Player extends Entity {
         setSpeed(BASE_MOVEMENT_SPEED);
         this.setHealth(MAX_BASE_HP);
         this.name = name;
+        this.face = Direction.RIGHT;
     }
 
     /**
