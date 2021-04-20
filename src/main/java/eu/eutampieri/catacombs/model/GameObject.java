@@ -33,6 +33,7 @@ public abstract class GameObject {
         this.setPosX(x);
         this.setPosY(y);
         this.kind = kind;
+        this.initializeHitBox();
     }
 
     /**
@@ -159,4 +160,9 @@ public abstract class GameObject {
     public CollisionBox getHitBox() {
         return hitBox;
     }
+
+    /**
+     * Called on startup
+     */
+    public abstract void initializeHitBox();
 }
