@@ -126,7 +126,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
             }
             face = Direction.RIGHT;
         }
-				updateSpriteLocation();
     }
 
     /**

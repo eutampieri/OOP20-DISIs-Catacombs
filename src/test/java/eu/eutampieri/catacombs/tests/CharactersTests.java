@@ -2,6 +2,7 @@ package eu.eutampieri.catacombs.tests;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.junit.jupiter.api.Test;
 import eu.eutampieri.catacombs.model.*;
 import org.junit.jupiter.api.TestInstance;
@@ -15,7 +16,11 @@ class CharactersTests {
 
     private final static TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
     private final static Bat BAT = new Bat(1, 1, TILE_MAP);
-    private final static Slime SLIME = new Slime(1, 1, TILE_MAP);
+    private final static Slime SLIME = new Slime(
+            AssetManagerProxy.getMapTileSize() * 2,
+            AssetManagerProxy.getMapTileSize() * 2,
+            TILE_MAP
+    );
     private final static Boss BOSS = new Boss(5, 5, TILE_MAP);
     private final static Weapon GUN = new Gun(TILE_MAP, 0, 0, 1, 1, 1);
     private final static HealthModifier ONE_HP_SUB = (Projectile)GUN.fire(0,0).get(0);
