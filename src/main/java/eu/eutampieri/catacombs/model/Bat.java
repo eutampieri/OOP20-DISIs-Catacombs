@@ -1,7 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
-import eu.eutampieri.catacombs.ui.Game;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.*;
@@ -71,7 +70,7 @@ public final class Bat extends Entity {
                 .findFirst()
                 .get()
                 .getHitBox()
-                .overlaps(this.getHitBox()) && this.weapon.getCanFire()){
+                .overlaps(this.getHitBox()) && this.weapon.canFire()){
             setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
             spawnObject();
         } else {
@@ -151,11 +150,11 @@ public final class Bat extends Entity {
         this.shootingDirection.setLocation(0, 0);
     }
 
-    public void setShootingDirection(GameObject e){
-        int x = 0, y = 0;
+    public void setShootingDirection(final GameObject e){
         if (e == null) {
             return;
         }
+        int x, y;
         if (e.getHitBox().getPosX() < this.getHitBox().getPosX()){
             x = -1;
         } else if (e.getHitBox().getPosX() > this.getHitBox().getPosX()){

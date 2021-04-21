@@ -30,7 +30,7 @@ public abstract class Weapon extends GameObject{
     /**
      * Map in which resides the gun.
      */
-    TileMap tileMap;
+    private TileMap tileMap;
 
     /**
      *
@@ -61,36 +61,36 @@ public abstract class Weapon extends GameObject{
         }
     }
 
-    public void setTileMap(final TileMap tm){
+    public final void setTileMap(final TileMap tm){
         this.tileMap = tm;
     }
 
-    public void setStrength(final int str) {
+    public final void setStrength(final int str) {
         this.strength = str;
     }
 
-    public void setProjectileSpeed(final int ps) {
+    public final void setProjectileSpeed(final int ps) {
         this.ps = ps;
     }
 
-    public void setFireRate(final int fr) {
+    public final void setFireRate(final int fr) {
         this.fr = fr;
     }
 
-    public void setFireDelay(final int fd) {
+    public final void setFireDelay(final int fd) {
         this.fireDelay = fd;
     }
 
-    public void setCanFire(final boolean cf){
+    public final void setCanFire(final boolean cf){
         this.canFire = cf;
     }
 
-    public boolean getCanFire(){
+    public final boolean canFire(){
         return this.canFire;
     }
 
-    public List<GameObject> fire(final int psx, final int psy){
-        Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
+    public final List<GameObject> fire(final int psx, final int psy){
+        final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
                 psx, psy, strength, tileMap);
         return List.of(p);
     }
