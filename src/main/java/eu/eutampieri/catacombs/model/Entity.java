@@ -97,10 +97,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     protected void move() {
 
-        int maxMovementUp = speedY;
-        int maxMovementRight = speedX;
-        int maxMovementDown = speedY;
-        int maxMovementLeft = speedX;
+        final int maxMovementUp = speedY;
+        final int maxMovementRight = speedX;
+        final int maxMovementDown = speedY;
+        final int maxMovementLeft = speedX;
 
         if (up) {
             if (!isUpCollision(maxMovementUp)) {

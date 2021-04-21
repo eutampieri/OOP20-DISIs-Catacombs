@@ -68,15 +68,15 @@ public final class AssetManagerProxy {
         final BufferedImage after = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         final AffineTransform at = new AffineTransform();
         at.scale(scale, scale);
-        AffineTransformOp scaling = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+        final AffineTransformOp scaling = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
         return scaling.filter(before, after);
     }
 
     public static Optional<BufferedImage> getTileSprite(final Tile tile) {
-        final BufferedImage tileImg;
         if(MAP_CACHE.get(tile) != null) {
             return Optional.of(MAP_CACHE.get(tile));
         }
+        final BufferedImage tileImg;
         switch (tile) {
             case FLOOR:
                 tileImg = AssetManager.getAssetManager().getImage("41");

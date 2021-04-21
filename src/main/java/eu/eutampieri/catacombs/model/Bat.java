@@ -10,8 +10,8 @@ import java.util.List;
  */
 public final class Bat extends Entity {
 
-    private static final int HEIGHT = 1;
-    private static final int WIDTH = 1;
+    private static final int HEIGHT = 16;
+    private static final int WIDTH = 16;
     private static final int MOVEMENT_SPEED = 1;
     private static final int HEALTH = 8;
     private static final int CB_POS_MOD = 4;

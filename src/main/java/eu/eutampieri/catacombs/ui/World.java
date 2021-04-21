@@ -1,11 +1,9 @@
 package eu.eutampieri.catacombs.ui;
 
 import eu.eutampieri.catacombs.model.*;
-import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.mobgen.MobFactory;
 import eu.eutampieri.catacombs.model.mobgen.MobFactoryImpl;
-import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import eu.eutampieri.catacombs.ui.input.KeyManager;
 import org.apache.commons.lang3.tuple.Pair;
@@ -121,7 +119,7 @@ public class World {
                 final int canvasY = y * AssetManagerProxy.getMapTileSize() - camera.getYOffset();
                 if(canvasX > -AssetManagerProxy.getMapTileSize() && canvasX <= game.getWidth() &&
                         canvasY > -AssetManagerProxy.getMapTileSize() && canvasY <= game.getHeight()) {
-                    Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
+                    final Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
                     tile.ifPresent(bufferedImage -> g2.drawImage(bufferedImage, null, canvasX, canvasY));
                 }
             }

@@ -33,11 +33,6 @@ public abstract class Game implements Runnable {
     private Graphics2D graphics;
     private int fps;
     private Thread gameThread;
-    private boolean isTest;
-
-    public void setTest() {
-        this.isTest = true;
-    }
 
     public Graphics2D getGraphics() {
         return this.graphics;
@@ -226,60 +221,25 @@ public abstract class Game implements Runnable {
     @Override
     public final void run() {
         create();
-        long lastTime;
         long lastUpdateTime;
         long now;
-        long timer;
-        int ticks;
-        int updates;
-        final int maxUpdates = 5;
 
         final double tickPerTime = 1f / fps;
-        lastTime = System.nanoTime();
         lastUpdateTime = System.nanoTime();
-        timer = 0;
-        ticks = 0;
         while (running) {
             now = System.currentTimeMillis();
-            timer += now - lastTime;
-            updates = 0;
-            //while ((now - lastUpdateTime) >= tickPerTime) {
-                long delta;
-                delta = now - lastUpdateTime;
-                delta = Math.min(delta, DELTA_MIN);
-                update(delta);
-                lastUpdateTime += tickPerTime;
-                updates++;
-            /*    if (updates > maxUpdates) {
-                    break;
-                }
-            }*/
+            long delta;
+            delta = now - lastUpdateTime;
+            delta = Math.min(delta, DELTA_MIN);
+            update(delta);
+            lastUpdateTime += tickPerTime;
             preRender();
             render();
             show();
-            ticks++;
-            lastTime = now;
 
             this.renderfpsCount(Color.CYAN);
-            long timeTake = System.currentTimeMillis() - now;
-            /*if (tickPerTime > timeTake) {
-                try {
-                    Thread.sleep((long) ((tickPerTime - timeTake) / THREAD_SLEEP_CONST));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-			if (timer >= 1_000_000_000) {
-				mainFrame.getFrame().setTitle("Frame Per Seconds : " + ticks);
-				this.framesThisSecond = ticks;
-				ticks = 0;
-				timer = 0;
-			}
-			if (updates > 0 && isTest) {
-			    break;
-            }*/
-            long timeToFrame = (1_000 / this.fps) - (timeTake);
+            final long timeTake = System.currentTimeMillis() - now;
+            final long timeToFrame = 1_000 / this.fps - timeTake;
             if(timeToFrame > 0) {
                 try {
                     Thread.sleep(timeToFrame);
