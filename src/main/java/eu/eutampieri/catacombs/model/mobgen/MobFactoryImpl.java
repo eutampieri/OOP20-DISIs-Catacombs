@@ -4,6 +4,7 @@ import eu.eutampieri.catacombs.model.Bat;
 import eu.eutampieri.catacombs.model.Entity;
 import eu.eutampieri.catacombs.model.Slime;
 import eu.eutampieri.catacombs.model.map.TileMap;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public final class MobFactoryImpl implements MobFactory {
             return List.of();
         }
         final List<Entity> enemies = new ArrayList<>();
-        enemies.add(f.create(x * 24, y * 24, this.tileMap));
+        enemies.add(f.create(x * AssetManagerProxy.getMapTileSize(), y * AssetManagerProxy.getMapTileSize(), this.tileMap));
         return enemies;
     }
 

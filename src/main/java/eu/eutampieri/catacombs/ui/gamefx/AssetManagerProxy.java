@@ -14,6 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public final class AssetManagerProxy {
+    private final static double MAP_SCALING_FACTOR = 1.5;
 
     private AssetManagerProxy(){}
 
@@ -80,6 +81,14 @@ public final class AssetManagerProxy {
             default:
                 return Optional.empty();
         }
-        return Optional.of(scale(tileImg, 1.5));
+        return Optional.of(scale(tileImg, MAP_SCALING_FACTOR));
+    }
+
+    public static int getMapTileSize() {
+        final Optional<BufferedImage> maybeTile = getTileSprite(Tile.FLOOR);
+        assert maybeTile.isPresent();
+        final BufferedImage tile = maybeTile.get();
+        assert tile.getHeight() == tile.getWidth();
+        return tile.getHeight();
     }
 }

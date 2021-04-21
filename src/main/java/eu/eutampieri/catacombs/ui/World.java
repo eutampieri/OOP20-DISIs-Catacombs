@@ -56,7 +56,7 @@ public class World {
         // this.background = am.getImage("background");
         this.tileMap = tileMap;
         final MobFactory mf = new MobFactoryImpl(this.tileMap);
-        camera = new Camera(0, 0, tileMap.width() * 24, tileMap.height() * 24);
+        camera = new Camera(0, 0, tileMap.width() * AssetManagerProxy.getMapTileSize(), tileMap.height() * AssetManagerProxy.getMapTileSize());
         this.entities = mf.spawnRandom().stream().map((x) -> (GameObject)x).collect(Collectors.toList());
         this.player = (Player)mf
                 .spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm))
@@ -120,7 +120,7 @@ public class World {
             for (int x = 0; x < tileMap.width(); x++) {
                 Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
                 if (tile.isPresent()) {
-                    g2.drawImage(tile.get(), null, x * 24 - camera.getXOffset(), y * 24 - camera.getYOffset());
+                    g2.drawImage(tile.get(), null, x * AssetManagerProxy.getMapTileSize() - camera.getXOffset(), y * AssetManagerProxy.getMapTileSize() - camera.getYOffset());
                 }
             }
         }
