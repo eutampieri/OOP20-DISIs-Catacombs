@@ -1,11 +1,9 @@
 package eu.eutampieri.catacombs.ui;
 
 import eu.eutampieri.catacombs.model.*;
-import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.mobgen.MobFactory;
 import eu.eutampieri.catacombs.model.mobgen.MobFactoryImpl;
-import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import eu.eutampieri.catacombs.ui.input.KeyManager;
 import org.apache.commons.lang3.tuple.Pair;
@@ -14,14 +12,15 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class World {
     // private final BufferedImage background;
     private final TileMap tileMap;
-    private final AssetManager am = AssetManager.getAssetManager();
     private final KeyManagerProxy km = new KeyManagerProxy();
+    private final DungeonGame game;
     // private final DungeonGame game = new DungeonGame();
     // TODO Camera
     private final Camera camera;
@@ -50,15 +49,17 @@ public class World {
         }
     }
 
-    public World(final TileMap tileMap) {
+    public World(final TileMap tileMap, final DungeonGame game) {
         // this.background = am.getImage("background");
         this.tileMap = tileMap;
         final MobFactory mf = new MobFactoryImpl(this.tileMap);
-        camera = new Camera(0, 0, tileMap.width() * 16, tileMap.height() * 16);
+        camera = new Camera(0, 0, tileMap.width() * AssetManagerProxy.getMapTileSize(), tileMap.height() * AssetManagerProxy.getMapTileSize());
         this.entities = mf.spawnRandom().stream().map((x) -> (GameObject)x).collect(Collectors.toList());
         this.player = (Player)mf
                 .spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm))
                 .get(0);
+
+        this.game = game;
     }
 
     public TileMap getTileMap() {
@@ -83,6 +84,7 @@ public class World {
     }
 
     public void update(final long delta) {
+        this.player.stop();
         if(this.km.up()) {
             this.player.move(Direction.UP);
         } else if(this.km.down()) {
@@ -97,6 +99,13 @@ public class World {
         for (final GameObject entity : this.entities) {
             entity.update(delta, this.getAllEntitiesExcept(entity));
         }
+
+        final List<GameObject> newEntities = entities.stream()
+                .filter((x) -> x instanceof Entity)
+                .flatMap((x) -> ((Entity) x).spawnObject().stream())
+                .collect(Collectors.toList());
+        this.entities.addAll(newEntities);
+
         this.entities = this.entities
                 .stream()
                 .filter((x) -> !x.isMarkedForDeletion())
@@ -104,7 +113,7 @@ public class World {
     }
 
     public void render(final Graphics2D g2) {
-        camera.centerOnEntity(this.player);
+        camera.centerOnEntity(this.player, game.getWidth(), game.getHeight());
         // g2.drawImage(background, 0, 0, game.getGameWidth(), game.getGameHeight(),
         // null);
         /*
@@ -113,10 +122,12 @@ public class World {
          */
         for (int y = 0; y < tileMap.height(); y++) {
             for (int x = 0; x < tileMap.width(); x++) {
-                if (tileMap.at(x, y) == Tile.FLOOR) {
-                    g2.drawImage(am.getImage("41"), null, x * 16 - camera.getXOffset(), y * 16 - camera.getYOffset());
-                } else if (tileMap.at(x, y) == Tile.WALL) {
-                    g2.drawImage(am.getImage("25"), null, x * 16 - camera.getXOffset(), y * 16 - camera.getYOffset());
+                final int canvasX = x * AssetManagerProxy.getMapTileSize() - camera.getXOffset();
+                final int canvasY = y * AssetManagerProxy.getMapTileSize() - camera.getYOffset();
+                if(canvasX > -AssetManagerProxy.getMapTileSize() && canvasX <= game.getWidth() &&
+                        canvasY > -AssetManagerProxy.getMapTileSize() && canvasY <= game.getHeight()) {
+                    final Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
+                    tile.ifPresent(bufferedImage -> g2.drawImage(bufferedImage, null, canvasX, canvasY));
                 }
             }
         }
@@ -127,7 +138,10 @@ public class World {
         // slimes
 
         Stream.concat(this.entities.stream(), Stream.of(this.player))
-                .forEach((currentObj) -> {try {
+                .forEach((currentObj) -> {
+                    g2.drawRect(currentObj.getHitBox().getPosX()-camera.getXOffset(), currentObj.getHitBox()
+                            .getPosY() - camera.getYOffset(), currentObj.getHitBox().getWidth(), currentObj.getHitBox().getHeight());
+                    try {
                     final Entity currentEntity = (Entity) currentObj;
                     final Pair<Action, Direction> action = currentEntity.getActionWithDirection();
                     final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);

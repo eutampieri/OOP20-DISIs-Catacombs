@@ -1,6 +1,8 @@
 package eu.eutampieri.catacombs.model.map;
 
 public final class TileMapImpl implements TileMap {
+    public static final int TILE_SIZE = 16;
+
     private final Tile[][] map;
 
     public TileMapImpl(final Tile[][] m) {

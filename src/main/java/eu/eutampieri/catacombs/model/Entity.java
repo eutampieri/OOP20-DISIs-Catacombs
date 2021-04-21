@@ -3,6 +3,7 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.Animatable;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
@@ -96,23 +97,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     protected void move() {
 
-        int maxMovementUp = speedY;
-        int maxMovementRight = speedX;
-        int maxMovementDown = speedY;
-        int maxMovementLeft = speedX;
-
-        if (hitBox.getPosX() - speedX < 0) {
-            maxMovementLeft = hitBox.getPosX();
-        }
-        if (hitBox.getPosX() + hitBox.getWidth() + speedX > tileMap.width() - 1) {
-            maxMovementRight = tileMap.width() - hitBox.getPosX() - hitBox.getWidth() - 1;
-        }
-        if (hitBox.getPosY() - speedY < 0) {
-            maxMovementUp = hitBox.getPosY();
-        }
-        if (hitBox.getPosY() + hitBox.getHeight() + speedY > tileMap.height() - 1) {
-            maxMovementDown = tileMap.height() - hitBox.getPosY() - hitBox.getHeight() - 1;
-        }
+        final int maxMovementUp = speedY;
+        final int maxMovementRight = speedX;
+        final int maxMovementDown = speedY;
+        final int maxMovementLeft = speedX;
 
         if (up) {
             if (!isUpCollision(maxMovementUp)) {
@@ -127,7 +115,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
             face = Direction.DOWN;
         }
         if (left) {
-            if (isLeftCollision(maxMovementLeft)) {
+            if (!isLeftCollision(maxMovementLeft)) {
                 hitBox.move(-maxMovementLeft, 0);
             }
             face = Direction.LEFT;
@@ -138,6 +126,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
             }
             face = Direction.RIGHT;
         }
+				updateSpriteLocation();
     }
 
     /**
@@ -147,8 +136,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isUpCollision(final int dy) {
-        return tileMap.at(hitBox.getPosX(), hitBox.getPosY() - dy) == Tile.WALL
-                || tileMap.at(hitBox.getPosX() + hitBox.getWidth(), hitBox.getPosY() - dy) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX()/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() - dy)/AssetManagerProxy.getMapTileSize()) == Tile.WALL
+                || tileMap.at((hitBox.getPosX() + hitBox.getWidth())/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() - dy)/AssetManagerProxy.getMapTileSize()) == Tile.WALL;
     }
 
     /**
@@ -158,8 +147,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isRightCollision(final int dx) {
-        return tileMap.at(hitBox.getPosX() + hitBox.getWidth() + dx, hitBox.getPosY()) == Tile.WALL || tileMap
-                .at(hitBox.getPosX() + hitBox.getWidth() + dx, hitBox.getPosY() + hitBox.getHeight()) == Tile.WALL;
+        return tileMap.at((hitBox.getPosX() + hitBox.getWidth() + dx)/AssetManagerProxy.getMapTileSize(), hitBox.getPosY()/AssetManagerProxy.getMapTileSize()) == Tile.WALL || tileMap
+                .at((hitBox.getPosX() + hitBox.getWidth() + dx)/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() + hitBox.getHeight())/AssetManagerProxy.getMapTileSize()) == Tile.WALL;
     }
 
     /**
@@ -169,8 +158,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isDownCollision(final int dy) {
-        return tileMap.at(hitBox.getPosX(), hitBox.getPosY() + hitBox.getHeight() + dy) == Tile.WALL || tileMap
-                .at(hitBox.getPosX() + hitBox.getWidth(), hitBox.getPosY() + hitBox.getHeight() + dy) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX()/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() + hitBox.getHeight() + dy)/AssetManagerProxy.getMapTileSize()) == Tile.WALL || tileMap
+                .at((hitBox.getPosX() + hitBox.getWidth())/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() + hitBox.getHeight() + dy)/AssetManagerProxy.getMapTileSize()) == Tile.WALL;
     }
 
     /**
@@ -180,8 +169,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isLeftCollision(final int dx) {
-        return tileMap.at(hitBox.getPosX() - dx, hitBox.getPosY()) == Tile.WALL
-                || tileMap.at(hitBox.getPosX() - dx, hitBox.getPosY() + hitBox.getHeight()) == Tile.WALL;
+        return tileMap.at((hitBox.getPosX() - dx)/AssetManagerProxy.getMapTileSize(), hitBox.getPosY()/AssetManagerProxy.getMapTileSize()) == Tile.WALL
+                || tileMap.at((hitBox.getPosX() - dx)/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() + hitBox.getHeight())/AssetManagerProxy.getMapTileSize()) == Tile.WALL;
     }
 
     /**
@@ -206,4 +195,13 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * Renders object with the corresponding sprite.
      */
     public abstract Pair<Action, Direction> getActionWithDirection();
+
+    public List<GameObject> spawnObject(){
+        return List.of();
+    }
+
+    @Override
+    public boolean isMarkedForDeletion() {
+        return !this.isAlive();
+    }
 }

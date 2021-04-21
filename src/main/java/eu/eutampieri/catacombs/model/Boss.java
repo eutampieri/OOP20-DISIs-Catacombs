@@ -20,7 +20,7 @@ public final class Boss extends Entity {
     private static final int MOVE_DELAY = 5;
     private static final int PAUSE_DELAY = 5;
 
-    private final SimpleWeapon weapon;
+    //private final SimpleWeapon weapon;
     private boolean isMoving;
     private int delayCounter;
     private int pauseCounter;
@@ -38,8 +38,8 @@ public final class Boss extends Entity {
         face = Direction.RIGHT;
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
-        weapon = new SimpleWeapon(x, y, BASE_DAMAGE, "boss_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
-        };
+        //weapon = new SimpleWeapon(x, y, BASE_DAMAGE, "boss_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
+        //};
     }
 
     @Override
@@ -66,7 +66,7 @@ public final class Boss extends Entity {
 
         super.update(delta, others);
         updateRadarBoxLocation();
-        weapon.update(delta, others);
+        //weapon.update(delta, others);
     }
 
     @Override

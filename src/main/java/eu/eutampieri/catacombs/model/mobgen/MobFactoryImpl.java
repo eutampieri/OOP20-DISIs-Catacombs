@@ -4,6 +4,7 @@ import eu.eutampieri.catacombs.model.Bat;
 import eu.eutampieri.catacombs.model.Entity;
 import eu.eutampieri.catacombs.model.Slime;
 import eu.eutampieri.catacombs.model.map.TileMap;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Random;
 
 public final class MobFactoryImpl implements MobFactory {
 
-    private static final int MAX_MOB_NUMBER = 69;
+    public static final int MAX_MOB_NUMBER = 69;
     private static final int MOB_KIND_NUMBER = 2;
 
     private TileMap tileMap;
@@ -35,7 +36,7 @@ public final class MobFactoryImpl implements MobFactory {
             return List.of();
         }
         final List<Entity> enemies = new ArrayList<>();
-        enemies.add(f.create(x*16, y*16, this.tileMap));
+        enemies.add(f.create(x * AssetManagerProxy.getMapTileSize(), y * AssetManagerProxy.getMapTileSize(), this.tileMap));
         return enemies;
     }
 
@@ -59,7 +60,7 @@ public final class MobFactoryImpl implements MobFactory {
     @Override
     public List<Entity> spawnRandom() {
         int randX, randY, randKind;
-        final int mobNum = rand.nextInt(MAX_MOB_NUMBER);
+        final int mobNum = rand.nextInt(MAX_MOB_NUMBER) + 1;
 
         final List<Entity> enemies = new ArrayList<>();
         for (int i = 0; i < mobNum; i++) {

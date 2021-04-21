@@ -4,12 +4,11 @@ import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class Player extends Entity {
-    private static final int BASE_MOVEMENT_SPEED = 2;
+    private static final int BASE_MOVEMENT_SPEED = 3;
     private static final int MAX_BASE_HP = 100;
-    private static final int SIZE = 16;
+    private static final int SIZE = 32;
     private int health;
     private final String name;
-    private boolean isMoving;
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
         super(x, y, SIZE, SIZE, tm, GameObjectType.PLAYER);
@@ -60,30 +59,27 @@ public class Player extends Entity {
     }
 
     public final void move(final Direction d) {
-        if(this.isMoving) {
-            this.resetMovement();
-            this.isMoving = false;
-            return;
-        }
+        this.resetMovement();
         switch (d) {
             case UP:
                 this.up = true;
-                this.down = false;
                 break;
             case DOWN:
                 this.down = true;
-                this.up = false;
                 break;
             case LEFT:
                 this.left = true;
-                this.right = false;
                 break;
             case RIGHT:
                 this.right = true;
-                this.left = false;
                 break;
         }
-        this.isMoving = true;
+    }
+		public void stop() {
+			this.resetMovement();
+		}
+    public boolean isMoving(){
+        return this.right || this.left || this.up || this.down;
     }
 
     /**
