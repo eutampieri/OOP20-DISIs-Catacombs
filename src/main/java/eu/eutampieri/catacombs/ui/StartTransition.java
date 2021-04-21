@@ -22,7 +22,7 @@ public class StartTransition extends State{
     public void update(final long delta) {
         this.waitTimer += delta;
 
-        if (this.waitTimer >= WAIT_TIME) {
+        if (this.waitTimer >= WAIT_TIME || true) {
             this.waitTimer = 0;
             game.setState(levelState);
         }

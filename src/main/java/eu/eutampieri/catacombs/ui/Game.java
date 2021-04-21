@@ -240,7 +240,7 @@ public abstract class Game implements Runnable {
         timer = 0;
         ticks = 0;
         while (running) {
-            now = System.nanoTime();
+            now = System.currentTimeMillis();
             timer += now - lastTime;
             updates = 0;
             //while ((now - lastUpdateTime) >= tickPerTime) {
@@ -260,9 +260,9 @@ public abstract class Game implements Runnable {
             ticks++;
             lastTime = now;
 
-            long timeTake;
-            timeTake = System.nanoTime() - now;
-            if (tickPerTime > timeTake) {
+            this.renderfpsCount(Color.CYAN);
+            long timeTake = System.currentTimeMillis() - now;
+            /*if (tickPerTime > timeTake) {
                 try {
                     Thread.sleep((long) ((tickPerTime - timeTake) / THREAD_SLEEP_CONST));
                 } catch (InterruptedException e) {
@@ -271,13 +271,21 @@ public abstract class Game implements Runnable {
             }
 
 			if (timer >= 1_000_000_000) {
-				// mainFrame.getFrame().setTitle("Frame Per Seconds : " + ticks);
+				mainFrame.getFrame().setTitle("Frame Per Seconds : " + ticks);
 				this.framesThisSecond = ticks;
 				ticks = 0;
 				timer = 0;
 			}
 			if (updates > 0 && isTest) {
 			    break;
+            }*/
+            long timeToFrame = (1_000 / this.fps) - (timeTake);
+            if(timeToFrame > 0) {
+                try {
+                    Thread.sleep(timeToFrame);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 		}
 	}
