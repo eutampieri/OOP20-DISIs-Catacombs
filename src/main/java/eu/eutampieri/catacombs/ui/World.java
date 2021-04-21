@@ -97,7 +97,9 @@ public class World {
         player.update(delta, this.getAllEntitiesExcept(this.player));
 
         for (final GameObject entity : this.entities) {
-            entity.update(delta, this.getAllEntitiesExcept(entity));
+            if(this.isOnCamera(entity.getPosX(), entity.getPosY())) {
+                entity.update(delta, this.getAllEntitiesExcept(entity));
+            }
         }
 
         final List<GameObject> newEntities = entities.stream()
@@ -112,6 +114,13 @@ public class World {
                 .collect(Collectors.toList());
     }
 
+    private boolean isOnCamera(final int x, final int y) {
+        final int canvasX = x - camera.getXOffset();
+        final int canvasY = y - camera.getYOffset();
+        return canvasX > -AssetManagerProxy.getMapTileSize() && canvasX <= game.getWidth() &&
+                canvasY > -AssetManagerProxy.getMapTileSize() && canvasY <= game.getHeight();
+    }
+
     public void render(final Graphics2D g2) {
         camera.centerOnEntity(this.player, game.getWidth(), game.getHeight());
         // g2.drawImage(background, 0, 0, game.getGameWidth(), game.getGameHeight(),
@@ -124,8 +133,7 @@ public class World {
             for (int x = 0; x < tileMap.width(); x++) {
                 final int canvasX = x * AssetManagerProxy.getMapTileSize() - camera.getXOffset();
                 final int canvasY = y * AssetManagerProxy.getMapTileSize() - camera.getYOffset();
-                if(canvasX > -AssetManagerProxy.getMapTileSize() && canvasX <= game.getWidth() &&
-                        canvasY > -AssetManagerProxy.getMapTileSize() && canvasY <= game.getHeight()) {
+                if(isOnCamera(x * AssetManagerProxy.getMapTileSize(), y * AssetManagerProxy.getMapTileSize())) {
                     final Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
                     tile.ifPresent(bufferedImage -> g2.drawImage(bufferedImage, null, canvasX, canvasY));
                 }
@@ -138,6 +146,7 @@ public class World {
         // slimes
 
         Stream.concat(this.entities.stream(), Stream.of(this.player))
+                .filter((x) -> this.isOnCamera(x.getPosX(), x.getPosY()))
                 .forEach((currentObj) -> {
                     g2.drawRect(currentObj.getHitBox().getPosX()-camera.getXOffset(), currentObj.getHitBox()
                             .getPosY() - camera.getYOffset(), currentObj.getHitBox().getWidth(), currentObj.getHitBox().getHeight());
