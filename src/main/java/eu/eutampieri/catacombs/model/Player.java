@@ -4,7 +4,7 @@ import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
 public class Player extends Entity {
-    private static final int BASE_MOVEMENT_SPEED = 2;
+    private static final int BASE_MOVEMENT_SPEED = 1;
     private static final int MAX_BASE_HP = 100;
     private static final int SIZE = 16;
     private int health;

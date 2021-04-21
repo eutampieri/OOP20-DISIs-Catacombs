@@ -1,7 +1,9 @@
 package eu.eutampieri.catacombs.model;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import eu.eutampieri.catacombs.model.map.TileMap;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,6 +48,8 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      */
     protected final String name;
 
+    private List<GameObject> projectileFlyingList;
+
     /**
      * Simple weapon constructor.
      * 
@@ -56,13 +60,14 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      * @param range    weapon's range
      * @param magazine weapon's number of bullets (if -1 infinite)
      */
-    SimpleWeapon(final int x, final int y, final int damage, final String name, final int fireRate, final int range, final int magazine) {
+    SimpleWeapon(TileMap tm, final int x, final int y, final int damage, final String name, final int fireRate, final int range, final int magazine) {
         super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, SIZE, SIZE));
         this.damage = damage;
         this.name = name;
         this.fireRate = fireRate;
         this.range = range;
         this.magazine = magazine;
+        this.projectileFlyingList = new ArrayList<>();
     }
 
     /**
@@ -187,8 +192,7 @@ public abstract class SimpleWeapon extends GameObject implements HealthModifier 
      * Makes weapon fire on key press.
      */
     public void fireWeapon() {
-        this.magazine--;
-        // TODO
+        //projectileFlyingList.add(new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(), 2, 2, 4, ))
     }
 
     /**

@@ -208,4 +208,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * Renders object with the corresponding sprite.
      */
     public abstract Pair<Action, Direction> getActionWithDirection();
+
+    protected List<GameObject> spawnObject(){
+        return List.of();
+    }
 }
