@@ -3,8 +3,11 @@ package eu.eutampieri.catacombs.ui.gamefx;
 import eu.eutampieri.catacombs.model.Action;
 import eu.eutampieri.catacombs.model.Direction;
 import eu.eutampieri.catacombs.model.GameObject;
+import eu.eutampieri.catacombs.model.map.Tile;
 import org.apache.commons.lang3.StringUtils;
 
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Optional;
@@ -53,5 +56,30 @@ public final class AssetManagerProxy {
             default:
                 return null;
         }
+    }
+
+    private static BufferedImage scale(final BufferedImage before, final double scale) {
+        final int w = before.getWidth();
+        final int h = before.getHeight();
+        final BufferedImage after = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+        final AffineTransform at = new AffineTransform();
+        at.scale(scale, scale);
+        AffineTransformOp scaling = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+        return scaling.filter(before, after);
+    }
+
+    public static Optional<BufferedImage> getTileSprite(final Tile tile) {
+        final BufferedImage tileImg;
+        switch (tile) {
+            case FLOOR:
+                tileImg = AssetManager.getAssetManager().getImage("41");
+                break;
+            case WALL:
+                tileImg = AssetManager.getAssetManager().getImage("25");
+                break;
+            default:
+                return Optional.empty();
+        }
+        return Optional.of(scale(tileImg, 1.5));
     }
 }
