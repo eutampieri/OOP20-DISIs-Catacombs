@@ -9,12 +9,15 @@ import org.apache.commons.lang3.StringUtils;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 public final class AssetManagerProxy {
     private final static double MAP_SCALING_FACTOR = 1.5;
+    private final static Map<Tile, BufferedImage> MAP_CACHE = new HashMap<>();
 
     private AssetManagerProxy(){}
 
@@ -71,6 +74,9 @@ public final class AssetManagerProxy {
 
     public static Optional<BufferedImage> getTileSprite(final Tile tile) {
         final BufferedImage tileImg;
+        if(MAP_CACHE.get(tile) != null) {
+            return Optional.of(MAP_CACHE.get(tile));
+        }
         switch (tile) {
             case FLOOR:
                 tileImg = AssetManager.getAssetManager().getImage("41");
@@ -81,7 +87,8 @@ public final class AssetManagerProxy {
             default:
                 return Optional.empty();
         }
-        return Optional.of(scale(tileImg, MAP_SCALING_FACTOR));
+        MAP_CACHE.put(tile, scale(tileImg, MAP_SCALING_FACTOR));
+        return Optional.of(MAP_CACHE.get(tile));
     }
 
     public static int getMapTileSize() {

@@ -118,9 +118,11 @@ public class World {
          */
         for (int y = 0; y < tileMap.height(); y++) {
             for (int x = 0; x < tileMap.width(); x++) {
-                Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
-                if (tile.isPresent()) {
-                    g2.drawImage(tile.get(), null, x * AssetManagerProxy.getMapTileSize() - camera.getXOffset(), y * AssetManagerProxy.getMapTileSize() - camera.getYOffset());
+                final int canvasX = x * AssetManagerProxy.getMapTileSize() - camera.getXOffset();
+                final int canvasY = y * AssetManagerProxy.getMapTileSize() - camera.getYOffset();
+                if(canvasX > 0 && canvasX <= game.getWidth() && canvasY > 0 && canvasY <= game.getHeight()) {
+                    Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
+                    tile.ifPresent(bufferedImage -> g2.drawImage(bufferedImage, null, canvasX, canvasY));
                 }
             }
         }
