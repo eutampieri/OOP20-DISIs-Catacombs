@@ -243,17 +243,17 @@ public abstract class Game implements Runnable {
             now = System.nanoTime();
             timer += now - lastTime;
             updates = 0;
-            while ((now - lastUpdateTime) >= tickPerTime) {
+            //while ((now - lastUpdateTime) >= tickPerTime) {
                 long delta;
                 delta = now - lastUpdateTime;
                 delta = Math.min(delta, DELTA_MIN);
                 update(delta);
                 lastUpdateTime += tickPerTime;
                 updates++;
-                if (updates > maxUpdates) {
+            /*    if (updates > maxUpdates) {
                     break;
                 }
-            }
+            }*/
             preRender();
             render();
             show();
