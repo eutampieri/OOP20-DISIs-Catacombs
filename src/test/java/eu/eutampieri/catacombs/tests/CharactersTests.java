@@ -19,20 +19,18 @@ class CharactersTests {
     private final static Boss BOSS = new Boss(5, 5, TILE_MAP);
     private final static Weapon GUN = new Gun(TILE_MAP, 0, 0, 1, 1, 1);
     private final static HealthModifier ONE_HP_SUB = (Projectile)GUN.fire(0,0).get(0);
+    private final static Player PLAYER = new Player(0, 0, "John Appleseed", TILE_MAP);
 
     @Test
     void testPlayerName() {
         final String name = "John Appleseed";
-        final Player p = new Player(0, 0, name, TILE_MAP);
-        assertEquals(p.getName(), name);
+        assertEquals(PLAYER.getName(), name);
     }
 
     @Test
     void testPlayerHealth() {
-        final String name = "John Appleseed";
-        final Player p = new Player(0, 0, name, TILE_MAP);
-        assertEquals(p.getHealth(), 100);
-        assertTrue(p.isAlive());
+        assertEquals(PLAYER.getHealth(), 100);
+        assertTrue(PLAYER.isAlive());
     }
 
     @Test
@@ -90,7 +88,7 @@ class CharactersTests {
 
     @Test
     void testBatUpdate() {
-        BAT.update(10, List.of());
+        BAT.update(10, List.of(PLAYER));
         // TODO implement checks
     }
 
