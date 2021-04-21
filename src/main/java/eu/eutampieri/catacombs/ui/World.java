@@ -21,7 +21,6 @@ import java.util.stream.Stream;
 public class World {
     // private final BufferedImage background;
     private final TileMap tileMap;
-    private final AssetManager am = AssetManager.getAssetManager();
     private final KeyManagerProxy km = new KeyManagerProxy();
     private final DungeonGame game;
     // private final DungeonGame game = new DungeonGame();
@@ -120,7 +119,8 @@ public class World {
             for (int x = 0; x < tileMap.width(); x++) {
                 final int canvasX = x * AssetManagerProxy.getMapTileSize() - camera.getXOffset();
                 final int canvasY = y * AssetManagerProxy.getMapTileSize() - camera.getYOffset();
-                if(canvasX > 0 && canvasX <= game.getWidth() && canvasY > 0 && canvasY <= game.getHeight()) {
+                if(canvasX > -AssetManagerProxy.getMapTileSize() && canvasX <= game.getWidth() &&
+                        canvasY > -AssetManagerProxy.getMapTileSize() && canvasY <= game.getHeight()) {
                     Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
                     tile.ifPresent(bufferedImage -> g2.drawImage(bufferedImage, null, canvasX, canvasY));
                 }
