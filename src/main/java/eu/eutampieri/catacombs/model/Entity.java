@@ -199,4 +199,9 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     public List<GameObject> spawnObject(){
         return List.of();
     }
+
+    @Override
+    public boolean isMarkedForDeletion() {
+        return this.isAlive();
+    }
 }
