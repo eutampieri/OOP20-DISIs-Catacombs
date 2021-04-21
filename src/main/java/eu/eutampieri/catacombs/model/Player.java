@@ -3,12 +3,18 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.List;
+
 public class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 3;
     private static final int MAX_BASE_HP = 100;
     private static final int SIZE = 32;
+    private static final int INITIAL_WEAPOON_DAMAGE = 5;
+    private static final int INITIAL_WEAPON_FIRE_RATE = 2;
     private int health;
     private final String name;
+    private boolean fire;
+    private Weapon weapon;
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
         super(x, y, SIZE, SIZE, tm, GameObjectType.PLAYER);
@@ -16,6 +22,7 @@ public class Player extends Entity {
         this.setHealth(MAX_BASE_HP);
         this.name = name;
         this.face = Direction.RIGHT;
+        this.weapon = new Gun(tm, x, y, INITIAL_WEAPOON_DAMAGE, BASE_MOVEMENT_SPEED * 3, INITIAL_WEAPON_FIRE_RATE);
     }
 
     /**
@@ -75,7 +82,7 @@ public class Player extends Entity {
                 break;
         }
     }
-		public void stop() {
+    public void stop() {
 			this.resetMovement();
 		}
     public boolean isMoving(){
@@ -87,5 +94,18 @@ public class Player extends Entity {
      */
     public String getName() {
         return name;
+    }
+    
+    public void fire() {
+        this.fire = true;
+    }
+
+    @Override
+    public List<GameObject> spawnObject() {
+        if(this.fire) {
+            return this.weapon.fire(this.getPosX(), this.getPosY());
+        } else {
+            return List.of();
+        }
     }
 }
