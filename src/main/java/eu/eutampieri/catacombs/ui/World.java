@@ -133,7 +133,10 @@ public class World {
         // slimes
 
         Stream.concat(this.entities.stream(), Stream.of(this.player))
-                .forEach((currentObj) -> {try {
+                .forEach((currentObj) -> {
+                    g2.drawRect(currentObj.getHitBox().getPosX()-camera.getXOffset(), currentObj.getHitBox()
+                            .getPosY() - camera.getYOffset(), currentObj.getHitBox().getWidth(), currentObj.getHitBox().getHeight());
+                    try {
                     final Entity currentEntity = (Entity) currentObj;
                     final Pair<Action, Direction> action = currentEntity.getActionWithDirection();
                     final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
