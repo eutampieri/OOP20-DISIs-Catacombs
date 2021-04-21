@@ -104,14 +104,14 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
         if (hitBox.getPosX() - speedX < 0) {
             maxMovementLeft = hitBox.getPosX();
         }
-        if (hitBox.getPosX() + hitBox.getWidth()*16 + speedX > tileMap.width()*16 - 1) {
-            maxMovementRight = tileMap.width()*16 - hitBox.getPosX() - hitBox.getWidth() - 1;
+        if (hitBox.getPosX() + hitBox.getWidth()*24 + speedX > tileMap.width()*24 - 1) {
+            maxMovementRight = tileMap.width()*24 - hitBox.getPosX() - hitBox.getWidth() - 1;
         }
         if (hitBox.getPosY() - speedY < 0) {
             maxMovementUp = hitBox.getPosY();
         }
-        if (hitBox.getPosY() + hitBox.getHeight()*16 + speedY > tileMap.height()*16 - 1) {
-            maxMovementDown = tileMap.height()*16 - hitBox.getPosY() - hitBox.getHeight() - 1;
+        if (hitBox.getPosY() + hitBox.getHeight()*24 + speedY > tileMap.height()*24 - 1) {
+            maxMovementDown = tileMap.height()*24 - hitBox.getPosY() - hitBox.getHeight() - 1;
         }
 
         if (up) {
@@ -148,8 +148,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isUpCollision(final int dy) {
-        return tileMap.at(hitBox.getPosX()/16, (hitBox.getPosY() - dy)/16) == Tile.WALL
-                || tileMap.at((hitBox.getPosX() + hitBox.getWidth())/16, (hitBox.getPosY() - dy)/16) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX()/24, (hitBox.getPosY() - dy)/24) == Tile.WALL
+                || tileMap.at((hitBox.getPosX() + hitBox.getWidth())/24, (hitBox.getPosY() - dy)/24) == Tile.WALL;
     }
 
     /**
@@ -159,8 +159,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isRightCollision(final int dx) {
-        return tileMap.at((hitBox.getPosX() + hitBox.getWidth() + dx)/16, hitBox.getPosY()/16) == Tile.WALL || tileMap
-                .at((hitBox.getPosX() + hitBox.getWidth() + dx)/16, (hitBox.getPosY() + hitBox.getHeight())/16) == Tile.WALL;
+        return tileMap.at((hitBox.getPosX() + hitBox.getWidth() + dx)/24, hitBox.getPosY()/24) == Tile.WALL || tileMap
+                .at((hitBox.getPosX() + hitBox.getWidth() + dx)/24, (hitBox.getPosY() + hitBox.getHeight())/24) == Tile.WALL;
     }
 
     /**
@@ -170,8 +170,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isDownCollision(final int dy) {
-        return tileMap.at(hitBox.getPosX()/16, (hitBox.getPosY() + hitBox.getHeight() + dy)/16) == Tile.WALL || tileMap
-                .at((hitBox.getPosX() + hitBox.getWidth())/16, (hitBox.getPosY() + hitBox.getHeight() + dy)/16) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX()/24, (hitBox.getPosY() + hitBox.getHeight() + dy)/24) == Tile.WALL || tileMap
+                .at((hitBox.getPosX() + hitBox.getWidth())/24, (hitBox.getPosY() + hitBox.getHeight() + dy)/24) == Tile.WALL;
     }
 
     /**
@@ -181,8 +181,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isLeftCollision(final int dx) {
-        return tileMap.at((hitBox.getPosX() - dx)/16, hitBox.getPosY()/16) == Tile.WALL
-                || tileMap.at((hitBox.getPosX() - dx)/16, (hitBox.getPosY() + hitBox.getHeight())/16) == Tile.WALL;
+        return tileMap.at((hitBox.getPosX() - dx)/24, hitBox.getPosY()/24) == Tile.WALL
+                || tileMap.at((hitBox.getPosX() - dx)/24, (hitBox.getPosY() + hitBox.getHeight())/24) == Tile.WALL;
     }
 
     /**

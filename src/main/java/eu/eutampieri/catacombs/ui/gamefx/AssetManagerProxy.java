@@ -59,8 +59,8 @@ public final class AssetManagerProxy {
     }
 
     private static BufferedImage scale(final BufferedImage before, final double scale) {
-        final int w = before.getWidth();
-        final int h = before.getHeight();
+        final int w = (int)(before.getWidth() * scale);
+        final int h = (int)(before.getHeight() * scale);
         final BufferedImage after = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         final AffineTransform at = new AffineTransform();
         at.scale(scale, scale);

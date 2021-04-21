@@ -30,7 +30,7 @@ public class Projectile extends GameObject implements HealthModifier {
 				break;
 			}
 		}
-		if(!map.at(this.posX/16, this.posY/16).isWalkable()){
+		if(!map.at(this.posX/24, this.posY/24).isWalkable()){
 			this.toErase=true;
 		}
 	}

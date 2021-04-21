@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -55,7 +56,7 @@ public class World {
         // this.background = am.getImage("background");
         this.tileMap = tileMap;
         final MobFactory mf = new MobFactoryImpl(this.tileMap);
-        camera = new Camera(0, 0, tileMap.width() * 16, tileMap.height() * 16);
+        camera = new Camera(0, 0, tileMap.width() * 24, tileMap.height() * 24);
         this.entities = mf.spawnRandom().stream().map((x) -> (GameObject)x).collect(Collectors.toList());
         this.player = (Player)mf
                 .spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm))
@@ -117,10 +118,9 @@ public class World {
          */
         for (int y = 0; y < tileMap.height(); y++) {
             for (int x = 0; x < tileMap.width(); x++) {
-                if (tileMap.at(x, y) == Tile.FLOOR) {
-                    g2.drawImage(am.getImage("41"), null, x * 16 - camera.getXOffset(), y * 16 - camera.getYOffset());
-                } else if (tileMap.at(x, y) == Tile.WALL) {
-                    g2.drawImage(am.getImage("25"), null, x * 16 - camera.getXOffset(), y * 16 - camera.getYOffset());
+                Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
+                if (tile.isPresent()) {
+                    g2.drawImage(tile.get(), null, x * 24 - camera.getXOffset(), y * 24 - camera.getYOffset());
                 }
             }
         }
