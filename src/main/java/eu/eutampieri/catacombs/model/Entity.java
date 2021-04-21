@@ -202,6 +202,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     @Override
     public boolean isMarkedForDeletion() {
-        return this.isAlive();
+        return !this.isAlive();
     }
 }
