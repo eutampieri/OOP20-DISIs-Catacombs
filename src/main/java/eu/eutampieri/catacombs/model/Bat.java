@@ -138,7 +138,6 @@ public final class Bat extends Entity {
 
     @Override
     public List<GameObject> spawnObject(){
-        System.out.println("sparoh");
         return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
     }
 

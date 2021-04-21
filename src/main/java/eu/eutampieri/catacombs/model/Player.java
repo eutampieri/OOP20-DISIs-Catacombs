@@ -9,8 +9,8 @@ public class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 3;
     private static final int MAX_BASE_HP = 100;
     private static final int SIZE = 32;
-    private static final int INITIAL_WEAPOON_DAMAGE = 5;
-    private static final int INITIAL_WEAPON_FIRE_RATE = 2;
+    private static final int INITIAL_WEAPON_DAMAGE = 5;
+    private static final int INITIAL_WEAPON_FIRE_RATE = 1;
     private int health;
     private final String name;
     private boolean fire;
@@ -22,7 +22,7 @@ public class Player extends Entity {
         this.setHealth(MAX_BASE_HP);
         this.name = name;
         this.face = Direction.RIGHT;
-        this.weapon = new Gun(tm, x, y, INITIAL_WEAPOON_DAMAGE, BASE_MOVEMENT_SPEED * 3, INITIAL_WEAPON_FIRE_RATE);
+        this.weapon = new Gun(tm, x, y, INITIAL_WEAPON_DAMAGE, BASE_MOVEMENT_SPEED * 10, INITIAL_WEAPON_FIRE_RATE);
     }
 
     /**
@@ -103,9 +103,29 @@ public class Player extends Entity {
     @Override
     public List<GameObject> spawnObject() {
         if(this.fire) {
-            return this.weapon.fire(this.getPosX(), this.getPosY());
+            this.fire = false;
+            switch (this.face) {
+                case DOWN:
+                    return this.weapon.fire(0, 1);
+                case RIGHT:
+                    return this.weapon.fire(1, 0);
+                case LEFT:
+                    return this.weapon.fire(-1, 0);
+                case UP:
+                    return this.weapon.fire(0, -1);
+                default:
+                    return List.of();
+            }
         } else {
             return List.of();
         }
+    }
+
+    @Override
+    public void update(long delta, List<GameObject> others) {
+        super.update(delta, others);
+        this.weapon.setPosX(this.getPosX() + this.SIZE + 1);
+        this.weapon.setPosY(this.getPosY() + this.SIZE + 1);
+        this.weapon.update(delta, others);
     }
 }

@@ -47,6 +47,10 @@ public class World {
         public boolean right() {
             return this.km.isKeyPressed(KeyEvent.VK_D) || this.km.isKeyPressed(KeyEvent.VK_RIGHT);
         }
+
+        public boolean fire() {
+            return this.km.isKeyPressed(KeyEvent.VK_SPACE);
+        }
     }
 
     public World(final TileMap tileMap, final DungeonGame game) {
@@ -94,6 +98,11 @@ public class World {
         } else if(this.km.right()) {
             this.player.move(Direction.RIGHT);
         }
+
+        if(this.km.fire()) {
+            this.player.fire();
+        }
+
         player.update(delta, this.getAllEntitiesExcept(this.player));
 
         for (final GameObject entity : this.entities) {
@@ -102,7 +111,7 @@ public class World {
             }
         }
 
-        final List<GameObject> newEntities = entities.stream()
+        final List<GameObject> newEntities = Stream.concat(entities.stream(), Stream.of(player))
                 .filter((x) -> x instanceof Entity)
                 .flatMap((x) -> ((Entity) x).spawnObject().stream())
                 .collect(Collectors.toList());

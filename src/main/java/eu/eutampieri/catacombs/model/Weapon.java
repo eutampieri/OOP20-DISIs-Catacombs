@@ -59,6 +59,8 @@ public abstract class Weapon extends GameObject{
                 canFire = true;
             }
         }
+        this.hitBox.setPosX(this.getPosX());
+        this.hitBox.setPosY(this.getPosY());
     }
 
     public final void setTileMap(final TileMap tm){
