@@ -99,6 +99,13 @@ public class World {
         for (final GameObject entity : this.entities) {
             entity.update(delta, this.getAllEntitiesExcept(entity));
         }
+
+        final List<GameObject> newEntities = entities.stream()
+                .filter((x) -> x instanceof Entity)
+                .flatMap((x) -> ((Entity) x).spawnObject().stream())
+                .collect(Collectors.toList());
+        this.entities.addAll(newEntities);
+
         this.entities = this.entities
                 .stream()
                 .filter((x) -> !x.isMarkedForDeletion())

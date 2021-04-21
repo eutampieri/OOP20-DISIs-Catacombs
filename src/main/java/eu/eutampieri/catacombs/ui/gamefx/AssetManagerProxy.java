@@ -56,7 +56,12 @@ public final class AssetManagerProxy {
         final AssetManager am = AssetManager.getAssetManager();
         switch (entity.getKind()) {
             case BULLET:
-                return am.getImage("Projectile_1");
+                return am.getFrames("Projectile_1")
+                        .stream()
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .findFirst()
+                        .get();
             default:
                 return null;
         }
