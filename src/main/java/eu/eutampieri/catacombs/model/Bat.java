@@ -1,8 +1,10 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
+import eu.eutampieri.catacombs.ui.Game;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -18,16 +20,17 @@ public final class Bat extends Entity {
     private static final int CB_DIM_MOD = 9;
     private static final int BASE_DAMAGE = 2;
     private static final int BASE_FIRE_RATE = 2;
-    private static final int BASE_RANGE = 2;
+    private static final int BASE_PROJECTILE_SPEED = 2;
     private static final String NAME = "Bat";
     private static final long MOVE_DELAY = 1_000_000_000;
-    private static final long PAUSE_DELAY = 5L * 1_000_000_000;
+    private static final long PAUSE_DELAY = 7L * 1_000_000_000;
 
-    private final SimpleWeapon weapon;
+    private final Weapon weapon;
     private boolean isMoving;
     private long delayCounter;
     private long pauseCounter;
     private final CollisionBox radarBox;
+    private final Point shootingDirection;
 
     /**
      * @param x       X spawn position
@@ -41,10 +44,9 @@ public final class Bat extends Entity {
         face = Direction.RIGHT;
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
-        weapon = new SimpleWeapon(x, y, BASE_DAMAGE, "bat_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
-        };
-
-        // TODO Animations
+        weapon = new Weapon(tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
+                BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE){};
+        shootingDirection = new Point(0, 0);
 
     }
 
@@ -64,6 +66,16 @@ public final class Bat extends Entity {
                 isMoving = true;
                 changeDirection();
             }
+        }
+        if (others.stream().filter((x) -> x instanceof Player)
+                .findFirst()
+                .get()
+                .getHitBox()
+                .overlaps(this.getHitBox()) && this.weapon.getCanFire()){
+            setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
+            spawnObject();
+        } else {
+            resetShootingDirection();
         }
         super.update(delta, others);
         updateRadarBoxLocation();
@@ -123,6 +135,42 @@ public final class Bat extends Entity {
 
     public String getName() {
         return Bat.NAME;
+    }
+
+    @Override
+    public List<GameObject> spawnObject(){
+        System.out.println("sparoh");
+        return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+    }
+
+    public Point getShootingDirection(){
+        return this.shootingDirection;
+    }
+
+    public void resetShootingDirection(){
+        this.shootingDirection.setLocation(0, 0);
+    }
+
+    public void setShootingDirection(GameObject e){
+        int x = 0, y = 0;
+        if (e == null) {
+            return;
+        }
+        if (e.getHitBox().getPosX() < this.getHitBox().getPosX()){
+            x = -1;
+        } else if (e.getHitBox().getPosX() > this.getHitBox().getPosX()){
+            x = 1;
+        } else {
+            x = 0;
+        }
+        if (e.getHitBox().getPosY() < this.getHitBox().getPosY()){
+            y = -1;
+        } else if (e.getHitBox().getPosY() > this.getHitBox().getPosY()){
+            y = 1;
+        } else {
+            y = 0;
+        }
+        this.shootingDirection.setLocation(x, y);
     }
 
 }

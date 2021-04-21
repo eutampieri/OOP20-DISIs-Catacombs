@@ -1,23 +1,21 @@
 package eu.eutampieri.catacombs.model;
 
+import eu.eutampieri.catacombs.model.map.TileMap;
+
 import java.util.List;
 
-public class Gun extends SimpleWeapon {
+public class Gun extends Weapon {
+
+
     /**
-     * @param damage   Weapon damage
-     * @param name     Weapon name
-     * @param fireRate Weapon rate of fire
-     * @param range    Weapon range as the distance a bullet travels
-     * @param magazine Weapon magazine as the number of bullets contained and usable
-     *                 before firing
+     * @param tm       Tile map
+     * @param x        X position
+     * @param y        Y position
+     * @param strength Bullet strength
+     * @param ps       Bullet speed
+     * @param fr       Weapon fire rate
      */
-    public Gun(final int x, final int y, final int damage, final String name, final int fireRate, final int range, final int magazine) {
-        super(x, y, damage, name, fireRate, range, magazine);
+    public Gun(TileMap tm, int x, int y, int strength, int ps, int fr) {
+        super(tm, x, y, strength, ps, fr);
     }
-
-    @Override
-    public void update(final long delta, final List<GameObject> others) {
-        // TODO Auto-generated method stub
-    }
-
 }
