@@ -11,7 +11,7 @@ public final class DungeonGame extends Game {
     private final Font font = new Font("Monospace", Font.PLAIN, 40);
 
     private MenuState menuState;
-    private TransitionFactoryImpl transition;
+    private TransitionFactory transition;
     private State state;
 
     /**

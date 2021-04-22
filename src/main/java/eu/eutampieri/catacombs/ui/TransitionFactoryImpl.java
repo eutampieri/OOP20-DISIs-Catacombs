@@ -5,6 +5,14 @@ import eu.eutampieri.catacombs.ui.utils.FontUtils;
 import java.awt.*;
 
 public class TransitionFactoryImpl implements TransitionFactory{
+    /**
+     * This method will generate a State transition.
+     * @param message     the message to show
+     * @param game        the game manager used
+     * @param state       the state that will be introduced
+     * @param font        the font for the message
+     * @return            generate a transition
+     */
     @Override
     public State generalTrans(final String message, final DungeonGame game, final State state, final Font font) {
         return new State(game) {
@@ -36,6 +44,14 @@ public class TransitionFactoryImpl implements TransitionFactory{
 
         };
     }
+    /**
+     * This method is used to return the state we have generated
+     * @param message     the message to show
+     * @param game        the game manager used
+     * @param state       the state that will be introduced
+     * @param font        the font for the message
+     * @return            the transition generated
+     */
     @Override
     public State transState(final String message, final  DungeonGame game, final  State state, final  Font font) {
         return this.generalTrans(message, game, state, font);
