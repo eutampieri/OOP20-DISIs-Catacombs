@@ -50,6 +50,11 @@ val jar by tasks.getting(Jar::class) {
     manifest {
         attributes["Main-Class"] = "eu.eutampieri.catacombs.game.Main"
     }
+    configurations.runtimeClasspath.filter {
+        it.name.endsWith(".jar")
+    }.forEach { jar ->
+        from(zipTree(jar))
+    }
 }
 
 task("runMain", JavaExec::class) {
