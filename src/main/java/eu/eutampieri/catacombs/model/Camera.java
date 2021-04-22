@@ -16,8 +16,9 @@ public final class Camera {
 
     /**
      * Centers camera on selected entity.
-     * @param e Entity to center onto
-     * @param gameWidth game width
+     * 
+     * @param e          Entity to center onto
+     * @param gameWidth  game width
      * @param gameHeight game height
      */
     public void centerOnEntity(final GameObject e, final int gameWidth, final int gameHeight) {

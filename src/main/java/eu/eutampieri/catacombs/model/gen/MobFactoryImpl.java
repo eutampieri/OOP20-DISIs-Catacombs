@@ -1,4 +1,4 @@
-package eu.eutampieri.catacombs.model.mobgen;
+package eu.eutampieri.catacombs.model.gen;
 
 import eu.eutampieri.catacombs.model.Bat;
 import eu.eutampieri.catacombs.model.Entity;
@@ -12,14 +12,21 @@ import java.util.Random;
 
 public final class MobFactoryImpl implements MobFactory {
 
-    public static final int MAX_MOB_NUMBER = 69;
+    /**
+     * The maximum number of mods generated.
+     */
+    public static final int MAX_MOB_NUMBER = 420 / 2;
+    /**
+     * minimum number of mob to be generated.
+     */
+    public static final int MIN_MOB_NUMBER = 69;
     private static final int MOB_KIND_NUMBER = 2;
 
     private TileMap tileMap;
     private final transient Random rand = new Random();
 
     public MobFactoryImpl(final TileMap tileMap) {
-        this.setNewTileMap(tileMap);
+        this.tileMap = tileMap;
     }
 
     /**
@@ -31,7 +38,7 @@ public final class MobFactoryImpl implements MobFactory {
     }
 
     @Override
-    public List<Entity> spawnAt(final int x, final int y, final EntityFactory f) {
+    public List<Entity> spawnAt(final int x, final int y, final SingleObject f) {
         if (f == null || !tileMap.canSpawnAt(x, y)) {
             return List.of();
         }
@@ -41,7 +48,7 @@ public final class MobFactoryImpl implements MobFactory {
     }
 
     @Override
-    public List<Entity> spawnSome(final int n, final EntityFactory f) {
+    public List<Entity> spawnSome(final int n, final SingleObject f) {
         if (f == null) {
             return List.of();
         }
@@ -60,7 +67,7 @@ public final class MobFactoryImpl implements MobFactory {
     @Override
     public List<Entity> spawnRandom() {
         int randX, randY, randKind;
-        final int mobNum = rand.nextInt(MAX_MOB_NUMBER) + 1;
+        final int mobNum = rand.nextInt(MAX_MOB_NUMBER - MIN_MOB_NUMBER) + MIN_MOB_NUMBER;
 
         final List<Entity> enemies = new ArrayList<>();
         for (int i = 0; i < mobNum; i++) {

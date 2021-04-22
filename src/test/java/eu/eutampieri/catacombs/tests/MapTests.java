@@ -8,7 +8,9 @@ import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
 import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MapTests {
@@ -56,20 +58,22 @@ class MapTests {
 
     @Test
     public void testSpawnPoints() {
-        final TileMap tm = new TileMapFactoryImpl().empty(8, 8);
+        final int mapSize = 8;
+        final TileMap tm = new TileMapFactoryImpl().empty(mapSize, mapSize);
         assertEquals(Tile.FLOOR, tm.at(1, 1));
-        for (int y = 0; y < 8; y++) {
+        for (int y = 0; y < mapSize; y++) {
             for (int x = 0; x < 8; x++) {
-                assertEquals(tm.canSpawnAt(x, y), y > 1 && x > 1 && y < 6 && x < 6);
+                assertEquals(tm.canSpawnAt(x, y), y > 1 && x > 1 && y < mapSize - 2 && x < mapSize - 2);
             }
         }
     }
 
     @Test
     public final void testOutOfBounds() {
-        final TileMap tm = (TileMapImpl) new TileMapFactoryImpl().empty(5, 5);
+        final int mapSize = 5;
+        final TileMap tm = new TileMapFactoryImpl().empty(mapSize, mapSize);
         assertEquals(Tile.VOID, tm.at(-1, -1));
-        assertEquals(Tile.VOID, tm.at(6, 6));
+        assertEquals(Tile.VOID, tm.at(mapSize + 1, mapSize + 1));
         assertEquals(Tile.VOID, tm.at(-1, 0));
     }
 }

@@ -27,11 +27,11 @@ public enum GameObjectType {
      */
     ITEM,
     /**
-     * A generic bullet
+     * A generic bullet.
      */
     BULLET,
     /**
-     * The boss's special bullet
+     * The boss's special bullet.
      */
-    BOSS_BULLET;
+    BOSS_BULLET
 }

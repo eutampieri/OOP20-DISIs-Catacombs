@@ -3,7 +3,7 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.List;
 
 /**
@@ -44,8 +44,11 @@ public final class Bat extends Entity {
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
         weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
-                BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE, this.getTeam()){};
+                BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE, this.getTeam()) { };
         shootingDirection = new Point(0, 0);
+        this.delayCounter = 0;
+        this.pauseCounter = 0;
+        this.isMoving = true;
 
     }
 
@@ -70,7 +73,8 @@ public final class Bat extends Entity {
                 .findFirst()
                 .get()
                 .getHitBox()
-                .overlaps(this.getHitBox()) && this.weapon.canFire()){
+                .overlaps(this.getHitBox()) && this.weapon.canFire()) {
+
             setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
             spawnObject();
         } else {
@@ -91,11 +95,11 @@ public final class Bat extends Entity {
     @Override
     public boolean canPerform(final Action action) {
         switch (action) {
-            case ATTACK:
-            case MOVE:
-                return true;
-            default:
-                return false;
+        case ATTACK:
+        case MOVE:
+            return true;
+        default:
+            return false;
         }
     }
 
@@ -138,18 +142,21 @@ public final class Bat extends Entity {
 
     @Override
     public List<GameObject> spawnObject(){
-        return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+        if (weapon.canFire) {
+            return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+        }
+        return List.of();
     }
 
-    public Point getShootingDirection(){
+    public Point getShootingDirection() {
         return this.shootingDirection;
     }
 
-    public void resetShootingDirection(){
+    public void resetShootingDirection() {
         this.shootingDirection.setLocation(0, 0);
     }
 
-    public void setShootingDirection(final GameObject e){
+    public void setShootingDirection(final GameObject e) {
         if (e == null) {
             return;
         }
