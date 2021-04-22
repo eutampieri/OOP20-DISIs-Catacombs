@@ -29,12 +29,14 @@ public final class Boss extends Entity {
      * @param tileMap Tile map in which Entity is spawned
      */
     public Boss(final int x, final int y, final TileMap tileMap) {
-        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.BOSS);
+        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.BOSS, GameObject.Team.ENEMY);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
+        //weapon = new SimpleWeapon(x, y, BASE_DAMAGE, "boss_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
+        //};
     }
 
     @Override

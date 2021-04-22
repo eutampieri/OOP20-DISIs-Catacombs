@@ -47,7 +47,7 @@ public final class Slime extends Entity implements HealthModifier {
      * @param tileMap Tile map in which Slime is spawned
      */
     public Slime(final int x, final int y, final TileMap tileMap) {
-        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.ENEMY);
+        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.ENEMY, GameObject.Team.ENEMY);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
