@@ -4,7 +4,7 @@ import eu.eutampieri.catacombs.model.GameObject;
 
 import java.util.List;
 
-public interface ObjectFactory {
+public interface SingleObjectFactory {
     /**
      * Spawns a specified object at a certain location.
      * @param x X position
@@ -12,7 +12,7 @@ public interface ObjectFactory {
      * @param f Type of object
      * @return A list composed of the only created entity
      */
-    List<GameObject> spawnAt(int x, int y, Obj f);
+    List<GameObject> spawnAt(int x, int y, SingleObject f);
 
     /**
      * Spawns n objects of a specified kind.
@@ -20,6 +20,6 @@ public interface ObjectFactory {
      * @param f Entity type
      * @return A list of the n entities
      */
-    List<GameObject> spawnSome(int n, Obj f);
+    List<GameObject> spawnSome(int n, SingleObject f);
 
 }

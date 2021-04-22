@@ -12,7 +12,7 @@ import java.util.Random;
 
 public final class MobFactoryImpl implements MobFactory {
 
-    public static final int MAX_MOB_NUMBER = 420;
+    public static final int MAX_MOB_NUMBER = 420/2;
     public static final int MIN_MOB_NUMBER = 69;
     private static final int MOB_KIND_NUMBER = 2;
 
@@ -32,7 +32,7 @@ public final class MobFactoryImpl implements MobFactory {
     }
 
     @Override
-    public List<Entity> spawnAt(final int x, final int y, final Obj f) {
+    public List<Entity> spawnAt(final int x, final int y, final SingleObject f) {
         if (f == null || !tileMap.canSpawnAt(x, y)) {
             return List.of();
         }
@@ -42,7 +42,7 @@ public final class MobFactoryImpl implements MobFactory {
     }
 
     @Override
-    public List<Entity> spawnSome(final int n, final Obj f) {
+    public List<Entity> spawnSome(final int n, final SingleObject f) {
         if (f == null) {
             return List.of();
         }

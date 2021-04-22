@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ObjectFactoryImpl implements ObjectFactory{
+public class SingleObjectFactoryImpl implements SingleObjectFactory {
 
     private TileMap tileMap;
     private final transient Random rand = new Random();
 
-    public ObjectFactoryImpl(final TileMap tileMap) {
+    public SingleObjectFactoryImpl(final TileMap tileMap) {
         this.tileMap = tileMap;
     }
 
@@ -26,7 +26,7 @@ public class ObjectFactoryImpl implements ObjectFactory{
     }
 
     @Override
-    public List<GameObject> spawnAt(final int x, final int y, final Obj f) {
+    public List<GameObject> spawnAt(final int x, final int y, final SingleObject f) {
         if (f == null || !tileMap.canSpawnAt(x, y)) {
             return List.of();
         }
@@ -36,7 +36,7 @@ public class ObjectFactoryImpl implements ObjectFactory{
     }
 
     @Override
-    public List<GameObject> spawnSome(final int n, final Obj f) {
+    public List<GameObject> spawnSome(final int n, final SingleObject f) {
         if (f == null) {
             return List.of();
         }
