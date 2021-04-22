@@ -12,7 +12,8 @@ import java.util.Random;
 
 public final class MobFactoryImpl implements MobFactory {
 
-    public static final int MAX_MOB_NUMBER = 69;
+    public static final int MAX_MOB_NUMBER = 420;
+    public static final int MIN_MOB_NUMBER = 69;
     private static final int MOB_KIND_NUMBER = 2;
 
     private TileMap tileMap;
@@ -60,7 +61,7 @@ public final class MobFactoryImpl implements MobFactory {
     @Override
     public List<Entity> spawnRandom() {
         int randX, randY, randKind;
-        final int mobNum = rand.nextInt(MAX_MOB_NUMBER) + 1;
+        final int mobNum = rand.nextInt(MAX_MOB_NUMBER) + MIN_MOB_NUMBER;
 
         final List<Entity> enemies = new ArrayList<>();
         for (int i = 0; i < mobNum; i++) {
