@@ -1,14 +1,10 @@
 package eu.eutampieri.catacombs.ui;
 
-import java.awt.*;
-
 /**
  * this class implements the unimplemented methods of game and
  * controls the passage from one state to another.
  */
 public final class DungeonGame extends Game {
-
-    private final Font font = new Font("Monospace", Font.PLAIN, 40);
 
     private MenuState menuState;
     private TransitionFactory transition;
@@ -89,7 +85,7 @@ public final class DungeonGame extends Game {
 
     public void startGame() {
         final GameState newGame = new GameState(this);
-        setState(this.transition.transState("New Game",this, newGame, this.font));
+        setState(this.transition.transState("New Game", this, newGame));
     }
 
     /**
@@ -98,7 +94,7 @@ public final class DungeonGame extends Game {
 
     public void endGame() {
         final EndGameState endGame = new EndGameState(this);
-        setState(this.transition.transState("Dead",this, endGame, this.font));
+        setState(this.transition.transState("Dead", this, endGame));
     }
 
 }

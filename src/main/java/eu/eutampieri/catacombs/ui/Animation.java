@@ -157,7 +157,7 @@ public class Animation {
             this.index = 0;
             this.reverseMode = false;
         }
-        if(this.index >= this.frames.size() - 1 ) {
+        if (this.index >= this.frames.size() - 1) {
             if (this.restart) {
                 if (this.reverse) {
                     this.index = this.frames.size() - 1;
