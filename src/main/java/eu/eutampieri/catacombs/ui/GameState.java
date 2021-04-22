@@ -31,8 +31,15 @@ public class GameState extends State {
 
     @Override
     public void update(final long delta) {
+        long time = 0;
         if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_ESCAPE)) {
-            this.paused = !paused;
+            if ( time == 0 || time > 500) {
+                this.paused = !paused;
+            }
+            time = System.currentTimeMillis();
+
+
+
         }
         if (this.paused) {
             return;

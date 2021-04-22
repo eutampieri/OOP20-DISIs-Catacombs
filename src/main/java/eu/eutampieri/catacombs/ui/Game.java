@@ -225,7 +225,7 @@ public abstract class Game implements Runnable {
         long now;
 
         final double tickPerTime = 1f / fps;
-        lastUpdateTime = System.nanoTime();
+        lastUpdateTime = System.currentTimeMillis();
         while (running) {
             now = System.currentTimeMillis();
             long delta;
