@@ -2,7 +2,9 @@ package eu.eutampieri.catacombs.ui;
 
 import eu.eutampieri.catacombs.ui.utils.FontUtils;
 
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Font;
+import java.awt.Color;
 
 public final class StartTransition extends State {
 
