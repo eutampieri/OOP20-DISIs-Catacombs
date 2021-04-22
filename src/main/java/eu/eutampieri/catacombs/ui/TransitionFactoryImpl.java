@@ -16,12 +16,12 @@ public class TransitionFactoryImpl implements TransitionFactory {
      */
     private State generalTrans(final String message, final DungeonGame game, final State state) {
         return new State(game) {
-            private static final int WAIT_TIMER = 100_000;
+            private static final long WAIT_TIME = 1500;
 
             private final Font font = new Font("Monospace", Font.PLAIN, 40);
 
-            private float waitTimer;
-            private float waitTime = WAIT_TIMER;
+            private long waitTimer;
+            private long waitTime = WAIT_TIME;
 
 
             @Override

@@ -15,7 +15,7 @@ import java.awt.event.KeyEvent;
 
 public class EndGameState extends State {
 
-    private static final float BLINK_DELAY = 100_000;
+    private static final float BLINK_DELAY = 500;
     /**
      * Font used to write the end game message.
      */
