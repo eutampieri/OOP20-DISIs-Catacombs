@@ -17,7 +17,7 @@ public abstract class Weapon extends GameObject{
     /**
      * weapon fire rate.
      */
-    protected int fr;
+    //protected int fr;
     /**
      * Stores if the weapon can fire.
      */
@@ -85,7 +85,7 @@ public abstract class Weapon extends GameObject{
     }
 
     public final void setFireRate(final int fr) {
-        this.fr = fr;
+        //this.fr = fr;
     }
 
     public final void setFireDelay(final int fd) {

@@ -102,23 +102,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     protected void move() {
 
-       int maxMovementUp = speedY;
-       int maxMovementRight = speedX;
-       int maxMovementDown = speedY;
-       int maxMovementLeft = speedX;
-
-        if (hitBox.getPosX() - speedX < 0) {
-            maxMovementLeft = hitBox.getPosX();
-        }
-        if (hitBox.getPosX() + hitBox.getWidth()* AssetManagerProxy.getMapTileSize() + speedX > tileMap.width()*AssetManagerProxy.getMapTileSize() - 1) {
-            maxMovementRight = tileMap.width()*AssetManagerProxy.getMapTileSize() - hitBox.getPosX() - hitBox.getWidth() - 1;
-        }
-        if (hitBox.getPosY() - speedY < 0) {
-            maxMovementUp = hitBox.getPosY();
-        }
-        if (hitBox.getPosY() + hitBox.getHeight()*AssetManagerProxy.getMapTileSize() + speedY > tileMap.height()*AssetManagerProxy.getMapTileSize() - 1) {
-            maxMovementDown = tileMap.height()*AssetManagerProxy.getMapTileSize() - hitBox.getPosY() - hitBox.getHeight() - 1;
-        }
+        final int maxMovementUp = speedY;
+        final int maxMovementRight = speedX;
+        final int maxMovementDown = speedY;
+        final int maxMovementLeft = speedX;
 
         if (up) {
             if (!isUpCollision(maxMovementUp)) {
@@ -144,7 +131,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
             }
             face = Direction.RIGHT;
         }
-				updateSpriteLocation();
     }
 
     /**
