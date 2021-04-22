@@ -1,12 +1,6 @@
 package eu.eutampieri.catacombs.ui;
 
-import eu.eutampieri.catacombs.model.Action;
-import eu.eutampieri.catacombs.model.Camera;
-import eu.eutampieri.catacombs.model.Direction;
-import eu.eutampieri.catacombs.model.Entity;
-import eu.eutampieri.catacombs.model.GameObject;
-import eu.eutampieri.catacombs.model.Player;
-import eu.eutampieri.catacombs.model.SimplePotion;
+import eu.eutampieri.catacombs.model.*;
 import eu.eutampieri.catacombs.model.gen.SingleObjectFactory;
 import eu.eutampieri.catacombs.model.gen.SingleObjectFactoryImpl;
 import eu.eutampieri.catacombs.model.map.TileMap;
@@ -44,7 +38,8 @@ public final class World {
         final MobFactory mf = new MobFactoryImpl(this.tileMap);
         camera = new Camera(0, 0, tileMap.width() * AssetManagerProxy.getMapTileSize(),
                 tileMap.height() * AssetManagerProxy.getMapTileSize());
-        this.entities = mf.spawnRandom().stream().map((x) -> (GameObject) x).collect(Collectors.toList());
+        //this.entities = mf.spawnRandom().stream().map((x) -> (GameObject) x).collect(Collectors.toList());
+        this.entities = mf.spawnSome(1, Boss::new).stream().map((x) -> (GameObject) x).collect(Collectors.toList());
 
         final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
         final Random rand = new Random();
