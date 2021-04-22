@@ -158,13 +158,13 @@ public class World {
                     try {
                     final Entity currentEntity = (Entity) currentObj;
                     final Pair<Action, Direction> action = currentEntity.getActionWithDirection();
-                    final List<BufferedImage> img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight());
+                    final Animation animation = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight());
                     if (currentEntity.isMoving()) {
-                        Animation animation = new Animation(img.stream().map(Optional::of).collect(Collectors.toList()), 0.5f);
                         BufferedImage toShow = animation.getCurrentFrame().get();
                         g2.drawImage(toShow, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
                     } else {
-                        g2.drawImage(img.get(0), null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
+                        BufferedImage toShow = animation.getFrames().get(0).get();
+                        g2.drawImage(toShow, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
                     }
                 } catch (ClassCastException e) {
                     // Treat it as a game object
