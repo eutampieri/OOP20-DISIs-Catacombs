@@ -95,7 +95,7 @@ public class Player extends Entity {
     public String getName() {
         return name;
     }
-    
+
     public void fire() {
         this.fire = true;
     }

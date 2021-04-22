@@ -157,4 +157,5 @@ public final class Bat extends Entity {
         final int y = Integer.compare(e.getHitBox().getPosY(), this.getHitBox().getPosY());
         this.shootingDirection.setLocation(x, y);
     }
+
 }

@@ -35,6 +35,8 @@ public final class Boss extends Entity {
         face = Direction.RIGHT;
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
+        //weapon = new SimpleWeapon(x, y, BASE_DAMAGE, "boss_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
+        //};
     }
 
     @Override
