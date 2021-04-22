@@ -1,9 +1,6 @@
 package eu.eutampieri.catacombs.ui.gamefx;
 
-import eu.eutampieri.catacombs.model.Action;
-import eu.eutampieri.catacombs.model.Direction;
-import eu.eutampieri.catacombs.model.Entity;
-import eu.eutampieri.catacombs.model.GameObject;
+import eu.eutampieri.catacombs.model.*;
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.ui.Animation;
 import org.apache.commons.lang3.StringUtils;
@@ -20,9 +17,10 @@ import java.util.Optional;
 
 public final class AssetManagerProxy {
     private static final double MAP_SCALING_FACTOR = 2.25;
-    //private final static double BULLET_SCALING_FACTOR = 0.5;
+    private final static double BULLET_SCALING_FACTOR = 0.25;
     private static final Map<Tile, BufferedImage> MAP_CACHE = new HashMap<>();
     private static final Map<Triple<Entity, Action, Direction>, Pair<Animation, Long>> ANIMATIONS_CACHE = new HashMap<>();
+    private static final Map<StaticEntityKind, BufferedImage> STATIC_ASSETS_CACHE = new HashMap<>();
 
     private AssetManagerProxy() {
     }
@@ -85,9 +83,23 @@ public final class AssetManagerProxy {
 
     public static BufferedImage getSprite(final GameObject entity) {
         final AssetManager am = AssetManager.getAssetManager();
-        switch (entity.getKind()) {
+        StaticEntityKind entityKind = StaticEntityKind.fromGameObject(entity);
+        assert entityKind != null;
+        final BufferedImage fromCache = STATIC_ASSETS_CACHE.get(entityKind);
+        if (fromCache != null) {
+            return fromCache;
+        }
+        switch (entityKind) {
             case BULLET:
-                return am.getImage("Projectile_1");
+                BufferedImage normal =  am.getFrames("Projectile_1")
+                        .stream()
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .findAny()
+                        .get();
+                BufferedImage resized = scale(normal, BULLET_SCALING_FACTOR);
+                STATIC_ASSETS_CACHE.put(entityKind, resized);
+                return resized;
             default:
                 return null;
         }
@@ -128,5 +140,21 @@ public final class AssetManagerProxy {
         final BufferedImage tile = maybeTile.get();
         assert tile.getHeight() == tile.getWidth();
         return tile.getHeight();
+    }
+
+    private enum StaticEntityKind {
+        BULLET,
+        POTION,
+        WEAPON;
+        public static StaticEntityKind fromGameObject (GameObject gameObject) {
+            switch (gameObject.getKind()) {
+                case BULLET:
+                    return BULLET;
+                case PICKUP:
+                    return gameObject instanceof Weapon ? WEAPON : POTION;
+                default:
+                    return null;
+            }
+        }
     }
 }
