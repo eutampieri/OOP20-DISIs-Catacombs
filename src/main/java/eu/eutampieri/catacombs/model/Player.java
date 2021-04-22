@@ -122,7 +122,7 @@ public class Player extends Entity {
     }
 
     @Override
-    public void update(long delta, List<GameObject> others) {
+    public void update(final long delta, final List<GameObject> others) {
         super.update(delta, others);
         this.weapon.setPosX(this.getPosX() + SIZE + 1);
         this.weapon.setPosY(this.getPosY() + SIZE + 1);
