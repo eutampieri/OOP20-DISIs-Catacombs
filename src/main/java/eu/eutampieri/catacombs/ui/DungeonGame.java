@@ -8,6 +8,7 @@ public final class DungeonGame extends Game {
 
     private MenuState menuState;
     private StartTransition startGame;
+    private EndTransition endTrans;
     private State state;
 
     /**
@@ -35,8 +36,7 @@ public final class DungeonGame extends Game {
     public void create() {
 
         this.startGame = new StartTransition(this);
-        // to use when game ends
-        // final EndGameState endGame = new EndGameState(this);
+        this.endTrans = new EndTransition(this);
         this.menuState = new MenuState(this);
         setState(this.menuState);
 
@@ -88,13 +88,15 @@ public final class DungeonGame extends Game {
         this.startGame.startTransition(newGame);
         setState(startGame);
     }
-/*
-    public void restartLevel() {
 
+    /**
+     * This method start the transition state from the game to the end game.
+     */
+
+    public void setEndGame() {
+        final EndGameState endGame = new EndGameState(this);
+        this.endTrans.endTransition(endGame);
+        setState(endTrans);
     }
 
-    public void nextLevels() {
-
-    }
-    */
 }

@@ -77,8 +77,10 @@ public class GameState extends State {
         if (this.paused) {
             return;
         }
-        // WorldLoader needed
         this.world.update(delta);
+        if (!this.world.getPlayer().isAlive()) {
+            this.game.setEndGame();
+        }
     }
 
     /**
