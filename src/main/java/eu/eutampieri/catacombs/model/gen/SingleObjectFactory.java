@@ -12,7 +12,7 @@ public interface SingleObjectFactory {
      * @param f Type of object
      * @return A list composed of the only created entity
      */
-    List<GameObject> spawnAt(int x, int y, SingleObject f);
+    List<GameObject> spawnAt(int x, int y, SingleObject<GameObject> f);
 
     /**
      * Spawns n objects of a specified kind.
@@ -20,6 +20,6 @@ public interface SingleObjectFactory {
      * @param f Entity type
      * @return A list of the n entities
      */
-    List<GameObject> spawnSome(int n, SingleObject f);
+    List<GameObject> spawnSome(int n, SingleObject<GameObject> f);
 
 }

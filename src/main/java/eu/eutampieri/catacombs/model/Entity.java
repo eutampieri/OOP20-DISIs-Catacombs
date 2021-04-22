@@ -1,6 +1,5 @@
 package eu.eutampieri.catacombs.model;
 
-import eu.eutampieri.catacombs.model.GameObject.Team;
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.Animatable;

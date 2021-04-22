@@ -12,7 +12,7 @@ public interface MobFactory {
      * @param f Type of enemy
      * @return A list composed of the only created entity
      */
-    List<Entity> spawnAt(int x, int y, SingleObject f);
+    List<Entity> spawnAt(int x, int y, SingleObject<Entity> f);
 
     /**
      * Spawns n entities of a specified kind.
@@ -20,7 +20,7 @@ public interface MobFactory {
      * @param f Entity type
      * @return A list of the n entities
      */
-    List<Entity> spawnSome(int n, SingleObject f);
+    List<Entity> spawnSome(int n, SingleObject<Entity> f);
 
     /**
      * Spawns some random entities at random positions in the map.
