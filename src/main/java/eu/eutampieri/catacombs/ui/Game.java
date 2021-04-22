@@ -53,7 +53,6 @@ public abstract class Game implements Runnable {
     private BufferStrategy bs;
     private GraphicsConfiguration gc;
     private VolatileImage vImage;
-    private int framesThisSecond;
     /**
      * boolean value for the loop of the game.
      */

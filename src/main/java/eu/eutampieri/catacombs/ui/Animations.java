@@ -14,7 +14,7 @@ public final class Animations {
     private float frameDelay;
     private float timer;
     private int index;
-    private final boolean restart = true;
+    private boolean restart;
     private boolean reverse;
     private boolean reverseMode;
 
@@ -29,6 +29,7 @@ public final class Animations {
         this.frames = frames;
         this.index = 0;
         this.frameDelay = frameDelay;
+        this.restart = true;
     }
 
     /**
