@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * This class controls the animation of the game characters.
  */
-public final class Animations {
+public class Animation {
 
     private List<Optional<BufferedImage>> frames;
     private float frameDelay;
@@ -24,8 +24,7 @@ public final class Animations {
      * @param frames the images used for the animation
      * @param frameDelay the frame delay
      */
-
-    public Animations(final List<Optional<BufferedImage>> frames, final float frameDelay) {
+    public Animation(final List<Optional<BufferedImage>> frames, final float frameDelay) {
         this.frames = frames;
         this.index = 0;
         this.frameDelay = frameDelay;
@@ -39,7 +38,7 @@ public final class Animations {
      * @param frameDelay the frame delay
      */
 
-    public Animations(final String frameskey, final float frameDelay) {
+    public Animation(final String frameskey, final float frameDelay) {
         this(AssetManager.getAssetManager().getFrames(frameskey), frameDelay);
     }
 
@@ -158,7 +157,7 @@ public final class Animations {
             this.index = 0;
             this.reverseMode = false;
         }
-        if (this.index >= this.frames.size()) {
+        if(this.index >= this.frames.size() - 1 ) {
             if (this.restart) {
                 if (this.reverse) {
                     this.index = this.frames.size() - 1;
@@ -190,8 +189,7 @@ public final class Animations {
      * This method copies the state of an animation.
      * @param animation the animation to be copied
      */
-
-    public void copyState(final Animations animation) {
+    public void copyState(final Animation animation) {
         this.timer = animation.getTimer();
         this.index = animation.getIndex();
     }

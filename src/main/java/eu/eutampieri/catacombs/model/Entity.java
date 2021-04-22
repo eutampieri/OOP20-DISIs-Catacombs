@@ -218,4 +218,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     public boolean isMarkedForDeletion() {
         return !this.isAlive();
     }
+
+    public boolean isMoving(){
+        return this.right || this.left || this.up || this.down;
+    }
 }

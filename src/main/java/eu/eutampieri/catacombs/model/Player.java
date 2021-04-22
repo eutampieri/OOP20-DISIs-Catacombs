@@ -87,12 +87,8 @@ public final class Player extends Entity {
     }
 
     public void stop() {
-        this.resetMovement();
-    }
-
-    public boolean isMoving() {
-        return this.right || this.left || this.up || this.down;
-    }
+			this.resetMovement();
+		}
 
     /**
      * @return Player name
