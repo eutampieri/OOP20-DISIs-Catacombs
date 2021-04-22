@@ -17,12 +17,12 @@ public class Player extends Entity {
     private Weapon weapon;
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
-        super(x, y, SIZE, SIZE, tm, GameObjectType.PLAYER);
+        super(x, y, SIZE, SIZE, tm, GameObjectType.PLAYER, GameObject.Team.FREIND);
         setSpeed(BASE_MOVEMENT_SPEED);
         this.setHealth(MAX_BASE_HP);
         this.name = name;
         this.face = Direction.RIGHT;
-        this.weapon = new Gun(this, tm, x, y, INITIAL_WEAPON_DAMAGE, BASE_MOVEMENT_SPEED * 10, INITIAL_WEAPON_FIRE_RATE);
+        this.weapon = new Gun(this, tm, x, y, INITIAL_WEAPON_DAMAGE, BASE_MOVEMENT_SPEED * 10, INITIAL_WEAPON_FIRE_RATE, this.getTeam());
     }
 
     /**
