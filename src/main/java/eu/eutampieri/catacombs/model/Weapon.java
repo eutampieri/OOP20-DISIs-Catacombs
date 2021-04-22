@@ -89,7 +89,7 @@ public abstract class Weapon extends GameObject{
 
     }
 
-    public final void setFireDelay(final int fd) {
+    public final void setFireDelay(final long fd) {
         this.fireDelay = fd;
     }
 
