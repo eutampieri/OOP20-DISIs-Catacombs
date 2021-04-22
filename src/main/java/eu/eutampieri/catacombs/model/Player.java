@@ -66,7 +66,7 @@ public final class Player extends Entity {
         }
     }
 
-    public final void move(final Direction d) {
+    public void move(final Direction d) {
         this.resetMovement();
         switch (d) {
         case UP:
@@ -80,6 +80,8 @@ public final class Player extends Entity {
             break;
         case RIGHT:
             this.right = true;
+            break;
+        default:
             break;
         }
     }
