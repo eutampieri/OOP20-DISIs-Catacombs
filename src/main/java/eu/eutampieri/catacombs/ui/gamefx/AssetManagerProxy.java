@@ -15,10 +15,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public final class AssetManagerProxy {
     private final static double MAP_SCALING_FACTOR = 2.25;
@@ -29,25 +27,24 @@ public final class AssetManagerProxy {
     private AssetManagerProxy(){}
 
     public static Animation getFrames(final Entity entity, final Action action, final Direction direction) {
-        final AssetManager am = AssetManager.getAssetManager();
         if(entity.canPerform(action)) {
             if(direction == null && action.getDirections().size() != 0) {
                 throw new IllegalArgumentException();
             } else if (direction != null && action.getDirections().size() == 0) {
                 throw new IllegalArgumentException();
             }
-            Triple<Entity, Action, Direction> cacheKey = Triple.of(entity, action, direction);
+            final Triple<Entity, Action, Direction> cacheKey = Triple.of(entity, action, direction);
             if (ANIMATIONS_CACHE.get(cacheKey) != null) {
-                Pair<Animation, Long> item = ANIMATIONS_CACHE.get(cacheKey);
-                long lastUpdated = item.getRight();
-                long now = System.currentTimeMillis();
-                long delta = now - lastUpdated;
-                Animation animation = item.getLeft();
+                final Pair<Animation, Long> item = ANIMATIONS_CACHE.get(cacheKey);
+                final long lastUpdated = item.getRight();
+                final long now = System.currentTimeMillis();
+                final long delta = now - lastUpdated;
+                final Animation animation = item.getLeft();
                 animation.update(delta);
                 item.setValue(now);
                 return animation;
             }
-            Animation a;
+            final Animation a;
             long now;
             switch (entity.getKind()) {
                 case BOSS:

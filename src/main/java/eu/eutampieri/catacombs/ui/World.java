@@ -11,7 +11,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -160,10 +159,10 @@ public class World {
                     final Pair<Action, Direction> action = currentEntity.getActionWithDirection();
                     final Animation animation = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight());
                     if (currentEntity.isMoving()) {
-                        BufferedImage toShow = animation.getCurrentFrame().get();
+                        final BufferedImage toShow = animation.getCurrentFrame().get();
                         g2.drawImage(toShow, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
                     } else {
-                        BufferedImage toShow = animation.getFrames().get(0).get();
+                        final BufferedImage toShow = animation.getFrames().get(0).get();
                         g2.drawImage(toShow, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
                     }
                 } catch (ClassCastException e) {
