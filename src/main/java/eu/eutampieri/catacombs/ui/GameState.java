@@ -19,6 +19,7 @@ public class GameState extends State {
     private final Font font = new Font("Arial", Font.BOLD, 15);
     private final Font pauseFont = new Font("Monospace", Font.BOLD, 30);
     private final DungeonGame game;
+    private long lastPausedTime = 0;
 
     public GameState(final DungeonGame game) {
         super(game);
@@ -31,15 +32,12 @@ public class GameState extends State {
 
     @Override
     public void update(final long delta) {
-        long time = 0;
         if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_ESCAPE)) {
-            if ( time == 0 || time > 500) {
-                this.paused = !paused;
+            final long curTime = System.currentTimeMillis();
+				    if (curTime-lastPausedTime>500) {
+                this.paused = !this.paused;
+						    this.lastPausedTime=curTime;
             }
-            time = System.currentTimeMillis();
-
-
-
         }
         if (this.paused) {
             return;
