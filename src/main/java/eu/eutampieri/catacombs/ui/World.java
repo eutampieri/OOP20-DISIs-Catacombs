@@ -6,6 +6,9 @@ import eu.eutampieri.catacombs.model.Direction;
 import eu.eutampieri.catacombs.model.Entity;
 import eu.eutampieri.catacombs.model.GameObject;
 import eu.eutampieri.catacombs.model.Player;
+import eu.eutampieri.catacombs.model.SimplePotion;
+import eu.eutampieri.catacombs.model.gen.SingleObjectFactory;
+import eu.eutampieri.catacombs.model.gen.SingleObjectFactoryImpl;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.gen.MobFactory;
 import eu.eutampieri.catacombs.model.gen.MobFactoryImpl;
@@ -18,6 +21,7 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -41,6 +45,14 @@ public final class World {
         camera = new Camera(0, 0, tileMap.width() * AssetManagerProxy.getMapTileSize(),
                 tileMap.height() * AssetManagerProxy.getMapTileSize());
         this.entities = mf.spawnRandom().stream().map((x) -> (GameObject) x).collect(Collectors.toList());
+
+        final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
+        final Random rand = new Random();
+        this.entities.addAll(objectFactory.spawnSome(700, (x, y, tm) -> {
+            final int healingPower = rand.nextInt(101);
+            return new SimplePotion(healingPower, "Potion", x, y);
+        }));
+
         this.player = (Player) mf.spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm)).get(0);
 
         this.game = game;
