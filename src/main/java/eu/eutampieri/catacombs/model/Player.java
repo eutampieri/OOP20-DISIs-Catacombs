@@ -101,8 +101,7 @@ public final class Player extends Entity {
         this.fire = true;
     }
 
-    @Override
-    public List<GameObject> spawnObject() {
+    private List<GameObject> spawnObject() {
         if (this.fire) {
             this.fire = false;
             switch (this.face) {
@@ -123,7 +122,7 @@ public final class Player extends Entity {
     }
 
     @Override
-    public void update(final long delta, final List<GameObject> others) {
+    public List<GameObject> update(final long delta, final List<GameObject> others) {
         super.update(delta, others);
         this.weapon.update(delta, others);
 
@@ -137,5 +136,6 @@ public final class Player extends Entity {
         others.parallelStream().filter((x) -> x instanceof HealthModifier && !(x instanceof Projectile))
                 .filter((x) -> x.getHitBox().overlaps(this.getHitBox())).map((x) -> (HealthModifier) (x))
                 .forEach((x) -> x.useOn(this));
+        return this.spawnObject();
     }
 }

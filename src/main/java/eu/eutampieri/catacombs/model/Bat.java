@@ -53,7 +53,7 @@ public final class Bat extends Entity {
     }
 
     @Override
-    public void update(final long delta, final List<GameObject> others) {
+    public List<GameObject> update(final long delta, final List<GameObject> others) {
         if (isMoving) {
             delayCounter += delta;
             if (delayCounter >= MOVE_DELAY) {
@@ -76,13 +76,16 @@ public final class Bat extends Entity {
                 .overlaps(this.getHitBox()) && this.weapon.canFire()) {
 
             setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
-            spawnObject();
         } else {
             resetShootingDirection();
         }
         super.update(delta, others);
         updateRadarBoxLocation();
         weapon.update(delta, others);
+        if (weapon.canFire) {
+            return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+        }
+        return List.of();
     }
 
     @Override
@@ -138,14 +141,6 @@ public final class Bat extends Entity {
 
     public String getName() {
         return Bat.NAME;
-    }
-
-    @Override
-    public List<GameObject> spawnObject(){
-        if (weapon.canFire) {
-            return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
-        }
-        return List.of();
     }
 
     public Point getShootingDirection() {

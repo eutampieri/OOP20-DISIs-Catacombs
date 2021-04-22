@@ -40,9 +40,9 @@ public final class Boss extends Entity {
     }
 
     @Override
-    public void update(final long delta, final List<GameObject> others) {
+    public List<GameObject> update(final long delta, final List<GameObject> others) {
         if (!isAlive()) {
-            return;
+            super.update(delta, others);
         }
 
         if (isMoving) {
@@ -63,7 +63,7 @@ public final class Boss extends Entity {
 
         super.update(delta, others);
         updateRadarBoxLocation();
-        // weapon.update(delta, others);
+        return List.of();
     }
 
     @Override
