@@ -8,9 +8,10 @@ public final class Main {
     private Main() {
 
     }
+
     public static void main(final String[] args) {
         final GameConfiguration gc = new GameConfiguration();
-        gc.setFps(60);
+        gc.setFps(30);
         gc.setFullScreen(false);
 
         gc.setGameWidth(672);
@@ -22,7 +23,7 @@ public final class Main {
         gc.setTitle("CATACOMBS");
 
         final DungeonGame game = new DungeonGame();
-
-        Launcher.launch(gc, game);
+        game.initialize(gc);
+        game.run();
     }
 }

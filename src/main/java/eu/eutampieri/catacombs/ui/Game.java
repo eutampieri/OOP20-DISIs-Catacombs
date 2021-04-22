@@ -32,7 +32,6 @@ public abstract class Game implements Runnable {
     private boolean running;
     private Graphics2D graphics;
     private int fps;
-    private Thread gameThread;
 
     public Graphics2D getGraphics() {
         return this.graphics;
@@ -191,27 +190,17 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     * start the main thread.
+     * start the game.
      */
-
     public final void start() {
         this.running = true;
-        this.gameThread = new Thread(this);
-        this.gameThread.start();
     }
 
     /**
-     * stop the main thread.
+     * stop the game.
      */
-
     public final void stop() {
-       try {
-            running = false;
-            this.gameThread.join();
-            mainFrame.getFrame().dispatchEvent(new WindowEvent(mainFrame.getFrame(), WindowEvent.WINDOW_CLOSING));
-       } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        this.running = false;
     }
 
     public JFrame getMainFrame() {
@@ -223,10 +212,11 @@ public abstract class Game implements Runnable {
         create();
         long lastUpdateTime;
         long now;
+        this.start();
 
         final double tickPerTime = 1f / fps;
         lastUpdateTime = System.nanoTime();
-        while (running) {
+        while (this.running) {
             now = System.currentTimeMillis();
             long delta;
             delta = now - lastUpdateTime;
@@ -240,45 +230,45 @@ public abstract class Game implements Runnable {
             this.renderfpsCount(Color.CYAN);
             final long timeTake = System.currentTimeMillis() - now;
             final long timeToFrame = 1_000 / this.fps - timeTake;
-            if(timeToFrame > 0) {
+            if (timeToFrame > 0) {
                 try {
                     Thread.sleep(timeToFrame);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-		}
-	}
+        }
+        this.mainFrame.getFrame().dispatchEvent(new WindowEvent(mainFrame.getFrame(), WindowEvent.WINDOW_CLOSING));
+    }
 
-	protected void renderfpsCount(final Color color) {
-		graphics.setFont(DEFAULT_FONT);
-		graphics.setColor(color);
-		graphics.drawString("FRAME PER SECOND : " + framesThisSecond,
-				gameConfiguration.isScaling() ? gameConfiguration.getGameWidth() - 160 : getWidth() - 160,
-				10 + graphics.getFont().getSize());
-	}
+    protected void renderfpsCount(final Color color) {
+        graphics.setFont(DEFAULT_FONT);
+        graphics.setColor(color);
+        graphics.drawString("FRAME PER SECOND : " + framesThisSecond,
+                gameConfiguration.isScaling() ? gameConfiguration.getGameWidth() - 160 : getWidth() - 160,
+                10 + graphics.getFont().getSize());
+    }
 
-	protected void renderfpsCount(final Color color, final int x, final int y) {
-		graphics.setColor(color);
-		graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
-	}
+    protected void renderfpsCount(final Color color, final int x, final int y) {
+        graphics.setColor(color);
+        graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
+    }
 
-	
-	public void addKeyAdapter(final KeyAdapter e) {
-		mainFrame.getCanvas().addKeyListener(e);
-		mainFrame.getFrame().addKeyListener(e);
-	}
-	
-	public void addMouseAdapter(final MouseAdapter e) {
-		mainFrame.getCanvas().addMouseListener(e);
-		mainFrame.getFrame().addMouseListener(e);		
-		mainFrame.getCanvas().addMouseMotionListener(e);
-		mainFrame.getFrame().addMouseMotionListener(e);
-	}
+    public void addKeyAdapter(final KeyAdapter e) {
+        mainFrame.getCanvas().addKeyListener(e);
+        mainFrame.getFrame().addKeyListener(e);
+    }
 
-	public void removeKeyAdapter(final KeyAdapter e) {
-		mainFrame.getCanvas().removeKeyListener(e);
-		mainFrame.getFrame().removeKeyListener(e);
-	}	
-	
+    public void addMouseAdapter(final MouseAdapter e) {
+        mainFrame.getCanvas().addMouseListener(e);
+        mainFrame.getFrame().addMouseListener(e);
+        mainFrame.getCanvas().addMouseMotionListener(e);
+        mainFrame.getFrame().addMouseMotionListener(e);
+    }
+
+    public void removeKeyAdapter(final KeyAdapter e) {
+        mainFrame.getCanvas().removeKeyListener(e);
+        mainFrame.getFrame().removeKeyListener(e);
+    }
+
 }
