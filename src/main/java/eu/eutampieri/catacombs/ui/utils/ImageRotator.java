@@ -5,6 +5,12 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class ImageRotator {
+	/**
+	 * This method rotate the given image
+	 * @param image the image to rotate
+	 * @param angle the rotation angle
+	 * @return the rotated image
+	 */
     public BufferedImage rotate(final BufferedImage image,final double angle) {
 		final BufferedImage rotatedImage = new BufferedImage(image.getWidth(), image.getHeight(),
 				BufferedImage.TYPE_INT_ARGB);

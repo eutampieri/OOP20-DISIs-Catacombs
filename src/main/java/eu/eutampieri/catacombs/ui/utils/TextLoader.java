@@ -12,6 +12,12 @@ public final class TextLoader {
 
 	}
 
+	/**
+	 * this method load text from a given path
+	 * @param path the path to find the text
+	 * @return an optional string
+	 */
+
 	public static Optional<String> loadText(final Path path) {
 		try (Scanner scan = new Scanner(path, StandardCharsets.UTF_8)) {
 			final StringBuilder sb = new StringBuilder();

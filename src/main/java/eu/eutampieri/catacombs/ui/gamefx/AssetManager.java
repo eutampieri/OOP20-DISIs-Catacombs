@@ -8,6 +8,9 @@ import java.util.Map.Entry;
 
 import eu.eutampieri.catacombs.ui.utils.ImageLoader;
 import eu.eutampieri.catacombs.ui.utils.ImageRotator;
+/**
+ * This class is used to provide the images for the animation of the entities and for the assets of the map
+ */
 
 public final class AssetManager {
 
@@ -23,21 +26,48 @@ public final class AssetManager {
 	private final Map<String,ArrayList<Optional<BufferedImage>>> allAnimations = new HashMap<>();
 	private final Map<String,BufferedImage> allImages = new HashMap<>();
 
+	/**
+	 * private constructor for the Singleton of the AssetManager
+	 */
+
 	private AssetManager() {
 		load();
 	}
 
+	/**
+	 * this is due to the singleton
+	 * @return an AssetManager
+	 */
+
 	public static AssetManager getAssetManager() {
 		return SINGLETON_MANAGER;
 	}
+
+	/**
+	 * This method select the frame specified by the parameter
+	 * @param key the string that identifies an action
+	 * @return the list of image corresponding to the action specified in the parameter
+	 */
 	
 	public List<Optional<BufferedImage>> getFrames(final String key) {
 		return allAnimations.get(key);
 	}
+
+	/**
+	 * This method return a single image specified by the parameter
+	 * @param key a string that specify the action
+	 * @return the image specified by parameter
+	 */
 	
 	public BufferedImage getImage(final String key) {
 		return this.allImages.get(key);
 	}
+
+	/**
+	 * This method uses an image to find an action
+	 * @param image the image to find the corresponding action
+	 * @return the String that identifies the action
+	 */
 	
 	public String getImageKey(final BufferedImage image) {
 		for (final Entry<String,BufferedImage> entry : this.allImages.entrySet()) {
@@ -47,6 +77,10 @@ public final class AssetManager {
 		}
 		return null;
 	}
+
+	/**
+	 * This method loads all the images in two separates List of images and animations
+	 */
 	
 	private void load() {
 		loadAnimations("Walk_up", PLAYER_SHEET, 8, 3, 32, false);
@@ -81,6 +115,12 @@ public final class AssetManager {
 
 		loadImages();
 	}
+
+	/**
+	 * This method flip the image
+	 * @param image the image to flip
+	 * @return the flipped image
+	 */
 	
 	public Optional<BufferedImage> horizontalFlip(final Optional<BufferedImage> image) {
 		if (image.isPresent()) {
@@ -95,6 +135,10 @@ public final class AssetManager {
 			return Optional.empty();
 		}
 	}
+
+	/**
+	 * This method load the assets for the map
+	 */
 	
 	public void loadImages() {
 		// Tiles
@@ -136,6 +180,16 @@ public final class AssetManager {
 		allImages.put("potion", tileSheet.cutImage(0,181,9,11));
 		allImages.put("gun", tileSheet.cutImage(0, 193, 21, 17));
 	}
+
+	/**
+	 * this method loads the images for the animations
+	 * @param name         the name of the action
+	 * @param image        the sheet of the entity
+	 * @param numFrames    the frames necessary for that action
+	 * @param offset       the y offset in the image
+	 * @param dimension    the dimension of the single image
+	 * @param flip         the flipped image
+	 */
 	public void loadAnimations(final String name, final Path image, final int numFrames, final int offset, final int dimension, final boolean flip) {
 		final GameSheets sheet = new GameSheets(image);
 		final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
@@ -149,6 +203,15 @@ public final class AssetManager {
 		}
 		allAnimations.put(name, res);
 	}
+
+	/**
+	 *  This method load the boss images for each action
+	 *
+	 * @param name           the name of the action
+	 * @param numFrames      the number of the frames for an action
+	 * @param flip           the flipped image
+	 * @param idle           the image can be idle or walk
+	 */
 
 	public void loadBossAnimations(final String name, final int numFrames, final boolean flip, final boolean idle) {
 		final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
@@ -172,6 +235,16 @@ public final class AssetManager {
 		}
 		allAnimations.put(name, res);
 	}
+
+	/**
+	 *  This method loads the images for the shootin animation
+	 * @param name          the name of the projectile
+	 * @param image         the image to load
+	 * @param numFrames     the number of frames for that animation
+	 * @param y             the y offest
+	 * @param dimension     the dimension of the image
+	 * @param offset        the x offset
+	 */
 
 	public void loadGunAnimations(final String name, final Path image, final int numFrames, final int y, final int dimension, final int offset) {
 		final GameSheets sheet = new GameSheets(image);

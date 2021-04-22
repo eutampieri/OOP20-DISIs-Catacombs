@@ -14,6 +14,11 @@ import eu.eutampieri.catacombs.window.MainWindow;
 
 import javax.swing.*;
 
+/**
+ * this is the main class in which the game loop is implemented
+ * it controls the thread the render and the update of the entire game
+ */
+
 public abstract class Game implements Runnable {
 
     protected static final long DELTA_MIN = 16_000_000;
@@ -21,18 +26,40 @@ public abstract class Game implements Runnable {
 
     public static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
     public static final MouseManager MOUSE_MANAGER = new MouseManager();
-
+    /**
+     * Main windows used for the game
+     */
     private MainWindow mainFrame;
+    /**
+     * Configuration of the game
+     */
     private GameConfiguration gameConfiguration;
 
     private BufferStrategy bs;
     private GraphicsConfiguration gc;
     private VolatileImage vImage;
     private int framesThisSecond;
+    /**
+     * boolean value for the loop of the game
+     */
     private boolean running;
+    /**
+     * the graphical element used in the game
+     */
     private Graphics2D graphics;
+    /**
+     * fps of the game
+     */
     private int fps;
+    /**
+     * Thread of the game
+     */
     private Thread gameThread;
+
+    /**
+     *
+     * @return the graphical element used
+     */
 
     public Graphics2D getGraphics() {
         return this.graphics;
@@ -214,10 +241,18 @@ public abstract class Game implements Runnable {
         }
     }
 
+    /**
+     *
+     * @return the main frame of the game
+     */
+
     public JFrame getMainFrame() {
         return mainFrame.getFrame();
     }
 
+    /**
+     * this is the loop of the game that manage the update and render of the game
+     */
     @Override
     public final void run() {
         create();
@@ -250,6 +285,12 @@ public abstract class Game implements Runnable {
 		}
 	}
 
+    /**
+     * Optional method used to view the fps
+     *
+     * @param color the color used int the render of the fps
+     */
+
 	protected void renderfpsCount(final Color color) {
 		graphics.setFont(DEFAULT_FONT);
 		graphics.setColor(color);
@@ -263,11 +304,22 @@ public abstract class Game implements Runnable {
 		graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
 	}
 
+    /**
+     * Add the Key listener
+     *
+     * @param e the KeyAdapter to add
+     */
+
 	
 	public void addKeyAdapter(final KeyAdapter e) {
 		mainFrame.getCanvas().addKeyListener(e);
 		mainFrame.getFrame().addKeyListener(e);
 	}
+
+    /**
+     * Add the mouse listener
+     * @param e the MouseAdapter to add
+     */
 	
 	public void addMouseAdapter(final MouseAdapter e) {
 		mainFrame.getCanvas().addMouseListener(e);
@@ -275,6 +327,11 @@ public abstract class Game implements Runnable {
 		mainFrame.getCanvas().addMouseMotionListener(e);
 		mainFrame.getFrame().addMouseMotionListener(e);
 	}
+
+    /**
+     * method used to eventually remove a KeyAdapter
+     * @param e the Key adapter to remove
+     */
 
 	public void removeKeyAdapter(final KeyAdapter e) {
 		mainFrame.getCanvas().removeKeyListener(e);
