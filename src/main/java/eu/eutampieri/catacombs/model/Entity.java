@@ -38,8 +38,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @param y       Y spawn position
      * @param tileMap Tile map in which Entity is spawned
      */
-    public Entity(final int x, final int y, final int width, final int height, final TileMap tileMap, final GameObjectType kind) {
-        super(x, y, kind, new CollisionBox(x, y, width, height));
+    public Entity(final int x, final int y, final int width, final int height, final TileMap tileMap, final GameObjectType kind, final Team team) {
+        super(x, y, kind, new CollisionBox(x, y, width, height), team);
         this.tileMap = tileMap;
         this.width = width;
         this.height = height;

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class EquipmentTest {
 
     private final static TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
-    private final static Gun DEFAULT_GUN = new Gun(null, TILE_MAP, 0, 0, 21, 3, 1);
+    private final static Gun DEFAULT_GUN = new Gun(null, TILE_MAP, 0, 0, 21, 3, 1, GameObject.Team.FREIND);
     private final static HealthModifier BULLET = (Projectile) DEFAULT_GUN.fire(0,0).get(0);
 
     @Test
