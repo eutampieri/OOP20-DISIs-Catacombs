@@ -6,9 +6,9 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.List;
 
 public final class Player extends Entity {
-    private static final int BASE_MOVEMENT_SPEED = 15;
+    private static final int BASE_MOVEMENT_SPEED = 14;
     private static final int MAX_BASE_HP = 100;
-    private static final int SIZE = 26;
+    private static final int SIZE = 25;
     private static final int INITIAL_WEAPON_DAMAGE = 5;
     private static final int INITIAL_WEAPON_FIRE_RATE = 3;
     private int health;

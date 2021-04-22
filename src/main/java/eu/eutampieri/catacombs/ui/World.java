@@ -38,8 +38,7 @@ public final class World {
         final MobFactory mf = new MobFactoryImpl(this.tileMap);
         camera = new Camera(0, 0, tileMap.width() * AssetManagerProxy.getMapTileSize(),
                 tileMap.height() * AssetManagerProxy.getMapTileSize());
-        //this.entities = mf.spawnRandom().stream().map((x) -> (GameObject) x).collect(Collectors.toList());
-        this.entities = mf.spawnSome(1, Boss::new).stream().map((x) -> (GameObject) x).collect(Collectors.toList());
+        this.entities = mf.spawnRandom().stream().map((x) -> (GameObject) x).collect(Collectors.toList());
 
         final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
         final Random rand = new Random();
@@ -49,6 +48,10 @@ public final class World {
         }));
 
         this.player = (Player) mf.spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm)).get(0);
+        /* for boss debugging purpose */
+        this.entities.addAll(mf.spawnAt(this.player.getPosX() + this.player.getSize() + 1,
+                this.player.getPosY() + this.player.getSize() + 1,
+                Boss::new).stream().map((x) -> (GameObject) x).collect(Collectors.toList()));
 
         this.game = game;
     }

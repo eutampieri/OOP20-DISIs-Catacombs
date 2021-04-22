@@ -17,7 +17,7 @@ public final class Bat extends Entity {
     private static final int MOVEMENT_SPEED = 3;
     private static final int HEALTH = 8;
     private static final int RADAR_BOX_POSITION_MODIFIER = 20 * AssetManagerProxy.getMapTileSize();
-    private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + (Math.max(WIDTH, HEIGHT));
+    private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + Math.max(WIDTH, HEIGHT);
     private static final int BASE_DAMAGE = 2;
     private static final int BASE_FIRE_RATE = 1;
     private static final int BASE_PROJECTILE_SPEED = 3;

@@ -10,12 +10,12 @@ import java.util.Random;
 
 public final class Boss extends Entity {
 
-    private static final int HEIGHT = 64;
-    private static final int WIDTH = 64;
+    private static final int HEIGHT = 32;
+    private static final int WIDTH = 32;
     private static final int MOVEMENT_SPEED = 4;
     private static final int HEALTH = 50;
     private static final int RADAR_BOX_POSITION_MODIFIER = 30 * AssetManagerProxy.getMapTileSize();
-    private static final int RADAR_BOX_SIZE = 30 * 2 * AssetManagerProxy.getMapTileSize() + (Math.max(WIDTH, HEIGHT));
+    private static final int RADAR_BOX_SIZE = 30 * 2 * AssetManagerProxy.getMapTileSize() + Math.max(WIDTH, HEIGHT);
     private static final String NAME = "Boss";
     private static final long MOVE_DELAY = 15L * 100;
     private static final long PAUSE_DELAY = 10L * 100;
@@ -125,7 +125,10 @@ public final class Boss extends Entity {
                 face = Direction.RIGHT;
                 right = true;
             break;
-
+            default:
+                face = Direction.LEFT;
+                resetMovement();
+            break;
         }
 
     }

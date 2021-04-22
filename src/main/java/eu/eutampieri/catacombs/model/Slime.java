@@ -18,7 +18,7 @@ public final class Slime extends Entity implements HealthModifier {
     private static final int HEALTH = 10;
     private static final String NAME = "Slime";
     private static final int RADAR_BOX_POSITION_MODIFIER = 20 * AssetManagerProxy.getMapTileSize();
-    private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + (Math.max(WIDTH, HEIGHT));
+    private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + Math.max(WIDTH, HEIGHT);
     private static final int DAMAGE_ON_HIT = 5;
     private static final long HIT_DELAY = 10L * 1_000_000_000;
 

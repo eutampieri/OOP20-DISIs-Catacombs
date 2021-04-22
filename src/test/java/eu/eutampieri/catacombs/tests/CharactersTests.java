@@ -111,7 +111,7 @@ class CharactersTests {
 
     @Test
     void testBossUpdate() {
-        BOSS.update(10, List.of());
+        BOSS.update(10, List.of(PLAYER));
         // TODO implement checks
     }
 }
