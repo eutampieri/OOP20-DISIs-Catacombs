@@ -6,10 +6,8 @@ import java.awt.*;
 
 public class StartTransition extends State{
 
-    private static final long WAIT_TIME = 25_000_000_000L;
 
     private GameState levelState;
-    private long waitTimer;
     private final Font font = new Font("Monospace", Font.PLAIN, 40);
     private final DungeonGame game;
 
@@ -20,12 +18,7 @@ public class StartTransition extends State{
 
     @Override
     public void update(final long delta) {
-        this.waitTimer += delta;
-
-        if (this.waitTimer >= WAIT_TIME) {
-            this.waitTimer = 0;
-            game.setState(levelState);
-        }
+        game.setState(levelState);
     }
 
     @Override

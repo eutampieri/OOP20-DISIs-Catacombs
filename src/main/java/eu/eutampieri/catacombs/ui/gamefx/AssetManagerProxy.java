@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public final class AssetManagerProxy {
-    private final static double MAP_SCALING_FACTOR = 1.5;
+    private final static double MAP_SCALING_FACTOR = 2.25;
     private final static Map<Tile, BufferedImage> MAP_CACHE = new HashMap<>();
 
     private AssetManagerProxy(){}
@@ -56,7 +56,12 @@ public final class AssetManagerProxy {
         final AssetManager am = AssetManager.getAssetManager();
         switch (entity.getKind()) {
             case BULLET:
-                return am.getImage("Projectile_1");
+                return am.getFrames("Projectile_1")
+                        .stream()
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .findFirst()
+                        .get();
             default:
                 return null;
         }
@@ -68,15 +73,15 @@ public final class AssetManagerProxy {
         final BufferedImage after = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         final AffineTransform at = new AffineTransform();
         at.scale(scale, scale);
-        AffineTransformOp scaling = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+        final AffineTransformOp scaling = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
         return scaling.filter(before, after);
     }
 
     public static Optional<BufferedImage> getTileSprite(final Tile tile) {
-        final BufferedImage tileImg;
         if(MAP_CACHE.get(tile) != null) {
             return Optional.of(MAP_CACHE.get(tile));
         }
+        final BufferedImage tileImg;
         switch (tile) {
             case FLOOR:
                 tileImg = AssetManager.getAssetManager().getImage("41");

@@ -1,11 +1,9 @@
 package eu.eutampieri.catacombs.ui;
 
 import eu.eutampieri.catacombs.model.*;
-import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.mobgen.MobFactory;
 import eu.eutampieri.catacombs.model.mobgen.MobFactoryImpl;
-import eu.eutampieri.catacombs.ui.gamefx.AssetManager;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import eu.eutampieri.catacombs.ui.input.KeyManager;
 import org.apache.commons.lang3.tuple.Pair;
@@ -48,6 +46,10 @@ public class World {
 
         public boolean right() {
             return this.km.isKeyPressed(KeyEvent.VK_D) || this.km.isKeyPressed(KeyEvent.VK_RIGHT);
+        }
+
+        public boolean fire() {
+            return this.km.isKeyPressed(KeyEvent.VK_SPACE);
         }
     }
 
@@ -96,15 +98,36 @@ public class World {
         } else if(this.km.right()) {
             this.player.move(Direction.RIGHT);
         }
+
+        if(this.km.fire()) {
+            this.player.fire();
+        }
+
         player.update(delta, this.getAllEntitiesExcept(this.player));
 
         for (final GameObject entity : this.entities) {
-            entity.update(delta, this.getAllEntitiesExcept(entity));
+            if(this.isOnCamera(entity.getPosX(), entity.getPosY())) {
+                entity.update(delta, this.getAllEntitiesExcept(entity));
+            }
         }
+
+        final List<GameObject> newEntities = Stream.concat(entities.stream(), Stream.of(player))
+                .filter((x) -> x instanceof Entity)
+                .flatMap((x) -> ((Entity) x).spawnObject().stream())
+                .collect(Collectors.toList());
+        this.entities.addAll(newEntities);
+
         this.entities = this.entities
                 .stream()
                 .filter((x) -> !x.isMarkedForDeletion())
                 .collect(Collectors.toList());
+    }
+
+    private boolean isOnCamera(final int x, final int y) {
+        final int canvasX = x - camera.getXOffset();
+        final int canvasY = y - camera.getYOffset();
+        return canvasX > -AssetManagerProxy.getMapTileSize() && canvasX <= game.getWidth() &&
+                canvasY > -AssetManagerProxy.getMapTileSize() && canvasY <= game.getHeight();
     }
 
     public void render(final Graphics2D g2) {
@@ -119,9 +142,8 @@ public class World {
             for (int x = 0; x < tileMap.width(); x++) {
                 final int canvasX = x * AssetManagerProxy.getMapTileSize() - camera.getXOffset();
                 final int canvasY = y * AssetManagerProxy.getMapTileSize() - camera.getYOffset();
-                if(canvasX > -AssetManagerProxy.getMapTileSize() && canvasX <= game.getWidth() &&
-                        canvasY > -AssetManagerProxy.getMapTileSize() && canvasY <= game.getHeight()) {
-                    Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
+                if(isOnCamera(x * AssetManagerProxy.getMapTileSize(), y * AssetManagerProxy.getMapTileSize())) {
+                    final Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
                     tile.ifPresent(bufferedImage -> g2.drawImage(bufferedImage, null, canvasX, canvasY));
                 }
             }
@@ -133,7 +155,11 @@ public class World {
         // slimes
 
         Stream.concat(this.entities.stream(), Stream.of(this.player))
-                .forEach((currentObj) -> {try {
+                .filter((x) -> this.isOnCamera(x.getPosX(), x.getPosY()))
+                .forEach((currentObj) -> {
+                    g2.drawRect(currentObj.getHitBox().getPosX()-camera.getXOffset(), currentObj.getHitBox()
+                            .getPosY() - camera.getYOffset(), currentObj.getHitBox().getWidth(), currentObj.getHitBox().getHeight());
+                    try {
                     final Entity currentEntity = (Entity) currentObj;
                     final Pair<Action, Direction> action = currentEntity.getActionWithDirection();
                     final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);

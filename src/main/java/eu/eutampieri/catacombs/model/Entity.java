@@ -27,7 +27,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     /**
      * Entity dimensions.
      */
-    protected int width, height; // Entity width and height
+    protected int width, height, size; // Entity width and height
     /**
      * Tile map where the entity is.
      */
@@ -43,6 +43,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
         this.tileMap = tileMap;
         this.width = width;
         this.height = height;
+        this.size = width >= height ? width : size;
     }
 
     /**
@@ -81,6 +82,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
         this.height = height;
     }
 
+    public final int getSize() {
+        return this.size;
+    }
+
     /**
      * Updates entity status in game loop.
      *
@@ -97,10 +102,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     protected void move() {
 
-        int maxMovementUp = speedY;
-        int maxMovementRight = speedX;
-        int maxMovementDown = speedY;
-        int maxMovementLeft = speedX;
+       int maxMovementUp = speedY;
+       int maxMovementRight = speedX;
+       int maxMovementDown = speedY;
+       int maxMovementLeft = speedX;
 
         if (hitBox.getPosX() - speedX < 0) {
             maxMovementLeft = hitBox.getPosX();
@@ -209,7 +214,12 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     public abstract Pair<Action, Direction> getActionWithDirection();
 
-    protected List<GameObject> spawnObject(){
+    public List<GameObject> spawnObject(){
         return List.of();
+    }
+
+    @Override
+    public boolean isMarkedForDeletion() {
+        return !this.isAlive();
     }
 }
