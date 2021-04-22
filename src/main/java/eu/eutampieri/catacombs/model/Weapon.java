@@ -3,6 +3,7 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public abstract class Weapon extends GameObject{
 
@@ -17,7 +18,7 @@ public abstract class Weapon extends GameObject{
     /**
      * weapon fire rate.
      */
-    protected long fr;
+    protected long fireRate;
     /**
      * Stores if the weapon can fire.
      */
@@ -54,7 +55,7 @@ public abstract class Weapon extends GameObject{
         setStrength(strength);
         setProjectileSpeed(ps);
         setFireRate(fr);
-        setFireDelay(fr * 1_000_000_000);
+        setFireDelay(fireRate * TimeUnit.SECONDS.toNanos(1));
     }
 
     @Override
@@ -85,7 +86,7 @@ public abstract class Weapon extends GameObject{
     }
 
     public final void setFireRate(final long fr) {
-        this.fr = fr;
+        this.fireRate = fr;
     }
 
     public final void setFireDelay(final long fd) {

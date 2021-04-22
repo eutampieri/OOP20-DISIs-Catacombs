@@ -61,7 +61,7 @@ public final class Slime extends Entity implements HealthModifier {
     public void update(final long delta, final List<GameObject> others) {
         if (!canDmg) {
             dmgDelayCount += delta;
-            if (dmgDelayCount >= this.HIT_DELAY) {
+            if (dmgDelayCount >= HIT_DELAY) {
                 dmgDelayCount = 0;
                 canDmg = true;
             }
@@ -113,7 +113,7 @@ public final class Slime extends Entity implements HealthModifier {
      * Utility method useful and used in GameState to make the Slime follow a
      * GameObject.
      *
-     * @param e GameObject to follow (usually an entity, most likely the player)
+     * @param obj GameObject to follow (usually an entity, most likely the player)
      */
     public void setCharacterToFollow(final GameObject obj) {
         characterToFollow = obj;
@@ -158,6 +158,7 @@ public final class Slime extends Entity implements HealthModifier {
         radarBox.setLocation(posX - width * 2, posY - height * 2);
     }
 
+    @Override
     public String getName() {
         return Slime.NAME;
     }
