@@ -18,7 +18,6 @@ public class LogicMenuImpl implements LogicMenu {
 
     public LogicMenuImpl(final DungeonGame game) {
         this.game = game;
-
     }
 
     @Override

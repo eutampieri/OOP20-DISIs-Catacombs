@@ -2,8 +2,8 @@ package eu.eutampieri.catacombs.ui;
 
 import eu.eutampieri.catacombs.model.*;
 import eu.eutampieri.catacombs.model.map.TileMap;
-import eu.eutampieri.catacombs.model.mobgen.MobFactory;
-import eu.eutampieri.catacombs.model.mobgen.MobFactoryImpl;
+import eu.eutampieri.catacombs.model.gen.MobFactory;
+import eu.eutampieri.catacombs.model.gen.MobFactoryImpl;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import eu.eutampieri.catacombs.ui.input.KeyManager;
 import org.apache.commons.lang3.tuple.Pair;
