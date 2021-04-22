@@ -79,7 +79,7 @@ public class GameState extends State {
         }
         this.world.update(delta);
         if (!this.world.getPlayer().isAlive()) {
-            this.game.setEndGame();
+            this.game.endGame();
         }
     }
 
