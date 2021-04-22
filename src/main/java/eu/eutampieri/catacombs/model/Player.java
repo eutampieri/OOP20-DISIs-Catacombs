@@ -5,7 +5,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 
-public class Player extends Entity {
+public final class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 3;
     private static final int MAX_BASE_HP = 100;
     private static final int SIZE = 32;

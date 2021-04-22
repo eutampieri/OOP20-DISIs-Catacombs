@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Optional;
 
-public class Animations {
+public final class Animations {
 
     private List<Optional<BufferedImage>> frames;
     private float frameDelay;

@@ -5,7 +5,7 @@ import java.util.List;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 
-public class Projectile extends GameObject implements HealthModifier {
+public final class Projectile extends GameObject implements HealthModifier {
     private final TileMap map;
     private final int strength;
     private boolean toErase;
