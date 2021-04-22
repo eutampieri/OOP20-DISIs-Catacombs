@@ -268,7 +268,7 @@ public abstract class Game implements Runnable {
             delta = now - lastUpdateTime;
             delta = Math.min(delta, DELTA_MIN);
             update(delta);
-            lastUpdateTime += tickPerTime;
+            lastUpdateTime = now;
             preRender();
             render();
             show();

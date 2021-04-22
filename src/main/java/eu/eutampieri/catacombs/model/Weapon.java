@@ -3,7 +3,6 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public abstract class Weapon extends GameObject {
 
@@ -57,7 +56,7 @@ public abstract class Weapon extends GameObject {
         setStrength(strength);
         setProjectileSpeed(ps);
         setFireRate(fr);
-        setFireDelay(fireRate * TimeUnit.SECONDS.toMillis(1));
+        setFireDelay(fireRate * 100);
         setCanFire(true);
         this.fireDelayCount = 0;
     }
@@ -109,7 +108,8 @@ public abstract class Weapon extends GameObject {
     public final List<GameObject> fire(final int psx, final int psy) {
        final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
                 psx*ps, psy*ps, strength, tileMap, this.getTeam());
-        return List.of(p);
+       setCanFire(false);
+       return List.of(p);
     }
 
     public void setUser(final Entity user) {

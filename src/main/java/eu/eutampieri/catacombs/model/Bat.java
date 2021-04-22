@@ -14,16 +14,16 @@ public final class Bat extends Entity {
 
     private static final int HEIGHT = 16;
     private static final int WIDTH = 16;
-    private static final int MOVEMENT_SPEED = 2;
+    private static final int MOVEMENT_SPEED = 3;
     private static final int HEALTH = 8;
-    private static final int CB_POS_MOD = 4;
-    private static final int CB_DIM_MOD = 9;
+    private static final int CB_POS_MOD = 10;
+    private static final int CB_DIM_MOD = 35;
     private static final int BASE_DAMAGE = 2;
-    private static final int BASE_FIRE_RATE = 2;
-    private static final int BASE_PROJECTILE_SPEED = 2;
+    private static final int BASE_FIRE_RATE = 4;
+    private static final int BASE_PROJECTILE_SPEED = 15;
     private static final String NAME = "Bat";
-    private static final long MOVE_DELAY = 15L * TimeUnit.SECONDS.toMillis(1);
-    private static final long PAUSE_DELAY = 50L * TimeUnit.SECONDS.toMillis(1);
+    private static final long MOVE_DELAY = 5L * 100;
+    private static final long PAUSE_DELAY = 10L * 100;
 
     private final Weapon weapon;
     private boolean isMoving;
@@ -55,6 +55,7 @@ public final class Bat extends Entity {
 
     @Override
     public void update(final long delta, final List<GameObject> others) {
+        resetShootingDirection();
         if (isMoving) {
             delayCounter += delta;
             if (delayCounter >= MOVE_DELAY) {
@@ -76,9 +77,7 @@ public final class Bat extends Entity {
                 .getHitBox()
                 .overlaps(this.radarBox) && this.weapon.canFire) {
             setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
-            this.weapon.setCanFire(false);
         } else {
-            resetShootingDirection();
             this.weapon.setCanFire(false);
         }
         super.update(delta, others);
@@ -95,13 +94,10 @@ public final class Bat extends Entity {
 
     @Override
     public boolean canPerform(final Action action) {
-        switch (action) {
-        case ATTACK:
-        case MOVE:
-            return true;
-        default:
-            return false;
-        }
+        return switch (action) {
+            case ATTACK, MOVE -> true;
+            default -> false;
+        };
     }
 
     @Override
@@ -144,7 +140,7 @@ public final class Bat extends Entity {
     @Override
     public List<GameObject> spawnObject(){
         if (this.weapon.canFire) {
-            return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+            return weapon.fire((int)this.getShootingDirection().getX(), (int)this.getShootingDirection().getY());
         }
         return List.of();
     }
