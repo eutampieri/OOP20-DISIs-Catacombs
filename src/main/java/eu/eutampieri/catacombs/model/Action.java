@@ -4,11 +4,11 @@ import java.util.List;
 
 public enum Action {
     /**
-     * When a character changes its position, i.e. when it walks
+     * When a character changes its position, i.e. when it walks.
      */
     MOVE,
     /**
-     * When a character causes harm to another one, i.e. when it shoots
+     * When a character causes harm to another one, i.e. when it shoots.
      */
     ATTACK,
     /**
@@ -16,7 +16,7 @@ public enum Action {
      */
     DIE,
     /**
-     * When a character stands still
+     * When a character stands still.
      */
     IDLE;
 
