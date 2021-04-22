@@ -238,6 +238,7 @@ public final class AssetManager {
 
 	/**
 	 *  This method loads the images for the shootin animation
+	 *
 	 * @param name          the name of the projectile
 	 * @param image         the image to load
 	 * @param numFrames     the number of frames for that animation
