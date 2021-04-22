@@ -97,10 +97,13 @@ public final class Bat extends Entity {
 
     @Override
     public boolean canPerform(final Action action) {
-        return switch (action) {
-            case ATTACK, MOVE -> true;
-            default -> false;
-        };
+        switch (action) {
+            case ATTACK:
+            case MOVE:
+                return true;
+            default:
+                return false;
+        }
     }
 
     @Override
