@@ -9,7 +9,7 @@ import java.util.List;
  * Slime class - the slime is an enemy that walks toward the targeted character
  * and deals damage on contact (through hit boxes).
  */
-public final class Slime extends Entity {
+public final class Slime extends Entity implements HealthModifier {
 
     private static final int HEIGHT = 16;
     private static final int WIDTH = 16;
@@ -18,7 +18,8 @@ public final class Slime extends Entity {
     private static final String NAME = "Slime";
     private static final int CB_POS_MOD = 15;
     private static final int CB_DIM_MOD = 30;
-    /* private static final int DAMAGE_ON_HIT = 5; */
+    private static final int DAMAGE_ON_HIT = 5;
+    private static final long HIT_DELAY = 10L * 1_000_000_000;
 
     /**
      * Character followed by the slime.
@@ -30,8 +31,18 @@ public final class Slime extends Entity {
     private final CollisionBox radarBox;
 
     /**
+     * The entity focussed by the slime currently;.
+     * to be implemented maybe..
+     */
+    /* private final Entity entityToAggro; */
+
+    private boolean canDmg;
+    private long dmgDelayCount;
+    private long dmgDelay;
+
+    /**
      * Slime constructor.
-     * 
+     *
      * @param x       X spawn position
      * @param y       Y spawn position
      * @param tileMap Tile map in which Slime is spawned
@@ -43,17 +54,25 @@ public final class Slime extends Entity {
         face = Direction.RIGHT;
         radarBox = new CollisionBox(posX - (width * CB_POS_MOD), posY - (height * CB_POS_MOD), width * CB_DIM_MOD,
                 height * CB_POS_MOD);
-        // TODO Animations
+        this.canDmg = true;
+        this.dmgDelayCount = 0;
+        this.dmgDelay = HIT_DELAY;
     }
 
     @Override
     public void update(final long delta, final List<GameObject> others) {
-        resetMovement();
+        if (!canDmg) {
+            dmgDelayCount += delta;
+            if (dmgDelayCount >= dmgDelay) {
+                dmgDelayCount = 0;
+                canDmg = true;
+            }
+        }
         if (others.stream().filter((x) -> x instanceof Player)
                 .findFirst()
                 .get()
                 .getHitBox()
-                .overlaps(this.radarBox)){
+                .overlaps(this.radarBox)) {
             setCharacterToFollow(others.stream().filter((x) -> x instanceof Player).findFirst().get());
         } else {
             setCharacterToFollow(null);
@@ -61,6 +80,14 @@ public final class Slime extends Entity {
         follow();
         super.update(delta, others);
         updateRadarBoxLocation();
+        if (this.getHitBox().overlaps(others.stream().filter((x) -> x instanceof Player)
+                .findFirst()
+                .get()
+                .getHitBox()) && canDmg
+        ) {
+            this.useOn((LivingCharacter) (others.stream().filter((x) -> x instanceof Player).findFirst().get()));
+            canDmg = false;
+        }
         this.resetMovement();
     }
 
@@ -87,7 +114,7 @@ public final class Slime extends Entity {
     /**
      * Utility method useful and used in GameState to make the Slime follow a
      * GameObject.
-     * 
+     *
      * @param e GameObject to follow (usually an entity, most likely the player)
      */
     public void setCharacterToFollow(final GameObject obj) {
@@ -135,5 +162,10 @@ public final class Slime extends Entity {
 
     public String getName() {
         return Slime.NAME;
+    }
+
+    @Override
+    public int getHealthDelta() {
+        return -this.DAMAGE_ON_HIT;
     }
 }

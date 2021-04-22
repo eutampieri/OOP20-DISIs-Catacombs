@@ -46,6 +46,9 @@ public final class Bat extends Entity {
         weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
                 BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE){};
         shootingDirection = new Point(0, 0);
+        this.delayCounter = 0;
+        this.pauseCounter = 0;
+        this.isMoving = true;
 
     }
 
