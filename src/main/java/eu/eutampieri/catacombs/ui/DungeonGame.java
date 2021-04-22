@@ -7,7 +7,7 @@ package eu.eutampieri.catacombs.ui;
 public final class DungeonGame extends Game {
 
     private MenuState menuState;
-    private StartTransition startGame;
+    private TransitionFactory transition;
     private State state;
 
     /**
@@ -34,9 +34,7 @@ public final class DungeonGame extends Game {
     @Override
     public void create() {
 
-        this.startGame = new StartTransition(this);
-        // to use when game ends
-        // final EndGameState endGame = new EndGameState(this);
+        this.transition = new TransitionFactoryImpl();
         this.menuState = new MenuState(this);
         setState(this.menuState);
 
@@ -85,16 +83,16 @@ public final class DungeonGame extends Game {
 
     public void startGame() {
         final GameState newGame = new GameState(this);
-        this.startGame.startTransition(newGame);
-        setState(startGame);
-    }
-/*
-    public void restartLevel() {
-
+        setState(this.transition.transState("New Game", this, newGame));
     }
 
-    public void nextLevels() {
+    /**
+     * This method start the transition state from the game to the end game.
+     */
 
+    public void endGame() {
+        final EndGameState endGame = new EndGameState(this);
+        setState(this.transition.transState("Dead", this, endGame));
     }
-    */
+
 }

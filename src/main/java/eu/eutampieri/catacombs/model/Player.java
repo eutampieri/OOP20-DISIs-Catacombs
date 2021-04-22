@@ -87,8 +87,8 @@ public final class Player extends Entity {
     }
 
     public void stop() {
-			this.resetMovement();
-		}
+            this.resetMovement();
+        }
 
     /**
      * @return Player name
