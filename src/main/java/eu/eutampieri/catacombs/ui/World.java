@@ -79,20 +79,12 @@ public final class World {
             this.player.fire();
         }
 
-        player.update(delta, this.getAllEntitiesExcept(this.player));
-
-        for (final GameObject entity : this.entities) {
-            if (this.isOnCamera(entity.getPosX(), entity.getPosY())) {
-                entity.update(delta, this.getAllEntitiesExcept(entity));
-            }
-        }
-
-        /*final List<GameObject> newEntities = Stream.concat(entities.stream(), Stream.of(player))
+        final List<GameObject> newEntities = Stream.concat(entities.stream(), Stream.of(player))
                 .filter((x) -> x instanceof Entity)
                 .filter((entity) -> this.isOnCamera(entity.getPosX(), entity.getPosY()))
-                .flatMap((x) -> ((Entity) x).spawnObject().stream())
+                .flatMap((x) -> ((Entity) x).update(delta, this.getAllEntitiesExcept(x)).stream())
                 .collect(Collectors.toList());
-        this.entities.addAll(newEntities);*/
+        this.entities.addAll(newEntities);
 
         this.entities = this.entities.stream().filter((x) -> !x.isMarkedForDeletion()).collect(Collectors.toList());
     }
