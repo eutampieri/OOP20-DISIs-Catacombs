@@ -41,7 +41,7 @@ public class GameState extends State {
      * the game manager used.
      */
     private final DungeonGame game;
-    private long lastPausedTime = 0;
+    private long lastPausedTime;
 
     /**
      * GameState constructor.
