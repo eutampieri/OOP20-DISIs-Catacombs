@@ -103,7 +103,7 @@ public abstract class Weapon extends GameObject {
     }
 
     public final List<GameObject> fire(final int psx, final int psy) {
-        final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
+       final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
                 psx, psy, strength, tileMap, this.getTeam());
         return List.of(p);
     }

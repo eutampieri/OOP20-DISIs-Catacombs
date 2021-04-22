@@ -4,7 +4,7 @@ import eu.eutampieri.catacombs.model.Bat;
 import eu.eutampieri.catacombs.model.GameObject;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
-import eu.eutampieri.catacombs.model.mobgen.MobFactoryImpl;
+import eu.eutampieri.catacombs.model.gen.MobFactoryImpl;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

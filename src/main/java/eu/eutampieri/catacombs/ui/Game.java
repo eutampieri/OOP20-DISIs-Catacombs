@@ -51,10 +51,6 @@ public abstract class Game implements Runnable {
      * fps of the game
      */
     private int fps;
-    /**
-     * Thread of the game
-     */
-    private Thread gameThread;
 
     /**
      *
@@ -218,27 +214,17 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     * start the main thread.
+     * start the game.
      */
-
     public final void start() {
         this.running = true;
-        this.gameThread = new Thread(this);
-        this.gameThread.start();
     }
 
     /**
-     * stop the main thread.
+     * stop the game.
      */
-
     public final void stop() {
-        try {
-            running = false;
-            this.gameThread.join();
-            mainFrame.getFrame().dispatchEvent(new WindowEvent(mainFrame.getFrame(), WindowEvent.WINDOW_CLOSING));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        this.running = false;
     }
 
     /**
@@ -258,10 +244,11 @@ public abstract class Game implements Runnable {
         create();
         long lastUpdateTime;
         long now;
+        this.start();
 
         final double tickPerTime = 1f / fps;
         lastUpdateTime = System.nanoTime();
-        while (running) {
+        while (this.running) {
             now = System.currentTimeMillis();
             long delta;
             delta = now - lastUpdateTime;
@@ -283,6 +270,7 @@ public abstract class Game implements Runnable {
                 }
             }
         }
+        this.mainFrame.getFrame().dispatchEvent(new WindowEvent(mainFrame.getFrame(), WindowEvent.WINDOW_CLOSING));
     }
 
     /**
