@@ -86,11 +86,10 @@ public final class AssetManagerProxy {
     public static BufferedImage getSprite(final GameObject entity) {
         final AssetManager am = AssetManager.getAssetManager();
         switch (entity.getKind()) {
-        case BULLET:
-            return am.getFrames("Projectile_1").stream().filter(Optional::isPresent).map(Optional::get).findFirst()
-                    .get();
-        default:
-            return null;
+            case BULLET:
+                return am.getImage("Projectile_1");
+            default:
+                return null;
         }
     }
 

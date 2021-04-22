@@ -41,6 +41,7 @@ public class GameState extends State {
      * the game manager used.
      */
     private final DungeonGame game;
+    private long lastPausedTime;
 
     /**
      * GameState constructor.
@@ -67,7 +68,11 @@ public class GameState extends State {
     @Override
     public void update(final long delta) {
         if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_ESCAPE)) {
-            this.paused = !paused;
+            final long curTime = System.currentTimeMillis();
+				    if (curTime-lastPausedTime>500) {
+                            this.paused = !this.paused;
+						    this.lastPausedTime=curTime;
+            }
         }
         if (this.paused) {
             return;
