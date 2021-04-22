@@ -1,21 +1,25 @@
 package eu.eutampieri.catacombs.tests;
 
+import eu.eutampieri.catacombs.model.Bat;
+import eu.eutampieri.catacombs.model.Camera;
+import eu.eutampieri.catacombs.model.Player;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
 import eu.eutampieri.catacombs.ui.GameConfiguration;
 import org.junit.jupiter.api.Test;
-import eu.eutampieri.catacombs.model.*;
 import org.junit.jupiter.api.TestInstance;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CameraTest {
 
-    private final static GameConfiguration GAME = new GameConfiguration();
-    private final static TileMap TILE_MAP = new TileMapFactoryImpl().empty(100, 100);
-    private final static Bat BAT = new Bat(15, 15, TILE_MAP);
-    private final static Player PLAYER1 = new Player(65, 65, "Player1", TILE_MAP);
+     private static final GameConfiguration GAME = new GameConfiguration();
+     private static final TileMap TILE_MAP = new TileMapFactoryImpl().empty(100, 100);
+     private static final Bat BAT = new Bat(15, 15, TILE_MAP);
+     private static final Player PLAYER1 = new Player(65, 65, "Player1", TILE_MAP);
 
     @Test
     void testCameraPosition() {

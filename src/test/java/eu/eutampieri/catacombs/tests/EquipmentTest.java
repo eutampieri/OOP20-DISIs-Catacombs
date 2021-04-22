@@ -1,6 +1,10 @@
 package eu.eutampieri.catacombs.tests;
 
-import eu.eutampieri.catacombs.model.*;
+import eu.eutampieri.catacombs.model.Gun;
+import eu.eutampieri.catacombs.model.HealthModifier;
+import eu.eutampieri.catacombs.model.Player;
+import eu.eutampieri.catacombs.model.Projectile;
+import eu.eutampieri.catacombs.model.SimplePotion;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
 import org.junit.jupiter.api.Test;
@@ -13,22 +17,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class EquipmentTest {
 
-    private final static TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
-    private final static Gun DEFAULT_GUN = new Gun(null, TILE_MAP, 0, 0, 21, 3, 1);
-    private final static HealthModifier BULLET = (Projectile) DEFAULT_GUN.fire(0, 0).get(0);
+     private static final TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
+     private static final Gun DEFAULT_GUN = new Gun(null, TILE_MAP, 0, 0, 21, 3, 1);
+     private static final HealthModifier BULLET = (Projectile) DEFAULT_GUN.fire(0, 0).get(0);
 
     @Test
     void testSimpleWeapon() {
         final Player p = new Player(0, 0, "Alice", TILE_MAP);
         final int healthOnCreation = p.getHealth();
         BULLET.useOn(p);
-        assertEquals(p.getHealth(), healthOnCreation - 21);
+        assertEquals(p.getHealth(), healthOnCreation + BULLET.getHealthDelta());
     }
 
     @Test
     void testHealthUnderflow() {
+        final int numberOfShots = 5;
         final Player p = new Player(0, 0, "Bob", TILE_MAP);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < numberOfShots; i++) {
             BULLET.useOn(p);
         }
         assertEquals(p.getHealth(), 0);
@@ -44,12 +49,13 @@ class EquipmentTest {
 
     @Test
     void testSimplePotionAfterWeapon() {
+        final int potionPower = 20;
         final Player p = new Player(0, 0, "Dan", TILE_MAP);
         final int healthOnCreation = p.getHealth();
-        final HealthModifier o = new SimplePotion(20, "Potion20");
+        final HealthModifier o = new SimplePotion(potionPower, "Potion20");
         BULLET.useOn(p);
         o.useOn(p);
-        assertEquals(p.getHealth(), healthOnCreation - 21 + 20);
+        assertEquals(p.getHealth(), healthOnCreation + potionPower + BULLET.getHealthDelta());
     }
 
     @Test

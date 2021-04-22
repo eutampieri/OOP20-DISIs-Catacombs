@@ -8,9 +8,10 @@ import java.awt.image.BufferedImage;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class UIutilsTest {
+
+public class UIUtilsTest {
 
     @Test
     public void testLoadText() {
