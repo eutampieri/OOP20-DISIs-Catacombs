@@ -14,6 +14,9 @@ public final class MenuState extends State {
     private static final int MIDDLE_OF_OPTION = 30;
     private static final int START_OFFSET = 55;
     private static final int QUIT_OFFSET = 75;
+    private static final int TITLE_PADDING = 20;
+    private static final int OPTION_HEIGHT = 20;
+    private static final int TITLE_HEIGHT = 60;
 
     private final transient Font titleFont = new Font("Times New Roman", Font.PLAIN, TITLE_FONT_SIZE);
     private final transient Font font = new Font("Arial", Font.PLAIN, DEFAULT_FONT_SIZE);
@@ -43,16 +46,16 @@ public final class MenuState extends State {
         g2.setFont(this.titleFont);
         final String title = "CATACOMBS";
         final float x = (float) (game.getGameWidth() - FontUtils.getTextWidth(titleFont, title)) / 2f;
-        g2.drawString(title, x, titleFont.getSize() + 20);
+        g2.drawString(title, x, titleFont.getSize() + TITLE_PADDING);
 
         // options
         g2.setFont(this.font);
         final String start = "Start";
         final float x1 = (float) (game.getGameWidth() - FontUtils.getTextWidth(font, start)) / 2f;
-        g2.drawString(start, x1, titleFont.getSize() + 80);
+        g2.drawString(start, x1, titleFont.getSize() + TITLE_HEIGHT + TITLE_PADDING);
         final String quit = "Quit";
         final float x2 = (float) (game.getGameWidth() - FontUtils.getTextWidth(font, quit)) / 2f;
-        g2.drawString(quit, x2, titleFont.getSize() + font.getSize() + 100);
+        g2.drawString(quit, x2, titleFont.getSize() + font.getSize() + TITLE_HEIGHT + TITLE_PADDING + OPTION_HEIGHT);
 
         // selection
         final int x3 = (int) (this.logic.isOptionStart() ? x1 - MIDDLE_OF_OPTION : x2 - MIDDLE_OF_OPTION);
