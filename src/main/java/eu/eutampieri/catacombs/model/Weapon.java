@@ -17,7 +17,7 @@ public abstract class Weapon extends GameObject{
     /**
      * weapon fire rate.
      */
-    protected int fr;
+    protected long fr;
     /**
      * Stores if the weapon can fire.
      */
@@ -25,15 +25,21 @@ public abstract class Weapon extends GameObject{
     /**
      * utility to count delay between shots.
      */
-    protected int fireDelay, fireDelayCount;
+    protected long fireDelay, fireDelayCount;
 
     /**
      * Map in which resides the gun.
      */
-    TileMap tileMap;
+    private TileMap tileMap;
+
+    /**
+     * Entity using the weapon.
+     */
+    private Entity user;
 
     /**
      *
+     * @param e Entity using weapon
      * @param tm Tile map
      * @param x X position
      * @param y Y position
@@ -41,8 +47,9 @@ public abstract class Weapon extends GameObject{
      * @param ps Bullet speed
      * @param fr Weapon fire rate
      */
-    public Weapon(final TileMap tm, final int x, final int y, final int strength, final int ps, final int fr) {
+    public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps, final long fr) {
         super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, 0, 0));
+        this.user = e;
         setTileMap(tm);
         setStrength(strength);
         setProjectileSpeed(ps);
@@ -59,39 +66,47 @@ public abstract class Weapon extends GameObject{
                 canFire = true;
             }
         }
+        if(this.user != null) {
+            this.hitBox.setPosX(this.user.getHitBox().getPosX() + this.user.getSize() + 1);
+            this.hitBox.setPosY(this.user.getHitBox().getPosY() + this.user.getSize() + 1);
+        }
     }
 
-    public void setTileMap(final TileMap tm){
+    public final void setTileMap(final TileMap tm){
         this.tileMap = tm;
     }
 
-    public void setStrength(final int str) {
+    public final void setStrength(final int str) {
         this.strength = str;
     }
 
-    public void setProjectileSpeed(final int ps) {
+    public final void setProjectileSpeed(final int ps) {
         this.ps = ps;
     }
 
-    public void setFireRate(final int fr) {
+    public final void setFireRate(final long fr) {
         this.fr = fr;
     }
 
-    public void setFireDelay(final int fd) {
+    public final void setFireDelay(final long fd) {
         this.fireDelay = fd;
     }
 
-    public void setCanFire(final boolean cf){
+    public final void setCanFire(final boolean cf){
         this.canFire = cf;
     }
 
-    public boolean getCanFire(){
+    public final boolean canFire(){
         return this.canFire;
     }
 
-    public List<GameObject> fire(final int psx, final int psy){
-        Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
+    public final List<GameObject> fire(final int psx, final int psy){
+        final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
                 psx, psy, strength, tileMap);
         return List.of(p);
+    }
+
+    public void setUser(final Entity user) {
+        this.user = user;
     }
 }

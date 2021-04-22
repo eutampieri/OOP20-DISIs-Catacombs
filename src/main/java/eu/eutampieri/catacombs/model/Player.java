@@ -3,12 +3,18 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.List;
+
 public class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 3;
     private static final int MAX_BASE_HP = 100;
     private static final int SIZE = 32;
+    private static final int INITIAL_WEAPON_DAMAGE = 5;
+    private static final int INITIAL_WEAPON_FIRE_RATE = 1;
     private int health;
     private final String name;
+    private boolean fire;
+    private Weapon weapon;
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
         super(x, y, SIZE, SIZE, tm, GameObjectType.PLAYER);
@@ -16,6 +22,7 @@ public class Player extends Entity {
         this.setHealth(MAX_BASE_HP);
         this.name = name;
         this.face = Direction.RIGHT;
+        this.weapon = new Gun(this, tm, x, y, INITIAL_WEAPON_DAMAGE, BASE_MOVEMENT_SPEED * 10, INITIAL_WEAPON_FIRE_RATE);
     }
 
     /**
@@ -75,7 +82,7 @@ public class Player extends Entity {
                 break;
         }
     }
-		public void stop() {
+    public void stop() {
 			this.resetMovement();
 		}
     public boolean isMoving(){
@@ -87,5 +94,52 @@ public class Player extends Entity {
      */
     public String getName() {
         return name;
+    }
+    
+    public void fire() {
+        this.fire = true;
+    }
+
+    @Override
+    public List<GameObject> spawnObject() {
+        if(this.fire) {
+            this.fire = false;
+            switch (this.face) {
+                case DOWN:
+                    return this.weapon.fire(0, 1);
+                case RIGHT:
+                    return this.weapon.fire(1, 0);
+                case LEFT:
+                    return this.weapon.fire(-1, 0);
+                case UP:
+                    return this.weapon.fire(0, -1);
+                default:
+                    return List.of();
+            }
+        } else {
+            return List.of();
+        }
+    }
+
+    @Override
+    public void update(final long delta, final List<GameObject> others) {
+        super.update(delta, others);
+        this.weapon.update(delta, others);
+
+        others.parallelStream()
+                .filter((x) -> x instanceof Weapon)
+                .filter((x) -> x.getHitBox().overlaps(this.getHitBox()))
+                .map((x) -> (Weapon)(x))
+                .findAny()
+                .ifPresent((x) -> {
+                    x.setUser(this);
+                    this.weapon = x;
+                });
+
+        others.parallelStream()
+                .filter((x) -> x instanceof HealthModifier && !(x instanceof Projectile))
+                .filter((x) -> x.getHitBox().overlaps(this.getHitBox()))
+                .map((x) -> (HealthModifier)(x))
+                .forEach((x) -> x.useOn(this));
     }
 }
