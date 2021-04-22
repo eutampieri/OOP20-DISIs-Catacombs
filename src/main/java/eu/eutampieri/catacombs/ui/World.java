@@ -48,7 +48,7 @@ public final class World {
 
         final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
         final Random rand = new Random();
-        this.entities.addAll(objectFactory.spawnSome(700, (x, y, tm) -> {
+        this.entities.addAll(objectFactory.spawnSome(5, (x, y, tm) -> {
             final int healingPower = rand.nextInt(101);
             return new SimplePotion(healingPower, "Potion", x, y);
         }));

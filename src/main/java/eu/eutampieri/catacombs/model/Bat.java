@@ -19,7 +19,7 @@ public final class Bat extends Entity {
     private static final int CB_DIM_MOD = 35;
     private static final int BASE_DAMAGE = 2;
     private static final int BASE_FIRE_RATE = 1;
-    private static final int BASE_PROJECTILE_SPEED = 15;
+    private static final int BASE_PROJECTILE_SPEED = 3;
     private static final String NAME = "Bat";
     private static final long MOVE_DELAY = 5L * 100;
     private static final long PAUSE_DELAY = 10L * 100;
