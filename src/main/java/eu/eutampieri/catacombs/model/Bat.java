@@ -13,6 +13,7 @@ public final class Bat extends Entity {
 
     private static final int HEIGHT = 16;
     private static final int WIDTH = 16;
+    private static final int SIZE = 16;
     private static final int MOVEMENT_SPEED = 1;
     private static final int HEALTH = 8;
     private static final int CB_POS_MOD = 4;
@@ -43,7 +44,7 @@ public final class Bat extends Entity {
         face = Direction.RIGHT;
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
-        weapon = new Weapon(tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
+        weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
                 BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE){};
         shootingDirection = new Point(0, 0);
 
@@ -170,5 +171,4 @@ public final class Bat extends Entity {
         }
         this.shootingDirection.setLocation(x, y);
     }
-
 }

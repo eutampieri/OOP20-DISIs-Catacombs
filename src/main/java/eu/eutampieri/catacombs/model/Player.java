@@ -22,7 +22,7 @@ public class Player extends Entity {
         this.setHealth(MAX_BASE_HP);
         this.name = name;
         this.face = Direction.RIGHT;
-        this.weapon = new Gun(tm, x, y, INITIAL_WEAPON_DAMAGE, BASE_MOVEMENT_SPEED * 10, INITIAL_WEAPON_FIRE_RATE);
+        this.weapon = new Gun(this, tm, x, y, INITIAL_WEAPON_DAMAGE, BASE_MOVEMENT_SPEED * 10, INITIAL_WEAPON_FIRE_RATE);
     }
 
     /**
@@ -124,8 +124,8 @@ public class Player extends Entity {
     @Override
     public void update(long delta, List<GameObject> others) {
         super.update(delta, others);
-        this.weapon.setPosX(this.getPosX() + this.SIZE + 1);
-        this.weapon.setPosY(this.getPosY() + this.SIZE + 1);
+        //this.weapon.setPosX(this.getPosX() + this.SIZE + 1);
+        //this.weapon.setPosY(this.getPosY() + this.SIZE + 1);
         this.weapon.update(delta, others);
     }
 }

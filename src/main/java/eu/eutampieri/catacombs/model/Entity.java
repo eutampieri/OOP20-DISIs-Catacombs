@@ -27,7 +27,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     /**
      * Entity dimensions.
      */
-    protected int width, height; // Entity width and height
+    protected int width, height, size; // Entity width and height
     /**
      * Tile map where the entity is.
      */
@@ -43,6 +43,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
         this.tileMap = tileMap;
         this.width = width;
         this.height = height;
+        this.size = width >= height ? width : size;
     }
 
     /**
@@ -79,6 +80,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     public final void setHeight(final int height) {
         this.height = height;
+    }
+
+    public final int getSize() {
+        return this.size;
     }
 
     /**
