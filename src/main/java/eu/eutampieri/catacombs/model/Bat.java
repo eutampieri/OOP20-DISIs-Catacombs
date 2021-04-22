@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.Point;
@@ -15,8 +16,8 @@ public final class Bat extends Entity {
     private static final int WIDTH = 16;
     private static final int MOVEMENT_SPEED = 3;
     private static final int HEALTH = 8;
-    private static final int CB_POS_MOD = 10;
-    private static final int CB_DIM_MOD = 35;
+    private static final int RADAR_BOX_POSITION_MODIFIER = 20 * AssetManagerProxy.getMapTileSize();
+    private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + (Math.max(WIDTH, HEIGHT));
     private static final int BASE_DAMAGE = 2;
     private static final int BASE_FIRE_RATE = 1;
     private static final int BASE_PROJECTILE_SPEED = 3;
@@ -41,8 +42,8 @@ public final class Bat extends Entity {
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
-        radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
-                height * CB_DIM_MOD);
+        radarBox = new CollisionBox(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER,
+                RADAR_BOX_SIZE, RADAR_BOX_SIZE);
         weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
                 BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE, this.getTeam()) { };
         shootingDirection = new Point(0, 0);
@@ -136,7 +137,7 @@ public final class Bat extends Entity {
      * Updates the aggro radar's Bat box.
      */
     private void updateRadarBoxLocation() {
-        radarBox.setLocation(posX - width * CB_POS_MOD, posY - height * CB_POS_MOD);
+        radarBox.setLocation(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER);
     }
 
     public String getName() {

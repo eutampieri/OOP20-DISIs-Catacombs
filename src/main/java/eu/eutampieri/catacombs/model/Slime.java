@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
@@ -16,8 +17,8 @@ public final class Slime extends Entity implements HealthModifier {
     private static final int MOVEMENT_SPEED = 1;
     private static final int HEALTH = 10;
     private static final String NAME = "Slime";
-    private static final int CB_POS_MOD = 15;
-    private static final int CB_DIM_MOD = 30;
+    private static final int RADAR_BOX_POSITION_MODIFIER = 20 * AssetManagerProxy.getMapTileSize();
+    private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + (Math.max(WIDTH, HEIGHT));
     private static final int DAMAGE_ON_HIT = 5;
     private static final long HIT_DELAY = 10L * 1_000_000_000;
 
@@ -51,8 +52,8 @@ public final class Slime extends Entity implements HealthModifier {
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
-        radarBox = new CollisionBox(posX - (width * CB_POS_MOD), posY - (height * CB_POS_MOD), width * CB_DIM_MOD,
-                height * CB_POS_MOD);
+        radarBox = new CollisionBox(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER, RADAR_BOX_SIZE,
+                RADAR_BOX_SIZE);
         this.canDmg = true;
         this.dmgDelayCount = 0;
     }
@@ -156,7 +157,7 @@ public final class Slime extends Entity implements HealthModifier {
      * Updates the aggro radar's Slime box.
      */
     public void updateRadarBoxLocation() {
-        radarBox.setLocation(posX - width * 2, posY - height * 2);
+        radarBox.setLocation(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER);
     }
 
     @Override
