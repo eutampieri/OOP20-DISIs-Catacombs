@@ -46,6 +46,9 @@ public final class Bat extends Entity {
         weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
                 BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE, this.getTeam()) { };
         shootingDirection = new Point(0, 0);
+        this.delayCounter = 0;
+        this.pauseCounter = 0;
+        this.isMoving = true;
 
     }
 
@@ -71,6 +74,7 @@ public final class Bat extends Entity {
                 .get()
                 .getHitBox()
                 .overlaps(this.getHitBox()) && this.weapon.canFire()) {
+
             setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
             spawnObject();
         } else {
@@ -137,8 +141,11 @@ public final class Bat extends Entity {
     }
 
     @Override
-    public List<GameObject> spawnObject() {
-        return weapon.fire((int) getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+    public List<GameObject> spawnObject(){
+        if (weapon.canFire) {
+            return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+        }
+        return List.of();
     }
 
     public Point getShootingDirection() {

@@ -43,7 +43,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
         this.tileMap = tileMap;
         this.width = width;
         this.height = height;
-        this.size = Math.max(width, height);
+        this.size = width >= height ? width : height;
     }
 
     /**
