@@ -38,7 +38,6 @@ public final class Slime extends Entity implements HealthModifier {
 
     private boolean canDmg;
     private long dmgDelayCount;
-    private long dmgDelay;
 
     /**
      * Slime constructor.
@@ -56,14 +55,13 @@ public final class Slime extends Entity implements HealthModifier {
                 height * CB_POS_MOD);
         this.canDmg = true;
         this.dmgDelayCount = 0;
-        this.dmgDelay = HIT_DELAY;
     }
 
     @Override
     public void update(final long delta, final List<GameObject> others) {
         if (!canDmg) {
             dmgDelayCount += delta;
-            if (dmgDelayCount >= dmgDelay) {
+            if (dmgDelayCount >= this.HIT_DELAY) {
                 dmgDelayCount = 0;
                 canDmg = true;
             }

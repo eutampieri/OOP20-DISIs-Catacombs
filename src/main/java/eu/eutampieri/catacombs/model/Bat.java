@@ -141,7 +141,10 @@ public final class Bat extends Entity {
 
     @Override
     public List<GameObject> spawnObject(){
-        return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+        if (weapon.canFire) {
+            return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+        }
+        return List.of();
     }
 
     public Point getShootingDirection(){
