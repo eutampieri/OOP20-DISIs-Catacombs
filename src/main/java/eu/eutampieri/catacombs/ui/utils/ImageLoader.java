@@ -21,7 +21,7 @@ public final class ImageLoader {
     public static Optional<BufferedImage> loadImage(final Path path) {
         BufferedImage image;
         try {
-            image = ImageIO.read(path.toFile());
+            image = ImageIO.read(Thread.currentThread().getContextClassLoader().getResourceAsStream(path.toString()));
         } catch (IOException e) {
             return Optional.empty();
         }
