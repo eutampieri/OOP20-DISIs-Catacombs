@@ -6,10 +6,10 @@ import java.util.Optional;
 
 import eu.eutampieri.catacombs.ui.utils.ImageLoader;
 
-public class GameSheets {
+public final class GameSheet {
     private final BufferedImage sheet;
 
-    public GameSheets(final Path path) {
+    public GameSheet(final Path path) {
         this.sheet = ImageLoader.loadImage(path).get();
     }
 

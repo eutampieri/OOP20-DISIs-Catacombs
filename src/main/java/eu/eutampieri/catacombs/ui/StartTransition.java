@@ -4,7 +4,7 @@ import eu.eutampieri.catacombs.ui.utils.FontUtils;
 
 import java.awt.*;
 
-public class StartTransition extends State {
+public final class StartTransition extends State {
 
     private GameState levelState;
     private final Font font = new Font("Monospace", Font.PLAIN, 40);

@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class World {
+public final class World {
     // private final BufferedImage background;
     private final TileMap tileMap;
     private final KeyManagerProxy km = new KeyManagerProxy();

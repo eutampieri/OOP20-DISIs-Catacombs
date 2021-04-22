@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
-public class ImageRotator {
+public final class ImageRotator {
     public BufferedImage rotate(final BufferedImage image, final double angle) {
         final BufferedImage rotatedImage = new BufferedImage(image.getWidth(), image.getHeight(),
                 BufferedImage.TYPE_INT_ARGB);

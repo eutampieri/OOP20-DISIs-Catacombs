@@ -95,7 +95,7 @@ public final class AssetManager {
     public void loadImages() {
         // Check:OFF: MagicNumber
         // Tiles
-        final GameSheets tileSheet = new GameSheets(Path.of("res/tilesheet.png"));
+        final GameSheet tileSheet = new GameSheet(Path.of("res/tilesheet.png"));
         int count = 1;
         final Optional<BufferedImage> image = Optional.of(tileSheet.cutImage(112, 0, 16, 16));
 
@@ -137,7 +137,7 @@ public final class AssetManager {
 
     public void loadAnimations(final String name, final Path image, final int numFrames, final int offset,
             final int dimension, final boolean flip) {
-        final GameSheets sheet = new GameSheets(image);
+        final GameSheet sheet = new GameSheet(image);
         final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
         for (int i = 0; i < numFrames; i++) {
             if (!flip) {
@@ -176,7 +176,7 @@ public final class AssetManager {
 
     public void loadGunAnimations(final String name, final Path image, final int numFrames, final int y,
             final int dimension, final int offset) {
-        final GameSheets sheet = new GameSheets(image);
+        final GameSheet sheet = new GameSheet(image);
         final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
         for (int i = 0; i < numFrames; i++) {
             res.add(Optional.of(sheet.cutImage(offset + (dimension * i), y, dimension, dimension)));

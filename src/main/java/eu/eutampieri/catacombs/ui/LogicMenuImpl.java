@@ -4,7 +4,7 @@ import eu.eutampieri.catacombs.ui.input.KeyManager;
 
 import java.awt.event.KeyEvent;
 
-public class LogicMenuImpl implements LogicMenu {
+public final class LogicMenuImpl implements LogicMenu {
 
     protected enum MenuOption {
         START_GAME, QUIT_GAME,
