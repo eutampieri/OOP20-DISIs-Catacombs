@@ -35,7 +35,7 @@ public class GameState extends State {
         if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_ESCAPE)) {
             final long curTime = System.currentTimeMillis();
 				    if (curTime-lastPausedTime>500) {
-                this.paused = !this.paused;
+                            this.paused = !this.paused;
 						    this.lastPausedTime=curTime;
             }
         }
