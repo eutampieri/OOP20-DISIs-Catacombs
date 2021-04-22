@@ -36,7 +36,7 @@ public final class SimplePotion extends GameObject implements HealthModifier {
         int currentHealth = character.getHealth();
         currentHealth += this.getHealthDelta();
         character.setHealth(currentHealth);
-        this.used = false;
+        this.used = true;
     }
 
     @Override
