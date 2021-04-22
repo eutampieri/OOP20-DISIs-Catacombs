@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -91,13 +92,13 @@ class CharactersTests {
     }
 
     @Test
-    void testSlimeFollowBat() {
-        final Bat bat = new Bat(3, 3, TILE_MAP);
+    void testSlimeFollowPlayer() {
+        final Player player = new Player(3, 3, "player_testing", TILE_MAP);
         final int initialX = SLIME.getPosX();
         final int initialY = SLIME.getPosY();
-        SLIME.setCharacterToFollow(bat);
-        assertEquals(SLIME.getCharacterToFollow(), bat);
-        SLIME.update(100, List.of());
+        SLIME.setCharacterToFollow(player);
+        assertEquals(SLIME.getCharacterToFollow(), player);
+        SLIME.update(TimeUnit.SECONDS.toNanos(4), List.of(player));
         assertNotEquals(initialX, SLIME.getPosX());
         assertNotEquals(initialY, SLIME.getPosY());
     }
