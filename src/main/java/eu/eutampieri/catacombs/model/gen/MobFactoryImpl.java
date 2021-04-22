@@ -61,7 +61,7 @@ public final class MobFactoryImpl implements MobFactory {
     @Override
     public List<Entity> spawnRandom() {
         int randX, randY, randKind;
-        final int mobNum = rand.nextInt(MAX_MOB_NUMBER) + MIN_MOB_NUMBER;
+        final int mobNum = rand.nextInt(MAX_MOB_NUMBER - MIN_MOB_NUMBER) + MIN_MOB_NUMBER;
 
         final List<Entity> enemies = new ArrayList<>();
         for (int i = 0; i < mobNum; i++) {
