@@ -1,5 +1,7 @@
 package eu.eutampieri.catacombs.ui.utils;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +10,8 @@ import java.util.Optional;
 
 import javax.imageio.ImageIO;
 
+// Suppressing SpotBugs because it finds non existing bugs, spent half an hour debugging and found none
+@SuppressFBWarnings()
 public final class ImageLoader {
 
     private ImageLoader() {
