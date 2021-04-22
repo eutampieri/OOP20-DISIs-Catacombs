@@ -50,8 +50,7 @@ public final class World {
         final Random rand = new Random();
         this.entities.addAll(objectFactory.spawnSome(700, (x, y, tm) -> {
             final int healingPower = rand.nextInt(101);
-            final SimplePotion potion = new SimplePotion(healingPower, "Potion", x, y);
-            return potion;
+            return new SimplePotion(healingPower, "Potion", x, y);
         }));
 
         this.player = (Player) mf.spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm)).get(0);

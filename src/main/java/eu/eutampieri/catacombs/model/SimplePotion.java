@@ -28,11 +28,11 @@ public final class SimplePotion extends GameObject implements HealthModifier {
     }
 
     @Override
-    public void update(long delta, List<GameObject> others) {
+    public void update(final long delta, final List<GameObject> others) {
     }
 
     @Override
-    public void useOn(LivingCharacter character) {
+    public void useOn(final LivingCharacter character) {
         int currentHealth = character.getHealth();
         currentHealth += this.getHealthDelta();
         character.setHealth(currentHealth);

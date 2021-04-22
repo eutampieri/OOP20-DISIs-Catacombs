@@ -1,6 +1,5 @@
 package eu.eutampieri.catacombs.model.gen;
 
-import eu.eutampieri.catacombs.model.Entity;
 import eu.eutampieri.catacombs.model.GameObject;
 import eu.eutampieri.catacombs.model.map.TileMap;
 
