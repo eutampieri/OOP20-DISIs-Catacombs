@@ -1,5 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
+import eu.eutampieri.catacombs.model.GameObject.Team;
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.Animatable;
@@ -27,7 +28,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     /**
      * Entity dimensions.
      */
-    protected int width, height; // Entity width and height
+    protected int width, height, size; // Entity width and height
     /**
      * Tile map where the entity is.
      */
@@ -38,11 +39,13 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @param y       Y spawn position
      * @param tileMap Tile map in which Entity is spawned
      */
-    public Entity(final int x, final int y, final int width, final int height, final TileMap tileMap, final GameObjectType kind) {
-        super(x, y, kind, new CollisionBox(x, y, width, height));
+    public Entity(final int x, final int y, final int width, final int height, final TileMap tileMap,
+            final GameObjectType kind, final Team team) {
+        super(x, y, kind, new CollisionBox(x, y, width, height), team);
         this.tileMap = tileMap;
         this.width = width;
         this.height = height;
+        this.size = width >= height ? width : height;
     }
 
     /**
@@ -79,6 +82,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     public final void setHeight(final int height) {
         this.height = height;
+    }
+
+    public final int getSize() {
+        return this.size;
     }
 
     /**
@@ -126,7 +133,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
             }
             face = Direction.RIGHT;
         }
-				updateSpriteLocation();
     }
 
     /**
@@ -136,8 +142,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isUpCollision(final int dy) {
-        return tileMap.at(hitBox.getPosX()/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() - dy)/AssetManagerProxy.getMapTileSize()) == Tile.WALL
-                || tileMap.at((hitBox.getPosX() + hitBox.getWidth())/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() - dy)/AssetManagerProxy.getMapTileSize()) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX() / AssetManagerProxy.getMapTileSize(),
+                (hitBox.getPosY() - dy) / AssetManagerProxy.getMapTileSize()) == Tile.WALL
+                || tileMap.at((hitBox.getPosX() + hitBox.getWidth()) / AssetManagerProxy.getMapTileSize(),
+                        (hitBox.getPosY() - dy) / AssetManagerProxy.getMapTileSize()) == Tile.WALL;
     }
 
     /**
@@ -147,8 +155,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isRightCollision(final int dx) {
-        return tileMap.at((hitBox.getPosX() + hitBox.getWidth() + dx)/AssetManagerProxy.getMapTileSize(), hitBox.getPosY()/AssetManagerProxy.getMapTileSize()) == Tile.WALL || tileMap
-                .at((hitBox.getPosX() + hitBox.getWidth() + dx)/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() + hitBox.getHeight())/AssetManagerProxy.getMapTileSize()) == Tile.WALL;
+        return tileMap.at((hitBox.getPosX() + hitBox.getWidth() + dx) / AssetManagerProxy.getMapTileSize(),
+                hitBox.getPosY() / AssetManagerProxy.getMapTileSize()) == Tile.WALL
+                || tileMap.at((hitBox.getPosX() + hitBox.getWidth() + dx) / AssetManagerProxy.getMapTileSize(),
+                        (hitBox.getPosY() + hitBox.getHeight()) / AssetManagerProxy.getMapTileSize()) == Tile.WALL;
     }
 
     /**
@@ -158,8 +168,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isDownCollision(final int dy) {
-        return tileMap.at(hitBox.getPosX()/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() + hitBox.getHeight() + dy)/AssetManagerProxy.getMapTileSize()) == Tile.WALL || tileMap
-                .at((hitBox.getPosX() + hitBox.getWidth())/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() + hitBox.getHeight() + dy)/AssetManagerProxy.getMapTileSize()) == Tile.WALL;
+        return tileMap.at(hitBox.getPosX() / AssetManagerProxy.getMapTileSize(),
+                (hitBox.getPosY() + hitBox.getHeight() + dy) / AssetManagerProxy.getMapTileSize()) == Tile.WALL
+                || tileMap.at((hitBox.getPosX() + hitBox.getWidth()) / AssetManagerProxy.getMapTileSize(),
+                        (hitBox.getPosY() + hitBox.getHeight() + dy) / AssetManagerProxy.getMapTileSize()) == Tile.WALL;
     }
 
     /**
@@ -169,8 +181,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @return true if moving into a wall; false otherwise
      */
     protected boolean isLeftCollision(final int dx) {
-        return tileMap.at((hitBox.getPosX() - dx)/AssetManagerProxy.getMapTileSize(), hitBox.getPosY()/AssetManagerProxy.getMapTileSize()) == Tile.WALL
-                || tileMap.at((hitBox.getPosX() - dx)/AssetManagerProxy.getMapTileSize(), (hitBox.getPosY() + hitBox.getHeight())/AssetManagerProxy.getMapTileSize()) == Tile.WALL;
+        return tileMap.at((hitBox.getPosX() - dx) / AssetManagerProxy.getMapTileSize(),
+                hitBox.getPosY() / AssetManagerProxy.getMapTileSize()) == Tile.WALL
+                || tileMap.at((hitBox.getPosX() - dx) / AssetManagerProxy.getMapTileSize(),
+                        (hitBox.getPosY() + hitBox.getHeight()) / AssetManagerProxy.getMapTileSize()) == Tile.WALL;
     }
 
     /**
@@ -196,12 +210,12 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     public abstract Pair<Action, Direction> getActionWithDirection();
 
-    public List<GameObject> spawnObject(){
+    public List<GameObject> spawnObject() {
         return List.of();
     }
 
     @Override
     public boolean isMarkedForDeletion() {
-        return this.isAlive();
+        return !this.isAlive();
     }
 }

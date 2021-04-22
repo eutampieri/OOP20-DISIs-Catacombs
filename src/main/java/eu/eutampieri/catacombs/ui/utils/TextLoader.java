@@ -8,21 +8,26 @@ import java.util.Scanner;
 
 public final class TextLoader {
 
-	private TextLoader() {
+    private TextLoader() {
 
-	}
+    }
 
-	public static Optional<String> loadText(final Path path) {
-		try (Scanner scan = new Scanner(path, StandardCharsets.UTF_8)) {
-			final StringBuilder sb = new StringBuilder();
-			while (scan.hasNext()) {
-				final String str = scan.next() + " ";
-				sb.append(str);
+    /**
+     * this method load text from a given path.
+     * @param path the path to find the text
+     * @return an optional string
+     */
+    public static Optional<String> loadText(final Path path) {
+        try (Scanner scan = new Scanner(path, StandardCharsets.UTF_8)) {
+            final StringBuilder sb = new StringBuilder();
+            while (scan.hasNext()) {
+                final String str = scan.next() + " ";
+                sb.append(str);
 
-		  }
-			return Optional.of(sb.toString());
-		} catch (IOException e) {
-			return Optional.empty();
-		}
-	}
+            }
+            return Optional.of(sb.toString());
+        } catch (IOException e) {
+            return Optional.empty();
+        }
+    }
 }

@@ -8,17 +8,18 @@ import java.awt.image.BufferedImage;
 import java.nio.file.Path;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class UIutilsTest {
+
+public class UIUtilsTest {
 
     @Test
-    public void testLoadText(){
+    public void testLoadText() {
         final Optional<String> text = TextLoader.loadText(Path.of("res/eagle.txt"));
         assertTrue(text.isEmpty());
         final Optional<String> text1 = TextLoader.loadText(Path.of("build.gradle.kts"));
         assertTrue(text1.isPresent());
-     }
+    }
 
     @Test
     public void testLoadImage() {

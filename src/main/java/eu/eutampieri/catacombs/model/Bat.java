@@ -1,10 +1,9 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
-import eu.eutampieri.catacombs.ui.Game;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.List;
 
 /**
@@ -38,15 +37,18 @@ public final class Bat extends Entity {
      * @param tileMap Tile map in which Bat is spawned
      */
     public Bat(final int x, final int y, final TileMap tileMap) {
-        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.ENEMY);
+        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.ENEMY, GameObject.Team.ENEMY);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
-        weapon = new Weapon(tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
-                BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE){};
+        weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
+                BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE, this.getTeam()) { };
         shootingDirection = new Point(0, 0);
+        this.delayCounter = 0;
+        this.pauseCounter = 0;
+        this.isMoving = true;
 
     }
 
@@ -71,7 +73,8 @@ public final class Bat extends Entity {
                 .findFirst()
                 .get()
                 .getHitBox()
-                .overlaps(this.getHitBox()) && this.weapon.getCanFire()){
+                .overlaps(this.getHitBox()) && this.weapon.canFire()) {
+
             setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
             spawnObject();
         } else {
@@ -92,11 +95,11 @@ public final class Bat extends Entity {
     @Override
     public boolean canPerform(final Action action) {
         switch (action) {
-            case ATTACK:
-            case MOVE:
-                return true;
-            default:
-                return false;
+        case ATTACK:
+        case MOVE:
+            return true;
+        default:
+            return false;
         }
     }
 
@@ -139,37 +142,26 @@ public final class Bat extends Entity {
 
     @Override
     public List<GameObject> spawnObject(){
-        System.out.println("sparoh");
-        return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+        if (weapon.canFire) {
+            return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+        }
+        return List.of();
     }
 
-    public Point getShootingDirection(){
+    public Point getShootingDirection() {
         return this.shootingDirection;
     }
 
-    public void resetShootingDirection(){
+    public void resetShootingDirection() {
         this.shootingDirection.setLocation(0, 0);
     }
 
-    public void setShootingDirection(GameObject e){
-        int x = 0, y = 0;
+    public void setShootingDirection(final GameObject e) {
         if (e == null) {
             return;
         }
-        if (e.getHitBox().getPosX() < this.getHitBox().getPosX()){
-            x = -1;
-        } else if (e.getHitBox().getPosX() > this.getHitBox().getPosX()){
-            x = 1;
-        } else {
-            x = 0;
-        }
-        if (e.getHitBox().getPosY() < this.getHitBox().getPosY()){
-            y = -1;
-        } else if (e.getHitBox().getPosY() > this.getHitBox().getPosY()){
-            y = 1;
-        } else {
-            y = 0;
-        }
+        final int x = Integer.compare(e.getHitBox().getPosX(), this.getHitBox().getPosX());
+        final int y = Integer.compare(e.getHitBox().getPosY(), this.getHitBox().getPosY());
         this.shootingDirection.setLocation(x, y);
     }
 

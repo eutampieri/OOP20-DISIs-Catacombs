@@ -1,4 +1,4 @@
-package eu.eutampieri.catacombs.model.mobgen;
+package eu.eutampieri.catacombs.model.gen;
 
 import eu.eutampieri.catacombs.model.Entity;
 import java.util.List;
@@ -12,7 +12,7 @@ public interface MobFactory {
      * @param f Type of enemy
      * @return A list composed of the only created entity
      */
-    List<Entity> spawnAt(int x, int y, EntityFactory f);
+    List<Entity> spawnAt(int x, int y, SingleObject f);
 
     /**
      * Spawns n entities of a specified kind.
@@ -20,7 +20,7 @@ public interface MobFactory {
      * @param f Entity type
      * @return A list of the n entities
      */
-    List<Entity> spawnSome(int n, EntityFactory f);
+    List<Entity> spawnSome(int n, SingleObject f);
 
     /**
      * Spawns some random entities at random positions in the map.

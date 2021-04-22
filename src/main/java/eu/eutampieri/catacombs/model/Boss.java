@@ -13,14 +13,11 @@ public final class Boss extends Entity {
     private static final int HEALTH = 40;
     private static final int CB_POS_MOD = 4;
     private static final int CB_DIM_MOD = 9;
-    private static final int BASE_DAMAGE = 3;
-    private static final int BASE_FIRE_RATE = 2;
-    private static final int BASE_RANGE = 2;
     private static final String NAME = "Boss";
     private static final int MOVE_DELAY = 5;
     private static final int PAUSE_DELAY = 5;
 
-    //private final SimpleWeapon weapon;
+    // private final SimpleWeapon weapon;
     private boolean isMoving;
     private int delayCounter;
     private int pauseCounter;
@@ -32,7 +29,7 @@ public final class Boss extends Entity {
      * @param tileMap Tile map in which Entity is spawned
      */
     public Boss(final int x, final int y, final TileMap tileMap) {
-        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.BOSS);
+        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.BOSS, GameObject.Team.ENEMY);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
@@ -66,7 +63,7 @@ public final class Boss extends Entity {
 
         super.update(delta, others);
         updateRadarBoxLocation();
-        //weapon.update(delta, others);
+        // weapon.update(delta, others);
     }
 
     @Override
@@ -77,11 +74,11 @@ public final class Boss extends Entity {
     @Override
     public boolean canPerform(final Action action) {
         switch (action) {
-            case IDLE:
-            case MOVE:
-                return true;
-            default:
-                return false;
+        case IDLE:
+        case MOVE:
+            return true;
+        default:
+            return false;
         }
     }
 
