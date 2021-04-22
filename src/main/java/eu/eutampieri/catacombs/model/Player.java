@@ -124,8 +124,21 @@ public class Player extends Entity {
     @Override
     public void update(long delta, List<GameObject> others) {
         super.update(delta, others);
-        this.weapon.setPosX(this.getPosX() + this.SIZE + 1);
-        this.weapon.setPosY(this.getPosY() + this.SIZE + 1);
+        this.weapon.setPosX(this.getPosX() + SIZE + 1);
+        this.weapon.setPosY(this.getPosY() + SIZE + 1);
         this.weapon.update(delta, others);
+
+        others.parallelStream()
+                .filter((x) -> x instanceof Weapon)
+                .filter((x) -> x.getHitBox().overlaps(this.getHitBox()))
+                .map((x) -> (Weapon)(x))
+                .findAny()
+                .ifPresent((x) -> this.weapon = x);
+
+        others.parallelStream()
+                .filter((x) -> x instanceof HealthModifier && !(x instanceof Projectile))
+                .filter((x) -> x.getHitBox().overlaps(this.getHitBox()))
+                .map((x) -> (HealthModifier)(x))
+                .forEach((x) -> x.useOn(this));
     }
 }
