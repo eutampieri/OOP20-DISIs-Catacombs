@@ -1,13 +1,18 @@
 package eu.eutampieri.catacombs.model;
 
+import java.util.List;
+
 /**
  * A potion that will increase a player's health by a fixed amount.
  */
-public final class SimplePotion implements HealthModifier {
+public final class SimplePotion extends GameObject implements HealthModifier {
     private final int healthDelta;
     private final String name;
+    private static final int SIZE = 12;
+    private boolean used;
 
-    public SimplePotion(final int healing, final String name) {
+    public SimplePotion(final int healing, final String name, final int x, final int y) {
+        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, SIZE, SIZE), Team.FREIND);
         this.healthDelta = healing;
         this.name = name;
     }
@@ -22,4 +27,20 @@ public final class SimplePotion implements HealthModifier {
         return this.name;
     }
 
+    @Override
+    public void update(long delta, List<GameObject> others) {
+    }
+
+    @Override
+    public void useOn(LivingCharacter character) {
+        int currentHealth = character.getHealth();
+        currentHealth += this.getHealthDelta();
+        character.setHealth(currentHealth);
+        this.used = false;
+    }
+
+    @Override
+    public boolean isMarkedForDeletion() {
+        return this.used;
+    }
 }
