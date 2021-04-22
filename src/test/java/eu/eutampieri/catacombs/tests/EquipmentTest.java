@@ -1,6 +1,11 @@
 package eu.eutampieri.catacombs.tests;
 
-import eu.eutampieri.catacombs.model.*;
+import eu.eutampieri.catacombs.model.GameObject;
+import eu.eutampieri.catacombs.model.Gun;
+import eu.eutampieri.catacombs.model.HealthModifier;
+import eu.eutampieri.catacombs.model.Player;
+import eu.eutampieri.catacombs.model.Projectile;
+import eu.eutampieri.catacombs.model.SimplePotion;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
 import org.junit.jupiter.api.Test;

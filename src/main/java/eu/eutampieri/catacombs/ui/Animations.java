@@ -14,7 +14,7 @@ public final class Animations {
     private float frameDelay;
     private float timer;
     private int index;
-    private boolean restart = true;
+    private final boolean restart = true;
     private boolean reverse;
     private boolean reverseMode;
 

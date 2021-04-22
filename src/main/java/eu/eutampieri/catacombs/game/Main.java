@@ -14,9 +14,9 @@ public final class Main {
     }
 
     public static void main(final String[] args) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double width = screenSize.getWidth();
-        double height = screenSize.getHeight();
+        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        final double width = screenSize.getWidth();
+        final double height = screenSize.getHeight();
 
         final GameConfiguration gc = new GameConfiguration();
         gc.setFps(FPS);

@@ -2,6 +2,7 @@ package eu.eutampieri.catacombs.tests;
 
 import eu.eutampieri.catacombs.model.Bat;
 import eu.eutampieri.catacombs.model.Boss;
+import eu.eutampieri.catacombs.model.GameObject;
 import eu.eutampieri.catacombs.model.GameObjectType;
 import eu.eutampieri.catacombs.model.Gun;
 import eu.eutampieri.catacombs.model.HealthModifier;
@@ -32,7 +33,7 @@ class CharactersTests {
              TILE_MAP
      );
      private static final Boss BOSS = new Boss(5, 5, TILE_MAP);
-     private static final Weapon GUN = new Gun(null, TILE_MAP, 0, 0, 1, 1, 1);
+     private static final Weapon GUN = new Gun(null, TILE_MAP, 0, 0, 1, 1, 1, GameObject.Team.ENEMY);
      private static final HealthModifier ONE_HP_SUB = (Projectile) GUN.fire(0, 0).get(0);
      private static final Player PLAYER = new Player(0, 0, "John Appleseed", TILE_MAP);
 
