@@ -9,7 +9,7 @@ public final class Projectile extends GameObject implements HealthModifier {
     private final TileMap map;
     private final int strength;
     private boolean toErase;
-    private final static int BOX_SIZE = 8;
+     private static final int BOX_SIZE = 8;
 
     public Projectile(final int x, final int y, final int sx, final int sy, final int strength, final TileMap map) {
         super(x, y, GameObjectType.BULLET, new CollisionBox(x, y, BOX_SIZE, BOX_SIZE));

@@ -16,8 +16,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public final class AssetManagerProxy {
-    private final static double MAP_SCALING_FACTOR = 2.25;
-    private final static Map<Tile, BufferedImage> MAP_CACHE = new HashMap<>();
+     private static final double MAP_SCALING_FACTOR = 2.25;
+     private static final Map<Tile, BufferedImage> MAP_CACHE = new HashMap<>();
 
     private AssetManagerProxy() {
     }
