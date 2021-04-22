@@ -1,7 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
-import eu.eutampieri.catacombs.ui.Game;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.*;
