@@ -26,7 +26,7 @@ public final class Projectile extends GameObject implements HealthModifier {
         this.hitBox.move(this.speedX, this.speedY);
         for (final var o : others) {
             if (o instanceof LivingCharacter && o.getHitBox().overlaps(this.getHitBox())
-					&& o.getTeam() != this.getTeam()) {
+                    && o.getTeam() != this.getTeam()) {
                 this.useOn((LivingCharacter) o);
                 this.toErase = true;
                 break;
@@ -34,12 +34,12 @@ public final class Projectile extends GameObject implements HealthModifier {
         }
         if (!map.at(this.posX / AssetManagerProxy.getMapTileSize(), this.posY / AssetManagerProxy.getMapTileSize())
                 .isWalkable()
-				|| !map.at((this.posX + this.getHitBox().getWidth()) / AssetManagerProxy.getMapTileSize(),
-				this.posY / AssetManagerProxy.getMapTileSize()).isWalkable()
-				|| !map.at(this.posX / AssetManagerProxy.getMapTileSize(),
-				(this.posY + this.getHitBox().getHeight()) / AssetManagerProxy.getMapTileSize()).isWalkable()
-				|| !map.at((this.posX + this.getHitBox().getWidth()) / AssetManagerProxy.getMapTileSize(),
-				(this.posY + this.getHitBox().getHeight()) / AssetManagerProxy.getMapTileSize()).isWalkable()) {
+                || !map.at((this.posX + this.getHitBox().getWidth()) / AssetManagerProxy.getMapTileSize(),
+                this.posY / AssetManagerProxy.getMapTileSize()).isWalkable()
+                || !map.at(this.posX / AssetManagerProxy.getMapTileSize(),
+                (this.posY + this.getHitBox().getHeight()) / AssetManagerProxy.getMapTileSize()).isWalkable()
+                || !map.at((this.posX + this.getHitBox().getWidth()) / AssetManagerProxy.getMapTileSize(),
+                (this.posY + this.getHitBox().getHeight()) / AssetManagerProxy.getMapTileSize()).isWalkable()) {
             this.toErase = true;
         }
     }
