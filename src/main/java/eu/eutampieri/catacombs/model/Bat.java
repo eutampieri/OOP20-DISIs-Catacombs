@@ -5,7 +5,6 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.Point;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Bat class - the bat is an enemy that mostly stands still and fires bullets.
@@ -54,7 +53,7 @@ public final class Bat extends Entity {
     }
 
     @Override
-    public void update(final long delta, final List<GameObject> others) {
+    public List<GameObject> update(final long delta, final List<GameObject> others) {
         resetShootingDirection();
         if (isMoving) {
             delayCounter += delta;
@@ -83,6 +82,10 @@ public final class Bat extends Entity {
         super.update(delta, others);
         updateRadarBoxLocation();
         weapon.update(delta, others);
+        if (this.weapon.canFire && this.getShootingDirection().getX() != 0 && this.getShootingDirection().getY() != 0) {
+            return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+        }
+        return List.of();
     }
 
     @Override
@@ -135,14 +138,6 @@ public final class Bat extends Entity {
 
     public String getName() {
         return Bat.NAME;
-    }
-
-    @Override
-    public List<GameObject> spawnObject(){
-        if (this.weapon.canFire && this.getShootingDirection().getX() != 0 && this.getShootingDirection().getY() != 0) {
-            return weapon.fire((int)this.getShootingDirection().getX(), (int)this.getShootingDirection().getY());
-        }
-        return List.of();
     }
 
     public Point getShootingDirection() {

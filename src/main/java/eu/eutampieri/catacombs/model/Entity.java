@@ -93,9 +93,10 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @param delta time between updates
      */
     @Override
-    public void update(final long delta, final List<GameObject> others) {
+    public List<GameObject> update(final long delta, final List<GameObject> others) {
         move();
         updateSpriteLocation();
+        return List.of();
     }
 
     /**
@@ -208,10 +209,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * Renders object with the corresponding sprite.
      */
     public abstract Pair<Action, Direction> getActionWithDirection();
-
-    public List<GameObject> spawnObject() {
-        return List.of();
-    }
 
     @Override
     public boolean isMarkedForDeletion() {

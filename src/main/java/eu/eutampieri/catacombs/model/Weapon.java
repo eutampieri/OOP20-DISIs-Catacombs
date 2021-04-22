@@ -62,7 +62,7 @@ public abstract class Weapon extends GameObject {
     }
 
     @Override
-    public void update(final long delta, final List<GameObject> others) {
+    public List<GameObject> update(final long delta, final List<GameObject> others) {
         if (!canFire) {
             fireDelayCount += delta;
             if (fireDelayCount >= fireDelay) {
@@ -74,6 +74,7 @@ public abstract class Weapon extends GameObject {
             this.hitBox.setPosX(this.user.getHitBox().getPosX() + this.user.getSize()/2 - 1);
             this.hitBox.setPosY(this.user.getHitBox().getPosY() + this.user.getSize()/2 - 1);
         }
+        return List.of();
     }
 
     public final void setTileMap(final TileMap tm) {

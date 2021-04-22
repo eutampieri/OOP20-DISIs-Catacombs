@@ -50,8 +50,9 @@ public abstract class GameObject {
      * Method used in the game loop that updates all elements of a game obj.
      * 
      * @param delta time between updates
+     * @return the list of spawned objects
      */
-    public abstract void update(long delta, final List<GameObject> others);
+    public abstract List<GameObject> update(long delta, final List<GameObject> others);
 
     /**
      * Getter for object X position.

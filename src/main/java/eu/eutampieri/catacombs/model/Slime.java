@@ -58,7 +58,7 @@ public final class Slime extends Entity implements HealthModifier {
     }
 
     @Override
-    public void update(final long delta, final List<GameObject> others) {
+    public List<GameObject> update(final long delta, final List<GameObject> others) {
         if (!canDmg) {
             dmgDelayCount += delta;
             if (dmgDelayCount >= HIT_DELAY) {
@@ -87,6 +87,7 @@ public final class Slime extends Entity implements HealthModifier {
             canDmg = false;
         }
         this.resetMovement();
+        return List.of();
     }
 
     @Override
