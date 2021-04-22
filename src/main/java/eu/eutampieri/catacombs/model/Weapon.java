@@ -66,8 +66,10 @@ public abstract class Weapon extends GameObject{
                 canFire = true;
             }
         }
-        this.hitBox.setPosX(this.user.getHitBox().getPosX() + this.user.getSize() + 1);
-        this.hitBox.setPosY(this.user.getHitBox().getPosY() + this.user.getSize() + 1);
+        if(this.user != null) {
+            this.hitBox.setPosX(this.user.getHitBox().getPosX() + this.user.getSize() + 1);
+            this.hitBox.setPosY(this.user.getHitBox().getPosY() + this.user.getSize() + 1);
+        }
     }
 
     public final void setTileMap(final TileMap tm){
@@ -102,5 +104,9 @@ public abstract class Weapon extends GameObject{
         final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
                 psx, psy, strength, tileMap);
         return List.of(p);
+    }
+
+    public void setUser(final Entity user) {
+        this.user = user;
     }
 }

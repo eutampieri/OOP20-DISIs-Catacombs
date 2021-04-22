@@ -13,7 +13,6 @@ public final class Bat extends Entity {
 
     private static final int HEIGHT = 16;
     private static final int WIDTH = 16;
-    private static final int SIZE = 16;
     private static final int MOVEMENT_SPEED = 1;
     private static final int HEALTH = 8;
     private static final int CB_POS_MOD = 4;
@@ -154,21 +153,8 @@ public final class Bat extends Entity {
         if (e == null) {
             return;
         }
-        int x, y;
-        if (e.getHitBox().getPosX() < this.getHitBox().getPosX()){
-            x = -1;
-        } else if (e.getHitBox().getPosX() > this.getHitBox().getPosX()){
-            x = 1;
-        } else {
-            x = 0;
-        }
-        if (e.getHitBox().getPosY() < this.getHitBox().getPosY()){
-            y = -1;
-        } else if (e.getHitBox().getPosY() > this.getHitBox().getPosY()){
-            y = 1;
-        } else {
-            y = 0;
-        }
+        final int x = Integer.compare(e.getHitBox().getPosX(), this.getHitBox().getPosX());
+        final int y = Integer.compare(e.getHitBox().getPosY(), this.getHitBox().getPosY());
         this.shootingDirection.setLocation(x, y);
     }
 }

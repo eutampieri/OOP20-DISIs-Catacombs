@@ -22,7 +22,7 @@ class CharactersTests {
             TILE_MAP
     );
     private final static Boss BOSS = new Boss(5, 5, TILE_MAP);
-    private final static Weapon GUN = new Gun(TILE_MAP, 0, 0, 1, 1, 1);
+    private final static Weapon GUN = new Gun(null, TILE_MAP, 0, 0, 1, 1, 1);
     private final static HealthModifier ONE_HP_SUB = (Projectile)GUN.fire(0,0).get(0);
     private final static Player PLAYER = new Player(0, 0, "John Appleseed", TILE_MAP);
 

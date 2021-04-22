@@ -131,7 +131,10 @@ public class Player extends Entity {
                 .filter((x) -> x.getHitBox().overlaps(this.getHitBox()))
                 .map((x) -> (Weapon)(x))
                 .findAny()
-                .ifPresent((x) -> this.weapon = x);
+                .ifPresent((x) -> {
+                    x.setUser(this);
+                    this.weapon = x;
+                });
 
         others.parallelStream()
                 .filter((x) -> x instanceof HealthModifier && !(x instanceof Projectile))
