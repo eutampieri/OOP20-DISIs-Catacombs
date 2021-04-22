@@ -6,19 +6,36 @@ import eu.eutampieri.catacombs.ui.utils.FontUtils;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+/**
+ * This class manages the end of the game interface
+ */
+
 public class EndGameState extends State {
 
     private static final float BLINK_DELAY = 1f;
-
+    /**
+     * Font used to write the end game message
+     */
     private final Font font = new Font("Monospace", Font.PLAIN, 40);
     private float blinkDelayCount;
     private boolean blink = true;
     private final DungeonGame game;
 
+    /**
+     * EndGame constructor
+     * @param game the game manager used
+     */
+
     public EndGameState(final DungeonGame game) {
         super(game);
         this.game = game;
     }
+
+    /**
+     * This method controls if the gamer wants to restart the game by using the space key
+     *
+     * @param delta gap time from the previous render
+     */
 
     @Override
     public void update(final long delta) {
@@ -34,6 +51,12 @@ public class EndGameState extends State {
         }
 
     }
+
+    /**
+     * this method renders the end game message and
+     * the instruction to start a new game
+     * @param g2 use to generate graphics
+     */
 
     @Override
     public void render(final Graphics2D g2) {
