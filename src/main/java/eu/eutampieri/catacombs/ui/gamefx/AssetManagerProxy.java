@@ -82,24 +82,26 @@ public final class AssetManagerProxy {
     }
 
     public static BufferedImage getSprite(final GameObject entity) {
-        final AssetManager am = AssetManager.getAssetManager();
-        StaticEntityKind entityKind = StaticEntityKind.fromGameObject(entity);
+        final StaticEntityKind entityKind = StaticEntityKind.fromGameObject(entity);
         assert entityKind != null;
         final BufferedImage fromCache = STATIC_ASSETS_CACHE.get(entityKind);
         if (fromCache != null) {
             return fromCache;
         }
+        final AssetManager am = AssetManager.getAssetManager();
         switch (entityKind) {
             case BULLET:
-                BufferedImage normal =  am.getFrames("Projectile_1")
+                final BufferedImage normal =  am.getFrames("Projectile_1")
                         .stream()
                         .filter(Optional::isPresent)
                         .map(Optional::get)
                         .findAny()
                         .get();
-                BufferedImage resized = scale(normal, BULLET_SCALING_FACTOR);
+                final BufferedImage resized = scale(normal, BULLET_SCALING_FACTOR);
                 STATIC_ASSETS_CACHE.put(entityKind, resized);
                 return resized;
+            case POTION:
+                return am.getImage("potion");
             default:
                 return null;
         }
@@ -146,7 +148,7 @@ public final class AssetManagerProxy {
         BULLET,
         POTION,
         WEAPON;
-        public static StaticEntityKind fromGameObject (GameObject gameObject) {
+        public static StaticEntityKind fromGameObject (final GameObject gameObject) {
             switch (gameObject.getKind()) {
                 case BULLET:
                     return BULLET;

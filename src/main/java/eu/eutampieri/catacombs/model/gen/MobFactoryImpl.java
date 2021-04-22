@@ -38,7 +38,7 @@ public final class MobFactoryImpl implements MobFactory {
     }
 
     @Override
-    public List<Entity> spawnAt(final int x, final int y, final SingleObject f) {
+    public List<Entity> spawnAt(final int x, final int y, final SingleObject<Entity> f) {
         if (f == null || !tileMap.canSpawnAt(x, y)) {
             return List.of();
         }
@@ -48,7 +48,7 @@ public final class MobFactoryImpl implements MobFactory {
     }
 
     @Override
-    public List<Entity> spawnSome(final int n, final SingleObject f) {
+    public List<Entity> spawnSome(final int n, final SingleObject<Entity> f) {
         if (f == null) {
             return List.of();
         }

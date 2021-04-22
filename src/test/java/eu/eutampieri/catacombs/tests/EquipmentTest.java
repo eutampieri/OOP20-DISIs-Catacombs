@@ -43,7 +43,7 @@ class EquipmentTest {
     @Test
     void testHealthOverflow() {
         final Player p = new Player(0, 0, "Charles", TILE_MAP);
-        final HealthModifier h = new SimplePotion(10, "Potion10");
+        final HealthModifier h = new SimplePotion(10, "Potion10", 0, 0);
         h.useOn(p);
         assertEquals(p.getHealth(), 100);
     }
@@ -53,7 +53,7 @@ class EquipmentTest {
         final int potionPower = 20;
         final Player p = new Player(0, 0, "Dan", TILE_MAP);
         final int healthOnCreation = p.getHealth();
-        final HealthModifier o = new SimplePotion(potionPower, "Potion20");
+        final HealthModifier o = new SimplePotion(potionPower, "Potion20", 0, 0);
         BULLET.useOn(p);
         o.useOn(p);
         assertEquals(p.getHealth(), healthOnCreation + potionPower + BULLET.getHealthDelta());
