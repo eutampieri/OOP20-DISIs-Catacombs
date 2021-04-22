@@ -175,5 +175,10 @@
             <property name="severity" value="info" />
         </module>
 		<module name="UpperEll" />
+	<module name="SuppressionCommentFilter">
+		<property name="offCommentFormat" value="Check\:OFF\: ([\w\|]+)"/>
+		<property name="onCommentFormat" value="Check\:ON\: ([\w\|]+)"/>
+		<property name="checkFormat" value="$1"/>
+	</module>
 	</module>
 </module>
