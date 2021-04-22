@@ -11,76 +11,76 @@
 \author{Chelli M., Monti G., Sanità R., Tampieri E.}
 
 \begin{document}
-	\maketitle
-	\tableofcontents
-	\chapter{Analisi}
-	\section{Requisiti}
-	\subsection{Requisiti funzionali}
-	% Qui si meotte la parte di analisi
-	\par Il team si pone l'obiettivo di realizzare un gioco 2D roguelike,
-	ovvero caratterizzato dall'esplorazione di livelli generati proceduralmente
-	di un dungeon, da un gameplay a turni, da grafica tile-based e la morte
-	permanente del giocatore \cite{wiki:Roguelike}, simile ai giochi Enter the
-	Gungeon e Nuclear Throne.
-	\par Il giocatore dovrà affrontare una serie di piani composti da stanze contenenti
-	nemici e oggetti fino ad arrivare a un boss finale. La mappa di gioco sarà generata
-	in modo casuale e sarà casuale anche la stanza in cui il personaggio comincerà
-	la sua avventura.
-	\par Inizialmente il protagonista avrà 5 vite, un armatura al 100\%
-	e un arma base che potrà cambiare con armi più avanzate che troverà nel corso
-	della partità. Ad ogni colpo subito il personaggio perderà una percentuale dell'
-	armatura nel momento in cui l'armatura raggiungerà la percentuale dello 0\%
-	il danno subito toglierà una vita al personaggio, se il personaggio perde tutte
-	e 5 le vite il giocatore ha perso e il gioco termina.
-	\par Il gioco può terminare anche se viene sconfitto il boss della mappa ovvero
-	un nemico di dimensione maggiore rispetto a quelli incontrati nelle stanze precedenti.
-	Tale boss possiederà anche abilità superiori e armi letali per il personaggio.
-	\par Una volta terminato il gioco è possibile scegliere se ricominciare la partita
-	o recuperare un savepoint precedente.
-	\par Se il giocatore si trova in difficoltà può trovare sparsi per la mappa di gioco
-	alcune vite o armature che lo aiuteranno a sopravvivere fino alla battaglia finale.
-	\par Esistono 2 tipi di nemici base:
-	\begin{itemize}
-		\item Nemici che attaccano da lontano
-		\item Nemici che attaccano da vicino
-	\end{itemize}
-	\par Il gioco si basa sull'abilità del giocatore ma anche su una percentuale di
-	fortuna nel trovare vite, armature ed armi che lo aiuteranno a sconfiggere il
-	boss finale.
-	\subsection{Requisiti non funzionali}
-	\begin{itemize}
-		\item Il gioco dovrà risultare fluido e reattivo anche su macchine con hardware non recenti..
-		\item Il gioco dovrà avere una grafica e comandi chiari e intuitivi.
-	\end{itemize}
-	\section{Analisi e modello del dominio}
-	% modello del dom
-	\par Il sistema gestisce la generazione delle mappe con le varie stanze e le interazioni tra il 
-	personaggio e i nemici. 
-	\par Oltre ai nemici il personaggio potrà interagire con oggetti trovati nelle varie stanze.
-	\par Il personaggio possiede principalmente un numero di vite che aumenteranno con gli oggetti 
-	o diminuiranno se colpiti da un nemico e una abilità speciale con un tempo di recupero variabile a seconda degli oggetti.
-	\par I nemici potranno essere di due tipi principali, melee (che attaccano da vicino) e ranged (che attaccano da lontano) 
-	e si muoveranno all'interno delle stanze e avranno una vita massima. Nemici più difficili da sconfiggere, 
-	come i Boss avranno una maggiore vita massima e mosse speciali che useranno in determinati step durante il combattimento. 
-	\par La mappa è strutturata in più livelli. Ogni livello è costituito da varie stanze stanze dove compariranno nemnici, 
-	NPC ("Non Playable Character") e/o oggetti utilizzabili dal giocatore. Al termine di ogni stanza il giocatore si potrà 
-	spostare a quelle adiacenti o esplorare la mappa. Una sola stanza permetterà di passare al piano successivo. 
-	Arrivato all'ultimo paino in personaggio dovrà affrontare il Boss e dopo il combattimento il gioco terminerà. 
-	\par \par Gli elementi considerati nel modello sono sintetizzati in Figura 1.1
-	
-	
-	\chapter{Design}
-	\section{Architettura}
-	\section{Design dettagliato}
-	\chapter{Sviluppo}
-	\section{Testing automatizzato}
-	\section{Metodologia di lavoro}
-	\section{Note di sviluppo}
-	\chapter{Commenti finali}
-	\section{Autovalutazione e lavori futuri}
-	\section{Difficoltà incontrate e commenti per i docenti}
-	\appendix
-	\chapter{Guida utente}
-	\chapter{Esercitazioni di laboratorio}
-	\printbibliography[heading=bibintoc]
+    \maketitle
+    \tableofcontents
+    \chapter{Analisi}
+    \section{Requisiti}
+    \subsection{Requisiti funzionali}
+    % Qui si meotte la parte di analisi
+    \par Il team si pone l'obiettivo di realizzare un gioco 2D roguelike,
+    ovvero caratterizzato dall'esplorazione di livelli generati proceduralmente
+    di un dungeon, da un gameplay a turni, da grafica tile-based e la morte
+    permanente del giocatore \cite{wiki:Roguelike}, simile ai giochi Enter the
+    Gungeon e Nuclear Throne.
+    \par Il giocatore dovrà affrontare una serie di piani composti da stanze contenenti
+    nemici e oggetti fino ad arrivare a un boss finale. La mappa di gioco sarà generata
+    in modo casuale e sarà casuale anche la stanza in cui il personaggio comincerà
+    la sua avventura.
+    \par Inizialmente il protagonista avrà 5 vite, un armatura al 100\%
+    e un arma base che potrà cambiare con armi più avanzate che troverà nel corso
+    della partità. Ad ogni colpo subito il personaggio perderà una percentuale dell'
+    armatura nel momento in cui l'armatura raggiungerà la percentuale dello 0\%
+    il danno subito toglierà una vita al personaggio, se il personaggio perde tutte
+    e 5 le vite il giocatore ha perso e il gioco termina.
+    \par Il gioco può terminare anche se viene sconfitto il boss della mappa ovvero
+    un nemico di dimensione maggiore rispetto a quelli incontrati nelle stanze precedenti.
+    Tale boss possiederà anche abilità superiori e armi letali per il personaggio.
+    \par Una volta terminato il gioco è possibile scegliere se ricominciare la partita
+    o recuperare un savepoint precedente.
+    \par Se il giocatore si trova in difficoltà può trovare sparsi per la mappa di gioco
+    alcune vite o armature che lo aiuteranno a sopravvivere fino alla battaglia finale.
+    \par Esistono 2 tipi di nemici base:
+    \begin{itemize}
+        \item Nemici che attaccano da lontano
+        \item Nemici che attaccano da vicino
+    \end{itemize}
+    \par Il gioco si basa sull'abilità del giocatore ma anche su una percentuale di
+    fortuna nel trovare vite, armature ed armi che lo aiuteranno a sconfiggere il
+    boss finale.
+    \subsection{Requisiti non funzionali}
+    \begin{itemize}
+        \item Il gioco dovrà risultare fluido e reattivo anche su macchine con hardware non recenti..
+        \item Il gioco dovrà avere una grafica e comandi chiari e intuitivi.
+    \end{itemize}
+    \section{Analisi e modello del dominio}
+    % modello del dom
+    \par Il sistema gestisce la generazione delle mappe con le varie stanze e le interazioni tra il
+    personaggio e i nemici.
+    \par Oltre ai nemici il personaggio potrà interagire con oggetti trovati nelle varie stanze.
+    \par Il personaggio possiede principalmente un numero di vite che aumenteranno con gli oggetti
+    o diminuiranno se colpiti da un nemico e una abilità speciale con un tempo di recupero variabile a seconda degli oggetti.
+    \par I nemici potranno essere di due tipi principali, melee (che attaccano da vicino) e ranged (che attaccano da lontano)
+    e si muoveranno all'interno delle stanze e avranno una vita massima. Nemici più difficili da sconfiggere,
+    come i Boss avranno una maggiore vita massima e mosse speciali che useranno in determinati step durante il combattimento.
+    \par La mappa è strutturata in più livelli. Ogni livello è costituito da varie stanze stanze dove compariranno nemnici,
+    NPC ("Non Playable Character") e/o oggetti utilizzabili dal giocatore. Al termine di ogni stanza il giocatore si potrà
+    spostare a quelle adiacenti o esplorare la mappa. Una sola stanza permetterà di passare al piano successivo.
+    Arrivato all'ultimo paino in personaggio dovrà affrontare il Boss e dopo il combattimento il gioco terminerà.
+    \par \par Gli elementi considerati nel modello sono sintetizzati in Figura 1.1
+
+
+    \chapter{Design}
+    \section{Architettura}
+    \section{Design dettagliato}
+    \chapter{Sviluppo}
+    \section{Testing automatizzato}
+    \section{Metodologia di lavoro}
+    \section{Note di sviluppo}
+    \chapter{Commenti finali}
+    \section{Autovalutazione e lavori futuri}
+    \section{Difficoltà incontrate e commenti per i docenti}
+    \appendix
+    \chapter{Guida utente}
+    \chapter{Esercitazioni di laboratorio}
+    \printbibliography[heading=bibintoc]
 \end{document}

@@ -247,38 +247,38 @@ public abstract class Game implements Runnable {
                     e.printStackTrace();
                 }
             }
-		}
-	}
+        }
+    }
 
-	protected void renderfpsCount(final Color color) {
-		graphics.setFont(DEFAULT_FONT);
-		graphics.setColor(color);
-		graphics.drawString("FRAME PER SECOND : " + framesThisSecond,
-				gameConfiguration.isScaling() ? gameConfiguration.getGameWidth() - 160 : getWidth() - 160,
-				10 + graphics.getFont().getSize());
-	}
+    protected void renderfpsCount(final Color color) {
+        graphics.setFont(DEFAULT_FONT);
+        graphics.setColor(color);
+        graphics.drawString("FRAME PER SECOND : " + framesThisSecond,
+                gameConfiguration.isScaling() ? gameConfiguration.getGameWidth() - 160 : getWidth() - 160,
+                10 + graphics.getFont().getSize());
+    }
 
-	protected void renderfpsCount(final Color color, final int x, final int y) {
-		graphics.setColor(color);
-		graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
-	}
+    protected void renderfpsCount(final Color color, final int x, final int y) {
+        graphics.setColor(color);
+        graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
+    }
 
-	
-	public void addKeyAdapter(final KeyAdapter e) {
-		mainFrame.getCanvas().addKeyListener(e);
-		mainFrame.getFrame().addKeyListener(e);
-	}
-	
-	public void addMouseAdapter(final MouseAdapter e) {
-		mainFrame.getCanvas().addMouseListener(e);
-		mainFrame.getFrame().addMouseListener(e);		
-		mainFrame.getCanvas().addMouseMotionListener(e);
-		mainFrame.getFrame().addMouseMotionListener(e);
-	}
 
-	public void removeKeyAdapter(final KeyAdapter e) {
-		mainFrame.getCanvas().removeKeyListener(e);
-		mainFrame.getFrame().removeKeyListener(e);
-	}	
-	
+    public void addKeyAdapter(final KeyAdapter e) {
+        mainFrame.getCanvas().addKeyListener(e);
+        mainFrame.getFrame().addKeyListener(e);
+    }
+
+    public void addMouseAdapter(final MouseAdapter e) {
+        mainFrame.getCanvas().addMouseListener(e);
+        mainFrame.getFrame().addMouseListener(e);
+        mainFrame.getCanvas().addMouseMotionListener(e);
+        mainFrame.getFrame().addMouseMotionListener(e);
+    }
+
+    public void removeKeyAdapter(final KeyAdapter e) {
+        mainFrame.getCanvas().removeKeyListener(e);
+        mainFrame.getFrame().removeKeyListener(e);
+    }
+
 }

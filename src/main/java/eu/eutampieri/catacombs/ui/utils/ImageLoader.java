@@ -9,19 +9,19 @@ import javax.imageio.ImageIO;
 
 public final class ImageLoader {
 
-	private ImageLoader() {
+    private ImageLoader() {
 
-	}
+    }
 
-	public static Optional<BufferedImage> loadImage(final Path path) {
-		BufferedImage image;
-		try {
-			image = ImageIO.read(path.toFile());
-		} catch (IOException e) {
-			return Optional.empty();
-		}
+    public static Optional<BufferedImage> loadImage(final Path path) {
+        BufferedImage image;
+        try {
+            image = ImageIO.read(path.toFile());
+        } catch (IOException e) {
+            return Optional.empty();
+        }
 
-		return Optional.of(image);		
-	}
+        return Optional.of(image);
+    }
 
 }

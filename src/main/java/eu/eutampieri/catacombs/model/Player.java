@@ -83,8 +83,8 @@ public class Player extends Entity {
         }
     }
     public void stop() {
-			this.resetMovement();
-		}
+            this.resetMovement();
+        }
     public boolean isMoving(){
         return this.right || this.left || this.up || this.down;
     }
