@@ -34,8 +34,6 @@ public final class DungeonGame extends Game {
     @Override
     public void create() {
 
-        //this.startGame = new StartTransition(this);
-        //this.endTrans = new EndTransition(this);
         this.transition = new TransitionFactoryImpl();
         this.menuState = new MenuState(this);
         setState(this.menuState);
