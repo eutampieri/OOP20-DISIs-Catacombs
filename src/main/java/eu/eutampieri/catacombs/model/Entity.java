@@ -1,5 +1,6 @@
 package eu.eutampieri.catacombs.model;
 
+import eu.eutampieri.catacombs.model.GameObject.Team;
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.Animatable;
@@ -39,8 +40,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      * @param tileMap Tile map in which Entity is spawned
      */
     public Entity(final int x, final int y, final int width, final int height, final TileMap tileMap,
-            final GameObjectType kind) {
-        super(x, y, kind, new CollisionBox(x, y, width, height));
+            final GameObjectType kind, final Team team) {
+        super(x, y, kind, new CollisionBox(x, y, width, height), team);
         this.tileMap = tileMap;
         this.width = width;
         this.height = height;

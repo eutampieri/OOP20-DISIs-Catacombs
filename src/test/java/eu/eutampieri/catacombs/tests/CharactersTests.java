@@ -26,8 +26,11 @@ class CharactersTests {
 
      private static final TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
      private static final Bat BAT = new Bat(1, 1, TILE_MAP);
-     private static final Slime SLIME = new Slime(AssetManagerProxy.getMapTileSize() * 2,
-            AssetManagerProxy.getMapTileSize() * 2, TILE_MAP);
+     private static final Slime SLIME = new Slime(
+             AssetManagerProxy.getMapTileSize() * 2,
+            AssetManagerProxy.getMapTileSize() * 2,
+             TILE_MAP
+     );
      private static final Boss BOSS = new Boss(5, 5, TILE_MAP);
      private static final Weapon GUN = new Gun(null, TILE_MAP, 0, 0, 1, 1, 1);
      private static final HealthModifier ONE_HP_SUB = (Projectile) GUN.fire(0, 0).get(0);

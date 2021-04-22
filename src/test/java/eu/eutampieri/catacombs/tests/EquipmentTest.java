@@ -1,10 +1,6 @@
 package eu.eutampieri.catacombs.tests;
 
-import eu.eutampieri.catacombs.model.Gun;
-import eu.eutampieri.catacombs.model.HealthModifier;
-import eu.eutampieri.catacombs.model.Player;
-import eu.eutampieri.catacombs.model.Projectile;
-import eu.eutampieri.catacombs.model.SimplePotion;
+import eu.eutampieri.catacombs.model.*;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
 import org.junit.jupiter.api.Test;
@@ -18,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class EquipmentTest {
 
      private static final TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
-     private static final Gun DEFAULT_GUN = new Gun(null, TILE_MAP, 0, 0, 21, 3, 1);
+     private static final Gun DEFAULT_GUN = new Gun(null, TILE_MAP, 0, 0, 21, 3, 1, GameObject.Team.FREIND);
      private static final HealthModifier BULLET = (Projectile) DEFAULT_GUN.fire(0, 0).get(0);
 
     @Test
