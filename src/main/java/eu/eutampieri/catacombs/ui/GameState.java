@@ -16,6 +16,10 @@ import java.awt.event.KeyEvent;
 
 public class GameState extends State {
     /**
+     * pause duration.
+     */
+    private static final int PAUSE_TIME = 500;
+    /**
      * x offset of health position.
      */
     private static final int HEALTH_POS = 5;
@@ -69,16 +73,18 @@ public class GameState extends State {
     public void update(final long delta) {
         if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_ESCAPE)) {
             final long curTime = System.currentTimeMillis();
-				    if (curTime-lastPausedTime>500) {
+                    if (curTime - lastPausedTime > PAUSE_TIME) {
                             this.paused = !this.paused;
-						    this.lastPausedTime=curTime;
+                            this.lastPausedTime = curTime;
             }
         }
         if (this.paused) {
             return;
         }
-        // WorldLoader needed
         this.world.update(delta);
+        if (!this.world.getPlayer().isAlive()) {
+            this.game.endGame();
+        }
     }
 
     /**
