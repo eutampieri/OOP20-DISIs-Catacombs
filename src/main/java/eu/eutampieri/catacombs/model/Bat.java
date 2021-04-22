@@ -37,14 +37,14 @@ public final class Bat extends Entity {
      * @param tileMap Tile map in which Bat is spawned
      */
     public Bat(final int x, final int y, final TileMap tileMap) {
-        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.ENEMY);
+        super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.ENEMY, GameObject.Team.ENEMY);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
         weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
-                BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE){};
+                BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE, this.getTeam()){};
         shootingDirection = new Point(0, 0);
 
     }
@@ -157,4 +157,5 @@ public final class Bat extends Entity {
         final int y = Integer.compare(e.getHitBox().getPosY(), this.getHitBox().getPosY());
         this.shootingDirection.setLocation(x, y);
     }
+
 }

@@ -17,7 +17,7 @@ public abstract class Weapon extends GameObject{
     /**
      * weapon fire rate.
      */
-    protected long fr;
+    //protected int fr;
     /**
      * Stores if the weapon can fire.
      */
@@ -47,8 +47,8 @@ public abstract class Weapon extends GameObject{
      * @param ps Bullet speed
      * @param fr Weapon fire rate
      */
-    public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps, final long fr) {
-        super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, 0, 0));
+    public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps, final int fr, final Team team) {
+        super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, 0, 0), team);
         this.user = e;
         setTileMap(tm);
         setStrength(strength);
@@ -84,11 +84,11 @@ public abstract class Weapon extends GameObject{
         this.ps = ps;
     }
 
-    public final void setFireRate(final long fr) {
-        this.fr = fr;
+    public final void setFireRate(final int fr) {
+        //this.fr = fr;
     }
 
-    public final void setFireDelay(final long fd) {
+    public final void setFireDelay(final int fd) {
         this.fireDelay = fd;
     }
 
@@ -101,8 +101,8 @@ public abstract class Weapon extends GameObject{
     }
 
     public final List<GameObject> fire(final int psx, final int psy){
-        final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
-                psx, psy, strength, tileMap);
+       final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
+                psx, psy, strength, tileMap, this.getTeam());
         return List.of(p);
     }
 
