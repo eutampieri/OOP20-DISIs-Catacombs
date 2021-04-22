@@ -66,13 +66,13 @@ public abstract class Weapon extends GameObject{
                 canFire = true;
             }
         }
-        if(this.user != null) {
+        if (this.user != null) {
             this.hitBox.setPosX(this.user.getHitBox().getPosX() + this.user.getSize() + 1);
             this.hitBox.setPosY(this.user.getHitBox().getPosY() + this.user.getSize() + 1);
         }
     }
 
-    public final void setTileMap(final TileMap tm){
+    public final void setTileMap(final TileMap tm) {
         this.tileMap = tm;
     }
 
@@ -92,15 +92,15 @@ public abstract class Weapon extends GameObject{
         this.fireDelay = fd;
     }
 
-    public final void setCanFire(final boolean cf){
+    public final void setCanFire(final boolean cf) {
         this.canFire = cf;
     }
 
-    public final boolean canFire(){
+    public final boolean canFire() {
         return this.canFire;
     }
 
-    public final List<GameObject> fire(final int psx, final int psy){
+    public final List<GameObject> fire(final int psx, final int psy) {
        final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
                 psx, psy, strength, tileMap, this.getTeam());
         return List.of(p);

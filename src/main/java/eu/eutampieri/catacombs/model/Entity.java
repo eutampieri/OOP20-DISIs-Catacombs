@@ -200,7 +200,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     public abstract Pair<Action, Direction> getActionWithDirection();
 
-    public List<GameObject> spawnObject(){
+    public List<GameObject> spawnObject() {
         return List.of();
     }
 
