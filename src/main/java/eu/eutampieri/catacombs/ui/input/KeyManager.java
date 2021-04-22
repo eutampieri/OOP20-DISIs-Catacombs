@@ -4,7 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
- * this class manages the key events
+ * this class manages the key events.
  */
 
 public final class KeyManager extends KeyAdapter {
@@ -13,7 +13,7 @@ public final class KeyManager extends KeyAdapter {
     private boolean[] keys;
 
     /**
-     * Key manager constructor
+     * Key manager constructor.
      */
 
     private KeyManager() {
@@ -21,7 +21,8 @@ public final class KeyManager extends KeyAdapter {
     }
 
     /**
-     * this Method is due to a single ton and i use to generate a KeyManager
+     * this Method is due to a single ton and i use to generate a KeyManager.
+     *
      * @return a KeyManager
      */
 
@@ -30,7 +31,7 @@ public final class KeyManager extends KeyAdapter {
     }
 
     /**
-     * This method controls if a key is presse
+     * This method controls if a key is presse.
      * @param keyCode the key to control
      * @return true if the key is pressed
      */
@@ -40,7 +41,7 @@ public final class KeyManager extends KeyAdapter {
     }
 
     /**
-     * This method keep track of the pressed keys
+     * This method keep track of the pressed keys.
      * @param e the key pressed
      */
 
@@ -50,7 +51,7 @@ public final class KeyManager extends KeyAdapter {
     }
 
     /**
-     * this method keep track of the released keys
+     * this method keep track of the released keys.
      * @param e the released key
      */
 

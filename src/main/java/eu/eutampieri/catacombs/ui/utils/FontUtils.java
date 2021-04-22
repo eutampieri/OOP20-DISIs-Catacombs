@@ -9,7 +9,7 @@ public final class FontUtils {
     }
 
     /**
-     * This method is used to know the dimension of the text used in the game
+     * This method is used to know the dimension of the text used in the game.
      * @param font the font width to be known
      * @param text the text width to be known
      * @return the text width

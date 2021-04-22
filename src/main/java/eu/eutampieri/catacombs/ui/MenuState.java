@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import eu.eutampieri.catacombs.ui.utils.FontUtils;
 
 /**
- * This class manage the graphical elements of the game menu
+ * This class manage the graphical elements of the game menu.
  */
 
 public final class MenuState extends State {
@@ -23,24 +23,24 @@ public final class MenuState extends State {
     private static final int TITLE_HEIGHT = 60;
 
     /**
-     * The font used to write the name of the game
+     * The font used to write the name of the game.
      */
     private final transient Font titleFont = new Font("Times New Roman", Font.PLAIN, TITLE_FONT_SIZE);
     /**
-     * The font used to write the name of the game
+     * The font used to write the name of the game.
      */
     private final transient Font font = new Font("Arial", Font.PLAIN, DEFAULT_FONT_SIZE);
     /**
-     * The game manager
+     * The game manager.
      */
     private final DungeonGame game;
     /**
-     * the logic interface behind the menu
+     * the logic interface behind the menu.
      */
     private final LogicMenu logic;
 
     /**
-     * The menu constructor
+     * The menu constructor.
      *
      * @param game the game manger used
      */
@@ -52,7 +52,7 @@ public final class MenuState extends State {
     }
 
     /**
-     * This updates the selection of the two options
+     * This updates the selection of the two options.
      *
      * @param delta gap time from the previous render
      */
@@ -63,7 +63,7 @@ public final class MenuState extends State {
     }
 
     /**
-     * Renders the menu interface
+     * Renders the menu interface.
      *
      * @param g2 use to generate graphics
      */

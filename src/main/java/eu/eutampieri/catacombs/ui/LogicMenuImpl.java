@@ -5,25 +5,38 @@ import eu.eutampieri.catacombs.ui.input.KeyManager;
 import java.awt.event.KeyEvent;
 
 /**
- * This class is the implementation behind the menu
+ * This class is the implementation behind the menu.
  */
 public final class LogicMenuImpl implements LogicMenu {
 
     /**
-     * This enum indicates the two menu options
+     * This enum indicates the two menu options.
      */
+
     protected enum MenuOption {
-        START_GAME, QUIT_GAME,
+        /**
+         * start the game.
+         */
+        START_GAME,
+        /**
+         * quit the game.
+         */
+        QUIT_GAME,
     }
 
-    private MenuOption optionSelected = LogicMenuImpl.MenuOption.START_GAME;
     /**
-     * the game manager used
+     * indicates the first option pointed.
      */
-    public final DungeonGame game;
+
+    private MenuOption optionSelected = LogicMenuImpl.MenuOption.START_GAME;
 
     /**
-     * Contructor of the logic part of the menu
+     * the game manager used.
+     */
+    private final DungeonGame game;
+
+    /**
+     * Constructor of the logic part of the menu.
      *
      * @param game
      */
@@ -32,7 +45,17 @@ public final class LogicMenuImpl implements LogicMenu {
     }
 
     /**
-     * This method is used to move to the StartTransition state
+     * game manager.
+     *
+     * @return the current game manager
+     */
+
+    public DungeonGame getGame() {
+        return game;
+    }
+
+    /**
+     * This method is used to move to the StartTransition state.
      */
     @Override
     public void start() {
@@ -40,7 +63,7 @@ public final class LogicMenuImpl implements LogicMenu {
     }
 
     /**
-     * This method controls the selection of the menu options
+     * This method controls the selection of the menu options.
      */
 
     @Override
@@ -66,7 +89,7 @@ public final class LogicMenuImpl implements LogicMenu {
     }
 
     /**
-     * Is used to know which option has ben selected
+     * Is used to know which option has ben selected.
      *
      * @return the option selected
      */
@@ -79,7 +102,7 @@ public final class LogicMenuImpl implements LogicMenu {
 
     /**
      * This method  used to know if the current selected option
-     * is the one that starts the game
+     * is the one that starts the game.
      *
      * @return true if the selected option is start game
      */

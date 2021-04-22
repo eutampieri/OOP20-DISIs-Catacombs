@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 /**
  * This class is a generic State of the game, starting from this abstract class
- * are generated all the others states of the game
+ * are generated all the others states of the game.
  */
 
 public abstract class State {
@@ -17,7 +17,7 @@ public abstract class State {
     private final DungeonGame game;
 
     /**
-     * General State constructor
+     * General State constructor.
      *
      * @param game manages the states
      */
@@ -27,7 +27,7 @@ public abstract class State {
     }
 
     /**
-     * The implementation of this method depends on the state
+     * The implementation of this method depends on the state.
      *
      * @param delta gap time from the previous render
      */
@@ -35,7 +35,7 @@ public abstract class State {
     public abstract void update(long delta);
 
     /**
-     * The implementation of this method depends on the state
+     * The implementation of this method depends on the state.
      *
      * @param g2 use to generate graphics
      */

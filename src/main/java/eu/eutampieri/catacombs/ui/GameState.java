@@ -11,35 +11,39 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 /**
- * This class manages the graphical aspects of the game interface
+ * This class manages the graphical aspects of the game interface.
  */
 
 public class GameState extends State {
     /**
-     * The world that has been generated
+     * x offset of health position.
+     */
+    private static final int HEALTH_POS = 5;
+    /**
+     * The world that has been generated.
      */
     private final World world;
     // private Player player;
     /**
-     * This varaible is used to pause the game
+     * This varaible is used to pause the game.
      */
     private boolean paused;
 
     /**
-     * The font used to write player statistics
+     * The font used to write player statistics.
      */
     private final Font font = new Font("Arial", Font.BOLD, 15);
     /**
-     * The font used to write Pause
+     * The font used to write Pause.
      */
     private final Font pauseFont = new Font("Monospace", Font.BOLD, 30);
     /**
-     * the game manager used
+     * the game manager used.
      */
     private final DungeonGame game;
 
     /**
-     * GameState constructor
+     * GameState constructor.
      *
      * @param game the game manager used
      */
@@ -55,7 +59,7 @@ public class GameState extends State {
 
     /**
      * This method controls if the game should be paused by the pressure of the key Esc
-     * and update the world tha has been generated
+     * and update the world tha has been generated.
      *
      * @param delta gap time from the previous render
      */
@@ -73,7 +77,7 @@ public class GameState extends State {
     }
 
     /**
-     * This method renders the Pause message and the entire World
+     * This method renders the Pause message and the entire World.
      *
      * @param g2 use to generate graphics
      */
@@ -84,7 +88,7 @@ public class GameState extends State {
         this.world.render(g2);
         g2.setColor(Color.orange);
         g2.setFont(font);
-        g2.drawString("HEALTH : " + this.world.getPlayer().getHealth(), 5, font.getSize());
+        g2.drawString("HEALTH : " + this.world.getPlayer().getHealth(), HEALTH_POS, font.getSize());
         // g2.drawString("COINS : " + player.getCoins(), 5, font.getSize() * 2 + 10);
 
         if (this.paused) {

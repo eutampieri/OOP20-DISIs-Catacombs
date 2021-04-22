@@ -8,22 +8,21 @@ import javax.swing.JFrame;
 
 /**
  * This class create the main frame in which the entire game
- * is going to run
- *
+ * is going to run.
  */
 
 public final class MainWindow {
     /**
-     * The main JFrame of the game
+     * The main JFrame of the game.
      */
     private JFrame frame;
     /**
-     * The canvas added in the main JFrame
+     * The canvas added in the main JFrame.
      */
     private Canvas canvas;
 
     /**
-     * main frame constructor
+     * main frame constructor.
      *
      * @param name          Title of the game
      * @param width         Width of the window
@@ -61,7 +60,7 @@ public final class MainWindow {
     }
 
     /**
-     * Set the main frame
+     * Set the main frame.
      *
      * @param frame  The Frame to set
      */
@@ -72,7 +71,7 @@ public final class MainWindow {
 
     /**
      *
-     * @return the canvas in the main frame
+     * @return the canvas in the main frame.
      */
 
     public Canvas getCanvas() {
@@ -80,7 +79,7 @@ public final class MainWindow {
     }
 
     /**
-     * Set the canvas in the main frame
+     * Set the canvas in the main frame.
      *
      * @param canvas   the canvas to set
      */
@@ -91,7 +90,7 @@ public final class MainWindow {
 
     /**
      * this method is used to resize the frame components to
-     * make it fullscreen
+     * make it fullscreen.
      *
      */
 

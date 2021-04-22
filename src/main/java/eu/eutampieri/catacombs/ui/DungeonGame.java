@@ -2,7 +2,7 @@ package eu.eutampieri.catacombs.ui;
 
 /**
  * this class implements the unimplemented methods of game and
- * controls the passage from one state to another
+ * controls the passage from one state to another.
  */
 public final class DungeonGame extends Game {
 
@@ -29,7 +29,7 @@ public final class DungeonGame extends Game {
 
     /**
      *  This method initialise the states of the game and
-     *  set the menu state as starting state
+     *  set the menu state as starting state.
      */
     @Override
     public void create() {
@@ -52,7 +52,7 @@ public final class DungeonGame extends Game {
     }
 
     /**
-     * Set the meu state as current state
+     * Set the meu state as current state.
      */
 
     public void setMenuState() {
@@ -60,7 +60,7 @@ public final class DungeonGame extends Game {
     }
 
     /**
-     * This method update the current state
+     * This method update the current state.
      *
      * @param delta gap time from previous render
      */
@@ -71,7 +71,7 @@ public final class DungeonGame extends Game {
     }
 
     /**
-     * This method renders the current state
+     * This method renders the current state.
      */
 
     @Override
@@ -80,7 +80,7 @@ public final class DungeonGame extends Game {
     }
 
     /**
-     * This method start the transition state from the menu to the game it self
+     * This method start the transition state from the menu to the game it self.
      */
 
     public void startGame() {

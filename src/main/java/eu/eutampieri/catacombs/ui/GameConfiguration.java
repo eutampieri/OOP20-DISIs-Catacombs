@@ -1,31 +1,31 @@
 package eu.eutampieri.catacombs.ui;
 
 /**
- * This class keeps all the informations about the game features
+ * This class keeps all the information about the game features.
  */
 
 public final class GameConfiguration {
 
     private static final int DEFAULT_FPS = 60;
     /**
-     * Indicates the dimension of the canvas
+     * Indicates the dimension of the canvas.
      */
     private int gameHeight, gameWidth;
     private int fps = DEFAULT_FPS;
     /**
-     * Indicates the title of the game
+     * Indicates the title of the game.
      */
     private String title;
     /**
-     * Indicates if the game can be fullScreen
+     * Indicates if the game can be fullScreen.
      */
     private boolean fullScreen;
     /**
-     * Indicates if the game can be scaled
+     * Indicates if the game can be scaled.
      */
     private boolean scaling;
     /**
-     * Indicates if the game is resizeable
+     * Indicates if the game is resizeable.
      */
     private boolean resizeable;
 
@@ -93,7 +93,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *  This method set the game in order to be full screened
+     *  This method set the game in order to be full screened.
      *
      * @param fullScreen indicates if the game can be made full screen or not
      */

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * This class controls the animation of the game characters
+ * This class controls the animation of the game characters.
  */
 public final class Animations {
 
@@ -19,7 +19,7 @@ public final class Animations {
     private boolean reverseMode;
 
     /**
-     * Animation constructor
+     * Animation constructor.
      *
      * @param frames the images used for the animation
      * @param frameDelay the frame delay
@@ -32,7 +32,7 @@ public final class Animations {
     }
 
     /**
-     * This constructor takes from the asset manager the images for the animation
+     * This constructor takes from the asset manager the images for the animation.
      *
      * @param frameskey the name of the image list
      * @param frameDelay the frame delay
@@ -101,7 +101,7 @@ public final class Animations {
     }
 
     /**
-     * This method decides if ana animation can be reversible
+     * This method decides if ana animation can be reversible.
      * @param reverseAble true if the animation is reversible
      */
 
@@ -110,7 +110,7 @@ public final class Animations {
     }
 
     /**
-     * This method set the index for teh list of images
+     * This method set the index for teh list of images.
      *
      * @param i the choosen index
      */
@@ -120,7 +120,7 @@ public final class Animations {
     }
 
     /**
-     * This method set the frame delay for the animation
+     * This method set the frame delay for the animation.
      * @param frameDelay the frame delay to set
      */
 
@@ -138,7 +138,7 @@ public final class Animations {
     }
 
     /**
-     * This method check if the animation is finish so it can restart
+     * This method check if the animation is finish so it can restart.
      * @return tue if the animation is finished
      */
 
@@ -147,7 +147,7 @@ public final class Animations {
     }
 
     /**
-     * This method manages the sequences of the images for the animation
+     * This method manages the sequences of the images for the animation.
      * @param delta gap time from the previous render
      */
     public void update(final float delta) {
@@ -176,7 +176,7 @@ public final class Animations {
     }
 
     /**
-     *  This method reset the sequence of image and so the animation
+     *  This method reset the sequence of image and so the animation.
      */
 
     public void reset() {
@@ -186,7 +186,7 @@ public final class Animations {
     }
 
     /**
-     * This method copies the state of an animation
+     * This method copies the state of an animation.
      * @param animation the animation to be copied
      */
 

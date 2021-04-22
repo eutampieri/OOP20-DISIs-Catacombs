@@ -4,7 +4,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * This class manages the mouse events
+ * This class manages the mouse events.
  */
 
 public final class MouseManager extends MouseAdapter {
@@ -15,7 +15,7 @@ public final class MouseManager extends MouseAdapter {
 
     /**
      *
-     * @return the x of the mouse pointer
+     * @return the x of the mouse pointer.
      */
 
     public float getX() {
@@ -24,7 +24,7 @@ public final class MouseManager extends MouseAdapter {
 
     /**
      *
-     * @return the y of the mouse pointer
+     * @return the y of the mouse pointer.
      */
 
     public float getY() {
@@ -32,7 +32,7 @@ public final class MouseManager extends MouseAdapter {
     }
 
     /**
-     * This method control if the left key of the mouse is pressed
+     * This method control if the left key of the mouse is pressed.
      * @return true if is is pressed
      */
 
@@ -41,7 +41,7 @@ public final class MouseManager extends MouseAdapter {
     }
 
     /**
-     * This method control if the right key of the mouse is pressed
+     * This method control if the right key of the mouse is pressed.
      * @return true if it is pressed
      */
 
@@ -50,7 +50,7 @@ public final class MouseManager extends MouseAdapter {
     }
 
     /**
-     * This method check the pression of the mouse keys
+     * This method check the press of the mouse keys.
      * @param e the mouse event to check
      */
 
@@ -66,7 +66,7 @@ public final class MouseManager extends MouseAdapter {
     }
 
     /**
-     * This method check the release of the mouse keys
+     * This method check the release of the mouse keys.
      * @param e the mouse event to check
      */
 
@@ -81,7 +81,7 @@ public final class MouseManager extends MouseAdapter {
     }
 
     /**
-     * This method set the x and y value using the position of the mouse pointer
+     * This method set the x and y value using the position of the mouse pointer.
      * @param e the mouse event used to se the position
      */
 
