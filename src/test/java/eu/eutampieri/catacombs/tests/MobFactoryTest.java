@@ -21,26 +21,25 @@ class MobFactoryTest {
     @Test
     void testSpawnAt() {
         List<GameObject> entities;
-        entities = MF.spawnAt(5, 5, Bat::new).stream().map((x) -> (GameObject)x).collect(Collectors.toList());
-        assertEquals(entities.get(0).getPosX(),  5 * AssetManagerProxy.getMapTileSize());
-        assertEquals(entities.get(0).getPosY(),  5 * AssetManagerProxy.getMapTileSize());
+        entities = MF.spawnAt(5, 5, Bat::new).stream().map((x) -> (GameObject) x).collect(Collectors.toList());
+        assertEquals(entities.get(0).getPosX(), 5 * AssetManagerProxy.getMapTileSize());
+        assertEquals(entities.get(0).getPosY(), 5 * AssetManagerProxy.getMapTileSize());
     }
 
     @Test
     void testSpawnSome() {
         final int entityNum = 10;
         List<GameObject> entities;
-        entities = MF.spawnSome(entityNum, Bat::new).stream().map((x) -> (GameObject)x).collect(Collectors.toList());
+        entities = MF.spawnSome(entityNum, Bat::new).stream().map((x) -> (GameObject) x).collect(Collectors.toList());
         assertEquals(entities.size(), 10);
     }
 
     @Test
     void testSpawnRandom() {
         List<GameObject> entities;
-        entities = MF.spawnRandom().stream().map((x) -> (GameObject)x).collect(Collectors.toList());
+        entities = MF.spawnRandom().stream().map((x) -> (GameObject) x).collect(Collectors.toList());
         assertFalse(entities.isEmpty());
         assertTrue(entities.size() <= MF.MAX_MOB_NUMBER);
     }
-
 
 }

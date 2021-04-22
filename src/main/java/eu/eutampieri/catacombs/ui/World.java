@@ -57,11 +57,10 @@ public class World {
         // this.background = am.getImage("background");
         this.tileMap = tileMap;
         final MobFactory mf = new MobFactoryImpl(this.tileMap);
-        camera = new Camera(0, 0, tileMap.width() * AssetManagerProxy.getMapTileSize(), tileMap.height() * AssetManagerProxy.getMapTileSize());
-        this.entities = mf.spawnRandom().stream().map((x) -> (GameObject)x).collect(Collectors.toList());
-        this.player = (Player)mf
-                .spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm))
-                .get(0);
+        camera = new Camera(0, 0, tileMap.width() * AssetManagerProxy.getMapTileSize(),
+                tileMap.height() * AssetManagerProxy.getMapTileSize());
+        this.entities = mf.spawnRandom().stream().map((x) -> (GameObject) x).collect(Collectors.toList());
+        this.player = (Player) mf.spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm)).get(0);
 
         this.game = game;
     }
@@ -79,55 +78,47 @@ public class World {
     }
 
     private List<GameObject> getAllEntitiesExcept(final GameObject e) {
-        return Stream.concat(
-                this.entities.stream(),
-                Stream.of(this.player)
-        )
-                .filter((x) -> !e.equals(x))
+        return Stream.concat(this.entities.stream(), Stream.of(this.player)).filter((x) -> !e.equals(x))
                 .collect(Collectors.toUnmodifiableList());
     }
 
     public void update(final long delta) {
         this.player.stop();
-        if(this.km.up()) {
+        if (this.km.up()) {
             this.player.move(Direction.UP);
-        } else if(this.km.down()) {
+        } else if (this.km.down()) {
             this.player.move(Direction.DOWN);
-        } else if(this.km.left()) {
+        } else if (this.km.left()) {
             this.player.move(Direction.LEFT);
-        } else if(this.km.right()) {
+        } else if (this.km.right()) {
             this.player.move(Direction.RIGHT);
         }
 
-        if(this.km.fire()) {
+        if (this.km.fire()) {
             this.player.fire();
         }
 
         player.update(delta, this.getAllEntitiesExcept(this.player));
 
         for (final GameObject entity : this.entities) {
-            if(this.isOnCamera(entity.getPosX(), entity.getPosY())) {
+            if (this.isOnCamera(entity.getPosX(), entity.getPosY())) {
                 entity.update(delta, this.getAllEntitiesExcept(entity));
             }
         }
 
         final List<GameObject> newEntities = Stream.concat(entities.stream(), Stream.of(player))
-                .filter((x) -> x instanceof Entity)
-                .flatMap((x) -> ((Entity) x).spawnObject().stream())
+                .filter((x) -> x instanceof Entity).flatMap((x) -> ((Entity) x).spawnObject().stream())
                 .collect(Collectors.toList());
         this.entities.addAll(newEntities);
 
-        this.entities = this.entities
-                .stream()
-                .filter((x) -> !x.isMarkedForDeletion())
-                .collect(Collectors.toList());
+        this.entities = this.entities.stream().filter((x) -> !x.isMarkedForDeletion()).collect(Collectors.toList());
     }
 
     private boolean isOnCamera(final int x, final int y) {
         final int canvasX = x - camera.getXOffset();
         final int canvasY = y - camera.getYOffset();
-        return canvasX > -AssetManagerProxy.getMapTileSize() && canvasX <= game.getWidth() &&
-                canvasY > -AssetManagerProxy.getMapTileSize() && canvasY <= game.getHeight();
+        return canvasX > -AssetManagerProxy.getMapTileSize() && canvasX <= game.getWidth()
+                && canvasY > -AssetManagerProxy.getMapTileSize() && canvasY <= game.getHeight();
     }
 
     public void render(final Graphics2D g2) {
@@ -142,7 +133,7 @@ public class World {
             for (int x = 0; x < tileMap.width(); x++) {
                 final int canvasX = x * AssetManagerProxy.getMapTileSize() - camera.getXOffset();
                 final int canvasY = y * AssetManagerProxy.getMapTileSize() - camera.getYOffset();
-                if(isOnCamera(x * AssetManagerProxy.getMapTileSize(), y * AssetManagerProxy.getMapTileSize())) {
+                if (isOnCamera(x * AssetManagerProxy.getMapTileSize(), y * AssetManagerProxy.getMapTileSize())) {
                     final Optional<BufferedImage> tile = AssetManagerProxy.getTileSprite(tileMap.at(x, y));
                     tile.ifPresent(bufferedImage -> g2.drawImage(bufferedImage, null, canvasX, canvasY));
                 }
@@ -155,20 +146,24 @@ public class World {
         // slimes
 
         Stream.concat(this.entities.stream(), Stream.of(this.player))
-                .filter((x) -> this.isOnCamera(x.getPosX(), x.getPosY()))
-                .forEach((currentObj) -> {
-                    g2.drawRect(currentObj.getHitBox().getPosX()-camera.getXOffset(), currentObj.getHitBox()
-                            .getPosY() - camera.getYOffset(), currentObj.getHitBox().getWidth(), currentObj.getHitBox().getHeight());
+                .filter((x) -> this.isOnCamera(x.getPosX(), x.getPosY())).forEach((currentObj) -> {
+                    g2.drawRect(currentObj.getHitBox().getPosX() - camera.getXOffset(),
+                            currentObj.getHitBox().getPosY() - camera.getYOffset(), currentObj.getHitBox().getWidth(),
+                            currentObj.getHitBox().getHeight());
                     try {
-                    final Entity currentEntity = (Entity) currentObj;
-                    final Pair<Action, Direction> action = currentEntity.getActionWithDirection();
-                    final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
-                    g2.drawImage(img, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
-                } catch (ClassCastException e) {
-                    // Treat it as a game object
-                    final BufferedImage img = AssetManagerProxy.getSprite(currentObj);
-                    g2.drawImage(img, null, currentObj.getPosX() - camera.getXOffset(), currentObj.getPosY() - camera.getYOffset());
-                }});
+                        final Entity currentEntity = (Entity) currentObj;
+                        final Pair<Action, Direction> action = currentEntity.getActionWithDirection();
+                        final BufferedImage img = AssetManagerProxy
+                                .getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
+                        g2.drawImage(img, null, currentEntity.getPosX() - camera.getXOffset(),
+                                currentEntity.getPosY() - camera.getYOffset());
+                    } catch (ClassCastException e) {
+                        // Treat it as a game object
+                        final BufferedImage img = AssetManagerProxy.getSprite(currentObj);
+                        g2.drawImage(img, null, currentObj.getPosX() - camera.getXOffset(),
+                                currentObj.getPosY() - camera.getYOffset());
+                    }
+                });
 
         // TODO player.render parameters
         // this.player.render(g2, camera);

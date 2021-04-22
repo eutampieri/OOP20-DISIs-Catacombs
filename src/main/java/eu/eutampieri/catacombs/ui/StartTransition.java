@@ -4,8 +4,7 @@ import eu.eutampieri.catacombs.ui.utils.FontUtils;
 
 import java.awt.*;
 
-public class StartTransition extends State{
-
+public class StartTransition extends State {
 
     private GameState levelState;
     private final Font font = new Font("Monospace", Font.PLAIN, 40);
@@ -28,12 +27,12 @@ public class StartTransition extends State{
         final String newGame = "New Game";
         g2.setFont(this.font);
         g2.setColor(Color.WHITE);
-        g2.drawString(newGame, (this.game.getGameWidth() - FontUtils.getTextWidth(font, newGame)) / 2, (this.game.getGameHeight() - font.getSize()) / 2);
+        g2.drawString(newGame, (this.game.getGameWidth() - FontUtils.getTextWidth(font, newGame)) / 2,
+                (this.game.getGameHeight() - font.getSize()) / 2);
     }
 
     public void startTransition(final GameState levelState) {
         this.levelState = levelState;
     }
-
 
 }

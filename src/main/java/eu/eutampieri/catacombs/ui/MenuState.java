@@ -55,8 +55,7 @@ public final class MenuState extends State {
         g2.drawString(quit, x2, titleFont.getSize() + font.getSize() + 100);
 
         // selection
-        final int x3 = (int) (this.logic.isOptionStart() ? x1 - MIDDLE_OF_OPTION
-                : x2 - MIDDLE_OF_OPTION);
+        final int x3 = (int) (this.logic.isOptionStart() ? x1 - MIDDLE_OF_OPTION : x2 - MIDDLE_OF_OPTION);
         final int y = this.logic.isOptionStart() ? this.titleFont.getSize() + START_OFFSET
                 : this.titleFont.getSize() + font.getSize() + QUIT_OFFSET;
         g2.fillOval(x3, y, OVAL_SIZE, OVAL_SIZE);

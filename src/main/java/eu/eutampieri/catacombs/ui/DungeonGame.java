@@ -1,6 +1,5 @@
 package eu.eutampieri.catacombs.ui;
 
-
 public final class DungeonGame extends Game {
 
     private MenuState menuState;
@@ -20,7 +19,7 @@ public final class DungeonGame extends Game {
 
         this.startGame = new StartTransition(this);
         // to use when game ends
-        //final EndGameState endGame = new EndGameState(this);
+        // final EndGameState endGame = new EndGameState(this);
         this.menuState = new MenuState(this);
         setState(this.menuState);
 

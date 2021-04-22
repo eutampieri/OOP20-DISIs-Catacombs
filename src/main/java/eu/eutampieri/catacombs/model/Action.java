@@ -22,45 +22,45 @@ public enum Action {
 
     public List<Direction> getDirections() {
         switch (this) {
-            case ATTACK:
-            case MOVE:
-                return List.of(Direction.DOWN, Direction.LEFT, Direction.UP, Direction.RIGHT);
-            case IDLE:
-                return List.of(Direction.LEFT, Direction.RIGHT);
-            case DIE:
-            default:
-                return List.of();
+        case ATTACK:
+        case MOVE:
+            return List.of(Direction.DOWN, Direction.LEFT, Direction.UP, Direction.RIGHT);
+        case IDLE:
+            return List.of(Direction.LEFT, Direction.RIGHT);
+        case DIE:
+        default:
+            return List.of();
         }
     }
 
     public static Action fromString(final String name) {
         switch (name) {
-            case "move":
-                return MOVE;
-            case "attack":
-                return ATTACK;
-            case "die":
-                return DIE;
-            case "idle":
-                return IDLE;
-            default:
-                throw new IllegalArgumentException();
+        case "move":
+            return MOVE;
+        case "attack":
+            return ATTACK;
+        case "die":
+            return DIE;
+        case "idle":
+            return IDLE;
+        default:
+            throw new IllegalArgumentException();
         }
     }
 
     @Override
     public String toString() {
         switch (this) {
-            case DIE:
-                return "die";
-            case IDLE:
-                return "idle";
-            case ATTACK:
-                return "attack";
-            case MOVE:
-                return "move";
-            default:
-                throw new IllegalStateException();
+        case DIE:
+            return "die";
+        case IDLE:
+            return "idle";
+        case ATTACK:
+            return "attack";
+        case MOVE:
+            return "move";
+        default:
+            throw new IllegalStateException();
         }
     }
 }

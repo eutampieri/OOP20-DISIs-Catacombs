@@ -4,7 +4,7 @@ import eu.eutampieri.catacombs.model.map.TileMap;
 
 import java.util.List;
 
-public abstract class Weapon extends GameObject{
+public abstract class Weapon extends GameObject {
 
     /**
      * Projectile strength.
@@ -39,15 +39,16 @@ public abstract class Weapon extends GameObject{
 
     /**
      *
-     * @param e Entity using weapon
-     * @param tm Tile map
-     * @param x X position
-     * @param y Y position
+     * @param e        Entity using weapon
+     * @param tm       Tile map
+     * @param x        X position
+     * @param y        Y position
      * @param strength Bullet strength
-     * @param ps Bullet speed
-     * @param fr Weapon fire rate
+     * @param ps       Bullet speed
+     * @param fr       Weapon fire rate
      */
-    public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps, final long fr) {
+    public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
+            final long fr) {
         super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, 0, 0));
         this.user = e;
         setTileMap(tm);
@@ -66,13 +67,13 @@ public abstract class Weapon extends GameObject{
                 canFire = true;
             }
         }
-        if(this.user != null) {
+        if (this.user != null) {
             this.hitBox.setPosX(this.user.getHitBox().getPosX() + this.user.getSize() + 1);
             this.hitBox.setPosY(this.user.getHitBox().getPosY() + this.user.getSize() + 1);
         }
     }
 
-    public final void setTileMap(final TileMap tm){
+    public final void setTileMap(final TileMap tm) {
         this.tileMap = tm;
     }
 
@@ -92,17 +93,17 @@ public abstract class Weapon extends GameObject{
         this.fireDelay = fd;
     }
 
-    public final void setCanFire(final boolean cf){
+    public final void setCanFire(final boolean cf) {
         this.canFire = cf;
     }
 
-    public final boolean canFire(){
+    public final boolean canFire() {
         return this.canFire;
     }
 
-    public final List<GameObject> fire(final int psx, final int psy){
-        final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
-                psx, psy, strength, tileMap);
+    public final List<GameObject> fire(final int psx, final int psy) {
+        final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(), psx, psy, strength,
+                tileMap);
         return List.of(p);
     }
 

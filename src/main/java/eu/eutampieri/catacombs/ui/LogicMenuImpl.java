@@ -29,14 +29,14 @@ public class LogicMenuImpl implements LogicMenu {
     @Override
     public void selectOption() {
         if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_ENTER)) {
-            switch(this.optionSelected) {
-                case START_GAME:
-                    start();
-                    break;
-                case QUIT_GAME:
-                    this.game.stop();
-                    break;
-                default:
+            switch (this.optionSelected) {
+            case START_GAME:
+                start();
+                break;
+            case QUIT_GAME:
+                this.game.stop();
+                break;
+            default:
             }
         }
         if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_S)) {

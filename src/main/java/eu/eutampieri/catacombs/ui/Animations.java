@@ -5,7 +5,6 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Optional;
 
-
 public class Animations {
 
     private List<Optional<BufferedImage>> frames;
@@ -34,14 +33,14 @@ public class Animations {
         return frameDelay;
     }
 
-    public Optional<BufferedImage> getCurrentFrame(){
+    public Optional<BufferedImage> getCurrentFrame() {
         return this.frames.get(this.index);
     }
 
     public Optional<BufferedImage> getCurrentFrame(final float stateTime) {
         int i = (int) (stateTime / this.frameDelay);
         if (i >= this.frames.size()) {
-            i = this.frames.size() -1;
+            i = this.frames.size() - 1;
         }
         return this.frames.get(i);
     }
@@ -74,14 +73,14 @@ public class Animations {
         return this.isAtLastIndex();
     }
 
-    public void update(final float delta){
+    public void update(final float delta) {
         final int step = 1;
-        this.timer +=delta;
+        this.timer += delta;
         if (this.index < 0) {
             this.index = 0; // TODO test index
             this.reverseMode = false;
         }
-        if(this.index >= this.frames.size()) {
+        if (this.index >= this.frames.size()) {
             if (this.restart) {
                 if (this.reverse) {
                     this.index = this.frames.size() - 1;
@@ -93,8 +92,8 @@ public class Animations {
                 this.index = this.frames.size() - 1;
             }
         }
-        if(this.timer >= this.frameDelay) {
-            this.index += reverseMode ? - step : step;
+        if (this.timer >= this.frameDelay) {
+            this.index += reverseMode ? -step : step;
             this.timer = 0;
         }
     }
@@ -103,7 +102,7 @@ public class Animations {
         this.restart = restartAble;
     }
 
-    public void reset () {
+    public void reset() {
         this.index = 0;
         this.timer = 0;
 

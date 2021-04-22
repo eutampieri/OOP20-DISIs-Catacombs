@@ -21,7 +21,7 @@ public class EndGameState extends State {
     }
 
     @Override
-    public void update (final long delta) {
+    public void update(final long delta) {
         this.blinkDelayCount += delta;
         if (this.blinkDelayCount >= BLINK_DELAY) {
             this.blinkDelayCount = 0;
@@ -33,11 +33,10 @@ public class EndGameState extends State {
             this.game.setMenuState();
         }
 
-
     }
 
     @Override
-    public void render (final Graphics2D g2) {
+    public void render(final Graphics2D g2) {
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, game.getGameWidth(), game.getGameHeight());
         final String level = "GAME COMPLETED!";
@@ -48,7 +47,7 @@ public class EndGameState extends State {
         float y = (game.getGameHeight() - this.font.getSize()) / 2f;
         g2.drawString(level, x, y);
 
-        if (this.blink){
+        if (this.blink) {
             return;
         }
         final String msg = "Press space to continue";

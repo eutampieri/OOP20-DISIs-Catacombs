@@ -15,7 +15,7 @@ class EquipmentTest {
 
     private final static TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
     private final static Gun DEFAULT_GUN = new Gun(null, TILE_MAP, 0, 0, 21, 3, 1);
-    private final static HealthModifier BULLET = (Projectile) DEFAULT_GUN.fire(0,0).get(0);
+    private final static HealthModifier BULLET = (Projectile) DEFAULT_GUN.fire(0, 0).get(0);
 
     @Test
     void testSimpleWeapon() {
@@ -51,8 +51,6 @@ class EquipmentTest {
         o.useOn(p);
         assertEquals(p.getHealth(), healthOnCreation - 21 + 20);
     }
-
-
 
     @Test
     void testGunUpdate() {

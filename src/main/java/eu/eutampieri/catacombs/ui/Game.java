@@ -205,11 +205,11 @@ public abstract class Game implements Runnable {
      */
 
     public final void stop() {
-       try {
+        try {
             running = false;
             this.gameThread.join();
             mainFrame.getFrame().dispatchEvent(new WindowEvent(mainFrame.getFrame(), WindowEvent.WINDOW_CLOSING));
-       } catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -240,7 +240,7 @@ public abstract class Game implements Runnable {
             this.renderfpsCount(Color.CYAN);
             final long timeTake = System.currentTimeMillis() - now;
             final long timeToFrame = 1_000 / this.fps - timeTake;
-            if(timeToFrame > 0) {
+            if (timeToFrame > 0) {
                 try {
                     Thread.sleep(timeToFrame);
                 } catch (InterruptedException e) {
@@ -262,7 +262,6 @@ public abstract class Game implements Runnable {
         graphics.setColor(color);
         graphics.drawString("FRAME PER SECOND : " + framesThisSecond, x, y);
     }
-
 
     public void addKeyAdapter(final KeyAdapter e) {
         mainFrame.getCanvas().addKeyListener(e);

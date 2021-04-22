@@ -25,8 +25,8 @@ public abstract class GameObject {
     protected CollisionBox hitBox; // Entity hit box
 
     /**
-     * @param x  object X position
-     * @param y  object Y position
+     * @param x    object X position
+     * @param y    object Y position
      * @param kind Entity Kind @see eu.eutampieri.catacombs.model.EntityKind
      */
     public GameObject(final int x, final int y, final GameObjectType kind, final CollisionBox hitBox) {

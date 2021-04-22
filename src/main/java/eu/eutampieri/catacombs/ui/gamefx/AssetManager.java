@@ -43,7 +43,7 @@ public final class AssetManager {
     }
 
     private void load() {
-        //Check:OFF: MagicNumber
+        // Check:OFF: MagicNumber
         loadAnimations("Walk_up", PLAYER_SHEET, 8, 3, 32, false);
         loadAnimations("Walk_down", PLAYER_SHEET, 8, 2, 32, false);
         loadAnimations("Walk_left", PLAYER_SHEET, 8, 1, 32, false);
@@ -64,16 +64,16 @@ public final class AssetManager {
         loadAnimations("Bat_right", BAT_SHEET, 3, 0, 16, false);
         loadAnimations("Bat_left", BAT_SHEET, 3, 0, 16, true);
 
-        loadBossAnimations("Boss_Idle_right",  6, false, true);
-        loadBossAnimations("Boss_Idle_left",  6, true, true);
-        loadBossAnimations("Boss_Walk_right",  6, false, false);
-        loadBossAnimations("Boss_Walk_left",  6, true, false);
+        loadBossAnimations("Boss_Idle_right", 6, false, true);
+        loadBossAnimations("Boss_Idle_left", 6, true, true);
+        loadBossAnimations("Boss_Walk_right", 6, false, false);
+        loadBossAnimations("Boss_Walk_left", 6, true, false);
 
         loadGunAnimations("Projectile_1", GUN_SHEET, 3, 1226, 64, 26);
         loadGunAnimations("Projectile_2", GUN_SHEET, 5, 1418, 46, 118);
         loadGunAnimations("Projectile_3", GUN_SHEET, 3, 1798, 37, 1187);
         loadGunAnimations("Projectile_4", GUN_SHEET, 5, 2636, 64, 0);
-        //Check:ON: MagicNumber
+        // Check:ON: MagicNumber
 
         loadImages();
     }
@@ -93,7 +93,7 @@ public final class AssetManager {
     }
 
     public void loadImages() {
-        //Check:OFF: MagicNumber
+        // Check:OFF: MagicNumber
         // Tiles
         final GameSheets tileSheet = new GameSheets(Path.of("res/tilesheet.png"));
         int count = 1;
@@ -132,16 +132,19 @@ public final class AssetManager {
         allImages.put("fire", tileSheet.cutImage(0, 160, 8, 21));
         allImages.put("potion", tileSheet.cutImage(0, 181, 9, 11));
         allImages.put("gun", tileSheet.cutImage(0, 193, 21, 17));
-        //Check:ON: MagicNumber
+        // Check:ON: MagicNumber
     }
-    public void loadAnimations(final String name, final Path image, final int numFrames, final int offset, final int dimension, final boolean flip) {
+
+    public void loadAnimations(final String name, final Path image, final int numFrames, final int offset,
+            final int dimension, final boolean flip) {
         final GameSheets sheet = new GameSheets(image);
         final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
         for (int i = 0; i < numFrames; i++) {
             if (!flip) {
                 res.add(Optional.of(sheet.cutImage(dimension * i, offset * dimension, dimension, dimension)));
             } else {
-                res.add(horizontalFlip(Optional.of(sheet.cutImage(dimension * i, offset * dimension, dimension, dimension))));
+                res.add(horizontalFlip(
+                        Optional.of(sheet.cutImage(dimension * i, offset * dimension, dimension, dimension))));
             }
 
         }
@@ -155,23 +158,24 @@ public final class AssetManager {
                 if (!flip) {
                     res.add(ImageLoader.loadImage(Path.of("res/boss/Golem_Idle_" + (i + 1) + EXTENSION)));
                 } else {
-                    res.add(horizontalFlip(ImageLoader.loadImage(Path.of("res/boss/Golem_Idle_" + (i + 1) + EXTENSION))));
+                    res.add(horizontalFlip(
+                            ImageLoader.loadImage(Path.of("res/boss/Golem_Idle_" + (i + 1) + EXTENSION))));
                 }
             } else {
                 if (!flip) {
                     res.add(ImageLoader.loadImage(Path.of("res/boss/Golem_Walk_" + (i + 1) + EXTENSION)));
                 } else {
-                    res.add(horizontalFlip(ImageLoader.loadImage(Path.of("res/boss/Golem_Walk_" + (i + 1) + EXTENSION))));
+                    res.add(horizontalFlip(
+                            ImageLoader.loadImage(Path.of("res/boss/Golem_Walk_" + (i + 1) + EXTENSION))));
                 }
             }
-
-
 
         }
         allAnimations.put(name, res);
     }
 
-    public void loadGunAnimations(final String name, final Path image, final int numFrames, final int y, final int dimension, final int offset) {
+    public void loadGunAnimations(final String name, final Path image, final int numFrames, final int y,
+            final int dimension, final int offset) {
         final GameSheets sheet = new GameSheets(image);
         final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
         for (int i = 0; i < numFrames; i++) {

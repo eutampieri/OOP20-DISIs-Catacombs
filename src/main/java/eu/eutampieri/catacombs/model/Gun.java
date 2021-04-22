@@ -13,7 +13,8 @@ public class Gun extends Weapon {
      * @param ps       Bullet speed
      * @param fr       Weapon fire rate
      */
-    public Gun(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps, final int fr) {
+    public Gun(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
+            final int fr) {
         super(e, tm, x, y, strength, ps, fr);
     }
 }

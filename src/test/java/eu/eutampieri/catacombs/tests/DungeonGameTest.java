@@ -18,6 +18,6 @@ class DungeonGameTest {
         gc.setResizeable(true);
         gc.setScaling(true);
         gc.setTitle("Game");
-        assertEquals(gc.getFps(),60);
+        assertEquals(gc.getFps(), 60);
     }
 }

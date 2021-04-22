@@ -19,7 +19,7 @@ public final class TextLoader {
                 final String str = scan.next() + " ";
                 sb.append(str);
 
-          }
+            }
             return Optional.of(sb.toString());
         } catch (IOException e) {
             return Optional.empty();
