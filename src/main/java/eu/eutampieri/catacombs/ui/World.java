@@ -11,6 +11,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -149,11 +150,6 @@ public class World {
             }
         }
 
-        // TODO render method
-        // this.tileMap.render(g2, camera);
-
-        // slimes
-
         Stream.concat(this.entities.stream(), Stream.of(this.player))
                 .filter((x) -> this.isOnCamera(x.getPosX(), x.getPosY()))
                 .forEach((currentObj) -> {
@@ -162,8 +158,14 @@ public class World {
                     try {
                     final Entity currentEntity = (Entity) currentObj;
                     final Pair<Action, Direction> action = currentEntity.getActionWithDirection();
-                    final BufferedImage img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight()).get(0);
-                    g2.drawImage(img, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
+                    final List<BufferedImage> img = AssetManagerProxy.getFrames(currentEntity, action.getLeft(), action.getRight());
+                    if (currentEntity.isMoving()) {
+                        Animation animation = new Animation(img.stream().map(Optional::of).collect(Collectors.toList()), 0.5f);
+                        BufferedImage toShow = animation.getCurrentFrame().get();
+                        g2.drawImage(toShow, null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
+                    } else {
+                        g2.drawImage(img.get(0), null, currentEntity.getPosX() - camera.getXOffset(), currentEntity.getPosY() - camera.getYOffset());
+                    }
                 } catch (ClassCastException e) {
                     // Treat it as a game object
                     final BufferedImage img = AssetManagerProxy.getSprite(currentObj);
