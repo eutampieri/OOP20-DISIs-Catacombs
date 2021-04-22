@@ -20,18 +20,21 @@ public final class ImageLoader {
      * @return an optiona of Buffered image
      */
     public static Optional<BufferedImage> loadImage(final Path path) {
-        BufferedImage image;
-        try {
-            InputStream file = Thread.currentThread().getContextClassLoader().getResourceAsStream(path.toString());
+        try (InputStream file = Thread.currentThread().getContextClassLoader().getResourceAsStream(path.toString())) {
             if (file == null) {
                 return Optional.empty();
             }
-            image = ImageIO.read(file);
-        } catch (IOException e) {
+            try {
+                final BufferedImage image = ImageIO.read(file);
+                return Optional.of(image);
+            } catch (IOException e) {
+                return Optional.empty();
+            }
+        } catch (IOException inputStreamException) {
+            inputStreamException.printStackTrace();
             return Optional.empty();
         }
 
-        return Optional.of(image);
     }
 
 }
