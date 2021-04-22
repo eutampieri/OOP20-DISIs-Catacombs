@@ -20,7 +20,7 @@ public final class Projectile extends GameObject implements HealthModifier {
     }
 
     @Override
-    public void update(final long delta, final List<GameObject> others) {
+    public List<GameObject> update(final long delta, final List<GameObject> others) {
         posX += this.speedX;
         posY += this.speedY;
         this.hitBox.move(this.speedX, this.speedY);
@@ -42,6 +42,7 @@ public final class Projectile extends GameObject implements HealthModifier {
                 (this.posY + this.getHitBox().getHeight()) / AssetManagerProxy.getMapTileSize()).isWalkable()) {
             this.toErase = true;
         }
+        return List.of();
     }
 
     @Override
