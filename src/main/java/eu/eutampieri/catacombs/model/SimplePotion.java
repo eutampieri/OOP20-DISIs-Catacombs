@@ -28,7 +28,8 @@ public final class SimplePotion extends GameObject implements HealthModifier {
     }
 
     @Override
-    public void update(final long delta, final List<GameObject> others) {
+    public List<GameObject> update(final long delta, final List<GameObject> others) {
+        return List.of();
     }
 
     @Override
