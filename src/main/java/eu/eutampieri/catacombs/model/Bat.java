@@ -74,11 +74,12 @@ public final class Bat extends Entity {
                 .findFirst()
                 .get()
                 .getHitBox()
-                .overlaps(this.radarBox) && this.weapon.canFire()) {
-
+                .overlaps(this.radarBox) && this.weapon.canFire) {
             setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
+            this.weapon.setCanFire(false);
         } else {
             resetShootingDirection();
+            this.weapon.setCanFire(false);
         }
         super.update(delta, others);
         updateRadarBoxLocation();
@@ -142,8 +143,7 @@ public final class Bat extends Entity {
 
     @Override
     public List<GameObject> spawnObject(){
-        if (weapon.canFire) {
-            this.weapon.setCanFire(false);
+        if (this.weapon.canFire) {
             return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
         }
         return List.of();
