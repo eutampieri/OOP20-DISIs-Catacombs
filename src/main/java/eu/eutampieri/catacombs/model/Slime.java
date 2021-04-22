@@ -13,17 +13,17 @@ public final class Slime extends Entity {
 
     private static final int HEIGHT = 16;
     private static final int WIDTH = 16;
-    private static final int MOVEMENT_SPEED = 4;
+    private static final int MOVEMENT_SPEED = 1;
     private static final int HEALTH = 10;
     private static final String NAME = "Slime";
-    private static final int CB_POS_MOD = 4;
-    private static final int CB_DIM_MOD = 9;
+    private static final int CB_POS_MOD = 15;
+    private static final int CB_DIM_MOD = 30;
     /* private static final int DAMAGE_ON_HIT = 5; */
 
     /**
      * Character followed by the slime.
      */
-    private Entity characterToFollow;
+    private GameObject characterToFollow;
     /**
      * Slime aggro box.
      */
@@ -49,9 +49,19 @@ public final class Slime extends Entity {
     @Override
     public void update(final long delta, final List<GameObject> others) {
         resetMovement();
+        if (others.stream().filter((x) -> x instanceof Player)
+                .findFirst()
+                .get()
+                .getHitBox()
+                .overlaps(this.radarBox)){
+            setCharacterToFollow(others.stream().filter((x) -> x instanceof Player).findFirst().get());
+        } else {
+            setCharacterToFollow(null);
+        }
         follow();
         super.update(delta, others);
         updateRadarBoxLocation();
+        this.resetMovement();
     }
 
     @Override
@@ -75,20 +85,19 @@ public final class Slime extends Entity {
     }
 
     /**
-     * Utility method useful and used in GameState to make the Slime follow an
-     * Entity (most likely the Player). With this method Slimes can follow every
-     * entity.
+     * Utility method useful and used in GameState to make the Slime follow a
+     * GameObject.
      * 
-     * @param e Entity to follow
+     * @param e GameObject to follow (usually an entity, most likely the player)
      */
-    public void setCharacterToFollow(final Entity e) {
-        characterToFollow = e;
+    public void setCharacterToFollow(final GameObject obj) {
+        characterToFollow = obj;
     }
 
     /**
      * @return Character followed by the slime
      */
-    public Entity getCharacterToFollow() {
+    public GameObject getCharacterToFollow() {
         return characterToFollow;
     }
 
@@ -101,13 +110,19 @@ public final class Slime extends Entity {
         }
         if (characterToFollow.getPosX() < posX) {
             left = true;
-        } else if (characterToFollow.getPosX() >= posX) {
+        } else if (characterToFollow.getPosX() > posX) {
             right = true;
+        } else {
+            right = false;
+            left = false;
         }
-        if (characterToFollow.getPosX() < posY) {
+        if (characterToFollow.getPosY() < posY) {
             up = true;
-        } else if (characterToFollow.getPosX() >= posY) {
+        } else if (characterToFollow.getPosY() > posY) {
             down = true;
+        } else {
+            up = false;
+            down = false;
         }
     }
 

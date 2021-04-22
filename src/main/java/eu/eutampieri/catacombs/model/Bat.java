@@ -70,7 +70,7 @@ public final class Bat extends Entity {
                 .findFirst()
                 .get()
                 .getHitBox()
-                .overlaps(this.getHitBox()) && this.weapon.canFire()){
+                .overlaps(this.radarBox) && this.weapon.canFire()){
             setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
             spawnObject();
         } else {
