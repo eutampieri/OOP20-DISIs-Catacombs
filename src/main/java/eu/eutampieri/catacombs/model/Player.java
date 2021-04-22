@@ -5,7 +5,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 
-public class Player extends Entity {
+public final class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 4;
     private static final int MAX_BASE_HP = 100;
     private static final int SIZE = 32;
@@ -22,7 +22,8 @@ public class Player extends Entity {
         this.setHealth(MAX_BASE_HP);
         this.name = name;
         this.face = Direction.RIGHT;
-        this.weapon = new Gun(this, tm, x, y, INITIAL_WEAPON_DAMAGE, BASE_MOVEMENT_SPEED * 10, INITIAL_WEAPON_FIRE_RATE, this.getTeam());
+        this.weapon = new Gun(this, tm, x, y, INITIAL_WEAPON_DAMAGE, BASE_MOVEMENT_SPEED * 10,
+                INITIAL_WEAPON_FIRE_RATE, this.getTeam());
     }
 
     /**
@@ -56,36 +57,40 @@ public class Player extends Entity {
     @Override
     public boolean canPerform(final Action action) {
         switch (action) {
-            case ATTACK:
-            case MOVE:
-            case DIE:
-                return true;
-            default:
-                return false;
+        case ATTACK:
+        case MOVE:
+        case DIE:
+            return true;
+        default:
+            return false;
         }
     }
 
-    public final void move(final Direction d) {
+    public void move(final Direction d) {
         this.resetMovement();
         switch (d) {
-            case UP:
-                this.up = true;
-                break;
-            case DOWN:
-                this.down = true;
-                break;
-            case LEFT:
-                this.left = true;
-                break;
-            case RIGHT:
-                this.right = true;
-                break;
+        case UP:
+            this.up = true;
+            break;
+        case DOWN:
+            this.down = true;
+            break;
+        case LEFT:
+            this.left = true;
+            break;
+        case RIGHT:
+            this.right = true;
+            break;
+        default:
+            break;
         }
     }
+
     public void stop() {
-			this.resetMovement();
-		}
-    public boolean isMoving(){
+        this.resetMovement();
+    }
+
+    public boolean isMoving() {
         return this.right || this.left || this.up || this.down;
     }
 
@@ -102,19 +107,19 @@ public class Player extends Entity {
 
     @Override
     public List<GameObject> spawnObject() {
-        if(this.fire) {
+        if (this.fire) {
             this.fire = false;
             switch (this.face) {
-                case DOWN:
-                    return this.weapon.fire(0, 1);
-                case RIGHT:
-                    return this.weapon.fire(1, 0);
-                case LEFT:
-                    return this.weapon.fire(-1, 0);
-                case UP:
-                    return this.weapon.fire(0, -1);
-                default:
-                    return List.of();
+            case DOWN:
+                return this.weapon.fire(0, 1);
+            case RIGHT:
+                return this.weapon.fire(1, 0);
+            case LEFT:
+                return this.weapon.fire(-1, 0);
+            case UP:
+                return this.weapon.fire(0, -1);
+            default:
+                return List.of();
             }
         } else {
             return List.of();
@@ -126,20 +131,15 @@ public class Player extends Entity {
         super.update(delta, others);
         this.weapon.update(delta, others);
 
-        others.parallelStream()
-                .filter((x) -> x instanceof Weapon)
-                .filter((x) -> x.getHitBox().overlaps(this.getHitBox()))
-                .map((x) -> (Weapon)(x))
-                .findAny()
+        others.parallelStream().filter((x) -> x instanceof Weapon)
+                .filter((x) -> x.getHitBox().overlaps(this.getHitBox())).map((x) -> (Weapon) (x)).findAny()
                 .ifPresent((x) -> {
                     x.setUser(this);
                     this.weapon = x;
                 });
 
-        others.parallelStream()
-                .filter((x) -> x instanceof HealthModifier && !(x instanceof Projectile))
-                .filter((x) -> x.getHitBox().overlaps(this.getHitBox()))
-                .map((x) -> (HealthModifier)(x))
+        others.parallelStream().filter((x) -> x instanceof HealthModifier && !(x instanceof Projectile))
+                .filter((x) -> x.getHitBox().overlaps(this.getHitBox())).map((x) -> (HealthModifier) (x))
                 .forEach((x) -> x.useOn(this));
     }
 }

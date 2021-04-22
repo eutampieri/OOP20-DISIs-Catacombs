@@ -4,7 +4,7 @@ import eu.eutampieri.catacombs.model.map.TileMap;
 
 import java.util.List;
 
-public abstract class Weapon extends GameObject{
+public abstract class Weapon extends GameObject {
 
     /**
      * Projectile strength.
@@ -39,15 +39,17 @@ public abstract class Weapon extends GameObject{
 
     /**
      *
-     * @param e Entity using weapon
-     * @param tm Tile map
-     * @param x X position
-     * @param y Y position
+     * @param e        Entity using weapon
+     * @param tm       Tile map
+     * @param x        X position
+     * @param y        Y position
      * @param strength Bullet strength
-     * @param ps Bullet speed
-     * @param fr Weapon fire rate
+     * @param ps       Bullet speed
+     * @param fr       Weapon fire rate
+     * @param team     Shooting entity team
      */
-    public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps, final int fr, final Team team) {
+    public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
+            final int fr, final Team team) {
         super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, 0, 0), team);
         this.user = e;
         setTileMap(tm);

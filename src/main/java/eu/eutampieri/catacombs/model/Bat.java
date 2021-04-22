@@ -3,7 +3,7 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.List;
 
 /**
@@ -95,11 +95,11 @@ public final class Bat extends Entity {
     @Override
     public boolean canPerform(final Action action) {
         switch (action) {
-            case ATTACK:
-            case MOVE:
-                return true;
-            default:
-                return false;
+        case ATTACK:
+        case MOVE:
+            return true;
+        default:
+            return false;
         }
     }
 

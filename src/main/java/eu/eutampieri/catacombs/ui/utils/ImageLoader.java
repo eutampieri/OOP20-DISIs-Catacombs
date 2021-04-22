@@ -9,19 +9,24 @@ import javax.imageio.ImageIO;
 
 public final class ImageLoader {
 
-	private ImageLoader() {
+    private ImageLoader() {
 
-	}
+    }
 
-	public static Optional<BufferedImage> loadImage(final Path path) {
-		BufferedImage image;
-		try {
-			image = ImageIO.read(path.toFile());
-		} catch (IOException e) {
-			return Optional.empty();
-		}
+    /**
+     * This methos loads image from a path.
+     * @param path the path to find the image
+     * @return an optiona of Buffered image
+     */
+    public static Optional<BufferedImage> loadImage(final Path path) {
+        BufferedImage image;
+        try {
+            image = ImageIO.read(path.toFile());
+        } catch (IOException e) {
+            return Optional.empty();
+        }
 
-		return Optional.of(image);		
-	}
+        return Optional.of(image);
+    }
 
 }

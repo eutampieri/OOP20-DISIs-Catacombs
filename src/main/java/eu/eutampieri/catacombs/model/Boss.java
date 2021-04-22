@@ -17,7 +17,7 @@ public final class Boss extends Entity {
     private static final int MOVE_DELAY = 5;
     private static final int PAUSE_DELAY = 5;
 
-    //private final SimpleWeapon weapon;
+    // private final SimpleWeapon weapon;
     private boolean isMoving;
     private int delayCounter;
     private int pauseCounter;
@@ -63,7 +63,7 @@ public final class Boss extends Entity {
 
         super.update(delta, others);
         updateRadarBoxLocation();
-        //weapon.update(delta, others);
+        // weapon.update(delta, others);
     }
 
     @Override
@@ -74,11 +74,11 @@ public final class Boss extends Entity {
     @Override
     public boolean canPerform(final Action action) {
         switch (action) {
-            case IDLE:
-            case MOVE:
-                return true;
-            default:
-                return false;
+        case IDLE:
+        case MOVE:
+            return true;
+        default:
+            return false;
         }
     }
 

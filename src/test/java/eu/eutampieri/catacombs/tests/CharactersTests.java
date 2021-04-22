@@ -1,31 +1,42 @@
 package eu.eutampieri.catacombs.tests;
 
+import eu.eutampieri.catacombs.model.Bat;
+import eu.eutampieri.catacombs.model.Boss;
+import eu.eutampieri.catacombs.model.GameObject;
+import eu.eutampieri.catacombs.model.GameObjectType;
+import eu.eutampieri.catacombs.model.Gun;
+import eu.eutampieri.catacombs.model.HealthModifier;
+import eu.eutampieri.catacombs.model.Player;
+import eu.eutampieri.catacombs.model.Projectile;
+import eu.eutampieri.catacombs.model.Slime;
+import eu.eutampieri.catacombs.model.Weapon;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.model.map.TileMapFactoryImpl;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.junit.jupiter.api.Test;
-import eu.eutampieri.catacombs.model.*;
 import org.junit.jupiter.api.TestInstance;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CharactersTests {
 
-    private final static TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
-    private final static Bat BAT = new Bat(1, 1, TILE_MAP);
-    private final static Slime SLIME = new Slime(
+     private static final TileMap TILE_MAP = new TileMapFactoryImpl().empty(20, 20);
+     private static final Bat BAT = new Bat(1, 1, TILE_MAP);
+     private static final Slime SLIME = new Slime(
+             AssetManagerProxy.getMapTileSize() * 2,
             AssetManagerProxy.getMapTileSize() * 2,
-            AssetManagerProxy.getMapTileSize() * 2,
-            TILE_MAP
-    );
-    private final static Boss BOSS = new Boss(5, 5, TILE_MAP);
-    private final static Weapon GUN = new Gun(null, TILE_MAP, 0, 0, 1, 1, 1, GameObject.Team.FREIND);
-    private final static HealthModifier ONE_HP_SUB = (Projectile)GUN.fire(0,0).get(0);
-    private final static Player PLAYER = new Player(0, 0, "John Appleseed", TILE_MAP);
+             TILE_MAP
+     );
+     private static final Boss BOSS = new Boss(5, 5, TILE_MAP);
+     private static final Weapon GUN = new Gun(null, TILE_MAP, 0, 0, 1, 1, 1, GameObject.Team.ENEMY);
+     private static final HealthModifier ONE_HP_SUB = (Projectile) GUN.fire(0, 0).get(0);
+     private static final Player PLAYER = new Player(0, 0, "John Appleseed", TILE_MAP);
 
     @Test
     void testPlayerName() {
