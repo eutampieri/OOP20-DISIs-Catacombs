@@ -19,7 +19,7 @@ public final class Bat extends Entity {
     private static final int CB_POS_MOD = 10;
     private static final int CB_DIM_MOD = 35;
     private static final int BASE_DAMAGE = 2;
-    private static final int BASE_FIRE_RATE = 4;
+    private static final int BASE_FIRE_RATE = 1;
     private static final int BASE_PROJECTILE_SPEED = 15;
     private static final String NAME = "Bat";
     private static final long MOVE_DELAY = 5L * 100;
@@ -139,7 +139,7 @@ public final class Bat extends Entity {
 
     @Override
     public List<GameObject> spawnObject(){
-        if (this.weapon.canFire) {
+        if (this.weapon.canFire && this.getShootingDirection().getX() != 0 && this.getShootingDirection().getY() != 0) {
             return weapon.fire((int)this.getShootingDirection().getX(), (int)this.getShootingDirection().getY());
         }
         return List.of();

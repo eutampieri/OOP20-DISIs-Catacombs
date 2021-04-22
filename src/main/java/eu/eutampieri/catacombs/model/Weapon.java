@@ -56,7 +56,7 @@ public abstract class Weapon extends GameObject {
         setStrength(strength);
         setProjectileSpeed(ps);
         setFireRate(fr);
-        setFireDelay(fireRate * 100);
+        setFireDelay(Math.round(1000f / fireRate));
         setCanFire(true);
         this.fireDelayCount = 0;
     }

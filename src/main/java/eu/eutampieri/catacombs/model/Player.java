@@ -10,7 +10,7 @@ public final class Player extends Entity {
     private static final int MAX_BASE_HP = 100;
     private static final int SIZE = 26;
     private static final int INITIAL_WEAPON_DAMAGE = 5;
-    private static final int INITIAL_WEAPON_FIRE_RATE = 10;
+    private static final int INITIAL_WEAPON_FIRE_RATE = 3;
     private int health;
     private final String name;
     private boolean fire;
