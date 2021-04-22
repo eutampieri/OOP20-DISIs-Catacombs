@@ -1,4 +1,4 @@
-package eu.eutampieri.catacombs.model.mobgen;
+package eu.eutampieri.catacombs.model.gen;
 
 import eu.eutampieri.catacombs.model.Bat;
 import eu.eutampieri.catacombs.model.Entity;
@@ -19,7 +19,7 @@ public final class MobFactoryImpl implements MobFactory {
     private final transient Random rand = new Random();
 
     public MobFactoryImpl(final TileMap tileMap) {
-        this.setNewTileMap(tileMap);
+        this.tileMap = tileMap;
     }
 
     /**
@@ -31,7 +31,7 @@ public final class MobFactoryImpl implements MobFactory {
     }
 
     @Override
-    public List<Entity> spawnAt(final int x, final int y, final EntityFactory f) {
+    public List<Entity> spawnAt(final int x, final int y, final Obj f) {
         if (f == null || !tileMap.canSpawnAt(x, y)) {
             return List.of();
         }
@@ -41,7 +41,7 @@ public final class MobFactoryImpl implements MobFactory {
     }
 
     @Override
-    public List<Entity> spawnSome(final int n, final EntityFactory f) {
+    public List<Entity> spawnSome(final int n, final Obj f) {
         if (f == null) {
             return List.of();
         }
