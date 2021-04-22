@@ -5,6 +5,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.Point;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Bat class - the bat is an enemy that mostly stands still and fires bullets.
@@ -13,7 +14,7 @@ public final class Bat extends Entity {
 
     private static final int HEIGHT = 16;
     private static final int WIDTH = 16;
-    private static final int MOVEMENT_SPEED = 1;
+    private static final int MOVEMENT_SPEED = 2;
     private static final int HEALTH = 8;
     private static final int CB_POS_MOD = 4;
     private static final int CB_DIM_MOD = 9;
@@ -21,8 +22,8 @@ public final class Bat extends Entity {
     private static final int BASE_FIRE_RATE = 2;
     private static final int BASE_PROJECTILE_SPEED = 2;
     private static final String NAME = "Bat";
-    private static final long MOVE_DELAY = 1_000_000_000;
-    private static final long PAUSE_DELAY = 7L * 1_000_000_000;
+    private static final long MOVE_DELAY = 15L * TimeUnit.SECONDS.toMillis(1);
+    private static final long PAUSE_DELAY = 50L * TimeUnit.SECONDS.toMillis(1);
 
     private final Weapon weapon;
     private boolean isMoving;
@@ -73,10 +74,9 @@ public final class Bat extends Entity {
                 .findFirst()
                 .get()
                 .getHitBox()
-                .overlaps(this.getHitBox()) && this.weapon.canFire()) {
+                .overlaps(this.radarBox) && this.weapon.canFire()) {
 
             setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
-            spawnObject();
         } else {
             resetShootingDirection();
         }
@@ -143,6 +143,7 @@ public final class Bat extends Entity {
     @Override
     public List<GameObject> spawnObject(){
         if (weapon.canFire) {
+            this.weapon.setCanFire(false);
             return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
         }
         return List.of();

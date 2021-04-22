@@ -8,9 +8,9 @@ import java.util.List;
 public final class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 4;
     private static final int MAX_BASE_HP = 100;
-    private static final int SIZE = 32;
+    private static final int SIZE = 26;
     private static final int INITIAL_WEAPON_DAMAGE = 5;
-    private static final int INITIAL_WEAPON_FIRE_RATE = 1;
+    private static final int INITIAL_WEAPON_FIRE_RATE = 10;
     private int health;
     private final String name;
     private boolean fire;
@@ -22,7 +22,7 @@ public final class Player extends Entity {
         this.setHealth(MAX_BASE_HP);
         this.name = name;
         this.face = Direction.RIGHT;
-        this.weapon = new Gun(this, tm, x, y, INITIAL_WEAPON_DAMAGE, BASE_MOVEMENT_SPEED * 10,
+        this.weapon = new Gun(this, tm, x, y, INITIAL_WEAPON_DAMAGE, 10,
                 INITIAL_WEAPON_FIRE_RATE, this.getTeam());
     }
 
@@ -124,9 +124,6 @@ public final class Player extends Entity {
 
     @Override
     public void update(final long delta, final List<GameObject> others) {
-        super.update(delta, others);
-        this.weapon.update(delta, others);
-
         others.parallelStream().filter((x) -> x instanceof Weapon)
                 .filter((x) -> x.getHitBox().overlaps(this.getHitBox())).map((x) -> (Weapon) (x)).findAny()
                 .ifPresent((x) -> {
@@ -137,5 +134,16 @@ public final class Player extends Entity {
         others.parallelStream().filter((x) -> x instanceof HealthModifier && !(x instanceof Projectile))
                 .filter((x) -> x.getHitBox().overlaps(this.getHitBox())).map((x) -> (HealthModifier) (x))
                 .forEach((x) -> x.useOn(this));
+
+        super.update(delta, others);
+        this.weapon.update(delta, others);
+    }
+
+    public Weapon getWeapon() {
+        return this.weapon;
+    }
+
+    public void setWeapon(final Weapon weapon) {
+        this.weapon = weapon;
     }
 }

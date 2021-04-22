@@ -75,8 +75,9 @@ public final class World {
             this.player.move(Direction.RIGHT);
         }
 
-        if (this.km.fire()) {
+        if (this.km.fire() && this.player.getWeapon().canFire()) {
             this.player.fire();
+            this.player.getWeapon().setCanFire(false);
         }
 
         player.update(delta, this.getAllEntitiesExcept(this.player));
