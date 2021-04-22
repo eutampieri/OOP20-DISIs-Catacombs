@@ -46,6 +46,7 @@ public abstract class Weapon extends GameObject {
      * @param strength Bullet strength
      * @param ps       Bullet speed
      * @param fr       Weapon fire rate
+     * @param team     Shooting entity team
      */
     public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
             final int fr, final Team team) {

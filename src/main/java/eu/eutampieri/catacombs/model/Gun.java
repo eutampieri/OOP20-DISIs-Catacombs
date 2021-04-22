@@ -12,6 +12,7 @@ public class Gun extends Weapon {
      * @param damage   Bullet strength
      * @param ps       Bullet speed
      * @param fireRate Weapon fire rate
+     * @param team     The team, i.e. if it's not an enemy
      */
     public Gun(final Entity e, final TileMap tm, final int x, final int y, final int damage, final int ps,
             final int fireRate, final Team team) {
