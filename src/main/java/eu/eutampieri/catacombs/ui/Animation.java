@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class Animations {
+public class Animation {
 
     private List<Optional<BufferedImage>> frames;
     private float frameDelay;
@@ -16,13 +16,13 @@ public class Animations {
     private boolean reverse;
     private boolean reverseMode;
 
-    public Animations(final List<Optional<BufferedImage>> frames, final float frameDelay) {
+    public Animation(final List<Optional<BufferedImage>> frames, final float frameDelay) {
         this.frames = frames;
         this.index = 0;
         this.frameDelay = frameDelay;
     }
 
-    public Animations(final String frameskey, final float frameDelay) {
+    public Animation(final String frameskey, final float frameDelay) {
         this(AssetManager.getAssetManager().getFrames(frameskey), frameDelay);
     }
 
@@ -109,7 +109,7 @@ public class Animations {
 
     }
 
-    public void copyState(final Animations animation) {
+    public void copyState(final Animation animation) {
         this.timer = animation.getTimer();
         this.index = animation.getIndex();
     }
