@@ -2,6 +2,8 @@ package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
 
+import java.util.List;
+
 public class Gun extends Weapon {
 
     /**

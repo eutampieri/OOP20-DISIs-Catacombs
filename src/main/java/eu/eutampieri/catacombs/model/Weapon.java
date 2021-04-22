@@ -17,7 +17,7 @@ public abstract class Weapon extends GameObject{
     /**
      * weapon fire rate.
      */
-    protected long fr;
+    protected int fr;
     /**
      * Stores if the weapon can fire.
      */
@@ -47,7 +47,7 @@ public abstract class Weapon extends GameObject{
      * @param ps Bullet speed
      * @param fr Weapon fire rate
      */
-    public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps, final long fr) {
+    public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps, final int fr) {
         super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, 0, 0));
         this.user = e;
         setTileMap(tm);
