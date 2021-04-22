@@ -12,6 +12,9 @@ import java.util.Random;
 
 public final class MobFactoryImpl implements MobFactory {
 
+    /**
+     * The maximum number of mods generated.
+     */
     public static final int MAX_MOB_NUMBER = 69;
     private static final int MOB_KIND_NUMBER = 2;
 
