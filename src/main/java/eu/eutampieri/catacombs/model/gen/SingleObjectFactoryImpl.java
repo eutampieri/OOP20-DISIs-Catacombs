@@ -26,7 +26,7 @@ public class SingleObjectFactoryImpl implements SingleObjectFactory {
     }
 
     @Override
-    public List<GameObject> spawnAt(final int x, final int y, final SingleObject f) {
+    public List<GameObject> spawnAt(final int x, final int y, final SingleObject<GameObject> f) {
         if (f == null || !tileMap.canSpawnAt(x, y)) {
             return List.of();
         }
@@ -36,7 +36,7 @@ public class SingleObjectFactoryImpl implements SingleObjectFactory {
     }
 
     @Override
-    public List<GameObject> spawnSome(final int n, final SingleObject f) {
+    public List<GameObject> spawnSome(final int n, final SingleObject<GameObject> f) {
         if (f == null) {
             return List.of();
         }
