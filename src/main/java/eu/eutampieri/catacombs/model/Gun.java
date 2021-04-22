@@ -2,8 +2,6 @@ package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
 
-import java.util.List;
-
 public class Gun extends Weapon {
 
     /**
@@ -16,7 +14,7 @@ public class Gun extends Weapon {
      * @param fireRate Weapon fire rate
      */
     public Gun(final Entity e, final TileMap tm, final int x, final int y, final int damage, final int ps,
-            final int fireRate) {
-        super(e, tm, x, y, damage, ps, fireRate);
+            final int fireRate, final Team team) {
+        super(e, tm, x, y, damage, ps, fireRate, team);
     }
 }

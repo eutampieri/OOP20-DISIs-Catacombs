@@ -48,7 +48,7 @@ public abstract class Weapon extends GameObject {
      * @param fr       Weapon fire rate
      */
     public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
-            final long fr, final Team team) {
+            final int fr, final Team team) {
         super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, 0, 0), team);
         this.user = e;
         setTileMap(tm);

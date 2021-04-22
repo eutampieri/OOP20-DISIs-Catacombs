@@ -44,7 +44,7 @@ public final class Bat extends Entity {
         radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
                 height * CB_DIM_MOD);
         weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(), BASE_DAMAGE,
-                BASE_PROJECTILE_SPEED, BASE_FIRE_RATE) {
+                BASE_PROJECTILE_SPEED, BASE_FIRE_RATE, this.getTeam()) {
         };
         shootingDirection = new Point(0, 0);
 
