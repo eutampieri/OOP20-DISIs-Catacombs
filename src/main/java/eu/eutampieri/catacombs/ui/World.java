@@ -17,20 +17,17 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class World {
-    // private final BufferedImage background;
     private final TileMap tileMap;
     private final KeyManagerProxy km = new KeyManagerProxy();
     private final DungeonGame game;
-    // private final DungeonGame game = new DungeonGame();
-    // TODO Camera
     private final Camera camera;
+    private boolean bossHasBeenSpawned;
 
     private List<GameObject> entities;
 
     private Player player;
 
     public World(final TileMap tileMap, final DungeonGame game) {
-        // this.background = am.getImage("background");
         this.tileMap = tileMap;
         final MobFactory mf = new MobFactoryImpl(this.tileMap);
         camera = new Camera(0, 0, tileMap.width() * AssetManagerProxy.getMapTileSize(),
@@ -45,10 +42,6 @@ public final class World {
         }));
 
         this.player = (Player) mf.spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm)).get(0);
-        /* for boss debugging purpose */
-        /* this.entities.addAll(mf.spawnAt((this.player.getPosX() - this.camera.getXOffset()) / AssetManagerProxy.getMapTileSize() + 1,
-                (this.player.getPosY() - this.camera.getYOffset()) / AssetManagerProxy.getMapTileSize() + 1,
-                Boss::new).stream().map((x) -> (GameObject) x).collect(Collectors.toList())); */
 
         this.game = game;
         this.entities.addAll(mf.spawnNear(20, this.player, Boss::new));
@@ -142,12 +135,17 @@ public final class World {
                 });
     }
 
+    private boolean playerHasKilledAllEntities() {
+        return this.entities.parallelStream()
+                .map((x) -> x.getKind())
+                .filter((x) -> x == GameObjectType.ENEMY || x == GameObjectType.BOSS)
+                .count() == 0;
+    }
+
     public boolean playerHasWon() {
         return this.player.isAlive() &&
-                this.entities.stream()
-                        .map((x) -> x.getKind())
-                        .filter((x) -> x == GameObjectType.ENEMY || x == GameObjectType.BOSS)
-                .count() == 0;
+                this.playerHasKilledAllEntities()
+                && this.bossHasBeenSpawned;
     }
 
     private static final class KeyManagerProxy {
