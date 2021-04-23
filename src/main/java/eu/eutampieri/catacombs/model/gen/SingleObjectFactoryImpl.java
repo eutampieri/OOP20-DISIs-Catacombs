@@ -13,6 +13,10 @@ public class SingleObjectFactoryImpl implements SingleObjectFactory {
     private TileMap tileMap;
     private final transient Random rand = new Random();
 
+    /**
+     *
+     * @param tileMap Tile map in which to spawn mobs
+     */
     public SingleObjectFactoryImpl(final TileMap tileMap) {
         this.tileMap = tileMap;
     }

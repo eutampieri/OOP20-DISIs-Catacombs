@@ -9,11 +9,11 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.List;
 
 /**
- * Abstract class for every living game Entity.
+ * Abstract class for every living object.
  */
 public abstract class Entity extends GameObject implements LivingCharacter, Animatable {
     /**
-     * Booleans to keep track of face direction.
+     * Booleans to keep track of movement direction.
      */
     protected boolean up, down, right, left;
     /**
@@ -27,7 +27,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     /**
      * Entity dimensions.
      */
-    protected int width, height, size; // Entity width and height
+    protected int width, height, size;
     /**
      * Tile map where the entity is.
      */
@@ -44,12 +44,11 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
         this.tileMap = tileMap;
         this.width = width;
         this.height = height;
-        this.size = width >= height ? width : height;
+        this.size = Math.max(width, height);
     }
 
     /**
      * Getter for width.
-     *
      * @return Entity width
      */
     public final int getWidth() {
@@ -58,7 +57,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     /**
      * Setter for width.
-     *
      * @param width Width dimension for the entity
      */
     public final void setWidth(final int width) {
@@ -67,7 +65,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     /**
      * Getter for height.
-     *
      * @return Entity height
      */
     public final int getHeight() {
@@ -76,7 +73,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     /**
      * Setter for height.
-     *
      * @param height Height dimension for the entity
      */
     public final void setHeight(final int height) {
@@ -88,9 +84,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     }
 
     /**
-     * Updates entity status in game loop.
-     *
-     * @param delta time between updates
+     * Updates entity every delta millis.
+     * @param delta Millis between updates
      */
     @Override
     public List<GameObject> update(final long delta, final List<GameObject> others) {
@@ -138,7 +133,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     /**
      * Checks if the Entity is going to collide into a wall while moving up.
-     *
      * @param dy Entity speedY
      * @return true if moving into a wall; false otherwise
      */
@@ -151,7 +145,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     /**
      * Checks if the Entity is going to collide into a wall while moving right.
-     *
      * @param dx Entity speedX
      * @return true if moving into a wall; false otherwise
      */
@@ -164,7 +157,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     /**
      * Checks if the Entity is going to collide into a wall while moving down.
-     *
      * @param dy Entity speedY
      * @return true if moving into a wall; false otherwise
      */
@@ -177,7 +169,6 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
 
     /**
      * Checks if the Entity is going to collide into a wall while moving left.
-     *
      * @param dx Entity speedX
      * @return true if moving into a wall; false otherwise
      */
@@ -217,6 +208,9 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
         return !this.isAlive();
     }
 
+    /**
+     * @return true if the entity is moving; false otherwise.
+     */
     public boolean isMoving(){
         return this.right || this.left || this.up || this.down;
     }

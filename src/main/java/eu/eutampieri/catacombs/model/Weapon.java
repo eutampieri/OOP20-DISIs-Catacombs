@@ -6,6 +6,7 @@ import java.util.List;
 
 public abstract class Weapon extends GameObject {
 
+    private static final float MINUTE_TO_MILLIS = 60_000f;
     private static final int BULLET_DEFAULT_SIZE = 8;
 
     /**
@@ -68,7 +69,7 @@ public abstract class Weapon extends GameObject {
         setStrength(strength);
         setProjectileSpeed(ps);
         setFireRate(fr);
-        setFireDelay(Math.round(60_000f / fireRate));
+        setFireDelay(Math.round(MINUTE_TO_MILLIS / fireRate));
         setCanFire(true);
         this.bulletSize = BULLET_DEFAULT_SIZE;
         this.fireDelayCount = 0;
@@ -82,7 +83,7 @@ public abstract class Weapon extends GameObject {
         setStrength(strength);
         setProjectileSpeed(ps);
         setFireRate(fr);
-        setFireDelay(Math.round(60_000f / fireRate));
+        setFireDelay(Math.round(MINUTE_TO_MILLIS / fireRate));
         setCanFire(true);
         this.bulletKind = kind;
         this.bulletSize = size;
@@ -99,8 +100,8 @@ public abstract class Weapon extends GameObject {
             }
         }
         if (this.user != null) {
-            this.hitBox.setPosX(this.user.getHitBox().getPosX() + this.user.getSize()/2 - 1);
-            this.hitBox.setPosY(this.user.getHitBox().getPosY() + this.user.getSize()/2 - 1);
+            this.hitBox.setPosX(this.user.getHitBox().getPosX() + this.user.getSize() / 2 - 1);
+            this.hitBox.setPosY(this.user.getHitBox().getPosY() + this.user.getSize() / 2 - 1);
         }
         return List.of();
     }
@@ -138,10 +139,10 @@ public abstract class Weapon extends GameObject {
        final Projectile p;
        if (this.bulletKind != null && bulletSize > 8) {
            p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
-                   psx*ps, psy*ps, strength, tileMap, this.getTeam(), this.bulletKind, bulletSize);
+                   psx * ps, psy * ps, strength, tileMap, this.getTeam(), this.bulletKind, bulletSize);
        } else {
            p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
-                   psx*ps, psy*ps, strength, tileMap, this.getTeam());
+                   psx * ps, psy * ps, strength, tileMap, this.getTeam());
        }
        setCanFire(false);
        return List.of(p);
@@ -151,11 +152,11 @@ public abstract class Weapon extends GameObject {
         this.user = user;
     }
 
-    public void setBulletKind (final GameObjectType kind) {
+    public void setBulletKind(final GameObjectType kind) {
         this.bulletKind = kind;
     }
 
-    public void setBulletSize (final int size) {
+    public void setBulletSize(final int size) {
         this.bulletSize = size;
     }
 }

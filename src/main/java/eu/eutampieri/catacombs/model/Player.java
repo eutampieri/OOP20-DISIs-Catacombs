@@ -12,21 +12,19 @@ public final class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 4;
     private static final int MAX_BASE_HP = 100;
     private static final int SIZE = 28;
-    private static final int INITIAL_WEAPON_DAMAGE = 5;
-    private static final int INITIAL_WEAPON_FIRE_RATE = 90;
+
     private int health;
     private final String name;
     private boolean fire;
     private Weapon weapon;
 
     public Player(final int x, final int y, final String name, final TileMap tm) {
-        super(x, y, SIZE, SIZE, tm, GameObjectType.PLAYER, GameObject.Team.FREIND);
+        super(x, y, SIZE, SIZE, tm, GameObjectType.PLAYER, GameObject.Team.FRIEND);
         setSpeed(BASE_MOVEMENT_SPEED);
         this.setHealth(MAX_BASE_HP);
         this.name = name;
         this.face = Direction.RIGHT;
-        this.weapon = new Gun(this, tm, x, y, INITIAL_WEAPON_DAMAGE, 10,
-                INITIAL_WEAPON_FIRE_RATE, this.getTeam());
+        this.weapon = new Gun(this, tm, x, y, this.getTeam());
     }
 
     /**
