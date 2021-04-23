@@ -136,7 +136,7 @@ public final class Boss extends Entity {
     }
 
     /**
-     * Updates the aggro radar's Bat box.
+     * Updates the aggro radar's Boss box.
      */
     private void updateRadarBoxLocation() {
         radarBox.setLocation(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER);
