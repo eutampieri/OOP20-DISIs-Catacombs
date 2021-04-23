@@ -20,7 +20,7 @@ public final class Slime extends Entity implements HealthModifier {
     private static final int RADAR_BOX_POSITION_MODIFIER = 20 * AssetManagerProxy.getMapTileSize();
     private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + Math.max(WIDTH, HEIGHT);
     private static final int DAMAGE_ON_HIT = 5;
-    private static final long HIT_DELAY = 10L * 1_000_000_000;
+    private static final long HIT_DELAY = 1_000;
 
     /**
      * Character followed by the slime.
@@ -76,16 +76,18 @@ public final class Slime extends Entity implements HealthModifier {
         follow();
         super.update(delta, others);
         updateRadarBoxLocation();
-        if (this.getHitBox().overlaps(others.stream().filter((x) -> x instanceof Player)
-                .findFirst()
-                .get()
-                .getHitBox()) && canDmg
-        ) {
-            this.useOn((LivingCharacter) (others.stream().filter((x) -> x instanceof Player).findFirst().get()));
-            canDmg = false;
-        }
         this.resetMovement();
         return List.of();
+    }
+
+    @Override
+    public void useOn(final LivingCharacter character) {
+        if (this.canDmg) {
+            int currentHealth = character.getHealth();
+            currentHealth += this.getHealthDelta();
+            character.setHealth(currentHealth);
+            this.canDmg = false;
+        }
     }
 
     @Override
