@@ -3,8 +3,13 @@ package eu.eutampieri.catacombs.ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+import java.util.Optional;
 
 import eu.eutampieri.catacombs.ui.utils.FontUtils;
+import eu.eutampieri.catacombs.ui.utils.ImageLoader;
 
 /**
  * This class manage the graphical elements of the game menu.
@@ -48,7 +53,6 @@ public final class MenuState extends State {
         super(game);
         this.game = game;
         this.logic = new LogicMenuImpl(this.game);
-
     }
 
     /**
@@ -76,7 +80,7 @@ public final class MenuState extends State {
 
         // title
         g2.setFont(this.titleFont);
-        final String title = "CATACOMBS";
+        final String title = "D.I.S.I.'S CATACOMBS";
         final float x = (float) (game.getGameWidth() - FontUtils.getTextWidth(titleFont, title)) / 2f;
         g2.drawString(title, x, titleFont.getSize() + TITLE_PADDING);
 
@@ -95,6 +99,16 @@ public final class MenuState extends State {
                 : this.titleFont.getSize() + font.getSize() + QUIT_OFFSET;
         g2.fillOval(x3, y, OVAL_SIZE, OVAL_SIZE);
 
+        // image
+        final Optional<BufferedImage> image = ImageLoader.loadImage("res/menucommands.png");
+        final AffineTransform at = new AffineTransform();
+        at.scale(0.4, 0.4);
+        final AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+        BufferedImage resizedImage = new BufferedImage(image.get().getWidth(), image.get().getHeight(), BufferedImage.TYPE_INT_ARGB);
+        resizedImage  = scaleOp.filter(image.get(), resizedImage);
+        g2.drawImage(resizedImage, null,
+                game.getGameWidth() / 2 - resizedImage.getWidth() / 5,
+                game.getGameHeight() / 2);
     }
 
 }
