@@ -85,6 +85,9 @@ public class GameState extends State {
         if (!this.world.getPlayer().isAlive()) {
             this.game.endGame();
         }
+        if (this.world.playerHasWon()) {
+            this.game.winGame();
+        }
     }
 
     /**

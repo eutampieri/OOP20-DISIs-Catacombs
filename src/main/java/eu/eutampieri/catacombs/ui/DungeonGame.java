@@ -95,4 +95,13 @@ public final class DungeonGame extends Game {
         setState(this.transition.transState("Dead", this, endGame));
     }
 
+    /**
+     * This method start the winning transition transition.
+     */
+
+    public void winGame() {
+        final EndGameState endGame = new EndGameState(this);
+        setState(this.transition.transState("WIN!!", this, endGame));
+    }
+
 }
