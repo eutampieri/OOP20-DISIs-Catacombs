@@ -2,8 +2,6 @@ package eu.eutampieri.catacombs.ui.gamefx;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +16,7 @@ import eu.eutampieri.catacombs.ui.utils.ImageRotator;
 
 public final class AssetManager {
 
-    private static final String PLAYER_SHEET = "res" + File.separator  + "playersheet.png";
+    private static final String PLAYER_SHEET = "res/playersheet.png";
     private static final String SLIME_SHEET = "res/slimesheet.png";
     private static final String BAT_SHEET = "res/batsheet.png";
     private static final String GUN_SHEET = "res/projectiles.png";
