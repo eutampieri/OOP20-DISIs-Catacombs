@@ -92,8 +92,7 @@ public final class MobFactoryImpl implements MobFactory {
 
     @Override
     public List<Entity> spawnNear(final int range, final GameObject e, final SingleObject<Entity> f) {
-        final List<Entity> enemy = new ArrayList<>();
-        int randX, randY; int tst = 0;
+        int randX, randY;
 
         do {
             randX = rand.nextInt(range) + 1;
@@ -108,7 +107,6 @@ public final class MobFactoryImpl implements MobFactory {
             randY += e.getPosY() / AssetManagerProxy.getMapTileSize();
 
         } while (!tileMap.canSpawnAt(randX, randY));
-        enemy.addAll(spawnAt(randX, randY, f));
-        return enemy;
+         return spawnAt(randX, randY, f);
     }
 }

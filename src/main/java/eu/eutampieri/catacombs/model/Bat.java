@@ -8,10 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.Point;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Bat class - the bat is an enemy that mostly stands still and fires bullets.

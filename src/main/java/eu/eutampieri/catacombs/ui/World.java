@@ -51,6 +51,7 @@ public final class World {
                 Boss::new).stream().map((x) -> (GameObject) x).collect(Collectors.toList())); */
 
         this.game = game;
+        this.entities.addAll(mf.spawnNear(20, this.player, Boss::new));
     }
 
     public TileMap getTileMap() {
