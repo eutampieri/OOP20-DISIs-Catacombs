@@ -30,7 +30,7 @@ public final class Bat extends Entity {
     private static final String NAME = "Bat";
     private static final long MOVE_DELAY = 5L * 100;
     private static final long PAUSE_DELAY = 10L * 100;
-    private static final int DROP_CHANCE = 1000;
+    private static final int DROP_CHANCE = 10;
 
     private final Weapon weapon;
     private boolean isMoving;
@@ -87,21 +87,20 @@ public final class Bat extends Entity {
                     }
                 }, () -> this.weapon.setCanFire(false));
 
-        super.update(delta, others);
-        updateRadarBoxLocation();
-        weapon.update(delta, others);
         if (!this.isAlive()) {
             this.hasDropped = true;
             if(rand.nextInt(101) <= DROP_CHANCE) {
-                final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);;
-                System.out.println("pot spawned");
-                  return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize() , this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
+                final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
+                return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize() , this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
                         (x, y, tm) -> {
                             final int healingPower = rand.nextInt(101);
                             return new SimplePotion(healingPower, "Potion", x, y);
                         });
             }
         }
+        super.update(delta, others);
+        updateRadarBoxLocation();
+        weapon.update(delta, others);
         if (this.weapon.canFire && this.getShootingDirection().getX() != 0 && this.getShootingDirection().getY() != 0) {
             return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
         }
