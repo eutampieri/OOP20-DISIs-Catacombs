@@ -45,7 +45,7 @@ public abstract class Weapon extends GameObject {
     private GameObjectType bulletKind;
 
     /**
-     *
+     * Bullet size.
      */
     private int bulletSize;
 
