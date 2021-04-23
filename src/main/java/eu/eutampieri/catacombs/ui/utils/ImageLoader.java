@@ -20,7 +20,7 @@ public final class ImageLoader {
     /**
      * This methos loads image from a path.
      * @param path the path to find the image
-     * @return an optiona of Buffered image
+     * @return an optional of Buffered image
      */
     public static Optional<BufferedImage> loadImage(final String path) {
         try (InputStream file = Thread.currentThread().getContextClassLoader().getResourceAsStream(path)) {
