@@ -68,15 +68,14 @@ public final class Boss extends Entity {
                 changeDirection();
             }
         }
-        if (others.stream().filter((x) -> x instanceof Player)
-                .findFirst()
-                .get()
-                .getHitBox()
-                .overlaps(this.radarBox) && this.weapon.canFire) {
-            setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
-        } else {
-            this.weapon.setCanFire(false);
-        }
+        others.stream().filter((x) -> x instanceof Player)
+                .filter((x) -> x.getHitBox().overlaps(this.radarBox)).findFirst()
+                .ifPresentOrElse((x) -> {
+                    if (this.weapon.canFire()) {
+                        setShootingDirection(x);
+                    }
+                }, () -> this.weapon.setCanFire(false));
+
         super.update(delta, others);
         updateRadarBoxLocation();
         weapon.update(delta, others);

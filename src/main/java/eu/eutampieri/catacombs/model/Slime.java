@@ -67,15 +67,12 @@ public final class Slime extends Entity implements HealthModifier {
                 canDmg = true;
             }
         }
-        if (others.stream().filter((x) -> x instanceof Player)
-                .findFirst()
-                .get()
-                .getHitBox()
-                .overlaps(this.radarBox)) {
-            setCharacterToFollow(others.stream().filter((x) -> x instanceof Player).findFirst().get());
-        } else {
-            setCharacterToFollow(null);
-        }
+        others.stream().filter((x) -> x instanceof Player)
+                .filter((x) -> x.getHitBox().overlaps(this.radarBox)).findFirst()
+                .ifPresentOrElse((x) -> {
+                    setCharacterToFollow(x);
+                }, () -> setCharacterToFollow(null));
+
         follow();
         super.update(delta, others);
         updateRadarBoxLocation();
