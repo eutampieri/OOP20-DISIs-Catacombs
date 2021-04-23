@@ -13,7 +13,7 @@ public final class Boss extends Entity {
     private static final int HEIGHT = 32;
     private static final int WIDTH = 32;
     private static final int MOVEMENT_SPEED = 4;
-    private static final int HEALTH = 50;
+    private static final int HEALTH = 100;
     private static final int RADAR_BOX_POSITION_MODIFIER = 30 * AssetManagerProxy.getMapTileSize();
     private static final int RADAR_BOX_SIZE = 30 * 2 * AssetManagerProxy.getMapTileSize() + Math.max(WIDTH, HEIGHT);
     private static final String NAME = "Boss";
