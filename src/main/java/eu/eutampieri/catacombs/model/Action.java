@@ -20,6 +20,10 @@ public enum Action {
      */
     IDLE;
 
+    /**
+     * Get which directions are allowed for this action.
+     * @return A list of Directions, empty if no direction is allowed for this action.
+     */
     public List<Direction> getDirections() {
         switch (this) {
         case ATTACK:
@@ -33,6 +37,11 @@ public enum Action {
         }
     }
 
+    /**
+     * Convert a string into an action.
+     * @param name the string to parse
+     * @return The parsed Action
+     */
     public static Action fromString(final String name) {
         switch (name) {
         case "move":
@@ -48,6 +57,10 @@ public enum Action {
         }
     }
 
+    /**
+     * Get a string representation of an Action.
+     * @return the string representation
+     */
     @Override
     public String toString() {
         switch (this) {
