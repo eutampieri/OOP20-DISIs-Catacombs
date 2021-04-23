@@ -1,11 +1,17 @@
 package eu.eutampieri.catacombs.model;
 
+import eu.eutampieri.catacombs.model.gen.SingleObjectFactoryImpl;
+import eu.eutampieri.catacombs.model.gen.SingleObjectFactory;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.Point;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Bat class - the bat is an enemy that mostly stands still and fires bullets.
@@ -24,6 +30,7 @@ public final class Bat extends Entity {
     private static final String NAME = "Bat";
     private static final long MOVE_DELAY = 5L * 100;
     private static final long PAUSE_DELAY = 10L * 100;
+    private static final int DROP_CHANCE = 1000;
 
     private final Weapon weapon;
     private boolean isMoving;
@@ -50,11 +57,11 @@ public final class Bat extends Entity {
         this.delayCounter = 0;
         this.pauseCounter = 0;
         this.isMoving = true;
-
     }
 
     @Override
     public List<GameObject> update(final long delta, final List<GameObject> others) {
+        final Random rand = new Random();
         resetShootingDirection();
         if (isMoving) {
             delayCounter += delta;
@@ -82,6 +89,15 @@ public final class Bat extends Entity {
         super.update(delta, others);
         updateRadarBoxLocation();
         weapon.update(delta, others);
+        if (this.getHealth() <= 0 && rand.nextInt(101) <= DROP_CHANCE) {
+            final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);;
+            System.out.println("pot spawned");
+            return objectFactory.spawnAt(this.getHitBox().getPosX() , this.getHitBox().getPosY(),
+                    (x, y, tm) -> {
+                        final int healingPower = rand.nextInt(101);
+                        return new SimplePotion(healingPower, "Potion", x, y);
+                    });
+        }
         if (this.weapon.canFire && this.getShootingDirection().getX() != 0 && this.getShootingDirection().getY() != 0) {
             return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
         }
