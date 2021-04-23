@@ -297,6 +297,7 @@ public abstract class Game implements Runnable {
 
     /**
      * Add the mouse listener.
+     *
      * @param e the MouseAdapter to add
      */
     public void addMouseAdapter(final MouseAdapter e) {
