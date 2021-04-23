@@ -16,11 +16,11 @@ import eu.eutampieri.catacombs.ui.utils.ImageRotator;
 
 public final class AssetManager {
 
-    private static final Path PLAYER_SHEET = Path.of("res/playersheet.png");
-    private static final Path SLIME_SHEET = Path.of("res/slimesheet.png");
-    private static final Path BAT_SHEET = Path.of("res/batsheet.png");
-    private static final Path PROJECTILE_1 = Path.of("res/proj1.png");
-    private static final Path PROJECTILE_2 = Path.of("res/proj2.png");
+    private static final String PLAYER_SHEET = "res/playersheet.png";
+    private static final String SLIME_SHEET = "res/slimesheet.png";
+    private static final String BAT_SHEET = "res/batsheet.png";
+    private static final String PROJECTILE_1 = "res/proj1.png";
+    private static final String PROJECTILE_2 = "res/proj2.png";
     private static final String EXTENSION = ".png";
     private static final ImageRotator IMAGE_ROTATOR = new ImageRotator();
 
