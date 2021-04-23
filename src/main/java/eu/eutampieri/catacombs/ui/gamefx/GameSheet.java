@@ -9,7 +9,7 @@ import eu.eutampieri.catacombs.ui.utils.ImageLoader;
 public final class GameSheet {
     private final BufferedImage sheet;
 
-    public GameSheet(final Path path) {
+    public GameSheet(final String path) {
         this.sheet = ImageLoader.loadImage(path).get();
     }
 
