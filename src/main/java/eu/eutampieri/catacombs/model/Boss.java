@@ -88,7 +88,10 @@ public final class Boss extends Entity {
 
     @Override
     public Pair<Action, Direction> getActionWithDirection() {
-        return Pair.of(Action.MOVE, this.face);
+        if (this.face == Direction.UP || this.face == Direction.DOWN) {
+            return Pair.of(Action.IDLE, Direction.RIGHT);
+        }
+        return Pair.of(this.isMoving() ? Action.MOVE : Action.IDLE, this.face);
     }
 
     @Override

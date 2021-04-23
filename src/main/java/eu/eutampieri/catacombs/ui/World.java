@@ -49,8 +49,8 @@ public final class World {
 
         this.player = (Player) mf.spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm)).get(0);
         /* for boss debugging purpose */
-        this.entities.addAll(mf.spawnAt(this.player.getPosX() + this.player.getSize() + 1,
-                this.player.getPosY() + this.player.getSize() + 1,
+        this.entities.addAll(mf.spawnAt((this.player.getPosX() - this.camera.getXOffset()) / AssetManagerProxy.getMapTileSize() + 1,
+                (this.player.getPosY() - this.camera.getYOffset()) / AssetManagerProxy.getMapTileSize() + 1,
                 Boss::new).stream().map((x) -> (GameObject) x).collect(Collectors.toList()));
 
         this.game = game;
