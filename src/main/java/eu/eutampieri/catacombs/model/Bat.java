@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.Point;
@@ -13,16 +14,16 @@ public final class Bat extends Entity {
 
     private static final int HEIGHT = 16;
     private static final int WIDTH = 16;
-    private static final int MOVEMENT_SPEED = 1;
+    private static final int MOVEMENT_SPEED = 3;
     private static final int HEALTH = 8;
-    private static final int CB_POS_MOD = 4;
-    private static final int CB_DIM_MOD = 9;
+    private static final int RADAR_BOX_POSITION_MODIFIER = 20 * AssetManagerProxy.getMapTileSize();
+    private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + Math.max(WIDTH, HEIGHT);
     private static final int BASE_DAMAGE = 2;
-    private static final int BASE_FIRE_RATE = 2;
-    private static final int BASE_PROJECTILE_SPEED = 2;
+    private static final int BASE_FIRE_RATE = 1;
+    private static final int BASE_PROJECTILE_SPEED = 3;
     private static final String NAME = "Bat";
-    private static final long MOVE_DELAY = 1_000_000_000;
-    private static final long PAUSE_DELAY = 7L * 1_000_000_000;
+    private static final long MOVE_DELAY = 5L * 100;
+    private static final long PAUSE_DELAY = 10L * 100;
 
     private final Weapon weapon;
     private boolean isMoving;
@@ -41,8 +42,8 @@ public final class Bat extends Entity {
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
-        radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
-                height * CB_DIM_MOD);
+        radarBox = new CollisionBox(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER,
+                RADAR_BOX_SIZE, RADAR_BOX_SIZE);
         weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
                 BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE, this.getTeam()) { };
         shootingDirection = new Point(0, 0);
@@ -54,6 +55,7 @@ public final class Bat extends Entity {
 
     @Override
     public List<GameObject> update(final long delta, final List<GameObject> others) {
+        resetShootingDirection();
         if (isMoving) {
             delayCounter += delta;
             if (delayCounter >= MOVE_DELAY) {
@@ -69,20 +71,18 @@ public final class Bat extends Entity {
                 changeDirection();
             }
         }
-        if (others.stream().filter((x) -> x instanceof Player)
-                .findFirst()
-                .get()
-                .getHitBox()
-                .overlaps(this.getHitBox()) && this.weapon.canFire()) {
+        others.stream().filter((x) -> x instanceof Player)
+                .filter((x) -> x.getHitBox().overlaps(this.radarBox)).findFirst()
+                .ifPresentOrElse((x) -> {
+                    if (this.weapon.canFire()) {
+                        setShootingDirection(x);
+                    }
+                }, () -> this.weapon.setCanFire(false));
 
-            setShootingDirection(others.stream().filter((x) -> x instanceof Player).findFirst().get());
-        } else {
-            resetShootingDirection();
-        }
         super.update(delta, others);
         updateRadarBoxLocation();
         weapon.update(delta, others);
-        if (weapon.canFire) {
+        if (this.weapon.canFire && this.getShootingDirection().getX() != 0 && this.getShootingDirection().getY() != 0) {
             return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
         }
         return List.of();
@@ -98,11 +98,11 @@ public final class Bat extends Entity {
     @Override
     public boolean canPerform(final Action action) {
         switch (action) {
-        case ATTACK:
-        case MOVE:
-            return true;
-        default:
-            return false;
+            case ATTACK:
+            case MOVE:
+                return true;
+            default:
+                return false;
         }
     }
 
@@ -136,7 +136,7 @@ public final class Bat extends Entity {
      * Updates the aggro radar's Bat box.
      */
     private void updateRadarBoxLocation() {
-        radarBox.setLocation(posX - width * CB_POS_MOD, posY - height * CB_POS_MOD);
+        radarBox.setLocation(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER);
     }
 
     public String getName() {

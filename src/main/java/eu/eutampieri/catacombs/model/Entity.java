@@ -104,35 +104,36 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
      */
     protected void move() {
 
-        final int maxMovementUp = speedY;
-        final int maxMovementRight = speedX;
-        final int maxMovementDown = speedY;
-        final int maxMovementLeft = speedX;
-
+        int dx = 0, dy = 0;
         if (up) {
-            if (!isUpCollision(maxMovementUp)) {
-                hitBox.move(0, -maxMovementUp);
-            }
+            dy = -speedY;
             face = Direction.UP;
+            while (isUpCollision(Math.abs(dy))) {
+                dy++;
+            }
         }
         if (down) {
-            if (!isDownCollision(maxMovementDown)) {
-                hitBox.move(0, maxMovementDown);
-            }
+            dy = speedY;
             face = Direction.DOWN;
+            while (isDownCollision(dy)) {
+                dy--;
+            }
         }
         if (left) {
-            if (!isLeftCollision(maxMovementLeft)) {
-                hitBox.move(-maxMovementLeft, 0);
-            }
+            dx = -speedX;
             face = Direction.LEFT;
+            while (isLeftCollision(Math.abs(dx))) {
+                dx++;
+            }
         }
         if (right) {
-            if (!isRightCollision(maxMovementRight)) {
-                hitBox.move(maxMovementRight, 0);
-            }
+            dx = speedX;
             face = Direction.RIGHT;
+            while (isRightCollision(dx)) {
+                dx--;
+            }
         }
+        hitBox.move(dx, dy);
     }
 
     /**

@@ -91,8 +91,8 @@ public final class AssetManager {
 
         loadBossAnimations("Boss_Idle_right", 6, false, true);
         loadBossAnimations("Boss_Idle_left", 6, true, true);
-        loadBossAnimations("Boss_Walk_right", 6, false, false);
-        loadBossAnimations("Boss_Walk_left", 6, true, false);
+        loadBossAnimations("Boss_Move_right", 6, false, false);
+        loadBossAnimations("Boss_Move_left", 6, true, false);
 
         loadGunAnimations("Projectile_1", GUN_SHEET, 1, 0, 28, 0);
         loadGunAnimations("Projectile_2", GUN_SHEET, 1, 342, 35, 0);

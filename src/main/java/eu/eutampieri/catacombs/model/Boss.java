@@ -1,27 +1,34 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.awt.*;
 import java.util.List;
+import java.util.Random;
 
 public final class Boss extends Entity {
 
-    private static final int HEIGHT = 4;
-    private static final int WIDTH = 4;
+    private static final int HEIGHT = 32;
+    private static final int WIDTH = 32;
     private static final int MOVEMENT_SPEED = 4;
-    private static final int HEALTH = 40;
-    private static final int CB_POS_MOD = 4;
-    private static final int CB_DIM_MOD = 9;
+    private static final int HEALTH = 50;
+    private static final int RADAR_BOX_POSITION_MODIFIER = 30 * AssetManagerProxy.getMapTileSize();
+    private static final int RADAR_BOX_SIZE = 30 * 2 * AssetManagerProxy.getMapTileSize() + Math.max(WIDTH, HEIGHT);
     private static final String NAME = "Boss";
-    private static final int MOVE_DELAY = 5;
-    private static final int PAUSE_DELAY = 5;
+    private static final long MOVE_DELAY = 15L * 100;
+    private static final long PAUSE_DELAY = 10L * 100;
+    private static final int BASE_DAMAGE = 15;
+    private static final int BASE_PROJECTILE_SPEED = 3;
+    private static final int BASE_FIRE_RATE = 3;
 
-    // private final SimpleWeapon weapon;
+    private final Weapon weapon;
     private boolean isMoving;
     private int delayCounter;
     private int pauseCounter;
     private final CollisionBox radarBox;
+    private final Point shootingDirection;
 
     /**
      * @param x       X spawn position
@@ -33,18 +40,19 @@ public final class Boss extends Entity {
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
         face = Direction.RIGHT;
-        radarBox = new CollisionBox(posX - width * CB_POS_MOD, posY - width * CB_POS_MOD, width * CB_DIM_MOD,
-                height * CB_DIM_MOD);
-        //weapon = new SimpleWeapon(x, y, BASE_DAMAGE, "boss_wpn", BASE_FIRE_RATE, BASE_RANGE, -1) {
-        //};
+        radarBox = new CollisionBox(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER, RADAR_BOX_SIZE,
+                RADAR_BOX_SIZE);
+        weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
+                BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE, this.getTeam()) { };
+        shootingDirection = new Point(0, 0);
+        this.delayCounter = 0;
+        this.pauseCounter = 0;
+        this.isMoving = true;
     }
 
     @Override
     public List<GameObject> update(final long delta, final List<GameObject> others) {
-        if (!isAlive()) {
-            super.update(delta, others);
-        }
-
+        resetShootingDirection();
         if (isMoving) {
             delayCounter += delta;
             if (delayCounter >= MOVE_DELAY) {
@@ -60,15 +68,29 @@ public final class Boss extends Entity {
                 changeDirection();
             }
         }
+        others.stream().filter((x) -> x instanceof Player)
+                .filter((x) -> x.getHitBox().overlaps(this.radarBox)).findFirst()
+                .ifPresentOrElse((x) -> {
+                    if (this.weapon.canFire()) {
+                        setShootingDirection(x);
+                    }
+                }, () -> this.weapon.setCanFire(false));
 
         super.update(delta, others);
         updateRadarBoxLocation();
+        weapon.update(delta, others);
+        if (this.weapon.canFire && this.getShootingDirection().getX() != 0 && this.getShootingDirection().getY() != 0) {
+            return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+        }
         return List.of();
     }
 
     @Override
     public Pair<Action, Direction> getActionWithDirection() {
-        return Pair.of(Action.MOVE, this.face);
+        if (this.face == Direction.UP || this.face == Direction.DOWN) {
+            return Pair.of(Action.IDLE, Direction.RIGHT);
+        }
+        return Pair.of(this.isMoving() ? Action.MOVE : Action.IDLE, this.face);
     }
 
     @Override
@@ -86,22 +108,38 @@ public final class Boss extends Entity {
      * Makes the boss change facing direction.
      */
     private void changeDirection() {
-        if (face == Direction.RIGHT) {
-            left = true;
-            right = false;
-            face = Direction.LEFT;
-        } else {
-            right = true;
-            left = false;
-            face = Direction.RIGHT;
+        final Random rand = new Random();
+        final int c = rand.nextInt(4);
+        switch (c) {
+            case 0:
+                face = Direction.UP;
+                up = true;
+            break;
+            case 1:
+                face = Direction.DOWN;
+                down = true;
+            break;
+            case 2:
+                face = Direction.LEFT;
+                left = true;
+            break;
+            case 3:
+                face = Direction.RIGHT;
+                right = true;
+            break;
+            default:
+                face = Direction.LEFT;
+                resetMovement();
+            break;
         }
+
     }
 
     /**
-     * Updates the aggro radar's Bat box.
+     * Updates the aggro radar's Boss box.
      */
     private void updateRadarBoxLocation() {
-        radarBox.setLocation(posX - width * CB_POS_MOD, posY - height * CB_POS_MOD);
+        radarBox.setLocation(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER);
     }
 
     @Override
@@ -117,5 +155,22 @@ public final class Boss extends Entity {
     public String getName() {
         return Boss.NAME;
     }
+    public Point getShootingDirection() {
+        return this.shootingDirection;
+    }
+
+    public void resetShootingDirection() {
+        this.shootingDirection.setLocation(0, 0);
+    }
+
+    public void setShootingDirection(final GameObject e) {
+        if (e == null) {
+            return;
+        }
+        final int x = Integer.compare(e.getHitBox().getPosX(), this.getHitBox().getPosX());
+        final int y = Integer.compare(e.getHitBox().getPosY(), this.getHitBox().getPosY());
+        this.shootingDirection.setLocation(x, y);
+    }
+
 
 }
