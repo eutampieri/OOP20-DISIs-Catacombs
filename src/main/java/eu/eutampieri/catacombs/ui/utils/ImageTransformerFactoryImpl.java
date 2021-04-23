@@ -4,13 +4,12 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.util.Optional;
 
 public class ImageTransformerFactoryImpl implements ImageTransformerFactory{
     @Override
     public ImageTransformer rotate(final double degrees) {
         return input -> {
-            ImageRotator ir = new ImageRotator();
+            final ImageRotator ir = new ImageRotator();
             return ir.rotate(input, degrees);
         };
     }

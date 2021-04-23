@@ -10,8 +10,6 @@ import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
@@ -126,7 +124,6 @@ public final class AssetManagerProxy {
             return Optional.of(MAP_CACHE.get(tile));
         }
         final BufferedImage tileImg;
-        final ImageTransformerFactory itf = new ImageTransformerFactoryImpl();
         switch (tile) {
         case FLOOR:
             tileImg = AssetManager.getAssetManager().getImage("41");
@@ -137,6 +134,7 @@ public final class AssetManagerProxy {
         default:
             return Optional.empty();
         }
+        final ImageTransformerFactory itf = new ImageTransformerFactoryImpl();
         MAP_CACHE.put(tile, itf.scale(MAP_SCALING_FACTOR).transform(tileImg));
         return Optional.of(MAP_CACHE.get(tile));
     }

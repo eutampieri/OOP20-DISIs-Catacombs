@@ -1,6 +1,5 @@
 package eu.eutampieri.catacombs.ui.gamefx;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
