@@ -31,12 +31,6 @@ public final class Slime extends Entity implements HealthModifier {
      */
     private final CollisionBox radarBox;
 
-    /**
-     * The entity focussed by the slime currently;.
-     * to be implemented maybe..
-     */
-    /* private final Entity entityToAggro; */
-
     private boolean canDmg;
     private long dmgDelayCount;
 
@@ -69,9 +63,7 @@ public final class Slime extends Entity implements HealthModifier {
         }
         others.stream().filter((x) -> x instanceof Player)
                 .filter((x) -> x.getHitBox().overlaps(this.radarBox)).findFirst()
-                .ifPresentOrElse((x) -> {
-                    setCharacterToFollow(x);
-                }, () -> setCharacterToFollow(null));
+                .ifPresentOrElse(this::setCharacterToFollow, () -> setCharacterToFollow(null));
 
         follow();
         super.update(delta, others);
@@ -166,6 +158,6 @@ public final class Slime extends Entity implements HealthModifier {
 
     @Override
     public int getHealthDelta() {
-        return -this.DAMAGE_ON_HIT;
+        return -DAMAGE_ON_HIT;
     }
 }
