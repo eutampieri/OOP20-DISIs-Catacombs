@@ -3,13 +3,13 @@ package eu.eutampieri.catacombs.ui.gamefx;
 import eu.eutampieri.catacombs.model.*;
 import eu.eutampieri.catacombs.model.map.Tile;
 import eu.eutampieri.catacombs.ui.Animation;
+import eu.eutampieri.catacombs.ui.utils.ImageTransformerFactory;
+import eu.eutampieri.catacombs.ui.utils.ImageTransformerFactoryImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
@@ -105,6 +105,7 @@ public final class AssetManagerProxy {
             return fromCache;
         }
         final AssetManager am = AssetManager.getAssetManager();
+        final ImageTransformerFactory itf = new ImageTransformerFactoryImpl();
         switch (entityKind) {
             case BULLET:
                 final BufferedImage normal =  am.getFrames("Projectile_1")
@@ -113,7 +114,7 @@ public final class AssetManagerProxy {
                         .map(Optional::get)
                         .findAny()
                         .get();
-                final BufferedImage resized = scale(normal, BULLET_SCALING_FACTOR);
+                final BufferedImage resized = itf.scale(BULLET_SCALING_FACTOR).transform(normal);
                 STATIC_ASSETS_CACHE.put(entityKind, resized);
                 return resized;
             case BOSS_BULLET:
@@ -123,7 +124,7 @@ public final class AssetManagerProxy {
                         .map(Optional::get)
                         .findAny()
                         .get();
-                final BufferedImage resized2 = scale(normal2, BOSS_BULLET_SCALING_FACTOR);
+                final BufferedImage resized2 = itf.scale(BOSS_BULLET_SCALING_FACTOR).transform(normal2);
                 STATIC_ASSETS_CACHE.put(entityKind, resized2);
                 return resized2;
             case POTION:
@@ -131,16 +132,6 @@ public final class AssetManagerProxy {
             default:
                 return null;
         }
-    }
-
-    private static BufferedImage scale(final BufferedImage before, final double scale) {
-        final int w = (int) (before.getWidth() * scale);
-        final int h = (int) (before.getHeight() * scale);
-        final BufferedImage after = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-        final AffineTransform at = new AffineTransform();
-        at.scale(scale, scale);
-        final AffineTransformOp scaling = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
-        return scaling.filter(before, after);
     }
 
     /**
@@ -163,7 +154,8 @@ public final class AssetManagerProxy {
         default:
             return Optional.empty();
         }
-        MAP_CACHE.put(tile, scale(tileImg, MAP_SCALING_FACTOR));
+        final ImageTransformerFactory itf = new ImageTransformerFactoryImpl();
+        MAP_CACHE.put(tile, itf.scale(MAP_SCALING_FACTOR).transform(tileImg));
         return Optional.of(MAP_CACHE.get(tile));
     }
 

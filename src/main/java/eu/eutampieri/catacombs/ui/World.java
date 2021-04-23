@@ -20,13 +20,13 @@ import java.util.stream.Stream;
  * This class contains all necessary entities to render the game and coordinates them.
  */
 public final class World {
-    // private final BufferedImage background;
+    private final static int BOSS_SPAWN_RANGE = 100;
+
     private final TileMap tileMap;
     private final KeyManagerProxy km = new KeyManagerProxy();
     private final DungeonGame game;
-    // private final DungeonGame game = new DungeonGame();
-    // TODO Camera
     private final Camera camera;
+    private boolean bossHasBeenSpawned;
 
     private List<GameObject> entities;
 
@@ -38,7 +38,6 @@ public final class World {
      * @param game the game, which is used to get its width & height
      */
     public World(final TileMap tileMap, final DungeonGame game) {
-        // this.background = am.getImage("background");
         this.tileMap = tileMap;
         final MobFactory mf = new MobFactoryImpl(this.tileMap);
         camera = new Camera(0, 0, tileMap.width() * AssetManagerProxy.getMapTileSize(),
@@ -116,6 +115,15 @@ public final class World {
         this.entities.addAll(newEntities);
 
         this.entities = this.entities.stream().filter((x) -> !x.isMarkedForDeletion()).collect(Collectors.toList());
+
+        if(this.playerHasKilledAllEntities() && !this.bossHasBeenSpawned) {
+            // Spawn boss
+            final List<Entity> bossList = new MobFactoryImpl(tileMap).spawnNear(BOSS_SPAWN_RANGE, this.player, Boss::new);
+            assert bossList.size() == 1;
+            final GameObject boss = bossList.get(0);
+            this.entities.add(boss);
+            this.bossHasBeenSpawned = true;
+        }
     }
 
     private boolean isOnCamera(final int x, final int y) {
@@ -167,17 +175,21 @@ public final class World {
                 });
     }
 
-    /**
+    private boolean playerHasKilledAllEntities() {
+        return this.entities.parallelStream()
+                .map(GameObject::getKind)
+                .noneMatch((x) -> x == GameObjectType.ENEMY || x == GameObjectType.BOSS);
+    }
+
+   /**
      * This function checks if the player has won, i.e. if the boss has already been spawned (and killed)
      * and every other LivingCharacter (except for the player) has died.
      * @return Whether the player has won the game or not.
      */
     public boolean playerHasWon() {
         return this.player.isAlive() &&
-                this.entities.stream()
-                        .map((x) -> x.getKind())
-                        .filter((x) -> x == GameObjectType.ENEMY || x == GameObjectType.BOSS)
-                .count() == 0;
+                this.playerHasKilledAllEntities()
+                && this.bossHasBeenSpawned;
     }
 
     private static final class KeyManagerProxy {

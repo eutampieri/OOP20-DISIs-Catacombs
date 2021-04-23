@@ -1,6 +1,5 @@
 package eu.eutampieri.catacombs.ui.gamefx;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +9,9 @@ import java.util.Optional;
 
 import eu.eutampieri.catacombs.ui.utils.ImageLoader;
 import eu.eutampieri.catacombs.ui.utils.ImageRotator;
+import eu.eutampieri.catacombs.ui.utils.ImageTransformerFactory;
+import eu.eutampieri.catacombs.ui.utils.ImageTransformerFactoryImpl;
+
 /**
  * This class is used to provide the images for the animation of the entities and for the assets of the map.
  */
@@ -108,13 +110,8 @@ public final class AssetManager {
      */
     public Optional<BufferedImage> horizontalFlip(final Optional<BufferedImage> image) {
         if (image.isPresent()) {
-            final int width = image.get().getWidth();
-            final int height = image.get().getHeight();
-            final BufferedImage flippedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-            final Graphics2D g = flippedImage.createGraphics();
-            g.drawImage(image.get(), 0, 0, width, height, width, 0, 0, height, null);
-            g.dispose();
-            return Optional.of(flippedImage);
+            final ImageTransformerFactory itf = new ImageTransformerFactoryImpl();
+            return Optional.of(itf.flip(false, true).transform(image.get()));
         } else {
             return Optional.empty();
         }
