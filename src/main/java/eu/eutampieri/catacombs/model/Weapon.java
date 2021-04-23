@@ -56,7 +56,9 @@ public abstract class Weapon extends GameObject {
         setStrength(strength);
         setProjectileSpeed(ps);
         setFireRate(fr);
-        setFireDelay(fireRate * 1_000_000_000L);
+        setFireDelay(Math.round(1000f / fireRate));
+        setCanFire(true);
+        this.fireDelayCount = 0;
     }
 
     @Override
@@ -65,12 +67,12 @@ public abstract class Weapon extends GameObject {
             fireDelayCount += delta;
             if (fireDelayCount >= fireDelay) {
                 fireDelayCount = 0;
-                canFire = true;
+                setCanFire(true);
             }
         }
         if (this.user != null) {
-            this.hitBox.setPosX(this.user.getHitBox().getPosX() + this.user.getSize() + 1);
-            this.hitBox.setPosY(this.user.getHitBox().getPosY() + this.user.getSize() + 1);
+            this.hitBox.setPosX(this.user.getHitBox().getPosX() + this.user.getSize()/2 - 1);
+            this.hitBox.setPosY(this.user.getHitBox().getPosY() + this.user.getSize()/2 - 1);
         }
         return List.of();
     }
@@ -106,8 +108,9 @@ public abstract class Weapon extends GameObject {
 
     public final List<GameObject> fire(final int psx, final int psy) {
        final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
-                psx, psy, strength, tileMap, this.getTeam());
-        return List.of(p);
+                psx*ps, psy*ps, strength, tileMap, this.getTeam());
+       setCanFire(false);
+       return List.of(p);
     }
 
     public void setUser(final Entity user) {

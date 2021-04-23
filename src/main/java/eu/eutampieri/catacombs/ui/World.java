@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.ui;
 
 import eu.eutampieri.catacombs.model.Action;
+import eu.eutampieri.catacombs.model.Boss;
 import eu.eutampieri.catacombs.model.Camera;
 import eu.eutampieri.catacombs.model.Direction;
 import eu.eutampieri.catacombs.model.Entity;
@@ -49,12 +50,16 @@ public final class World {
 
         final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
         final Random rand = new Random();
-        this.entities.addAll(objectFactory.spawnSome(700, (x, y, tm) -> {
+        this.entities.addAll(objectFactory.spawnSome(5, (x, y, tm) -> {
             final int healingPower = rand.nextInt(101);
             return new SimplePotion(healingPower, "Potion", x, y);
         }));
 
         this.player = (Player) mf.spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm)).get(0);
+        /* for boss debugging purpose */
+        this.entities.addAll(mf.spawnAt((this.player.getPosX() - this.camera.getXOffset()) / AssetManagerProxy.getMapTileSize() + 1,
+                (this.player.getPosY() - this.camera.getYOffset()) / AssetManagerProxy.getMapTileSize() + 1,
+                Boss::new).stream().map((x) -> (GameObject) x).collect(Collectors.toList()));
 
         this.game = game;
     }
@@ -88,8 +93,9 @@ public final class World {
             this.player.move(Direction.RIGHT);
         }
 
-        if (this.km.fire()) {
+        if (this.km.fire() && this.player.getWeapon().canFire()) {
             this.player.fire();
+            this.player.getWeapon().setCanFire(false);
         }
 
         final List<GameObject> newEntities = Stream.concat(entities.stream(), Stream.of(player))
@@ -146,7 +152,7 @@ public final class World {
                 });
     }
 
-    public final boolean playerHasWon() {
+    public boolean playerHasWon() {
         return this.player.isAlive() &&
                 this.entities.stream()
                         .map((x) -> x.getKind())

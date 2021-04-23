@@ -6,11 +6,11 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.List;
 
 public final class Player extends Entity {
-    private static final int BASE_MOVEMENT_SPEED = 4;
+    private static final int BASE_MOVEMENT_SPEED = 14;
     private static final int MAX_BASE_HP = 100;
-    private static final int SIZE = 32;
+    private static final int SIZE = 25;
     private static final int INITIAL_WEAPON_DAMAGE = 5;
-    private static final int INITIAL_WEAPON_FIRE_RATE = 1;
+    private static final int INITIAL_WEAPON_FIRE_RATE = 3;
     private int health;
     private final String name;
     private boolean fire;
@@ -22,7 +22,7 @@ public final class Player extends Entity {
         this.setHealth(MAX_BASE_HP);
         this.name = name;
         this.face = Direction.RIGHT;
-        this.weapon = new Gun(this, tm, x, y, INITIAL_WEAPON_DAMAGE, BASE_MOVEMENT_SPEED * 10,
+        this.weapon = new Gun(this, tm, x, y, INITIAL_WEAPON_DAMAGE, 10,
                 INITIAL_WEAPON_FIRE_RATE, this.getTeam());
     }
 
@@ -137,5 +137,13 @@ public final class Player extends Entity {
                 .filter((x) -> x.getHitBox().overlaps(this.getHitBox())).map((x) -> (HealthModifier) (x))
                 .forEach((x) -> x.useOn(this));
         return this.spawnObject();
+    }
+
+    public Weapon getWeapon() {
+        return this.weapon;
+    }
+
+    public void setWeapon(final Weapon weapon) {
+        this.weapon = weapon;
     }
 }

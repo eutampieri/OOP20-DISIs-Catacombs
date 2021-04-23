@@ -260,7 +260,7 @@ public abstract class Game implements Runnable {
         long now;
         this.start();
 
-        final double tickPerTime = 1f / fps;
+        /* final double tickPerTime = 1f / fps; */
         lastUpdateTime = System.currentTimeMillis();
         while (this.running) {
             now = System.currentTimeMillis();
@@ -268,7 +268,7 @@ public abstract class Game implements Runnable {
             delta = now - lastUpdateTime;
             delta = Math.min(delta, DELTA_MIN);
             update(delta);
-            lastUpdateTime += tickPerTime;
+            lastUpdateTime = now;
             preRender();
             render();
             show();
