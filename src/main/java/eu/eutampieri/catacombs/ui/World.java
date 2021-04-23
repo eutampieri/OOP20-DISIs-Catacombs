@@ -51,10 +51,18 @@ public final class World {
             return new SimplePotion(healingPower, "Potion", x, y);
         }));
 
+        this.entities.addAll(objectFactory.spawnSome(100, (x, y, tm) -> {
+
+            if(rand.nextInt(2) == 0) {
+                return new Gun(null, tm, x, y, GameObject.Team.FRIEND);
+            } else {
+                return new Rifle(null, tm, x, y, GameObject.Team.FRIEND);
+            }
+        }));
+
         this.player = (Player) mf.spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm)).get(0);
 
         this.game = game;
-        this.entities.addAll(mf.spawnNear(20, this.player, Boss::new));
     }
 
     /**

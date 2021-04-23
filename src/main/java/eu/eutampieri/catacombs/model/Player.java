@@ -140,6 +140,7 @@ public final class Player extends Entity {
                 .filter((x) -> x.getHitBox().overlaps(this.getHitBox())).map((x) -> (Weapon) (x)).findAny()
                 .ifPresent((x) -> {
                     x.setUser(this);
+                    x.setPickedUp();
                     this.weapon = x;
                 });
 

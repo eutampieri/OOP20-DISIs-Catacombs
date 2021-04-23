@@ -63,7 +63,7 @@ public abstract class Weapon extends GameObject {
      */
     public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
             final int fr, final Team team) {
-        super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, 0, 0), team);
+        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, 0, 0), team);
         this.user = e;
         setTileMap(tm);
         setStrength(strength);
@@ -77,7 +77,7 @@ public abstract class Weapon extends GameObject {
 
     public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
                   final int fr, final Team team, final GameObjectType kind, final int size) {
-        super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, 0, 0), team);
+        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, 0, 0), team);
         this.user = e;
         setTileMap(tm);
         setStrength(strength);
@@ -158,5 +158,14 @@ public abstract class Weapon extends GameObject {
 
     public void setBulletSize(final int size) {
         this.bulletSize = size;
+    }
+
+    public void setPickedUp() {
+        this.kind = GameObjectType.WEAPON;
+    }
+
+    @Override
+    public boolean isMarkedForDeletion() {
+        return this.kind == GameObjectType.WEAPON;
     }
 }

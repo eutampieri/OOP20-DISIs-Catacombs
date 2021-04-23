@@ -129,6 +129,8 @@ public final class AssetManagerProxy {
                 return resized2;
             case POTION:
                 return am.getImage("potion");
+            case WEAPON:
+                return am.getImage("gun");
             default:
                 return null;
         }
