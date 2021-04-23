@@ -152,7 +152,7 @@ public final class World {
                 });
     }
 
-    public final boolean playerHasWon() {
+    public boolean playerHasWon() {
         return this.player.isAlive() &&
                 this.entities.stream()
                         .map((x) -> x.getKind())
