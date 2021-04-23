@@ -5,6 +5,7 @@ import eu.eutampieri.catacombs.model.Camera;
 import eu.eutampieri.catacombs.model.Direction;
 import eu.eutampieri.catacombs.model.Entity;
 import eu.eutampieri.catacombs.model.GameObject;
+import eu.eutampieri.catacombs.model.GameObjectType;
 import eu.eutampieri.catacombs.model.Player;
 import eu.eutampieri.catacombs.model.SimplePotion;
 import eu.eutampieri.catacombs.model.gen.SingleObjectFactory;
@@ -145,6 +146,14 @@ public final class World {
                 });
     }
 
+    public final boolean playerHasWon() {
+        return this.player.isAlive() &&
+                this.entities.stream()
+                        .map((x) -> x.getKind())
+                        .filter((x) -> x == GameObjectType.ENEMY || x == GameObjectType.BOSS)
+                .count() == 0;
+    }
+
     private static final class KeyManagerProxy {
         private final KeyManager km = KeyManager.getKeyManager();
 
@@ -168,5 +177,4 @@ public final class World {
             return this.km.isKeyPressed(KeyEvent.VK_SPACE);
         }
     }
-
 }
