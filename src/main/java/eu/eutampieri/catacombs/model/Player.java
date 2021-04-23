@@ -8,9 +8,9 @@ import java.util.List;
 public final class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 4;
     private static final int MAX_BASE_HP = 100;
-    private static final int SIZE = 25;
+    private static final int SIZE = 28;
     private static final int INITIAL_WEAPON_DAMAGE = 5;
-    private static final int INITIAL_WEAPON_FIRE_RATE = 3;
+    private static final int INITIAL_WEAPON_FIRE_RATE = 90;
     private int health;
     private final String name;
     private boolean fire;

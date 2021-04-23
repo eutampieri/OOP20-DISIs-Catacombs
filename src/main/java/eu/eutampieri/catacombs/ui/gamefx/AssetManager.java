@@ -16,10 +16,11 @@ import eu.eutampieri.catacombs.ui.utils.ImageRotator;
 
 public final class AssetManager {
 
-    private static final String PLAYER_SHEET = "res/playersheet.png";
-    private static final String SLIME_SHEET = "res/slimesheet.png";
-    private static final String BAT_SHEET = "res/batsheet.png";
-    private static final String GUN_SHEET = "res/projectiles.png";
+    private static final Path PLAYER_SHEET = Path.of("res/playersheet.png");
+    private static final Path SLIME_SHEET = Path.of("res/slimesheet.png");
+    private static final Path BAT_SHEET = Path.of("res/batsheet.png");
+    private static final Path PROJECTILE_1 = Path.of("res/proj1.png");
+    private static final Path PROJECTILE_2 = Path.of("res/proj2.png");
     private static final String EXTENSION = ".png";
     private static final ImageRotator IMAGE_ROTATOR = new ImageRotator();
 
@@ -93,8 +94,8 @@ public final class AssetManager {
         loadBossAnimations("Boss_Move_right", 6, false, false);
         loadBossAnimations("Boss_Move_left", 6, true, false);
 
-        loadGunAnimations("Projectile_1", GUN_SHEET, 1, 0, 28, 0);
-        loadGunAnimations("Projectile_2", GUN_SHEET, 1, 342, 35, 0);
+        loadGunAnimations("Projectile_1", PROJECTILE_1, 1, 0, 28, 0);
+        loadGunAnimations("Projectile_2", PROJECTILE_2, 1, 0, 28, 0);
 
         loadImages();
     }
@@ -109,7 +110,7 @@ public final class AssetManager {
         if (image.isPresent()) {
             final int width = image.get().getWidth();
             final int height = image.get().getHeight();
-            final BufferedImage flippedImage = new BufferedImage(width, height, image.get().getType());
+            final BufferedImage flippedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
             final Graphics2D g = flippedImage.createGraphics();
             g.drawImage(image.get(), 0, 0, width, height, width, 0, 0, height, null);
             g.dispose();
