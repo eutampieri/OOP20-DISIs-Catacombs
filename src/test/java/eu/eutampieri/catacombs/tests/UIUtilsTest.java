@@ -4,7 +4,6 @@ import eu.eutampieri.catacombs.ui.utils.ImageLoader;
 import org.junit.jupiter.api.Test;
 
 import java.awt.image.BufferedImage;
-import java.nio.file.Path;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
