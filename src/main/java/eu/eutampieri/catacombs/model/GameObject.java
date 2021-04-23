@@ -3,16 +3,26 @@ package eu.eutampieri.catacombs.model;
 import java.util.List;
 
 /**
- * Abstract class for every game object (ex: Player, enemies, items, ecc...).
+ * Abstract class for every game object present in the game.
  */
 public abstract class GameObject {
 
+    /**
+     * A useful enum specifying teams.
+     */
     public enum Team {
-        ENEMY, FREIND,
+        /**
+         * Player's enemy.
+         */
+        ENEMY,
+        /**
+         * Player's ally.
+         */
+        FRIEND,
     };
 
     /**
-     * Object team
+     * Object team.
      */
     protected final Team team;
 
@@ -34,9 +44,12 @@ public abstract class GameObject {
     protected CollisionBox hitBox; // Entity hit box
 
     /**
-     * @param x    object X position
-     * @param y    object Y position
-     * @param kind Entity Kind @see eu.eutampieri.catacombs.model.EntityKind
+     *
+     * @param x         Object x position
+     * @param y         Object y position
+     * @param kind      Object kind
+     * @param hitBox    Object hit box
+     * @param team      Object team
      */
     public GameObject(final int x, final int y, final GameObjectType kind, final CollisionBox hitBox, final Team team) {
         this.setPosX(x);
@@ -48,15 +61,14 @@ public abstract class GameObject {
 
     /**
      * Method used in the game loop that updates all elements of a game obj.
-     * 
      * @param delta time between updates
+     * @param others list of the other entities updated in the game loop
      * @return the list of spawned objects
      */
-    public abstract List<GameObject> update(long delta, final List<GameObject> others);
+    public abstract List<GameObject> update(long delta, List<GameObject> others);
 
     /**
      * Getter for object X position.
-     * 
      * @return Object X position
      */
     public int getPosX() {
@@ -65,7 +77,6 @@ public abstract class GameObject {
 
     /**
      * Setter for object X position.
-     * 
      * @param posX Object X position to be set
      */
     public void setPosX(final int posX) {
@@ -74,7 +85,6 @@ public abstract class GameObject {
 
     /**
      * Getter for object Y position.
-     * 
      * @return Object Y position
      */
     public int getPosY() {
@@ -83,7 +93,6 @@ public abstract class GameObject {
 
     /**
      * Setter for object Y position.
-     * 
      * @param posY Object Y position to be set
      */
     public void setPosY(final int posY) {
@@ -92,7 +101,6 @@ public abstract class GameObject {
 
     /**
      * Set position corresponding to coordinates (posX, posY).
-     * 
      * @param posX Position on the X axis
      * @param posY Position on the Y axis
      */
@@ -103,7 +111,6 @@ public abstract class GameObject {
 
     /**
      * Getter for object speed on the X axis.
-     * 
      * @return Object X speed
      */
     public int getSpeedX() {
@@ -112,7 +119,6 @@ public abstract class GameObject {
 
     /**
      * Setter for object speed on the X axis.
-     * 
      * @param speedX Speed to be set
      */
     public void setSpeedX(final int speedX) {
@@ -121,7 +127,6 @@ public abstract class GameObject {
 
     /**
      * Getter for object speed on the Y axis.
-     * 
      * @return Object Y speed
      */
     public int getSpeedY() {
@@ -130,7 +135,6 @@ public abstract class GameObject {
 
     /**
      * Setter for object speed on the Y axis.
-     * 
      * @param speedY Speed to be set
      */
     public void setSpeedY(final int speedY) {
@@ -139,7 +143,6 @@ public abstract class GameObject {
 
     /**
      * Set both speeds to a specified value (both X and Y).
-     * 
      * @param speed Speed to be set
      */
     public void setSpeed(final int speed) {
@@ -148,8 +151,7 @@ public abstract class GameObject {
     }
 
     /**
-     * Getter for Entity Kind.
-     * 
+     * Getter for GameObject Kind.
      * @return Entity Kind
      */
     public GameObjectType getKind() {
@@ -164,14 +166,17 @@ public abstract class GameObject {
     }
 
     /**
-     * Getter for Entity hit box.
-     *
-     * @return Entity hit box
+     * Getter for GameObject hit box.
+     * @return GameObject hit box
      */
     public CollisionBox getHitBox() {
         return hitBox;
     }
 
+    /**
+     * Getter for Entity team.
+     * @return GameObject team
+     */
     public Team getTeam() {
         return team;
     }

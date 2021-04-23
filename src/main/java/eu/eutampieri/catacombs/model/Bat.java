@@ -28,6 +28,7 @@ public final class Bat extends Entity {
     private static final long MOVE_DELAY = 5L * 100;
     private static final long PAUSE_DELAY = 10L * 100;
     private static final int DROP_CHANCE = 10;
+    private static final int MAX_CHANCE = 100;
 
     private final Weapon weapon;
     private boolean isMoving;
@@ -86,9 +87,9 @@ public final class Bat extends Entity {
 
         if (!this.isAlive()) {
             this.hasDropped = true;
-            if(rand.nextInt(101) <= DROP_CHANCE) {
+            if (rand.nextInt(MAX_CHANCE) + 1 <= DROP_CHANCE) {
                 final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
-                return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize() , this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
+                return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize(), this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
                         (x, y, tm) -> {
                             final int healingPower = rand.nextInt(101);
                             return new SimplePotion(healingPower, "Potion", x, y);
@@ -99,7 +100,7 @@ public final class Bat extends Entity {
         updateRadarBoxLocation();
         weapon.update(delta, others);
         if (this.weapon.canFire && this.getShootingDirection().getX() != 0 && this.getShootingDirection().getY() != 0) {
-            return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+            return weapon.fire((int) getShootingDirection().getX() * weapon.ps, (int) getShootingDirection().getY() * weapon.ps);
         }
         return List.of();
     }
@@ -155,18 +156,33 @@ public final class Bat extends Entity {
         radarBox.setLocation(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER);
     }
 
+    /**
+     *
+     * @return The bat name
+     */
     public String getName() {
         return Bat.NAME;
     }
 
+    /**
+     *
+     * @return Bat shooting direction
+     */
     public Point getShootingDirection() {
         return this.shootingDirection;
     }
 
+    /**
+     * Resets the shooting direction of the bat.
+     */
     public void resetShootingDirection() {
         this.shootingDirection.setLocation(0, 0);
     }
 
+    /**
+     * Sets the shooting direction of the Bat.
+     * @param e GameObject to aim
+     */
     public void setShootingDirection(final GameObject e) {
         if (e == null) {
             return;

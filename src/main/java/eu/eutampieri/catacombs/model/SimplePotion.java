@@ -12,7 +12,7 @@ public final class SimplePotion extends GameObject implements HealthModifier {
     private boolean used;
 
     public SimplePotion(final int healing, final String name, final int x, final int y) {
-        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, SIZE, SIZE), Team.FREIND);
+        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, SIZE, SIZE), Team.FRIEND);
         this.healthDelta = healing;
         this.name = name;
     }

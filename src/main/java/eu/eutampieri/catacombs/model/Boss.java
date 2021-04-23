@@ -4,10 +4,13 @@ import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The game Boss.
+ */
 public final class Boss extends Entity {
 
     private static final int HEIGHT = 48;
@@ -22,7 +25,7 @@ public final class Boss extends Entity {
     private static final int BASE_DAMAGE = 15;
     private static final int BASE_PROJECTILE_SPEED = 2;
     private static final int BASE_FIRE_RATE = 15;
-    private static final int BULLET_SIZE = 24;
+    private static final int BULLET_SIZE = 28;
 
     private final Weapon weapon;
     private boolean isMoving;
@@ -81,7 +84,7 @@ public final class Boss extends Entity {
         updateRadarBoxLocation();
         weapon.update(delta, others);
         if (this.weapon.canFire && this.getShootingDirection().getX() != 0 && this.getShootingDirection().getY() != 0) {
-            return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
+            return weapon.fire((int) getShootingDirection().getX() * weapon.ps, (int) getShootingDirection().getY() * weapon.ps);
         }
         return List.of();
     }

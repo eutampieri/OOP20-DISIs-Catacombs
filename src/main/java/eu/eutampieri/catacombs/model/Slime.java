@@ -25,6 +25,7 @@ public final class Slime extends Entity implements HealthModifier {
     private static final int DAMAGE_ON_HIT = 5;
     private static final long HIT_DELAY = 1_000;
     private static final int DROP_CHANCE = 10;
+    private static final int MAX_CHANCE = 100;
 
     /**
      * Character followed by the slime.
@@ -40,7 +41,6 @@ public final class Slime extends Entity implements HealthModifier {
     private boolean hasDropped;
 
     /**
-     * Slime constructor.
      *
      * @param x       X spawn position
      * @param y       Y spawn position
@@ -74,9 +74,9 @@ public final class Slime extends Entity implements HealthModifier {
         follow();
         if (!this.isAlive()) {
             this.hasDropped = true;
-            if(rand.nextInt(101) <= DROP_CHANCE) {
+            if (rand.nextInt(MAX_CHANCE) + 1 <= DROP_CHANCE) {
                 final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
-                return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize() , this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
+                return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize(), this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
                         (x, y, tm) -> {
                             final int healingPower = rand.nextInt(101);
                             return new SimplePotion(healingPower, "Potion", x, y);
@@ -122,7 +122,6 @@ public final class Slime extends Entity implements HealthModifier {
     /**
      * Utility method useful and used in GameState to make the Slime follow a
      * GameObject.
-     *
      * @param obj GameObject to follow (usually an entity, most likely the player)
      */
     public void setCharacterToFollow(final GameObject obj) {
@@ -185,9 +184,9 @@ public final class Slime extends Entity implements HealthModifier {
     public int getHealthDelta() {
         return -DAMAGE_ON_HIT;
     }
+
     @Override
     public boolean isMarkedForDeletion() {
         return !this.isAlive() && this.hasDropped;
     }
-
 }

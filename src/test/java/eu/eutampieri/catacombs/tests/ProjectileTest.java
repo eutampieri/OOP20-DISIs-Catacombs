@@ -11,7 +11,7 @@ public class ProjectileTest {
     @Test
     public void testProjectile() {
         final TileMap map = new TileMapFactoryImpl().def();
-        final Projectile projectile = new Projectile(10, 10, 1, 0, 0, map, GameObject.Team.FREIND);
+        final Projectile projectile = new Projectile(10, 10, 1, 0, 0, map, GameObject.Team.FRIEND);
         projectile.update(0, new ArrayList<GameObject>());
     }
 }

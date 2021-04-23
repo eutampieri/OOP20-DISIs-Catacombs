@@ -29,6 +29,10 @@ public final class MobFactoryImpl implements MobFactory {
     private TileMap tileMap;
     private final transient Random rand = new Random();
 
+    /**
+     *
+     * @param tileMap Tile map in which to spawn mobs
+     */
     public MobFactoryImpl(final TileMap tileMap) {
         this.tileMap = tileMap;
     }

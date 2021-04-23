@@ -44,7 +44,7 @@ class MobFactoryTest {
         List<GameObject> entities;
         entities = MF.spawnRandom().stream().map((x) -> (GameObject) x).collect(Collectors.toList());
         assertFalse(entities.isEmpty());
-        assertTrue(entities.size() <= MF.MAX_MOB_NUMBER);
+        assertTrue(entities.size() <= MobFactoryImpl.MAX_MOB_NUMBER);
     }
 
 }

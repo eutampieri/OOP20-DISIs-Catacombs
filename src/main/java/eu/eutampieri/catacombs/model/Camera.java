@@ -7,6 +7,13 @@ public final class Camera {
 
     private final int mapWidth, mapHeight;
 
+    /**
+     *
+     * @param xOffset   Camera starting x offset
+     * @param yOffset   Camera starting y offset
+     * @param mapWidth  Tile map width
+     * @param mapHeight Tile map height
+     */
     public Camera(final int xOffset, final int yOffset, final int mapWidth, final int mapHeight) {
         this.xOffset = xOffset;
         this.yOffset = yOffset;
@@ -16,7 +23,6 @@ public final class Camera {
 
     /**
      * Centers camera on selected entity.
-     * 
      * @param e          Entity to center onto
      * @param gameWidth  game width
      * @param gameHeight game height

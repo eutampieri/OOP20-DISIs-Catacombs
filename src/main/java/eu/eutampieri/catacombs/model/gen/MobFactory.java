@@ -5,10 +5,13 @@ import eu.eutampieri.catacombs.model.GameObject;
 
 import java.util.List;
 
+/**
+ * A factory of Mobs as creatures (usually) hostile towards the player.
+ */
 public interface MobFactory {
 
     /**
-     * Spawns a specified enemy at a certain location.
+     * Spawns a specified enemy kind at a certain location.
      * @param x X position
      * @param y Y position
      * @param f Type of enemy
@@ -32,9 +35,9 @@ public interface MobFactory {
 
     /**
      * Spawns an entity f in the range of another entity e.
-     * @param e Entity at the center of the range, used to get position
+     * @param e     Entity at the center of the range, used to get position
      * @param range Radius of spawn range
-     * @param f Entity to be spawned
+     * @param f     Entity to be spawned
      * @return A list composed of the only created entity
      */
     List<Entity> spawnNear(int range, GameObject e, SingleObject<Entity> f);
