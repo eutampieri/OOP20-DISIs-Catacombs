@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class World {
-    private final static int BOSS_SPAWN_RANGE = 10;
+    private final static int BOSS_SPAWN_RANGE = 100;
 
     private final TileMap tileMap;
     private final KeyManagerProxy km = new KeyManagerProxy();
