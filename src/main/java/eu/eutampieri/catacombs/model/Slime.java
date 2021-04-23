@@ -76,7 +76,6 @@ public final class Slime extends Entity implements HealthModifier {
             this.hasDropped = true;
             if(rand.nextInt(101) <= DROP_CHANCE) {
                 final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
-                System.out.println("pot spawned");
                 return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize() , this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
                         (x, y, tm) -> {
                             final int healingPower = rand.nextInt(101);

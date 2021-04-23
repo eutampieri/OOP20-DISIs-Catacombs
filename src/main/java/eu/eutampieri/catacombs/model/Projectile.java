@@ -18,6 +18,14 @@ public final class Projectile extends GameObject implements HealthModifier {
         this.strength = strength;
         this.map = map;
     }
+    public Projectile(final int x, final int y, final int sx, final int sy, final int strength, final TileMap map,
+                      final Team team, final GameObjectType kind, final int size) {
+        super(x, y, kind, new CollisionBox(x, y, size, size), team);
+        this.speedX = sx;
+        this.speedY = sy;
+        this.strength = strength;
+        this.map = map;
+    }
 
     @Override
     public List<GameObject> update(final long delta, final List<GameObject> others) {

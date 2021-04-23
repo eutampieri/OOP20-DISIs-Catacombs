@@ -18,6 +18,7 @@ import java.util.Optional;
 public final class AssetManagerProxy {
     private static final double MAP_SCALING_FACTOR = 2.25;
     private final static double BULLET_SCALING_FACTOR = 0.25;
+    private final static double BOSS_BULLET_SCALING_FACTOR = 1;
     private static final Map<Tile, BufferedImage> MAP_CACHE = new HashMap<>();
     private static final Map<Triple<Entity, Action, Direction>, Pair<Animation, Long>> ANIMATIONS_CACHE = new HashMap<>();
     private static final Map<StaticEntityKind, BufferedImage> STATIC_ASSETS_CACHE = new HashMap<>();
@@ -100,6 +101,16 @@ public final class AssetManagerProxy {
                 final BufferedImage resized = scale(normal, BULLET_SCALING_FACTOR);
                 STATIC_ASSETS_CACHE.put(entityKind, resized);
                 return resized;
+            case BOSS_BULLET:
+                final BufferedImage normal2 =  am.getFrames("Projectile_2")
+                        .stream()
+                        .filter(Optional::isPresent)
+                        .map(Optional::get)
+                        .findAny()
+                        .get();
+                final BufferedImage resized2 = scale(normal2, BOSS_BULLET_SCALING_FACTOR);
+                STATIC_ASSETS_CACHE.put(entityKind, resized2);
+                return resized2;
             case POTION:
                 return am.getImage("potion");
             default:
@@ -147,11 +158,14 @@ public final class AssetManagerProxy {
     private enum StaticEntityKind {
         BULLET,
         POTION,
-        WEAPON;
+        WEAPON,
+        BOSS_BULLET;
         public static StaticEntityKind fromGameObject (final GameObject gameObject) {
             switch (gameObject.getKind()) {
                 case BULLET:
                     return BULLET;
+                case BOSS_BULLET:
+                    return BOSS_BULLET;
                 case PICKUP:
                     return gameObject instanceof Weapon ? WEAPON : POTION;
                 default:

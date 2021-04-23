@@ -8,13 +8,11 @@ import java.awt.GraphicsConfiguration;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.KeyAdapter;
-import java.awt.event.MouseAdapter;
 import java.awt.image.BufferStrategy;
 import java.awt.image.VolatileImage;
 import java.awt.event.WindowEvent;
 
 import eu.eutampieri.catacombs.ui.input.KeyManager;
-import eu.eutampieri.catacombs.ui.input.MouseManager;
 import eu.eutampieri.catacombs.window.MainWindow;
 
 import javax.swing.JFrame;
@@ -37,10 +35,6 @@ public abstract class Game implements Runnable {
      *  Font used to render fps counter.
      */
     public static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
-    /**
-     * this is due to singleton in mouseManager.
-     */
-    public static final MouseManager MOUSE_MANAGER = new MouseManager();
     /**
      * Main windows used for the game.
      */
@@ -168,7 +162,6 @@ public abstract class Game implements Runnable {
         });
 
         addKeyAdapter(KeyManager.getKeyManager());
-        addMouseAdapter(MOUSE_MANAGER);
     }
 
     /**
@@ -293,18 +286,6 @@ public abstract class Game implements Runnable {
     public void addKeyAdapter(final KeyAdapter e) {
         mainFrame.getCanvas().addKeyListener(e);
         mainFrame.getFrame().addKeyListener(e);
-    }
-
-    /**
-     * Add the mouse listener.
-     *
-     * @param e the MouseAdapter to add
-     */
-    public void addMouseAdapter(final MouseAdapter e) {
-        mainFrame.getCanvas().addMouseListener(e);
-        mainFrame.getFrame().addMouseListener(e);
-        mainFrame.getCanvas().addMouseMotionListener(e);
-        mainFrame.getFrame().addMouseMotionListener(e);
     }
 
     /**

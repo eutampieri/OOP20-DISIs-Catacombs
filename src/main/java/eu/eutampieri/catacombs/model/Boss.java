@@ -10,8 +10,8 @@ import java.util.Random;
 
 public final class Boss extends Entity {
 
-    private static final int HEIGHT = 32;
-    private static final int WIDTH = 32;
+    private static final int HEIGHT = 48;
+    private static final int WIDTH = 48;
     private static final int MOVEMENT_SPEED = 4;
     private static final int HEALTH = 100;
     private static final int RADAR_BOX_POSITION_MODIFIER = 30 * AssetManagerProxy.getMapTileSize();
@@ -20,8 +20,9 @@ public final class Boss extends Entity {
     private static final long MOVE_DELAY = 15L * 100;
     private static final long PAUSE_DELAY = 10L * 100;
     private static final int BASE_DAMAGE = 15;
-    private static final int BASE_PROJECTILE_SPEED = 3;
-    private static final int BASE_FIRE_RATE = 3;
+    private static final int BASE_PROJECTILE_SPEED = 2;
+    private static final int BASE_FIRE_RATE = 15;
+    private static final int BULLET_SIZE = 24;
 
     private final Weapon weapon;
     private boolean isMoving;
@@ -43,7 +44,7 @@ public final class Boss extends Entity {
         radarBox = new CollisionBox(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER, RADAR_BOX_SIZE,
                 RADAR_BOX_SIZE);
         weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
-                BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE, this.getTeam()) { };
+                BASE_DAMAGE, BASE_PROJECTILE_SPEED, BASE_FIRE_RATE, this.getTeam(), GameObjectType.BOSS_BULLET, BULLET_SIZE) { };
         shootingDirection = new Point(0, 0);
         this.delayCounter = 0;
         this.pauseCounter = 0;
@@ -109,8 +110,8 @@ public final class Boss extends Entity {
      */
     private void changeDirection() {
         final Random rand = new Random();
-        final int c = rand.nextInt(4);
-        switch (c) {
+        final int c = rand.nextInt(8);
+        switch (Math.floorDiv(c, 2)) {
             case 0:
                 face = Direction.UP;
                 up = true;
