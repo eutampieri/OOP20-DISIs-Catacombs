@@ -16,6 +16,9 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * This class contains all necessary entities to render the game and coordinates them.
+ */
 public final class World {
     private final static int BOSS_SPAWN_RANGE = 100;
 
@@ -29,6 +32,11 @@ public final class World {
 
     private Player player;
 
+    /**
+     * Create a new world.
+     * @param tileMap the map
+     * @param game the game, which is used to get its width & height
+     */
     public World(final TileMap tileMap, final DungeonGame game) {
         this.tileMap = tileMap;
         final MobFactory mf = new MobFactoryImpl(this.tileMap);
@@ -49,14 +57,26 @@ public final class World {
         this.entities.addAll(mf.spawnNear(20, this.player, Boss::new));
     }
 
+    /**
+     * Getter for the tilemap.
+     * @return the currently used TileMap
+     */
     public TileMap getTileMap() {
         return this.tileMap;
     }
 
+    /**
+     * Player getter.
+     * @return The player
+     */
     public Player getPlayer() {
         return this.player;
     }
 
+    /**
+     * Player setter.
+     * @param player the new player, which will replace the current one
+     */
     public void setPlayer(final Player player) {
         this.player = player;
     }
@@ -66,6 +86,11 @@ public final class World {
                 .collect(Collectors.toUnmodifiableList());
     }
 
+    /**
+     * Update all the entities in the world.
+     * This method call will mainly update the state of the entities.
+     * @param delta
+     */
     public void update(final long delta) {
         this.player.stop();
         if (this.km.up()) {
@@ -108,6 +133,10 @@ public final class World {
                 && canvasY > -AssetManagerProxy.getMapTileSize() && canvasY <= game.getHeight();
     }
 
+    /**
+     * Render on screen the entities and the map.
+     * @param g2 The canvas onto which the rendering will be done.
+     */
     public void render(final Graphics2D g2) {
         camera.centerOnEntity(this.player, game.getWidth(), game.getHeight());
 
@@ -152,6 +181,11 @@ public final class World {
                 .noneMatch((x) -> x == GameObjectType.ENEMY || x == GameObjectType.BOSS);
     }
 
+   /**
+     * This function checks if the player has won, i.e. if the boss has already been spawned (and killed)
+     * and every other LivingCharacter (except for the player) has died.
+     * @return Whether the player has won the game or not.
+     */
     public boolean playerHasWon() {
         return this.player.isAlive() &&
                 this.playerHasKilledAllEntities()

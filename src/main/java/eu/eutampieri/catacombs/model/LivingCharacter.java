@@ -15,6 +15,10 @@ public interface LivingCharacter {
      */
     void setHealth(int health);
 
+    /**
+     * Check if the character is alive.
+     * @return true if the entity is alive.
+     */
     default boolean isAlive() {
         return this.getHealth() > 0;
     }

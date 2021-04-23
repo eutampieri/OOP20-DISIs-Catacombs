@@ -15,6 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * A proxy for AssetManager, which improves its flexibility, extensibility and reliability.
+ */
 public final class AssetManagerProxy {
     private static final double MAP_SCALING_FACTOR = 2.25;
     private final static double BULLET_SCALING_FACTOR = 0.25;
@@ -26,6 +29,13 @@ public final class AssetManagerProxy {
     private AssetManagerProxy() {
     }
 
+    /**
+     * Get the animation for this particular entity when performing an action.
+     * @param entity The entity that you want to animate
+     * @param action The action that the entity is performing
+     * @param direction The direction of the action. Null if the direction is not meaningful.
+     * @return the animation from the AssetManager
+     */
     public static Animation getFrames(final Entity entity, final Action action, final Direction direction) {
         if (entity.canPerform(action)) {
             if (direction == null && action.getDirections().size() != 0) {
@@ -82,6 +92,11 @@ public final class AssetManagerProxy {
         throw new IllegalArgumentException();
     }
 
+    /**
+     * Get a sprite from the AssetManager.
+     * @param entity The entity you want to render
+     * @return The requested sprite for the specified entity
+     */
     public static BufferedImage getSprite(final GameObject entity) {
         final StaticEntityKind entityKind = StaticEntityKind.fromGameObject(entity);
         assert entityKind != null;
@@ -119,6 +134,11 @@ public final class AssetManagerProxy {
         }
     }
 
+    /**
+     * Get a sprite for a map tile.
+     * @param tile The tile you want to render
+     * @return An optional containing a BufferedImage if the tile needs to be rendered
+     */
     public static Optional<BufferedImage> getTileSprite(final Tile tile) {
         if (MAP_CACHE.get(tile) != null) {
             return Optional.of(MAP_CACHE.get(tile));
@@ -139,6 +159,10 @@ public final class AssetManagerProxy {
         return Optional.of(MAP_CACHE.get(tile));
     }
 
+    /**
+     * Calculate the map tile size.
+     * @return The size of a map tile.
+     */
     public static int getMapTileSize() {
         final Optional<BufferedImage> maybeTile = getTileSprite(Tile.FLOOR);
         assert maybeTile.isPresent();

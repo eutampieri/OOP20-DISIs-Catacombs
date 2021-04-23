@@ -207,7 +207,8 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     }
 
     /**
-     * Renders object with the corresponding sprite.
+     * Get the currently performed action.
+     * @return The currently performed action, and a direction, if needed.
      */
     public abstract Pair<Action, Direction> getActionWithDirection();
 

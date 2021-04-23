@@ -5,6 +5,9 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 
+/**
+ * This class represents a player.
+ */
 public final class Player extends Entity {
     private static final int BASE_MOVEMENT_SPEED = 4;
     private static final int MAX_BASE_HP = 100;
@@ -50,7 +53,6 @@ public final class Player extends Entity {
 
     @Override
     public Pair<Action, Direction> getActionWithDirection() {
-        // TODO Auto-generated method stub
         return Pair.of(Action.MOVE, this.face);
     }
 
@@ -66,6 +68,10 @@ public final class Player extends Entity {
         }
     }
 
+    /**
+     * Request movement for this specific player.
+     * @param d The direction of the movement
+     */
     public void move(final Direction d) {
         this.resetMovement();
         switch (d) {
@@ -86,9 +92,12 @@ public final class Player extends Entity {
         }
     }
 
+    /**
+     * Ask this player to stop moving.
+     */
     public void stop() {
-            this.resetMovement();
-        }
+        this.resetMovement();
+    }
 
     /**
      * @return Player name
@@ -97,6 +106,9 @@ public final class Player extends Entity {
         return name;
     }
 
+    /**
+     * Ask this player to shoot.
+     */
     public void fire() {
         this.fire = true;
     }
@@ -139,10 +151,18 @@ public final class Player extends Entity {
         return this.spawnObject();
     }
 
+    /**
+     * Getter for player's weapon
+     * @return the currently used weapon
+     */
     public Weapon getWeapon() {
         return this.weapon;
     }
 
+    /**
+     * Weapon setter.
+     * @param weapon the new weapon, which will replace the previous one.
+     */
     public void setWeapon(final Weapon weapon) {
         this.weapon = weapon;
     }
