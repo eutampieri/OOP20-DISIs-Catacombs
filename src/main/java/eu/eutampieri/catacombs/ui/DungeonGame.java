@@ -101,7 +101,7 @@ public final class DungeonGame extends Game {
 
     public void winGame() {
         final EndGameState endGame = new EndGameState(this);
-        setState(this.transition.transState("WIN!!", this, endGame));
+        setState(this.transition.transState("Game Won!!", this, endGame));
     }
 
 }
