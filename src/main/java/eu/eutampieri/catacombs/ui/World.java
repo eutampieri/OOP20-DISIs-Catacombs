@@ -1,6 +1,7 @@
 package eu.eutampieri.catacombs.ui;
 
 import eu.eutampieri.catacombs.model.Action;
+import eu.eutampieri.catacombs.model.Boss;
 import eu.eutampieri.catacombs.model.Camera;
 import eu.eutampieri.catacombs.model.Direction;
 import eu.eutampieri.catacombs.model.Entity;
