@@ -2,7 +2,6 @@ package eu.eutampieri.catacombs.ui.gamefx;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,11 +16,11 @@ import eu.eutampieri.catacombs.ui.utils.ImageRotator;
 
 public final class AssetManager {
 
-    private static final Path PLAYER_SHEET = Path.of("res/playersheet.png");
-    private static final Path SLIME_SHEET = Path.of("res/slimesheet.png");
-    private static final Path BAT_SHEET = Path.of("res/batsheet.png");
-    private static final Path PROJECTILE_1 = Path.of("res/proj1.png");
-    private static final Path PROJECTILE_2 = Path.of("res/proj2.png");
+    private static final String PLAYER_SHEET = "res/playersheet.png";
+    private static final String SLIME_SHEET = "res/slimesheet.png";
+    private static final String BAT_SHEET = "res/batsheet.png";
+    private static final String PROJECTILE_1 = "res/proj1.png";
+    private static final String PROJECTILE_2 = "res/proj2.png";
     private static final String EXTENSION = ".png";
     private static final ImageRotator IMAGE_ROTATOR = new ImageRotator();
 
@@ -127,7 +126,7 @@ public final class AssetManager {
     public void loadImages() {
         // Check:OFF: MagicNumber
         // Tiles
-        final GameSheet tileSheet = new GameSheet(Path.of("res/tilesheet.png"));
+        final GameSheet tileSheet = new GameSheet("res/tilesheet.png");
         int count = 1;
         final Optional<BufferedImage> image = Optional.of(tileSheet.cutImage(112, 0, 16, 16));
 
@@ -177,7 +176,7 @@ public final class AssetManager {
      * @param dimension    the dimension of the single image
      * @param flip         the flipped image
      */
-    public void loadAnimations(final String name, final Path image, final int numFrames, final int offset,
+    public void loadAnimations(final String name, final String image, final int numFrames, final int offset,
             final int dimension, final boolean flip) {
         final GameSheet sheet = new GameSheet(image);
         final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();
@@ -206,17 +205,17 @@ public final class AssetManager {
         for (int i = 0; i < numFrames; i++) {
             if (idle) {
                 if (!flip) {
-                    res.add(ImageLoader.loadImage(Path.of("res/boss/Golem_Idle_" + (i + 1) + EXTENSION)));
+                    res.add(ImageLoader.loadImage("res/boss/Golem_Idle_" + (i + 1) + EXTENSION));
                 } else {
                     res.add(horizontalFlip(
-                            ImageLoader.loadImage(Path.of("res/boss/Golem_Idle_" + (i + 1) + EXTENSION))));
+                            ImageLoader.loadImage("res/boss/Golem_Idle_" + (i + 1) + EXTENSION)));
                 }
             } else {
                 if (!flip) {
-                    res.add(ImageLoader.loadImage(Path.of("res/boss/Golem_Walk_" + (i + 1) + EXTENSION)));
+                    res.add(ImageLoader.loadImage("res/boss/Golem_Walk_" + (i + 1) + EXTENSION));
                 } else {
                     res.add(horizontalFlip(
-                            ImageLoader.loadImage(Path.of("res/boss/Golem_Walk_" + (i + 1) + EXTENSION))));
+                            ImageLoader.loadImage("res/boss/Golem_Walk_" + (i + 1) + EXTENSION)));
                 }
             }
 
@@ -234,7 +233,7 @@ public final class AssetManager {
      * @param dimension     the dimension of the image
      * @param offset        the x offset
      */
-    public void loadGunAnimations(final String name, final Path image, final int numFrames, final int y,
+    public void loadGunAnimations(final String name, final String image, final int numFrames, final int y,
             final int dimension, final int offset) {
         final GameSheet sheet = new GameSheet(image);
         final ArrayList<Optional<BufferedImage>> res = new ArrayList<>();

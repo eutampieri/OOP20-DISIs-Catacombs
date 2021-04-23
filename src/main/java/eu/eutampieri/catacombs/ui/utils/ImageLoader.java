@@ -5,7 +5,6 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
 import java.util.Optional;
 
 import javax.imageio.ImageIO;
@@ -23,8 +22,8 @@ public final class ImageLoader {
      * @param path the path to find the image
      * @return an optiona of Buffered image
      */
-    public static Optional<BufferedImage> loadImage(final Path path) {
-        try (InputStream file = Thread.currentThread().getContextClassLoader().getResourceAsStream(path.toString())) {
+    public static Optional<BufferedImage> loadImage(final String path) {
+        try (InputStream file = Thread.currentThread().getContextClassLoader().getResourceAsStream(path)) {
             if (file == null) {
                 return Optional.empty();
             }
