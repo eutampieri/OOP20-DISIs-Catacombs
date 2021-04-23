@@ -139,7 +139,6 @@ public final class Player extends Entity {
         others.parallelStream().filter((x) -> x instanceof Weapon)
                 .filter((x) -> x.getHitBox().overlaps(this.getHitBox())).map((x) -> (Weapon) (x)).findAny()
                 .ifPresent((x) -> {
-                    System.out.println(x.toString());
                     x.setUser(this);
                     x.setPickedUp();
                     this.weapon = x;
