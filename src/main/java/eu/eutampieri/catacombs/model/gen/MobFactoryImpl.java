@@ -2,6 +2,7 @@ package eu.eutampieri.catacombs.model.gen;
 
 import eu.eutampieri.catacombs.model.Bat;
 import eu.eutampieri.catacombs.model.Entity;
+import eu.eutampieri.catacombs.model.GameObject;
 import eu.eutampieri.catacombs.model.Slime;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
@@ -17,9 +18,12 @@ public final class MobFactoryImpl implements MobFactory {
      */
     public static final int MAX_MOB_NUMBER = 420 / 2;
     /**
-     * minimum number of mob to be generated.
+     * Minimum number of mob to be generated.
      */
     public static final int MIN_MOB_NUMBER = 69;
+    /**
+     * Current number of mob kind excluding boss.
+     */
     private static final int MOB_KIND_NUMBER = 2;
 
     private TileMap tileMap;
@@ -84,5 +88,25 @@ public final class MobFactoryImpl implements MobFactory {
             }
         }
         return enemies;
+    }
+
+    @Override
+    public List<Entity> spawnNear(final int range, final GameObject e, final SingleObject<Entity> f) {
+        int randX, randY;
+
+        do {
+            randX = rand.nextInt(range) + 1;
+            randY = rand.nextInt(range) + 1;
+            if (rand.nextBoolean()) {
+                randX *= -1;
+            }
+            if (rand.nextBoolean()) {
+                randY *= -1;
+            }
+            randX += e.getPosX() / AssetManagerProxy.getMapTileSize();
+            randY += e.getPosY() / AssetManagerProxy.getMapTileSize();
+
+        } while (!tileMap.canSpawnAt(randX, randY));
+         return spawnAt(randX, randY, f);
     }
 }

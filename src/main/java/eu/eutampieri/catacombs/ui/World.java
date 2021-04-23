@@ -1,19 +1,8 @@
 package eu.eutampieri.catacombs.ui;
 
-import eu.eutampieri.catacombs.model.Action;
-import eu.eutampieri.catacombs.model.Boss;
-import eu.eutampieri.catacombs.model.Camera;
-import eu.eutampieri.catacombs.model.Direction;
-import eu.eutampieri.catacombs.model.Entity;
-import eu.eutampieri.catacombs.model.GameObject;
-import eu.eutampieri.catacombs.model.GameObjectType;
-import eu.eutampieri.catacombs.model.Player;
-import eu.eutampieri.catacombs.model.SimplePotion;
-import eu.eutampieri.catacombs.model.gen.SingleObjectFactory;
-import eu.eutampieri.catacombs.model.gen.SingleObjectFactoryImpl;
+import eu.eutampieri.catacombs.model.*;
+import eu.eutampieri.catacombs.model.gen.*;
 import eu.eutampieri.catacombs.model.map.TileMap;
-import eu.eutampieri.catacombs.model.gen.MobFactory;
-import eu.eutampieri.catacombs.model.gen.MobFactoryImpl;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import eu.eutampieri.catacombs.ui.input.KeyManager;
 import org.apache.commons.lang3.tuple.Pair;
@@ -57,11 +46,12 @@ public final class World {
 
         this.player = (Player) mf.spawnSome(1, (x, y, tm) -> new Player(x, y, "", tm)).get(0);
         /* for boss debugging purpose */
-        this.entities.addAll(mf.spawnAt((this.player.getPosX() - this.camera.getXOffset()) / AssetManagerProxy.getMapTileSize() + 1,
+        /* this.entities.addAll(mf.spawnAt((this.player.getPosX() - this.camera.getXOffset()) / AssetManagerProxy.getMapTileSize() + 1,
                 (this.player.getPosY() - this.camera.getYOffset()) / AssetManagerProxy.getMapTileSize() + 1,
-                Boss::new).stream().map((x) -> (GameObject) x).collect(Collectors.toList()));
+                Boss::new).stream().map((x) -> (GameObject) x).collect(Collectors.toList())); */
 
         this.game = game;
+        this.entities.addAll(mf.spawnNear(20, this.player, Boss::new));
     }
 
     public TileMap getTileMap() {

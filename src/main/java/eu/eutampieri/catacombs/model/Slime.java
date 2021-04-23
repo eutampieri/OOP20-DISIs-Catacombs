@@ -1,10 +1,13 @@
 package eu.eutampieri.catacombs.model;
 
+import eu.eutampieri.catacombs.model.gen.SingleObjectFactory;
+import eu.eutampieri.catacombs.model.gen.SingleObjectFactoryImpl;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Slime class - the slime is an enemy that walks toward the targeted character
@@ -20,7 +23,8 @@ public final class Slime extends Entity implements HealthModifier {
     private static final int RADAR_BOX_POSITION_MODIFIER = 20 * AssetManagerProxy.getMapTileSize();
     private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + Math.max(WIDTH, HEIGHT);
     private static final int DAMAGE_ON_HIT = 5;
-    private static final long HIT_DELAY = 10L * 1_000_000_000;
+    private static final long HIT_DELAY = 1_000;
+    private static final int DROP_CHANCE = 10;
 
     /**
      * Character followed by the slime.
@@ -31,14 +35,9 @@ public final class Slime extends Entity implements HealthModifier {
      */
     private final CollisionBox radarBox;
 
-    /**
-     * The entity focussed by the slime currently;.
-     * to be implemented maybe..
-     */
-    /* private final Entity entityToAggro; */
-
     private boolean canDmg;
     private long dmgDelayCount;
+    private boolean hasDropped;
 
     /**
      * Slime constructor.
@@ -60,6 +59,7 @@ public final class Slime extends Entity implements HealthModifier {
 
     @Override
     public List<GameObject> update(final long delta, final List<GameObject> others) {
+        final Random rand = new Random();
         if (!canDmg) {
             dmgDelayCount += delta;
             if (dmgDelayCount >= HIT_DELAY) {
@@ -69,23 +69,34 @@ public final class Slime extends Entity implements HealthModifier {
         }
         others.stream().filter((x) -> x instanceof Player)
                 .filter((x) -> x.getHitBox().overlaps(this.radarBox)).findFirst()
-                .ifPresentOrElse((x) -> {
-                    setCharacterToFollow(x);
-                }, () -> setCharacterToFollow(null));
+                .ifPresentOrElse(this::setCharacterToFollow, () -> setCharacterToFollow(null));
 
         follow();
+        if (!this.isAlive()) {
+            this.hasDropped = true;
+            if(rand.nextInt(101) <= DROP_CHANCE) {
+                final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
+                return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize() , this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
+                        (x, y, tm) -> {
+                            final int healingPower = rand.nextInt(101);
+                            return new SimplePotion(healingPower, "Potion", x, y);
+                        });
+            }
+        }
         super.update(delta, others);
         updateRadarBoxLocation();
-        if (this.getHitBox().overlaps(others.stream().filter((x) -> x instanceof Player)
-                .findFirst()
-                .get()
-                .getHitBox()) && canDmg
-        ) {
-            this.useOn((LivingCharacter) (others.stream().filter((x) -> x instanceof Player).findFirst().get()));
-            canDmg = false;
-        }
         this.resetMovement();
         return List.of();
+    }
+
+    @Override
+    public void useOn(final LivingCharacter character) {
+        if (this.canDmg) {
+            int currentHealth = character.getHealth();
+            currentHealth += this.getHealthDelta();
+            character.setHealth(currentHealth);
+            this.canDmg = false;
+        }
     }
 
     @Override
@@ -132,17 +143,25 @@ public final class Slime extends Entity implements HealthModifier {
         if (characterToFollow == null) {
             return;
         }
-        if (characterToFollow.getPosX() < posX) {
+        if ((characterToFollow.getPosX()
+                + (characterToFollow.getHitBox().getWidth() / 2)
+                - (this.width / 2)) < posX) {
             left = true;
-        } else if (characterToFollow.getPosX() > posX) {
+        } else if ((characterToFollow.getPosX()
+                + (characterToFollow.getHitBox().getWidth() / 2)
+                - (this.width / 2)) > posX) {
             right = true;
         } else {
             right = false;
             left = false;
         }
-        if (characterToFollow.getPosY() < posY) {
+        if ((characterToFollow.getPosY()
+                + (characterToFollow.getHitBox().getHeight() / 2)
+                - (this.height / 2)) < posY) {
             up = true;
-        } else if (characterToFollow.getPosY() > posY) {
+        } else if ((characterToFollow.getPosY()
+                + (characterToFollow.getHitBox().getHeight() / 2)
+                - (this.height / 2)) > posY) {
             down = true;
         } else {
             up = false;
@@ -164,6 +183,11 @@ public final class Slime extends Entity implements HealthModifier {
 
     @Override
     public int getHealthDelta() {
-        return -this.DAMAGE_ON_HIT;
+        return -DAMAGE_ON_HIT;
     }
+    @Override
+    public boolean isMarkedForDeletion() {
+        return !this.isAlive() && this.hasDropped;
+    }
+
 }

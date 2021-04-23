@@ -6,6 +6,8 @@ import java.util.List;
 
 public abstract class Weapon extends GameObject {
 
+    private static final int BULLET_DEFAULT_SIZE = 8;
+
     /**
      * Projectile strength.
      */
@@ -15,7 +17,7 @@ public abstract class Weapon extends GameObject {
      */
     protected int ps;
     /**
-     * weapon fire rate.
+     * weapon fire rate as bullets fired per minute.
      */
     protected long fireRate;
     /**
@@ -38,6 +40,16 @@ public abstract class Weapon extends GameObject {
     private Entity user;
 
     /**
+     * Bullet type.
+     */
+    private GameObjectType bulletKind;
+
+    /**
+     * Bullet size.
+     */
+    private int bulletSize;
+
+    /**
      *
      * @param e        Entity using weapon
      * @param tm       Tile map
@@ -56,8 +68,24 @@ public abstract class Weapon extends GameObject {
         setStrength(strength);
         setProjectileSpeed(ps);
         setFireRate(fr);
-        setFireDelay(Math.round(1000f / fireRate));
+        setFireDelay(Math.round(60_000f / fireRate));
         setCanFire(true);
+        this.bulletSize = BULLET_DEFAULT_SIZE;
+        this.fireDelayCount = 0;
+    }
+
+    public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
+                  final int fr, final Team team, final GameObjectType kind, final int size) {
+        super(x, y, GameObjectType.WEAPON, new CollisionBox(x, y, 0, 0), team);
+        this.user = e;
+        setTileMap(tm);
+        setStrength(strength);
+        setProjectileSpeed(ps);
+        setFireRate(fr);
+        setFireDelay(Math.round(60_000f / fireRate));
+        setCanFire(true);
+        this.bulletKind = kind;
+        this.bulletSize = size;
         this.fireDelayCount = 0;
     }
 
@@ -107,13 +135,27 @@ public abstract class Weapon extends GameObject {
     }
 
     public final List<GameObject> fire(final int psx, final int psy) {
-       final Projectile p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
-                psx*ps, psy*ps, strength, tileMap, this.getTeam());
+       final Projectile p;
+       if (this.bulletKind != null && bulletSize > 8) {
+           p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
+                   psx*ps, psy*ps, strength, tileMap, this.getTeam(), this.bulletKind, bulletSize);
+       } else {
+           p = new Projectile(this.getHitBox().getPosX(), this.getHitBox().getPosY(),
+                   psx*ps, psy*ps, strength, tileMap, this.getTeam());
+       }
        setCanFire(false);
        return List.of(p);
     }
 
     public void setUser(final Entity user) {
         this.user = user;
+    }
+
+    public void setBulletKind (final GameObjectType kind) {
+        this.bulletKind = kind;
+    }
+
+    public void setBulletSize (final int size) {
+        this.bulletSize = size;
     }
 }

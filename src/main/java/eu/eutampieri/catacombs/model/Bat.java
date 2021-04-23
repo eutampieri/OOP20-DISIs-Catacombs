@@ -1,11 +1,14 @@
 package eu.eutampieri.catacombs.model;
 
+import eu.eutampieri.catacombs.model.gen.SingleObjectFactoryImpl;
+import eu.eutampieri.catacombs.model.gen.SingleObjectFactory;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.Point;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Bat class - the bat is an enemy that mostly stands still and fires bullets.
@@ -19,11 +22,12 @@ public final class Bat extends Entity {
     private static final int RADAR_BOX_POSITION_MODIFIER = 20 * AssetManagerProxy.getMapTileSize();
     private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + Math.max(WIDTH, HEIGHT);
     private static final int BASE_DAMAGE = 2;
-    private static final int BASE_FIRE_RATE = 1;
+    private static final int BASE_FIRE_RATE = 40;
     private static final int BASE_PROJECTILE_SPEED = 3;
     private static final String NAME = "Bat";
     private static final long MOVE_DELAY = 5L * 100;
     private static final long PAUSE_DELAY = 10L * 100;
+    private static final int DROP_CHANCE = 10;
 
     private final Weapon weapon;
     private boolean isMoving;
@@ -31,6 +35,7 @@ public final class Bat extends Entity {
     private long pauseCounter;
     private final CollisionBox radarBox;
     private final Point shootingDirection;
+    private boolean hasDropped;
 
     /**
      * @param x       X spawn position
@@ -50,11 +55,11 @@ public final class Bat extends Entity {
         this.delayCounter = 0;
         this.pauseCounter = 0;
         this.isMoving = true;
-
     }
 
     @Override
     public List<GameObject> update(final long delta, final List<GameObject> others) {
+        final Random rand = new Random();
         resetShootingDirection();
         if (isMoving) {
             delayCounter += delta;
@@ -79,6 +84,17 @@ public final class Bat extends Entity {
                     }
                 }, () -> this.weapon.setCanFire(false));
 
+        if (!this.isAlive()) {
+            this.hasDropped = true;
+            if(rand.nextInt(101) <= DROP_CHANCE) {
+                final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
+                return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize() , this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
+                        (x, y, tm) -> {
+                            final int healingPower = rand.nextInt(101);
+                            return new SimplePotion(healingPower, "Potion", x, y);
+                        });
+            }
+        }
         super.update(delta, others);
         updateRadarBoxLocation();
         weapon.update(delta, others);
@@ -160,4 +176,8 @@ public final class Bat extends Entity {
         this.shootingDirection.setLocation(x, y);
     }
 
+    @Override
+    public boolean isMarkedForDeletion() {
+        return !this.isAlive() && this.hasDropped;
+    }
 }
