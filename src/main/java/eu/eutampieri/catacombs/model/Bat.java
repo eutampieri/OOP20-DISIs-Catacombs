@@ -38,6 +38,7 @@ public final class Bat extends Entity {
     private long pauseCounter;
     private final CollisionBox radarBox;
     private final Point shootingDirection;
+    private boolean hasDropped;
 
     /**
      * @param x       X spawn position
@@ -89,14 +90,17 @@ public final class Bat extends Entity {
         super.update(delta, others);
         updateRadarBoxLocation();
         weapon.update(delta, others);
-        if (this.getHealth() <= 0 && rand.nextInt(101) <= DROP_CHANCE) {
-            final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);;
-            System.out.println("pot spawned");
-            return objectFactory.spawnAt(this.getHitBox().getPosX() , this.getHitBox().getPosY(),
-                    (x, y, tm) -> {
-                        final int healingPower = rand.nextInt(101);
-                        return new SimplePotion(healingPower, "Potion", x, y);
-                    });
+        if (!this.isAlive()) {
+            this.hasDropped = true;
+            if(rand.nextInt(101) <= DROP_CHANCE) {
+                final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);;
+                System.out.println("pot spawned");
+                  return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize() , this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
+                        (x, y, tm) -> {
+                            final int healingPower = rand.nextInt(101);
+                            return new SimplePotion(healingPower, "Potion", x, y);
+                        });
+            }
         }
         if (this.weapon.canFire && this.getShootingDirection().getX() != 0 && this.getShootingDirection().getY() != 0) {
             return weapon.fire((int)getShootingDirection().getX() * weapon.ps, (int)getShootingDirection().getY() * weapon.ps);
@@ -176,4 +180,8 @@ public final class Bat extends Entity {
         this.shootingDirection.setLocation(x, y);
     }
 
+    @Override
+    public boolean isMarkedForDeletion() {
+        return !this.isAlive() && this.hasDropped;
+    }
 }
