@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public final class World {
+    private final static int BOSS_SPAWN_RANGE = 10;
+
     private final TileMap tileMap;
     private final KeyManagerProxy km = new KeyManagerProxy();
     private final DungeonGame game;
@@ -88,6 +90,15 @@ public final class World {
         this.entities.addAll(newEntities);
 
         this.entities = this.entities.stream().filter((x) -> !x.isMarkedForDeletion()).collect(Collectors.toList());
+
+        if(this.playerHasKilledAllEntities() && !this.bossHasBeenSpawned) {
+            // Spawn boss
+            final List<Entity> bossList = new MobFactoryImpl(tileMap).spawnNear(BOSS_SPAWN_RANGE, this.player, Boss::new);
+            assert bossList.size() == 1;
+            final GameObject boss = bossList.get(0);
+            this.entities.add(boss);
+            this.bossHasBeenSpawned = true;
+        }
     }
 
     private boolean isOnCamera(final int x, final int y) {
@@ -137,9 +148,8 @@ public final class World {
 
     private boolean playerHasKilledAllEntities() {
         return this.entities.parallelStream()
-                .map((x) -> x.getKind())
-                .filter((x) -> x == GameObjectType.ENEMY || x == GameObjectType.BOSS)
-                .count() == 0;
+                .map(GameObject::getKind)
+                .noneMatch((x) -> x == GameObjectType.ENEMY || x == GameObjectType.BOSS);
     }
 
     public boolean playerHasWon() {
