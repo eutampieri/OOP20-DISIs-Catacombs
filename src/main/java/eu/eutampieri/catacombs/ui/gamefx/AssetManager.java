@@ -2,6 +2,7 @@ package eu.eutampieri.catacombs.ui.gamefx;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,10 +18,10 @@ import eu.eutampieri.catacombs.ui.utils.ImageRotator;
 
 public final class AssetManager {
 
-    private static final Path PLAYER_SHEET = Path.of("res/playersheet.png");
-    private static final Path SLIME_SHEET = Path.of("res/slimesheet.png");
-    private static final Path BAT_SHEET = Path.of("res/batsheet.png");
-    private static final Path GUN_SHEET = Path.of("res/projectiles.png");
+    private static final Path PLAYER_SHEET = Path.of("res" + File.separator  + "playersheet.png");
+    private static final Path SLIME_SHEET = Path.of("res" + File.separator + "slimesheet.png");
+    private static final Path BAT_SHEET = Path.of("res" + File.separator + "batsheet.png");
+    private static final Path GUN_SHEET = Path.of("res" + File.separator + "projectiles.png");
     private static final String EXTENSION = ".png";
     private static final ImageRotator IMAGE_ROTATOR = new ImageRotator();
 
@@ -126,7 +127,7 @@ public final class AssetManager {
     public void loadImages() {
         // Check:OFF: MagicNumber
         // Tiles
-        final GameSheet tileSheet = new GameSheet(Path.of("res/tilesheet.png"));
+        final GameSheet tileSheet = new GameSheet(Path.of("res" + File.separator + "tilesheet.png"));
         int count = 1;
         final Optional<BufferedImage> image = Optional.of(tileSheet.cutImage(112, 0, 16, 16));
 
@@ -205,17 +206,17 @@ public final class AssetManager {
         for (int i = 0; i < numFrames; i++) {
             if (idle) {
                 if (!flip) {
-                    res.add(ImageLoader.loadImage(Path.of("res/boss/Golem_Idle_" + (i + 1) + EXTENSION)));
+                    res.add(ImageLoader.loadImage(Path.of("res" + File.separator + "boss" + File.separator + "Golem_Idle_" + (i + 1) + EXTENSION)));
                 } else {
                     res.add(horizontalFlip(
-                            ImageLoader.loadImage(Path.of("res/boss/Golem_Idle_" + (i + 1) + EXTENSION))));
+                            ImageLoader.loadImage(Path.of("res" + File.separator + "boss" + File.separator + "Golem_Idle_" + (i + 1) + EXTENSION))));
                 }
             } else {
                 if (!flip) {
-                    res.add(ImageLoader.loadImage(Path.of("res/boss/Golem_Walk_" + (i + 1) + EXTENSION)));
+                    res.add(ImageLoader.loadImage(Path.of("res" + File.separator + "boss" + File.separator + "Golem_Walk_" + (i + 1) + EXTENSION)));
                 } else {
                     res.add(horizontalFlip(
-                            ImageLoader.loadImage(Path.of("res/boss/Golem_Walk_" + (i + 1) + EXTENSION))));
+                            ImageLoader.loadImage(Path.of("res" + File.separator + "boss" + File.separator + "Golem_Walk_" + (i + 1) + EXTENSION))));
                 }
             }
 
