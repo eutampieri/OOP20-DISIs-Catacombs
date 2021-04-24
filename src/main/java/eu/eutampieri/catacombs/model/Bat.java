@@ -7,6 +7,7 @@ import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -21,13 +22,14 @@ public final class Bat extends Entity {
     private static final int HEALTH = 8;
     private static final int RADAR_BOX_POSITION_MODIFIER = 20 * AssetManagerProxy.getMapTileSize();
     private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + Math.max(WIDTH, HEIGHT);
-    private static final int BASE_DAMAGE = 2;
+    private static final int BASE_DAMAGE = 5;
     private static final int BASE_FIRE_RATE = 40;
     private static final int BASE_PROJECTILE_SPEED = 3;
     private static final String NAME = "Bat";
     private static final long MOVE_DELAY = 5L * 100;
     private static final long PAUSE_DELAY = 10L * 100;
-    private static final int DROP_CHANCE = 10;
+    private static final int POTION_DROP_CHANCE = 15;
+    private static final int WEAPON_DROP_CHANCE = 7;
     private static final int MAX_CHANCE = 100;
 
     private final Weapon weapon;
@@ -86,15 +88,27 @@ public final class Bat extends Entity {
                 }, () -> this.weapon.setCanFire(false));
 
         if (!this.isAlive()) {
+            List<GameObject> drops = new ArrayList<>();
             this.hasDropped = true;
-            if (rand.nextInt(MAX_CHANCE) + 1 <= DROP_CHANCE) {
-                final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
-                return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize(), this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
+            final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
+            if (rand.nextInt(MAX_CHANCE) + 1 <= POTION_DROP_CHANCE) {
+                drops.addAll(objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize(), this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
                         (x, y, tm) -> {
                             final int healingPower = rand.nextInt(101);
                             return new SimplePotion(healingPower, "Potion", x, y);
-                        });
+                        }));
             }
+            if (rand.nextInt(MAX_CHANCE) + 1 <= WEAPON_DROP_CHANCE) {
+                drops.addAll(objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize(), this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
+                        (x, y, tm) -> {
+                            if(rand.nextInt(2) == 0) {
+                                return new Gun(null, tm, x, y, GameObject.Team.FRIEND);
+                            } else {
+                                return new Rifle(null, tm, x, y, GameObject.Team.FRIEND);
+                            }
+                        }));
+            }
+            return drops;
         }
         super.update(delta, others);
         updateRadarBoxLocation();

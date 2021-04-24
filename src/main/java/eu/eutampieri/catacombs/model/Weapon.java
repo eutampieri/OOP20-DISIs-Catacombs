@@ -8,6 +8,7 @@ public abstract class Weapon extends GameObject {
 
     private static final float MINUTE_TO_MILLIS = 60_000f;
     private static final int BULLET_DEFAULT_SIZE = 8;
+    private static final int SIZE = 16;
 
     /**
      * Projectile strength.
@@ -63,7 +64,7 @@ public abstract class Weapon extends GameObject {
      */
     public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
             final int fr, final Team team) {
-        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, 0, 0), team);
+        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, SIZE, SIZE), team);
         this.user = e;
         setTileMap(tm);
         setStrength(strength);
@@ -77,7 +78,7 @@ public abstract class Weapon extends GameObject {
 
     public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
                   final int fr, final Team team, final GameObjectType kind, final int size) {
-        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, 0, 0), team);
+        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, SIZE, SIZE), team);
         this.user = e;
         setTileMap(tm);
         setStrength(strength);

@@ -3,9 +3,9 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 
 public class Rifle extends Weapon {
-    private static final int STRENGTH = 4;
-    private static final int FIRE_RATE = 120;
-    private static final int PROJECTILE_SPEED = 10;
+    private static final int STRENGTH = 3;
+    private static final int FIRE_RATE = 210;
+    private static final int PROJECTILE_SPEED = 14;
 
     /**
      * @param e        Entity using gun
