@@ -221,7 +221,7 @@
     di AssetManager accessibile globalmente senza doversi preoccupare di fornire il riferimento a chi lo richiede.
     Questa scelta è stata fatta perché il caricamento delle immagini in quelle strutture basta farla una volta sola per poi
     permetterne l’accesso a chiunque lo richieda. Lo stesso ragionamento è stato fatto per il KeyManager essendo anche esso
-    di utilità a più classi evitando anche in questo caso la creazione di istanze superflue
+    di utilità a più classi evitando anche in questo caso la creazione di istanze superflue.
     %UML
     \\
     \\
@@ -303,6 +303,25 @@
     \par Una factory di \texttt{ImageTransform} ritorna la trasformazione richiesta, che può essere applicata a più immagini.
     \par Un vantaggio di questo pattern, che per ora non viene sfruttato, è fornire diversi algoritmi di trasformazione
     nel caso quelli implementati non siano sufficientemente efficienti.
+    \subsubsection{AssetManager Proxy}
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{class}[text width=3.5cm]{AssetManagerProxy}{6, 0}
+            \attribute{- MAP\_CACHE: Map<Tile, BufferedImage>}
+            \attribute{- ANIMATIONS\_CACHE: Map<Triple<Entity, Action, Direction>, Pair<Animation, Long>>}
+            \attribute{- STATIC\_ASSETS\_CACHE: Map<StaticEntityKind, BufferedImage> }
+
+            \operation{- AssetManagerProxy()}
+            \operation{+ getFrames(entity: Entity, action: Action, direction: Direction): Animation}
+            \operation{+ getSprite(entity: GameObject): BufferedImage}
+            \operation{+ getTileSprite(tile: Tile): Optional<BufferedImage>}
+        \end{class}
+    \end{tikzpicture}
+    \par Conscio del fatto che non si tratti di un Proxy in senso lato, ho deciso di adattare il pattern al nostro caso
+    d'uso per consentire un migliore utilizzo dell'\texttt{AssetManager}, che prende in input stringhe, effettuando una
+    validazione dei parametri di input e trasformandoli in stringhe, riducendo così le fonti d'errore.
+    \par Inoltre, tramite questa classe, effettuo il caching delle immagini, cosa che, soprattutto nel caso di immagini
+    cui viene appplicata una trasformazione, riduce il tempo di rendering.
     \chapter{Sviluppo}
     \section{Testing automatizzato}
     \par Il gruppo ha realizzato testing automatizzato tramite una suite JUnit 5 di diversi componenti chiave
