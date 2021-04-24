@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public final class SingleObjectFactoryImpl implements SingleObjectFactory {
+/**
+ * ObjectFactory Implementation.
+ * @see ObjectFactory
+ */
+public class ObjectFactoryImpl implements ObjectFactory {
 
     private TileMap tileMap;
     private final transient Random rand = new Random();
@@ -17,7 +21,7 @@ public final class SingleObjectFactoryImpl implements SingleObjectFactory {
      *
      * @param tileMap Tile map in which to spawn mobs
      */
-    public SingleObjectFactoryImpl(final TileMap tileMap) {
+    public ObjectFactoryImpl(final TileMap tileMap) {
         this.tileMap = tileMap;
     }
 

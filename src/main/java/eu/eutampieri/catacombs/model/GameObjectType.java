@@ -1,5 +1,9 @@
 package eu.eutampieri.catacombs.model;
 
+/**
+ * Useful enum to keep track of GameObjects types
+ * @see GameObject
+ */
 public enum GameObjectType {
     /**
      * The player, i.e. the person who is playing the game.

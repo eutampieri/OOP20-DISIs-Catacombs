@@ -4,6 +4,10 @@ import eu.eutampieri.catacombs.model.map.TileMap;
 
 import java.util.List;
 
+/**
+ * A weapon, i.e. an object which, if used, reduces the health of the character it's used against.
+ * @see GameObject
+ */
 public abstract class Weapon extends GameObject {
 
     private static final float MINUTE_TO_MILLIS = 60_000f;

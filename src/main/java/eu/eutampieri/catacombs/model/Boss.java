@@ -10,6 +10,7 @@ import java.util.Random;
 
 /**
  * The game Boss.
+ * @see Entity
  */
 public final class Boss extends Entity {
 
@@ -156,17 +157,33 @@ public final class Boss extends Entity {
         this.hp = health;
     }
 
+    /**
+     *
+     * @return Boss name
+     */
     public String getName() {
         return Boss.NAME;
     }
+
+    /**
+     *
+     * @return Boss shooting direction
+     */
     public Point getShootingDirection() {
         return this.shootingDirection;
     }
 
+    /**
+     * Resets the shooting direction of the Boss.
+     */
     public void resetShootingDirection() {
         this.shootingDirection.setLocation(0, 0);
     }
 
+    /**
+     * Sets the shooting direction of the Boss.
+     * @param e GameObject to aim
+     */
     public void setShootingDirection(final GameObject e) {
         if (e == null) {
             return;
