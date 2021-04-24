@@ -35,7 +35,7 @@ public final class World {
     /**
      * Create a new world.
      * @param tileMap the map
-     * @param game the game, which is used to get its width & height
+     * @param game the game, which is used to get its width &amp; height
      */
     public World(final TileMap tileMap, final DungeonGame game) {
         this.tileMap = tileMap;

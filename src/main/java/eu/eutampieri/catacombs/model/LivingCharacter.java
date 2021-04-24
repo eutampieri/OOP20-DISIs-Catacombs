@@ -9,7 +9,7 @@ public interface LivingCharacter {
     int getHealth();
 
     /**
-     * Please make sure that the resulting health is always >= 0 and <= 100.
+     * Please make sure that the resulting health is always &gt;= 0 and &lt;= 100.
      * 
      * @param health the new health value
      */
