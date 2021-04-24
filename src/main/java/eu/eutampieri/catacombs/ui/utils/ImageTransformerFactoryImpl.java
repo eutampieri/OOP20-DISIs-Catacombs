@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 /**
  * Concrete implementation of a simple {@link ImageTransformerFactory}
  */
-public class ImageTransformerFactoryImpl implements ImageTransformerFactory{
+public final class ImageTransformerFactoryImpl implements ImageTransformerFactory{
     @Override
     public ImageTransformer rotate(final double degrees) {
         return input -> {
