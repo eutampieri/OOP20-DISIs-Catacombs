@@ -109,7 +109,6 @@
     Inoltre viene specificato il metodo update nel quale gli oggetti di gioco aggiorneranno i loro stati, si muoveranno e/o spareranno o compieranno
     altre azioni.
     Il template viene poi esteso alle classi Entity, Weapon, SimplePotion e Projectile.
-    %UML GAMEOBJECT TEMPLATE METHOD
     \\
     \par
     \begin{tikzpicture}
@@ -163,7 +162,6 @@
     facilmente di aggiungere in futuro altre entità (p.e.: nuovi nemici, NPC, ecc.).
     Allo stesso tempo anche la classe astratta Weapon definisce l'insieme delle armi utilizzabili. Come Entity ci sono per ora solamente due tipi di Weapon
     chiamate Gun e Rifle ma è possibile aggiungerne altre facilmente.
-    %UML ENTITY TEMPLATE
     \\
     \par
         \begin{tikzpicture}
@@ -210,7 +208,6 @@
         \end{center}
     \\
     \\
-    %UML WEAPON TEMPLATE
     \par
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
@@ -258,7 +255,6 @@
     nella mappa.
     \\
     \par
-    %UML FACTORIES
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
 
@@ -268,6 +264,9 @@
 
         \end{tikzpicture}
     \\
+        \begin{center}
+            In figura è rappresentato lo schema del Factory Method della Factory
+        \end{center}
     \par AssetManagerProxy
     \par ImageRotatorFactory
 
