@@ -151,7 +151,7 @@ public final class Player extends Entity {
     }
 
     /**
-     * Getter for player's weapon
+     * Getter for player's weapon.
      * @return the currently used weapon
      */
     public Weapon getWeapon() {
