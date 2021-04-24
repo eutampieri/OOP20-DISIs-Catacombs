@@ -113,7 +113,7 @@
     \par
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-            \begin {abstractclass}[text width=10cm]{GameObject}{-5, -8}
+            \begin {abstractclass}[text width=10cm]{GameObject}{0, -8}
                 \attribute {\#posX: int}
                 \attribute {\#posY: int}
                 \operation {\#kind: GameObjectType}
@@ -124,7 +124,7 @@
                 \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
             \end {abstractclass}
 
-            \begin {abstractclass}[text width=5cm]{Entity}{-30, 0}
+            \begin {abstractclass}[text width=5cm]{Entity}{-5, 0}
                 \inherit {GameObject}
                 \attribute {\#face: Direction}
                 \attribute {\#hp: int}
@@ -136,7 +136,7 @@
                 \operation {\#move: void}
             \end {abstractclass}
 
-            \begin {abstractclass}[text width=5cm]{Weapon}{+1, 0}
+            \begin {abstractclass}[text width=5cm]{Weapon}{+5, 0}
                 \inherit {GameObject}
                 \attribute {\#strength: int}
                 \attribute {\#ps: int}
