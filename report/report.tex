@@ -114,7 +114,7 @@
     \par
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-            \begin { abstractclass }[text width=3.5cm]{ GameObject }{0 ,-5}
+            \begin {abstractclass}[text width=3.5cm]{ GameObject }{0 ,-5}
                 \attribute { \# posX: int }
                 \attribute { \# posY: int }
                 \operation { \# kind: GameObjectType }
@@ -123,9 +123,9 @@
                 \attribute { \# hitBox: CollisionBox }
                 \attribute { \# team: Team }
                 \operation { + update(delta: long, others: List<GameObject>): List<GameObject> }
-            \end { abstractclass }
+            \end {abstractclass}
 
-            \begin { abstractclass }[text width=3.5cm]{ Entity }{-5 ,0}
+            \begin {abstractclass}[text width=3.5cm]{ Entity }{-5 ,0}
                 \attribute { \# face: Direction }
                 \attribute { \# hp: int }
                 \operation { \# kind: GameObjectType }
@@ -135,9 +135,9 @@
                 \attribute { \# tileMap: TileMap }
                 \operation { + update(delta: long, others: List<GameObject>): List<GameObject> }
                 \operation { \# move: void }
-            \end { abstractclass }
+            \end {abstractclass}
 
-            \begin { abstractclass }[text width=3.5cm]{ Weapon }{5 ,0}
+            \begin {abstractclass}[text width=3.5cm]{ Weapon }{5 ,0}
                 \attribute { \# strength: int }
                 \attribute { \# ps: int }
                 \operation { \# fireRate: long }
@@ -146,7 +146,7 @@
                 \attribute { \# fireDelayCount: long }
                 \operation { + update(delta: long, others: List<GameObject>): List<GameObject> }
                 \operation { + fire(psx: int, psy: int): void }
-            \end { abstractclass }
+            \end {abstractclass}
 
         \end{tikzpicture}
     \\
