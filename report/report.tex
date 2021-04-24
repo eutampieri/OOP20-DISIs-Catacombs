@@ -107,6 +107,17 @@
 
     \chapter{Sviluppo}
     \section{Testing automatizzato}
+    \par Il gruppo ha realizzato testing automatizzato tramite una suite JUnit 5 di diversi componenti chiave
+        per verificare che aderissero alle specifiche.
+    \par In particolare:
+        \begin{itemize}
+            \item Per le componenti che gestiscono I/O (\texttt{AssetManagerTest}, \texttt{UIUtilsTest} e \texttt{GameSheetTest}) viene verificato che l'accesso a risorse inesistenti venga gestito correttamente
+            \item Per le componenti che gestiscono la logica del gioco (\texttt{CharactersTest} e \texttt{EquipmentTest}) viene controllato che le operazioni sugli oggetti causino i risultati atteso, come ad esempio la diminuzione del punteggio salute dopo essere stati colpiti da un proiettile
+            \item Per la generazione casuale della mappa (\texttt{MapTest}) viene controllato che le mappe generate rispondano a certe caratteristiche e che la loro generazione non generi eccezioni
+            \item Per lo spawn delle entità (\texttt{MobFactoryTest}) viene testata la corretta generazione delle stesse
+            \item Per la gestione della logica di visualizzazione e di interazione (\texttt{CameraTest}, \texttt{CollisionBoxTest} e \texttt{HIDTests}) viene controllato che la logica della visualizzazione sa corretta nel primo caso, e che vengano gestiti correttamente gli eventi nei restanti
+        \end{itemize}
+    \par Si è inoltre deciso di avere una test coverage minima obbligatoria, fissata al 50\%, e di testare tramite una pipeline (utilizzando Github Actions) per evitare di introdurre regressioni nel branch principale.
     \section{Metodologia di lavoro}
     \section{Note di sviluppo}
     \chapter{Commenti finali}
