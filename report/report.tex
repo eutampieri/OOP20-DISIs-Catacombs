@@ -22,23 +22,21 @@
     di un dungeon, da un gameplay a turni, da grafica tile-based e la morte
     permanente del giocatore \cite{wiki:Roguelike}, simile ai giochi Enter the
     Gungeon e Nuclear Throne.
-    \par Il giocatore dovrà affrontare una serie di piani composti da stanze contenenti
-    nemici e oggetti fino ad arrivare a un boss finale. La mappa di gioco sarà generata
-    in modo casuale e sarà casuale anche la stanza in cui il personaggio comincerà
+    \par Il giocatore dovrà affrontare una serie di stanze contenenti
+    nemici e oggetti fino ad arrivare a un boss finale che sarà visibile solamente una volta uccisi tutti i nemici base.
+    La mappa di gioco sarà generata in modo casuale e sarà casuale anche la stanza in cui il personaggio comincerà
     la sua avventura.
-    \par Inizialmente il protagonista avrà 5 vite, un armatura al 100\%
-    e un arma base che potrà cambiare con armi più avanzate che troverà nel corso
-    della partità. Ad ogni colpo subito il personaggio perderà una percentuale dell'
-    armatura nel momento in cui l'armatura raggiungerà la percentuale dello 0\%
-    il danno subito toglierà una vita al personaggio, se il personaggio perde tutte
-    e 5 le vite il giocatore ha perso e il gioco termina.
+    \par Inizialmente il protagonista avrà il 100\% di vita e un arma base che potrà
+    cambiare con armi più avanzate che troverà nel corso
+    della partità. Ad ogni colpo subito il personaggio perderà una percentuale della
+    vita, se il personaggio muore la partita terminerà lasciando al possibilità all'utente di
+    poter cominciare un altra partità in una nuova mappa.
     \par Il gioco può terminare anche se viene sconfitto il boss della mappa ovvero
     un nemico di dimensione maggiore rispetto a quelli incontrati nelle stanze precedenti.
     Tale boss possiederà anche abilità superiori e armi letali per il personaggio.
-    \par Una volta terminato il gioco è possibile scegliere se ricominciare la partita
-    o recuperare un savepoint precedente.
-    \par Se il giocatore si trova in difficoltà può trovare sparsi per la mappa di gioco
-    alcune vite o armature che lo aiuteranno a sopravvivere fino alla battaglia finale.
+    \par Se il giocatore si trova in difficoltà può trovare sparse per la mappa di gioco
+    alcune pozioni curative che verranno lasciate sporadicamente dopo l'uccisione dei nemici base,
+    anche la quantità di vita rilasciata dalle pozioni è casuale.
     \par Esistono 2 tipi di nemici base:
     \begin{itemize}
         \item Nemici che attaccano da lontano
@@ -57,15 +55,15 @@
     \par Il sistema gestisce la generazione delle mappe con le varie stanze e le interazioni tra il
     personaggio e i nemici.
     \par Oltre ai nemici il personaggio potrà interagire con oggetti trovati nelle varie stanze.
-    \par Il personaggio possiede principalmente un numero di vite che aumenteranno con gli oggetti
-    o diminuiranno se colpiti da un nemico e una abilità speciale con un tempo di recupero variabile a seconda degli oggetti.
+    \par Il personaggio possiede principalmente una percentuale vite che aumenteranno con le pozioni
+    o diminuiranno se colpiti da un nemico.
     \par I nemici potranno essere di due tipi principali, melee (che attaccano da vicino) e ranged (che attaccano da lontano)
     e si muoveranno all'interno delle stanze e avranno una vita massima. Nemici più difficili da sconfiggere,
-    come i Boss avranno una maggiore vita massima e mosse speciali che useranno in determinati step durante il combattimento.
-    \par La mappa è strutturata in più livelli. Ogni livello è costituito da varie stanze stanze dove compariranno nemnici,
-    NPC ("Non Playable Character") e/o oggetti utilizzabili dal giocatore. Al termine di ogni stanza il giocatore si potrà
-    spostare a quelle adiacenti o esplorare la mappa. Una sola stanza permetterà di passare al piano successivo.
-    Arrivato all'ultimo paino in personaggio dovrà affrontare il Boss e dopo il combattimento il gioco terminerà.
+    come i Boss avranno una maggiore vita massima e mosse speciali che verrano usate durante il combattimento.
+    \par La mappa è divisa in più stanze di dimensione variabile, unite da corridoi, dove compariranno nemici
+    e/o oggetti utilizzabili dal giocatore.
+    Una volta sconfitti tutti i nemici presenti nella mappa il personaggio dovrà affrontare il Boss e dopo il
+    combattimento il gioco terminerà.
     \par \par Gli elementi considerati nel modello sono sintetizzati in Figura 1.1
 
 
@@ -179,6 +177,8 @@
                 \operation{+ getKeyManager( )}
             \end{class}
         \end{tikzpicture}
+    \\
+    \\
     \par Questa parte di codice si occupa invece della cambiamento di stato ovvero delle transizioni che portano da uno stato
     a l’altro. In questo caso è stato utilizzata una Factory di transizione per via del fatto che la forma delle transizioni
     è la medesima  le uniche differenze riguardano gli stati di partenza e di arrivo e il messaggio che il giocatore vedrà.
@@ -248,6 +248,21 @@
     \section{Difficoltà incontrate e commenti per i docenti}
     \appendix
     \chapter{Guida utente}
+    \par Il gioco comincerà con una schermata di menu che permette di cambiare l'opzione che si desidera scegliere attraverso l'uso
+     dei tasti W ,oppure freccia in alto, per selezionare l'inizio del gioco e S, oppure freccia in basso, per selezionare la chiusura della finestra.
+     Una volta che l'indicatore di selezione si sarà spostato sull'opzione desiderata è sufficiente premere il tasto invio per confermarla.
+     \par Una volta iniziata la partita il personaggio si potrà muovere il giro per la mappa utilizzando i tasti direzionali ovvero le
+      frecce sulla tastiera oppure i tasti W,A,S,D:
+     \begin{itemize}
+             \item W movimento verso l'alto.
+             \item S movimento verso il basso.
+             \item D movimento verso destra.
+             \item A movimento verso sinistra.
+     \end{itemize}
+     Il giocatore per eliminare i nemici potrà sparare ad essi usando il tasto spazio, sia tenendolo premuto che premendolo ripetutamente,
+     e per poter mirre al nemico bastera rivolgere il corpo del giocatore nella direzione desiderata ovvero (e.g se un nemico si trova alla
+     proria destra l'utente dovrà premere D (quindi movimento verso detra) e poi premere la barra dello spazio)
+     \par Per poter raccogliere gli oggetti presenti nella mappa bastera passarci sopra con il personaggio.
     \chapter{Esercitazioni di laboratorio}
     \printbibliography[heading=bibintoc]
 \end{document}
