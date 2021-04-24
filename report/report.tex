@@ -113,7 +113,7 @@
     \par
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-            \begin {abstractclass}[text width=10cm]{GameObject}{-10, -8}
+            \begin {abstractclass}[text width=10cm]{GameObject}{0, -8}
                 \attribute {\#posX: int}
                 \attribute {\#posY: int}
                 \operation {\#kind: GameObjectType}
@@ -189,7 +189,7 @@
                 \operation {-changeDirection: void}
             \end {class}
 
-            \begin {class}[text width=6cm]{Slime}{-10, 0}
+            \begin {class}[text width=6cm]{Slime}{-7, 0}
                 \inherit {Entity}
                 \operation {+setCharacterToFollow(e: GameObject): void}
                 \operation {-follow(): void}
