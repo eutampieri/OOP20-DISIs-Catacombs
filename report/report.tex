@@ -118,7 +118,6 @@
      in un futuro cambiamento.
     %UML
     \par
-    \par
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
             \begin{class}[text width=3.5cm]{MenuState}{-5, 0}
@@ -127,7 +126,7 @@
                 \operation{+ render(g2 : Graphics2D)}
             \end{class}
 
-            \begin{interface}[text width=3.5cm]{LogicMenu}{-5, -5}
+            \begin{interface}[text width=3.5cm]{LogicMenu}{5, 0}
 
                 \operation{start( )}
                 \operation{selectOption( )}
@@ -137,7 +136,7 @@
 
             \aggregation{MenuState}{uses}{}{LogicMenu}
 
-            \begin{class}[text width=3.5cm]{LogicMenuImpl}{-5, -10}
+            \begin{class}[text width=3.5cm]{LogicMenuImpl}{5, -5}
                 \implement{LogicMenu}
 
                 \operation{+ start( )}
@@ -145,33 +144,6 @@
                 \operation{+ getOption( )}
                 \operation{+ isOptionStart( )}
             \end{class}
-        \end{tikzpicture}
-
-        \begin{tikzpicture}
-
-            \begin{class}[text width=3.5cm]{EndGameState}{5, 0}
-
-                \operation{+ update(delta : long)}
-                \operation{+ render(g2 : Graphics2D)}
-            \end{class}
-
-            \begin{interface}[text width=3.5cm]{EndGameLogic}{5, -5}
-
-                \operation{continueGame(delta : long)}
-                \operation{getFont( )}
-                \operation{isBlink( )}
-            \end{interface}
-
-            \aggregation{EndGameState}{uses}{}{EndGameLogic}
-
-            \begin{class}[text width=3.5cm]{EndGameLogicImpl}{5, -10}
-                \implement{EndGameLogic}
-                \operation{+ continueGame(delta : long)}
-                \operation{+ getFont( )}
-                \operation{+ isBlink( )}
-
-            \end{class}
-
         \end{tikzpicture}
 
     \par Questa parte riguarda la gestione degli asset più precisamente la creazione di strutture e il caricamento delle
