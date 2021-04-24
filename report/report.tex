@@ -167,8 +167,7 @@
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {abstractclass}[text width=3.5cm]{Entity}{-5, 0}
-                \inherit {GameObject}
+            \begin {abstractclass}[text width=3.5cm]{Entity}{0, -10}
                 \attribute {\#face: Direction}
                 \attribute {\#hp: int}
                 \operation {\#kind: GameObjectType}
@@ -180,7 +179,7 @@
                 \operation {\#move: void}
             \end {abstractclass}
 
-            \begin {class}[text width=3.5cm]{Bat}{0, -8}
+            \begin {class}[text width=3.5cm]{Bat}{-7, 0}
                 \inherit {Entity}
                 \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
                 \operation {+setShootingDirection(e: GameObject): void}
@@ -194,7 +193,7 @@
                 \operation {-changeDirection: void}
             \end {class}
 
-            \begin {class}[text width=3.5cm]{Slime}{0, +8}
+            \begin {class}[text width=3.5cm]{Slime}{+7, 0}
                 \inherit {Entity}
                 \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
                 \operation {+setCharacterToFollow(e: GameObject): void}
@@ -210,8 +209,7 @@
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {abstractclass}[text width=3.5cm]{Weapon}{5, 0}
-                \inherit {GameObject}
+            \begin {abstractclass}[text width=3.5cm]{Weapon}{0, -10}
                 \attribute {\#strength: int}
                 \attribute {\#ps: int}
                 \operation {\#fireRate: long}
@@ -222,14 +220,14 @@
                 \operation {+fire(psx: int, psy: int): void}
             \end {abstractclass}
 
-            \begin {class}[text width=3.5cm]{Gun}{0, -8}
+            \begin {class}[text width=3.5cm]{Gun}{-5, 0}
                 \inherit {Weapon}
                 \operation {+getStrength(): int}
                 \operation {+getFireRate(): int}
                 \operation {+getProjectileSpeed(): int}
             \end {class}
 
-            \begin {class}[text width=3.5cm]{Rifle}{0, +8}
+            \begin {class}[text width=3.5cm]{Rifle}{+5, 0}
                 \inherit {Weapon}
                 \operation {+getStrength(): int}
                 \operation {+getFireRate(): int}
