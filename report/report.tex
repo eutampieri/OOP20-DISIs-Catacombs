@@ -82,27 +82,27 @@
     \par
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
-            \begin{abstractclass}[text width=3.5cm]{State}{0, 0}
+            \begin{abstractclass}[text width=3.5cm]{State}{0, 2}
 
                 \operation{+ update(delta : long)}
                 \operation{+ render(g2 : Graphics2D)}
             \end{abstractclass}
 
-            \begin{class}[text width=3.5cm]{MenuState}{-5, -5}
+            \begin{class}[text width=3.5cm]{MenuState}{-5, -7}
                 \inherit{State}
 
                 \operation{+ update(delta : long)}
                 \operation{+ render(g2 : Graphics2D)}
             \end{class}
 
-            \begin{class}[text width=3.5cm]{GameState}{0, -5}
+            \begin{class}[text width=3.5cm]{GameState}{0, -7}
                 \inherit{State}
 
                 \operation{+ update(delta : long)}
                 \operation{+ render(g2 : Graphics2D)}
             \end{class}
 
-            \begin{class}[text width=3.5cm]{EndGameState}{5, -5}
+            \begin{class}[text width=3.5cm]{EndGameState}{5, -7}
                 \inherit{State}
 
                 \operation{+ update(delta : long)}
@@ -120,13 +120,13 @@
     \par
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
-            \begin{class}[text width=3.5cm]{MenuState}{-5, 0}
+            \begin{class}[text width=3.5cm]{MenuState}{-5, 2}
 
                 \operation{+ update(delta : long)}
                 \operation{+ render(g2 : Graphics2D)}
             \end{class}
 
-            \begin{interface}[text width=3.5cm]{LogicMenu}{5, 0}
+            \begin{interface}[text width=3.5cm]{LogicMenu}{5, 2}
 
                 \operation{start( )}
                 \operation{selectOption( )}
@@ -136,7 +136,7 @@
 
             \aggregation{MenuState}{uses}{}{LogicMenu}
 
-            \begin{class}[text width=3.5cm]{LogicMenuImpl}{5, -5}
+            \begin{class}[text width=3.5cm]{LogicMenuImpl}{5, -7}
                 \implement{LogicMenu}
 
                 \operation{+ start( )}
