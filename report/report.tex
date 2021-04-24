@@ -167,82 +167,82 @@
     %UML ENTITY TEMPLATE
     \\
     \par
-    \begin{tikzpicture}
-        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{tikzpicture}
+            \tikzstyle{every node}=[font=\scriptsize]
 
-        \begin {abstractclass}[text width=3.5cm]{Entity}{-5 ,0}
-            \inherit {GameObject}
-            \attribute {\#face: Direction}
-            \attribute {\#hp: int}
-            \operation {\#kind: GameObjectType}
-            \attribute {\#width: int}
-            \attribute {\#height: int}
-            \attribute {\#size: int}
-            \attribute {\#tileMap: TileMap}
-            \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
-            \operation {\#move: void}
-        \end {abstractclass}
+            \begin {abstractclass}[text width=3.5cm]{Entity}{-5 ,0}
+                \inherit {GameObject}
+                \attribute {\#face: Direction}
+                \attribute {\#hp: int}
+                \operation {\#kind: GameObjectType}
+                \attribute {\#width: int}
+                \attribute {\#height: int}
+                \attribute {\#size: int}
+                \attribute {\#tileMap: TileMap}
+                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
+                \operation {\#move: void}
+            \end {abstractclass}
 
-        \begin {class}[text width=3.5cm]{Bat}{0 ,-8}
-            \inherit {Entity}
-            \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
-            \operation {+setShootingDirection(e: GameObject): void}
-            \operation {-changeDirection: void}
-        \end {class}
+            \begin {class}[text width=3.5cm]{Bat}{0 ,-8}
+                \inherit {Entity}
+                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
+                \operation {+setShootingDirection(e: GameObject): void}
+                \operation {-changeDirection: void}
+            \end {class}
 
-        \begin {class}[text width=3.5cm]{Boss}{0 ,0}
-            \inherit {Entity}
-            \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
-            \operation {+setShootingDirection(e: GameObject): void}
-            \operation {-changeDirection: void}
-        \end {class}
+            \begin {class}[text width=3.5cm]{Boss}{0 ,0}
+                \inherit {Entity}
+                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
+                \operation {+setShootingDirection(e: GameObject): void}
+                \operation {-changeDirection: void}
+            \end {class}
 
-        \begin {class}[text width=3.5cm]{Slime}{0 ,+8}
-            \inherit {Entity}
-            \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
-            \operation {+setCharacterToFollow(e: GameObject): void}
-            \operation {-follow(): void}
-        \end {class}
+            \begin {class}[text width=3.5cm]{Slime}{0 ,+8}
+                \inherit {Entity}
+                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
+                \operation {+setCharacterToFollow(e: GameObject): void}
+                \operation {-follow(): void}
+            \end {class}
 
-
-    \end{tikzpicture}
+        \end{tikzpicture}
     \\
     \par
     \begin{center}
         In figura è rappresentato lo schema del Template Method della Entity
     \end{center}
     \\
+    \\
     %UML WEAPON TEMPLATE
     \par
-    \begin{tikzpicture}
-        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{tikzpicture}
+            \tikzstyle{every node}=[font=\scriptsize]
 
-        \begin {abstractclass}[text width=3.5cm]{Weapon}{5 ,0}
-            \inherit {GameObject}
-            \attribute {\#strength: int}
-            \attribute {\#ps: int}
-            \operation {\#fireRate: long}
-            \attribute {\#canFire: boolean}
-            \attribute {\#fireDelay: long}
-            \attribute {\#fireDelayCount: long}
-            \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
-            \operation {+fire(psx: int, psy: int): void}
-        \end {abstractclass}
+            \begin {abstractclass}[text width=3.5cm]{Weapon}{5 ,0}
+                \inherit {GameObject}
+                \attribute {\#strength: int}
+                \attribute {\#ps: int}
+                \operation {\#fireRate: long}
+                \attribute {\#canFire: boolean}
+                \attribute {\#fireDelay: long}
+                \attribute {\#fireDelayCount: long}
+                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
+                \operation {+fire(psx: int, psy: int): void}
+            \end {abstractclass}
 
-        \begin {class}[text width=3.5cm]{Gun}{0 ,-8}
-            \inherit {Weapon}
-            \operation {+getStrength(): int}
-            \operation {+getFireRate(): int}
-            \operation {+getProjectileSpeed(): int}
-        \end {class}
+            \begin {class}[text width=3.5cm]{Gun}{0 ,-8}
+                \inherit {Weapon}
+                \operation {+getStrength(): int}
+                \operation {+getFireRate(): int}
+                \operation {+getProjectileSpeed(): int}
+            \end {class}
 
-        \begin {class}[text width=3.5cm]{Rifle}{0 ,+8}
-            \inherit {Weapon}
-            \operation {+getStrength(): int}
-            \operation {+getFireRate(): int}
-            \operation {+getProjectileSpeed(): int}
-        \end {class}
-    \end{tikzpicture}
+            \begin {class}[text width=3.5cm]{Rifle}{0 ,+8}
+                \inherit {Weapon}
+                \operation {+getStrength(): int}
+                \operation {+getFireRate(): int}
+                \operation {+getProjectileSpeed(): int}
+            \end {class}
+        \end{tikzpicture}
     \\
     \begin{center}
         In figura è rappresentato lo schema del Template Method della Weapon
@@ -259,15 +259,16 @@
     Le factory forniscono metodi semplici per lo spawn, che avviene solamente solamente se la posizione selezionata (o generata randomicamente) è accessibile
     nella mappa.
     \\
+    \par
     %UML FACTORIES
-    \begin{tikzpicture}
-        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{tikzpicture}
+            \tikzstyle{every node}=[font=\scriptsize]
 
-        \begin {class}[text width=3.5cm]{Weapon}{0 ,0}
+            \begin {class}[text width=3.5cm]{Weapon}{0 ,0}
 
-        \end {class}
+            \end {class}
 
-    \end{tikzpicture}
+        \end{tikzpicture}
     \\
     \par AssetManagerProxy
     \par ImageRotatorFactory
