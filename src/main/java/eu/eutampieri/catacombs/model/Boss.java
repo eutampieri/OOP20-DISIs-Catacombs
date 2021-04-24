@@ -1,10 +1,13 @@
 package eu.eutampieri.catacombs.model;
 
+import eu.eutampieri.catacombs.model.gen.MobFactory;
+import eu.eutampieri.catacombs.model.gen.MobFactoryImpl;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -23,17 +26,23 @@ public final class Boss extends Entity {
     private static final String NAME = "Boss";
     private static final long MOVE_DELAY = 15L * 100;
     private static final long PAUSE_DELAY = 10L * 100;
+    private static final long SPAWN_MOB_DELAY = 80L * 100;
     private static final int BASE_DAMAGE = 15;
-    private static final int BASE_PROJECTILE_SPEED = 8;
+    private static final int BASE_PROJECTILE_SPEED = 4;
     private static final int BASE_FIRE_RATE = 15;
     private static final int BULLET_SIZE = 28;
-
+    private static final int MAX_CHANCE = 100;
+    private static final int MOB_SPAWN_CHANCE = 60;
+    private static final int SPAWN_RADIUS = 20;
     private final Weapon weapon;
     private boolean isMoving;
     private int delayCounter;
     private int pauseCounter;
     private final CollisionBox radarBox;
     private final Point shootingDirection;
+    private boolean canSpawnMob;
+    private int spawnMobCounter;
+    private final MobFactory mf;
 
     /**
      * @param x       X spawn position
@@ -53,10 +62,15 @@ public final class Boss extends Entity {
         this.delayCounter = 0;
         this.pauseCounter = 0;
         this.isMoving = true;
+        this.canSpawnMob = false;
+        this.spawnMobCounter = 0;
+        this.mf = new MobFactoryImpl(tileMap);
     }
 
     @Override
     public List<GameObject> update(final long delta, final List<GameObject> others) {
+        final List<GameObject> objs = new ArrayList<>();
+        final Random rand = new Random();
         resetShootingDirection();
         if (isMoving) {
             delayCounter += delta;
@@ -84,8 +98,41 @@ public final class Boss extends Entity {
         super.update(delta, others);
         updateRadarBoxLocation();
         weapon.update(delta, others);
+        if (canSpawnMob) {
+            canSpawnMob = false;
+            if (rand.nextInt(MAX_CHANCE) + 1 <= MOB_SPAWN_CHANCE) {
+                System.out.println("spawn");
+                if (rand.nextBoolean()) {
+                    objs.addAll(this.mf.spawnNear(SPAWN_RADIUS, this, Slime::new));
+                } else {
+                    objs.addAll(this.mf.spawnNear(SPAWN_RADIUS, this, Bat::new));
+                }
+                return objs;
+            }
+        } else {
+            spawnMobCounter += delta;
+            if (spawnMobCounter >= SPAWN_MOB_DELAY) {
+                canSpawnMob = true;
+                spawnMobCounter = 0;
+            }
+        }
         if (this.weapon.canFire && this.getShootingDirection().getX() != 0 && this.getShootingDirection().getY() != 0) {
-            return weapon.fire((int) getShootingDirection().getX() * weapon.ps, (int) getShootingDirection().getY() * weapon.ps);
+            objs.addAll(weapon.fire((int) getShootingDirection().getX() * weapon.ps, (int) getShootingDirection().getY() * weapon.ps));
+            this.weapon.setCanFire(true);
+            objs.addAll(weapon.fire((int) getShootingDirection().getX() * -weapon.ps, (int) getShootingDirection().getY() * weapon.ps));
+            this.weapon.setCanFire(true);
+            objs.addAll(weapon.fire((int) getShootingDirection().getX() * weapon.ps, (int) getShootingDirection().getY() * -weapon.ps));
+            this.weapon.setCanFire(true);
+            objs.addAll(weapon.fire((int) getShootingDirection().getX() * -weapon.ps, (int) getShootingDirection().getY() * -weapon.ps));
+            this.weapon.setCanFire(true);
+            objs.addAll(weapon.fire(0, (int) getShootingDirection().getY() * weapon.ps));
+            this.weapon.setCanFire(true);
+            objs.addAll(weapon.fire(0, (int) getShootingDirection().getY() * -weapon.ps));
+            this.weapon.setCanFire(true);
+            objs.addAll(weapon.fire((int) getShootingDirection().getX() * weapon.ps, 0));
+            this.weapon.setCanFire(true);
+            objs.addAll(weapon.fire((int) getShootingDirection().getX() * -weapon.ps, 0));
+            return objs;
         }
         return List.of();
     }

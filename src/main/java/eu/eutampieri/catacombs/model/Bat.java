@@ -50,7 +50,8 @@ public final class Bat extends Entity {
         super(x, y, WIDTH, HEIGHT, tileMap, GameObjectType.ENEMY, GameObject.Team.ENEMY);
         setSpeed(MOVEMENT_SPEED);
         setHealth(HEALTH);
-        face = Direction.RIGHT;
+        final Random rand = new Random();
+        face = rand.nextBoolean() ? Direction.LEFT : Direction.RIGHT;
         radarBox = new CollisionBox(posX - RADAR_BOX_POSITION_MODIFIER, posY - RADAR_BOX_POSITION_MODIFIER,
                 RADAR_BOX_SIZE, RADAR_BOX_SIZE);
         weapon = new Weapon(this, tileMap, this.getHitBox().getPosX(), this.getHitBox().getPosY(),
