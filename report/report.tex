@@ -353,6 +353,19 @@
             \item Uso di Optional per la gestione degli eventuali file non trovati
             \item Uso di basilari lambda expressions nei test automatizzati
     \end{itemize}
+    \subsection{Tampieri}
+    \par Ho utilizzato le seguenti funzionalità avanzate del linguaggio:
+    \begin{itemize}
+        \item Generici bounded, utilizzati per estendere il \texttt{SingleObject} realizzato da Giacomo Monti
+        \item Uso di lambda expression in \texttt{AssetManagerProxy} e \texttt{ImageTransformFactoryImpl}
+        \item Uso di \texttt{Stream} in \texttt{AssetManagerProxy}
+        \item Utilizzato (seppur marginalmente) Apache Commons Lang: nello specifico \texttt{Pair} e \texttt{Triple}
+        \item Configurato Gradle, partendo dall'esempio fornitoci e integrandolo con la static code analysis
+    \end{itemize}
+    \par Ho utilizzato i seguenti snippet di codice:
+    \begin{itemize}
+        \item How to scale a \texttt{BufferedImage}\cite{so:BufferedImageScaling}, \texttt{src/main/java/eu/eutampieri/catacombs/ui/utils/ImageTransformFactoryImpl.java}, linee 23-29.
+    \end{itemize}
     \chapter{Commenti finali}
     \section{Autovalutazione e lavori futuri}
     \subsection{Chelli}
