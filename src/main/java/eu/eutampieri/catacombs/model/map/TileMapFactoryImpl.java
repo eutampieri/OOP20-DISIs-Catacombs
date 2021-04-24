@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * A TileMapFactory.
+ */
 public final class TileMapFactoryImpl implements TileMapFactory {
-
     private static final int NORMAL_N_ROOMS = 16;
     private static final int NORMAL_MIN_ROOM_SIDE = 8;
     private static final int NORMAL_MAX_ROOM_SIDE = 16;
