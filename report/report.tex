@@ -110,6 +110,17 @@
     e per lasciare spazio a nuove implementazioni possibili.
     L'implementazione attuale utilizza una matrice di Tile siccome mi sembrava la rappresentazione piu vicina al concetto di TileMap.
 
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{interface}[text width=3.5cm]{TileMapFactory}{0, 0}
+            \operation{def(): TileMap}
+            \operation{seededDef(seed: long): TileMap}
+            \operation{empty(h: int, w: int): TileMap}
+        \end{interface}
+        \begin{class}[text width=3.5cm]{TileMapFactoryImpl}{4, 0}
+            \implement{TileMapFactory}
+        \end{class}
+    \end{tikzpicture}
     \par Per la creazione delle TileMap ho deciso di usare una Factory,
     anche questa l'ho divisa in interfaccia e implementazione,
     la Factory fornisce metodi per avere una TileMap con parametri default,
