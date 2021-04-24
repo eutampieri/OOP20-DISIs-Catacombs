@@ -279,6 +279,30 @@
         \end{tikzpicture}
     \\
     \\
+    \subsection{Tampieri}
+    \par Durante lo sviluppo ho notato la necessità di utilizzare due diversi design pattern.
+    \subsubsection \texttt{ImageTransformer} Abstract Factory
+    \par
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{interface}[text width=3.5cm]{ImageTransformerFactory}{0, 0}
+            \operation{ + rotate(degrees: double): ImageTransformer}
+            \operation{ + scale(scalingFactor: double): ImageTransformer}
+            \operation{ + flip(flipX: boolean, flipY: boolean): ImageTransformer}
+        \end{interface}
+        \begin{class}[text width=3.5cm]{ImageTransformerFactoryImpl}{6, 0}
+            \implement{ImageTransformerFactory}
+            \operation{ + rotate(degrees: double): ImageTransformer}
+            \operation{ + scale(scalingFactor: double): ImageTransformer}
+            \operation{ + flip(flipX: boolean, flipY: boolean): ImageTransformer}
+        \end{class}
+    \end{tikzpicture}
+    \par Questa Abstract Factory si è rivelata necessaria perché venivano effettuate diverse operazioni di trasformazione di
+    immagini in più parti del codice.
+    \par Per favorire il riuso e ridurre la complessità ho deciso di creare un'interfaccia \texttt{ImageTransformer}, che si occupa di applicare una certa trasformazione ad una immagine.
+    \par Una factory di \texttt{ImageTransform} ritorna la trasformazione richiesta, che può essere applicata a più immagini.
+    \par Un vantaggio di questo pattern, che per ora non viene sfruttato, è fornire diversi algoritmi di trasformazione
+    nel caso quelli implementati non siano sufficientemente efficienti.
     \chapter{Sviluppo}
     \section{Testing automatizzato}
     \par Il gruppo ha realizzato testing automatizzato tramite una suite JUnit 5 di diversi componenti chiave
