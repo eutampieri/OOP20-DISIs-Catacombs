@@ -124,7 +124,7 @@
                 \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
             \end {abstractclass}
 
-            \begin {abstractclass}[text width=5cm]{Entity}{-10, -2}
+            \begin {abstractclass}[text width=5cm]{Entity}{-20, 0}
                 \inherit {GameObject}
                 \attribute {\#face: Direction}
                 \attribute {\#hp: int}
@@ -136,7 +136,7 @@
                 \operation {\#move: void}
             \end {abstractclass}
 
-            \begin {abstractclass}[text width=5cm]{Weapon}{0, 0}
+            \begin {abstractclass}[text width=5cm]{Weapon}{-10, 0}
                 \inherit {GameObject}
                 \attribute {\#strength: int}
                 \attribute {\#ps: int}
@@ -177,19 +177,19 @@
                 \operation {\#move: void}
             \end {abstractclass}
 
-            \begin {class}[text width=6cm]{Bat}{-13, 0}
+            \begin {class}[text width=6cm]{Bat}{-15, 0}
                 \inherit {Entity}
                 \operation {+setShootingDirection(e: GameObject): void}
                 \operation {-changeDirection: void}
             \end {class}
 
-            \begin {class}[text width=6cm]{Boss}{0, -5}
+            \begin {class}[text width=6cm]{Boss}{-10, -5}
                 \inherit {Entity}
                 \operation {+setShootingDirection(e: GameObject): void}
                 \operation {-changeDirection: void}
             \end {class}
 
-            \begin {class}[text width=6cm]{Slime}{+4, 0}
+            \begin {class}[text width=6cm]{Slime}{-10, 0}
                 \inherit {Entity}
                 \operation {+setCharacterToFollow(e: GameObject): void}
                 \operation {-follow(): void}
