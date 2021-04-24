@@ -204,7 +204,7 @@
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {abstractclass}[text width=8.5cm]{Weapon}{-5, -5}
+            \begin {abstractclass}[text width=10cm]{Weapon}{-5, -5}
                 \attribute {\#strength: int}
                 \attribute {\#ps: int}
                 \operation {\#fireRate: long}
@@ -215,14 +215,14 @@
                 \operation {+fire(psx: int, psy: int): void}
             \end {abstractclass}
 
-            \begin {class}[text width=8.5cm]{Gun}{-10, 0}
+            \begin {class}[text width=6cm]{Gun}{-10, 0}
                 \inherit {Weapon}
                 \operation {+getStrength(): int}
                 \operation {+getFireRate(): int}
                 \operation {+getProjectileSpeed(): int}
             \end {class}
 
-            \begin {class}[text width=8.5cm]{Rifle}{0, 0}
+            \begin {class}[text width=6cm]{Rifle}{0, 0}
                 \inherit {Weapon}
                 \operation {+getStrength(): int}
                 \operation {+getFireRate(): int}
