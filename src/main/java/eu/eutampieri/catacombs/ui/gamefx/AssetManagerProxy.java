@@ -20,9 +20,9 @@ import java.util.Optional;
  */
 public final class AssetManagerProxy {
     private static final double MAP_SCALING_FACTOR = 2.25;
-    private final static double BULLET_SCALING_FACTOR = 0.25;
-    private final static double BOSS_BULLET_SCALING_FACTOR = 1;
-    private final static double WEAPON_SCALING_FACTOR = 0.85;
+    private static final double BULLET_SCALING_FACTOR = 0.25;
+    private static final double BOSS_BULLET_SCALING_FACTOR = 1;
+    private static final double WEAPON_SCALING_FACTOR = 0.85;
     private static final Map<Tile, BufferedImage> MAP_CACHE = new HashMap<>();
     private static final Map<Triple<Entity, Action, Direction>, Pair<Animation, Long>> ANIMATIONS_CACHE = new HashMap<>();
     private static final Map<StaticEntityKind, BufferedImage> STATIC_ASSETS_CACHE = new HashMap<>();
@@ -131,9 +131,9 @@ public final class AssetManagerProxy {
             case POTION:
                 return am.getImage("potion");
             case WEAPON:
-                return entity instanceof Rifle ?
-                        itf.scale(WEAPON_SCALING_FACTOR).transform(am.getImage("rifle")) :
-                        itf.scale(WEAPON_SCALING_FACTOR).transform(am.getImage("gun"));
+                return entity instanceof Rifle
+                        ? itf.scale(WEAPON_SCALING_FACTOR).transform(am.getImage("rifle"))
+                        : itf.scale(WEAPON_SCALING_FACTOR).transform(am.getImage("gun"));
             default:
                 return null;
         }
@@ -181,7 +181,7 @@ public final class AssetManagerProxy {
         POTION,
         WEAPON,
         BOSS_BULLET;
-        public static StaticEntityKind fromGameObject (final GameObject gameObject) {
+        public static StaticEntityKind fromGameObject(final GameObject gameObject) {
             switch (gameObject.getKind()) {
                 case BULLET:
                     return BULLET;

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class SingleObjectFactoryImpl implements SingleObjectFactory {
+public final class SingleObjectFactoryImpl implements SingleObjectFactory {
 
     private TileMap tileMap;
     private final transient Random rand = new Random();

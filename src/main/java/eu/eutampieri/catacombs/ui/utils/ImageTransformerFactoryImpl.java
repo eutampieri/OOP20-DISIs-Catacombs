@@ -5,7 +5,10 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
-public class ImageTransformerFactoryImpl implements ImageTransformerFactory{
+/**
+ * Concrete implementation of a simple {@link ImageTransformerFactory}.
+ */
+public final class ImageTransformerFactoryImpl implements ImageTransformerFactory {
     @Override
     public ImageTransformer rotate(final double degrees) {
         return input -> {

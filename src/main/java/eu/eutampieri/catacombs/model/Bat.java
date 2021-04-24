@@ -101,7 +101,7 @@ public final class Bat extends Entity {
             if (rand.nextInt(MAX_CHANCE) + 1 <= WEAPON_DROP_CHANCE) {
                 drops.addAll(objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize(), this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
                         (x, y, tm) -> {
-                            if(rand.nextInt(2) == 0) {
+                            if (rand.nextInt(2) == 0) {
                                 return new Gun(null, tm, x, y, GameObject.Team.FRIEND);
                             } else {
                                 return new Rifle(null, tm, x, y, GameObject.Team.FRIEND);

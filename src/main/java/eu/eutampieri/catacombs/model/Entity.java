@@ -211,7 +211,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     /**
      * @return true if the entity is moving; false otherwise.
      */
-    public boolean isMoving(){
+    public boolean isMoving() {
         return this.right || this.left || this.up || this.down;
     }
 }

@@ -20,7 +20,8 @@ import java.util.stream.Stream;
  * This class contains all necessary entities to render the game and coordinates them.
  */
 public final class World {
-    private final static int BOSS_SPAWN_RANGE = 100;
+    private static final int BOSS_SPAWN_RANGE = 100;
+    private static final int SPAWNED_POTIONS = 5;
 
     private final TileMap tileMap;
     private final KeyManagerProxy km = new KeyManagerProxy();
@@ -46,14 +47,14 @@ public final class World {
 
         final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
         final Random rand = new Random();
-        this.entities.addAll(objectFactory.spawnSome(5, (x, y, tm) -> {
+        this.entities.addAll(objectFactory.spawnSome(SPAWNED_POTIONS, (x, y, tm) -> {
             final int healingPower = rand.nextInt(101);
             return new SimplePotion(healingPower, "Potion", x, y);
         }));
 
         this.entities.addAll(objectFactory.spawnSome(3, (x, y, tm) -> {
 
-            if(rand.nextInt(2) == 0) {
+            if (rand.nextInt(2) == 0) {
                 return new Gun(null, tm, x, y, GameObject.Team.FRIEND);
             } else {
                 return new Rifle(null, tm, x, y, GameObject.Team.FRIEND);
@@ -97,7 +98,7 @@ public final class World {
     /**
      * Update all the entities in the world.
      * This method call will mainly update the state of the entities.
-     * @param delta
+     * @param delta the number of milliseconds elapsed since the last update
      */
     public void update(final long delta) {
         this.player.stop();
@@ -124,7 +125,7 @@ public final class World {
 
         this.entities = this.entities.stream().filter((x) -> !x.isMarkedForDeletion()).collect(Collectors.toList());
 
-        if(this.playerHasKilledAllEntities() && !this.bossHasBeenSpawned) {
+        if (this.playerHasKilledAllEntities() && !this.bossHasBeenSpawned) {
             // Spawn boss
             final List<Entity> bossList = new MobFactoryImpl(tileMap).spawnNear(BOSS_SPAWN_RANGE, this.player, Boss::new);
             assert bossList.size() == 1;
@@ -195,8 +196,8 @@ public final class World {
      * @return Whether the player has won the game or not.
      */
     public boolean playerHasWon() {
-        return this.player.isAlive() &&
-                this.playerHasKilledAllEntities()
+        return this.player.isAlive()
+                && this.playerHasKilledAllEntities()
                 && this.bossHasBeenSpawned;
     }
 
