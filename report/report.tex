@@ -120,7 +120,7 @@
     \par
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
-            \begin{class}[text width=3.5cm]{MenuState}{-5, 0}
+            \begin{class}[text width=3.5cm]{MenuState}{-5, -0.2}
 
                 \operation{+ update(delta : long)}
                 \operation{+ render(g2 : Graphics2D)}
@@ -153,30 +153,47 @@
     permetterne l’accesso a chiunque lo richieda. Lo stesso ragionamento è stato fatto per il KeyManager essendo anche esso
     di utilità a più classi evitando anche in questo caso la creazione di istanze superflue
     %UML
+    \par
+            \begin{tikzpicture}
+                \tikzstyle{every node}=[font=\small]
+                \begin{class}[text width=5cm]{AssetManager}{-2.5, 0}
+                    \attribute{SINGLETON_MANAGER : AssetManager}
+
+                    \operation{- AssetManager( )}
+                    \operation{+ getAssetManager( )}
+                \end{class}
+
+                \begin{class}[text width=5cm]{KeyManager}{-2.5, 0}
+                    \attribute{SINGLETON_KEYMANAGER : KeyManager}
+
+                    \operation{- KeyManager( )}
+                    \operation{+ getKeyManager( )}
+                \end{class}
+            \end{tikzpicture}
     \par Questa parte di codice si occupa invece della cambiamento di stato ovvero delle transizioni che portano da uno stato
     a l’altro. In questo caso è stato utilizzata una Factory di transizione per via del fatto che la forma delle transizioni
     è la medesima  le uniche differenze riguardano gli stati di partenza e di arrivo e il messaggio che il giocatore vedrà.
     In questo non utilizzando una Factory avrei avuto tre classi in cui quasi tutto il codice veniva ripetuto e solo poche
     parti sarebbero cambiate  e così facendo avrei violato una regola base generale di buona programmazione ovvero
-    DRY (Don’t Repeat Yourself ).
+    DRY (Don’t Repeat Yourself).
     %UML
     \par
             \begin{tikzpicture}
                 \tikzstyle{every node}=[font=\scriptsize]
 
-                \begin{abstractclass}[text width=3.5cm]{State}{-2.5, 0}
+                \begin{abstractclass}[text width=3.5cm]{State}{-5, 0}
 
                     \operation{+ update(delta : long)}
                     \operation{+ render(g2 : Graphics2D)}
                 \end{abstractclass}
 
-                \begin{interface}[text width=3.5cm]{TransitionFactory}{2.5, 0}
+                \begin{interface}[text width=3.5cm]{TransitionFactory}{5, 0}
 
                     \operation{transState(message : String, game : DungeonGame, state : State)}
                 \end{interface}
 
 
-                \begin{class}[text width=3.5cm]{TransitionFactoryImpl}{2.5, -5}
+                \begin{class}[text width=3.5cm]{TransitionFactoryImpl}{5, -5}
                     \implement{TransitionFactory}
 
                     \operation{- generalTrans(message : String, game : DungeonGame, state : State)}
