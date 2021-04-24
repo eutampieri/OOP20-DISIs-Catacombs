@@ -88,31 +88,32 @@
     %UML
     \par
     \begin{tikzpicture}
-        \begin{abstractclass}[text width=2cm] \tiny{State}{0, 0}
+        \tikzstyle{every node}=[font=\small]
+        \begin{abstractclass}[text width=2cm]{State}{0, 0}
 
-            \operation\tiny{+ update(delta : long)}
-            \operation\tiny{+ render(g2 : Graphics2D)}
+            \operation{+ update(delta : long)}
+            \operation{+ render(g2 : Graphics2D)}
         \end{abstractclass}
 
-        \begin{class}[text width=2cm] \tiny{MenuState}{-5, -5}
+        \begin{class}[text width=2cm]{MenuState}{-5, -5}
             \inherit{State}
 
-            \operation\tiny{+ update(delta : long)}
-            \operation\tiny{+ render(g2 : Graphics2D)}
+            \operation{+ update(delta : long)}
+            \operation{+ render(g2 : Graphics2D)}
         \end{class}
 
-        \begin{class}[text width=2cm] \tiny{GameState}{0, -5}
+        \begin{class}[text width=2cm]{GameState}{0, -5}
             \inherit{State}
 
-            \operation\tiny{+ update(delta : long)}
-            \operation\tiny{+ render(g2 : Graphics2D)}
+            \operation{+ update(delta : long)}
+            \operation{+ render(g2 : Graphics2D)}
         \end{class}
 
-        \begin{class}[text width=2cm] \tiny{EndGameState}{5, -5}
+        \begin{class}[text width=2cm]{EndGameState}{5, -5}
             \inherit{State}
 
-            \operation\tiny{+ update(delta : long)}
-            \operation\tiny{+ render(g2 : Graphics2D)}
+            \operation{+ update(delta : long)}
+            \operation{+ render(g2 : Graphics2D)}
         \end{class}
 
     \end{tikzpicture}
