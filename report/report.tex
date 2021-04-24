@@ -86,6 +86,35 @@
      di incaricare una classe sia della gestione grafica di una schermata sia della sua logica creando così una complicazione
      in un futuro cambiamento.
     %UML
+    \begin{tikzpicture}
+        \begin{abstractclass}[text width=5cm] {State}{0, 0}
+
+            \operation{+ update(delta : long)}
+            \operation[0]{+ render(g2 : Graphics2D)}
+        \end{abstractclass}
+
+        \begin{class}[text width=7cm]{MenuState}{ -10, -10}
+            \inherit{State}
+
+            \operation{+ update(delta : long)}
+            \operation[0]{+ render(g2 : Graphics2D)}
+        \end{class}
+
+        \begin{class}[text width=7cm]{GameState}{0 , -10}
+            \inherit{State}
+
+            \operation{+ update(delta : long)}
+            \operation[0]{+ render(g2 : Graphics2D)}
+        \end{class}
+
+        \begin{class}[text width=7cm]{EndGameState}{10 , 10}
+            \inherit{State}
+
+            \operation{+ update(delta : long)}
+            \operation[0]{+ render(g2 : Graphics2D)}
+        \end{class}
+
+    \end{tikzpicture}
     \par Questa parte riguarda la gestione degli asset più precisamente la creazione di strutture e il caricamento delle
     immagini all’interno di esse. Il pattern utilizzato in questo caso è Singleton permettendo che ci sia un'unica istanza
     di AssetManager accessibile globalmente senza doversi preoccupare di fornire il riferimento a chi lo richiede.
