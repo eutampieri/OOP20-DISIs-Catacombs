@@ -113,7 +113,7 @@
     \par
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-            \begin {abstractclass}[text width=10cm]{GameObject}{0, -8}
+            \begin {abstractclass}[text width=8.5cm]{GameObject}{-5, -10}
                 \attribute {\#posX: int}
                 \attribute {\#posY: int}
                 \operation {\#kind: GameObjectType}
@@ -124,7 +124,7 @@
                 \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
             \end {abstractclass}
 
-            \begin {abstractclass}[text width=10cm]{Entity}{-5, 0}
+            \begin {abstractclass}[text width=8.5cm]{Entity}{-15, 0}
                 \inherit {GameObject}
                 \attribute {\#face: Direction}
                 \attribute {\#hp: int}
@@ -137,7 +137,7 @@
                 \operation {\#move: void}
             \end {abstractclass}
 
-            \begin {abstractclass}[text width=10cm]{Weapon}{5, 0}
+            \begin {abstractclass}[text width=8.5cm]{Weapon}{-3, 0}
                 \inherit {GameObject}
                 \attribute {\#strength: int}
                 \attribute {\#ps: int}
@@ -167,7 +167,7 @@
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {abstractclass}[text width=8cm]{Entity}{0, -10}
+            \begin {abstractclass}[text width=8.5cm]{Entity}{-5, -10}
                 \attribute {\#face: Direction}
                 \attribute {\#hp: int}
                 \operation {\#kind: GameObjectType}
@@ -179,21 +179,21 @@
                 \operation {\#move: void}
             \end {abstractclass}
 
-            \begin {class}[text width=8cm]{Bat}{-7, 0}
+            \begin {class}[text width=8.5cm]{Bat}{-13, 0}
                 \inherit {Entity}
                 \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
                 \operation {+setShootingDirection(e: GameObject): void}
                 \operation {-changeDirection: void}
             \end {class}
 
-            \begin {class}[text width=8cm]{Boss}{0, 0}
+            \begin {class}[text width=8.5cm]{Boss}{-3, 0}
                 \inherit {Entity}
                 \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
                 \operation {+setShootingDirection(e: GameObject): void}
                 \operation {-changeDirection: void}
             \end {class}
 
-            \begin {class}[text width=8cm]{Slime}{+7, 0}
+            \begin {class}[text width=8.5cm]{Slime}{+4, 0}
                 \inherit {Entity}
                 \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
                 \operation {+setCharacterToFollow(e: GameObject): void}
@@ -209,7 +209,7 @@
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {abstractclass}[text width=9cm]{Weapon}{0, -10}
+            \begin {abstractclass}[text width=8.5cm]{Weapon}{-5, -5}
                 \attribute {\#strength: int}
                 \attribute {\#ps: int}
                 \operation {\#fireRate: long}
@@ -220,14 +220,14 @@
                 \operation {+fire(psx: int, psy: int): void}
             \end {abstractclass}
 
-            \begin {class}[text width=9cm]{Gun}{-5, 0}
+            \begin {class}[text width=8.5cm]{Gun}{-10, 0}
                 \inherit {Weapon}
                 \operation {+getStrength(): int}
                 \operation {+getFireRate(): int}
                 \operation {+getProjectileSpeed(): int}
             \end {class}
 
-            \begin {class}[text width=9cm]{Rifle}{+5, 0}
+            \begin {class}[text width=8.5cm]{Rifle}{0, 0}
                 \inherit {Weapon}
                 \operation {+getStrength(): int}
                 \operation {+getFireRate(): int}
@@ -252,12 +252,12 @@
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {interface}[text width=7cm]{ObjectFactory}{0, 0}
+            \begin {interface}[text width=8.5cm]{ObjectFactory}{0, 0}
                 \operation {spawnAt(x: int, y: int, f: SingleObject<GameObject>): List<GameObject>}
                 \operation {spawnSome(n: int, f: SingleObject<GameObject>): List<GameObject>}
             \end {interface}
 
-            \begin {class}[text width=7cm]{ObjectFactoryImpl}{0, -5}
+            \begin {class}[text width=8.5cm]{ObjectFactoryImpl}{0, -5}
                 \implement{ObjectFactory}
                 \operation {+setNewTileMap(tileMap: TileMap): void}
             \end {class}
@@ -272,14 +272,14 @@
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {interface}[text width=5cm]{MobFactory}{0, 0}
+            \begin {interface}[text width=8.5cm]{MobFactory}{0, 0}
                 \operation {spawnAt(x: int, y: int, f: SingleObject<GameObject>): List<Entity>}
                 \operation {spawnSome(n: int, f: SingleObject<GameObject>): List<Entity>}
                 \operation {spawnRandom(): List<Entity>}
                 \operation {spawnNear(range: int, e: GameObject, f: SingleObject<GameObject>): List<Entity>}
             \end {interface}
 
-            \begin {class}[text width=5cm]{MobFactoryImpl}{0, -5}
+            \begin {class}[text width=8.5cm]{MobFactoryImpl}{0, -5}
                 \implement{MobFactory}
                 \operation {+setNewTileMap(tileMap: TileMap): void}
             \end {class}
