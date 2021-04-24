@@ -88,27 +88,27 @@
     %UML
     \par
     \begin{tikzpicture}
-        \begin{abstractclass}[text width=5cm] {State}{0, 0}
+        \begin{abstractclass}[text width=2cm] {State}{0, 0}
 
             \operation{+ update(delta : long)}
             \operation[0]{+ render(g2 : Graphics2D)}
         \end{abstractclass}
 
-        \begin{class}[text width=5cm]{MenuState}{ -10, -5}
+        \begin{class}[text width=2cm]{MenuState}{-5, -5}
             \inherit{State}
 
             \operation{+ update(delta : long)}
             \operation[0]{+ render(g2 : Graphics2D)}
         \end{class}
 
-        \begin{class}[text width=5cm]{GameState}{0 , -5}
+        \begin{class}[text width=2cm]{GameState}{0, -5}
             \inherit{State}
 
             \operation{+ update(delta : long)}
             \operation[0]{+ render(g2 : Graphics2D)}
         \end{class}
 
-        \begin{class}[text width=5cm]{EndGameState}{10 ,-5}
+        \begin{class}[text width=2cm]{EndGameState}{5, -5}
             \inherit{State}
 
             \operation{+ update(delta : long)}
