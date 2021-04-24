@@ -120,13 +120,13 @@
     \par
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
-            \begin{class}[text width=3.5cm]{MenuState}{-5, -0.2}
+            \begin{class}[text width=3.5cm]{MenuState}{-4, -0.2}
 
                 \operation{+ update(delta : long)}
                 \operation{+ render(g2 : Graphics2D)}
             \end{class}
 
-            \begin{interface}[text width=3.5cm]{LogicMenu}{5, 0}
+            \begin{interface}[text width=3.5cm]{LogicMenu}{4, 0}
 
                 \operation{start( )}
                 \operation{selectOption( )}
@@ -136,7 +136,7 @@
 
             \aggregation{MenuState}{uses}{}{LogicMenu}
 
-            \begin{class}[text width=3.5cm]{LogicMenuImpl}{5, -5}
+            \begin{class}[text width=3.5cm]{LogicMenuImpl}{4, -5}
                 \implement{LogicMenu}
 
                 \operation{+ start( )}
@@ -181,19 +181,19 @@
             \begin{tikzpicture}
                 \tikzstyle{every node}=[font=\scriptsize]
 
-                \begin{abstractclass}[text width=3.5cm]{State}{-5, 0}
+                \begin{abstractclass}[text width=3.5cm]{State}{-4, 0}
 
                     \operation{+ update(delta : long)}
                     \operation{+ render(g2 : Graphics2D)}
                 \end{abstractclass}
 
-                \begin{interface}[text width=3.5cm]{TransitionFactory}{5, 0}
+                \begin{interface}[text width=3.5cm]{TransitionFactory}{4, 0}
 
                     \operation{transState(message : String, game : DungeonGame, state : State)}
                 \end{interface}
 
 
-                \begin{class}[text width=3.5cm]{TransitionFactoryImpl}{5, -5}
+                \begin{class}[text width=3.5cm]{TransitionFactoryImpl}{4, -5}
                     \implement{TransitionFactory}
 
                     \operation{- generalTrans(message : String, game : DungeonGame, state : State)}
