@@ -146,35 +146,30 @@
 
             \end{class}
 
+            \begin{class}[text width=3.5cm]{EndGameState}{10, 0}
+
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{class}
+
+            \begin{interface}[text width=3.5cm]{EndGameLogic}{10, -5}
+
+                \operation{continueGame(delta : long)}
+                \operation{getFont( )}
+                \operation{isBlink( )}
+            \end{class}
+
+            \aggregation{EndGameState}{uses}{EndGameLogic}
+
+            \begin{class}[text width=3.5cm]{EndGameLogicImpl}{10, -10}
+                \implement{EndGameLogic}
+                \operation{+ continueGame(delta : long)}
+                \operation{+ getFont( )}
+                \operation{+ isBlink( )}
+
+            \end{class}
+
         \end{tikzpicture}
-
-        \begin{tikzpicture}
-                    \tikzstyle{every node}=[font=\scriptsize]
-                    \begin{class}[text width=3.5cm]{EndGameState}{10, 0}
-
-                        \operation{+ update(delta : long)}
-                        \operation{+ render(g2 : Graphics2D)}
-                    \end{class}
-
-                    \begin{interface}[text width=3.5cm]{EndGameLogic}{10, -5}
-
-                        \operation{continueGame(delta : long)}
-                        \operation{getFont( )}
-                        \operation{isBlink( )}
-                    \end{class}
-
-                    \aggregation{EndGameState}{uses}{EndGameLogic}
-
-                    \begin{class}[text width=3.5cm]{EndGameLogicImpl}{10, -10}
-                        \implement{EndGameLogic}
-
-                        \operation{+ continueGame(delta : long)}
-                        \operation{+ getFont( )}
-                        \operation{+ isBlink( )}
-
-                    \end{class}
-
-                \end{tikzpicture}
 
     \par Questa parte riguarda la gestione degli asset più precisamente la creazione di strutture e il caricamento delle
     immagini all’interno di esse. Il pattern utilizzato in questo caso è Singleton permettendo che ci sia un'unica istanza
