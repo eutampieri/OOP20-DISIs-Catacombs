@@ -109,9 +109,12 @@
     Inoltre viene specificato il metodo update nel quale gli oggetti di gioco aggiorneranno i loro stati, si muoveranno e/o spareranno o compieranno
     altre azioni.
     Il template viene poi esteso alle classi Entity, Weapon, SimplePotion e Projectile.
+    \\
+    \\
+    \par
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-            \begin { abstractclass }[ text width =8 cm ]{ GameObject }{0 ,-5}
+            \begin { abstractclass }[text width=3.5cm]{ GameObject }{0 ,-5}
                 \attribute { \# posX: int }
                 \attribute { \# posY: int }
                 \operation { \# kind: GameObjectType }
@@ -122,7 +125,7 @@
                 \operation { + update(delta: long, others: List<GameObject>): List<GameObject> }
             \end { abstractclass }
 
-            \begin { abstractclass }[ text width =8 cm ]{ Entity }{-5 ,0}
+            \begin { abstractclass }[text width=3.5cm]{ Entity }{-5 ,0}
                 \attribute { \# face: Direction }
                 \attribute { \# hp: int }
                 \operation { \# kind: GameObjectType }
@@ -134,18 +137,20 @@
                 \operation { \# move: void }
             \end { abstractclass }
 
-        \begin { abstractclass }[ text width =8 cm ]{ Weapon }{5 ,0}
-            \attribute { \# strength: int }
-            \attribute { \# ps: int }
-            \operation { \# fireRate: long }
-            \attribute { \# canFire: boolean }
-            \attribute { \# fireDelay: long }
-            \attribute { \# fireDelayCount: long }
-            \operation { + update(delta: long, others: List<GameObject>): List<GameObject> }
-            \operation { + fire(psx: int, psy: int): void }
-        \end { abstractclass }
+            \begin { abstractclass }[text width=3.5cm]{ Weapon }{5 ,0}
+                \attribute { \# strength: int }
+                \attribute { \# ps: int }
+                \operation { \# fireRate: long }
+                \attribute { \# canFire: boolean }
+                \attribute { \# fireDelay: long }
+                \attribute { \# fireDelayCount: long }
+                \operation { + update(delta: long, others: List<GameObject>): List<GameObject> }
+                \operation { + fire(psx: int, psy: int): void }
+            \end { abstractclass }
 
         \end{tikzpicture}
+    \\
+    \\
     \par Sempre con in mente il Template Method ho deciso di rendere astratte le classi Entity e Weapon, essendo entrambe una generalizzazione di quelli
     che sono rispettivamente i diversi personaggi (come il PLayer e i nemici) e le diverse armi presenti nel gioco.
     In particolare Entity è una classe astratta che rappresenta l'insieme degli oggetti definiti Living ("vivi"), cioè che si muovono, hanno una salute
