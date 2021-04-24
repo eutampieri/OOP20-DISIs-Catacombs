@@ -113,7 +113,7 @@
     \par
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-            \begin {abstractclass}[text width=10cm]{GameObject}{-20, -8}
+            \begin {abstractclass}[text width=10cm]{GameObject}{-5, -8}
                 \attribute {\#posX: int}
                 \attribute {\#posY: int}
                 \operation {\#kind: GameObjectType}
@@ -136,7 +136,7 @@
                 \operation {\#move: void}
             \end {abstractclass}
 
-            \begin {abstractclass}[text width=5cm]{Weapon}{-15, 0}
+            \begin {abstractclass}[text width=5cm]{Weapon}{+1, 0}
                 \inherit {GameObject}
                 \attribute {\#strength: int}
                 \attribute {\#ps: int}
@@ -339,9 +339,8 @@
     \section{Autovalutazione e lavori futuri}
     \subsection{Monti}
     Le difficoltà principali le ho riscontrate durante l'analisi del modello, essendo la prima esperienza di game design.
-    Credo di aver fatto un lavoro nel complesso buono soprattutto nell'utlizzo dei pattern.
-    Le uniche debolezze del gioco sono la poca varietà di armi e nemici e la grafica non troppo moderna, ma grazie al lavoro per ora svolto
-    aggiungere nemici e armi risulterà molto semplice.
+    Le debolezze del gioco sono la poca varietà di armi e nemici e la grafica non troppo moderna, ma grazie al lavoro per ora svolto
+    aggiungere nemici e armi risulterà molto semplice se mai si vorrà.
     \section{Difficoltà incontrate e commenti per i docenti}
     \appendix
     \chapter{Guida utente}
