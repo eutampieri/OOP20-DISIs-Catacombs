@@ -113,7 +113,7 @@
     \par
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-            \begin {abstractclass}[text width=5cm]{GameObject}{0, -8}
+            \begin {abstractclass}[text width=5cm]{GameObject}{-5, -8}
                 \attribute {\#posX: int}
                 \attribute {\#posY: int}
                 \operation {\#kind: GameObjectType}
@@ -136,7 +136,7 @@
                 \operation {\#move: void}
             \end {abstractclass}
 
-            \begin {abstractclass}[text width=5cm]{Weapon}{+2, 0}
+            \begin {abstractclass}[text width=5cm]{Weapon}{0, 0}
                 \inherit {GameObject}
                 \attribute {\#strength: int}
                 \attribute {\#ps: int}
