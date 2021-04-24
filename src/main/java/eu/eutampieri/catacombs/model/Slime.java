@@ -64,6 +64,7 @@ public final class Slime extends Entity implements HealthModifier {
     @Override
     public List<GameObject> update(final long delta, final List<GameObject> others) {
         final Random rand = new Random();
+        this.resetMovement();
         if (!canDmg) {
             dmgDelayCount += delta;
             if (dmgDelayCount >= HIT_DELAY) {
@@ -101,7 +102,6 @@ public final class Slime extends Entity implements HealthModifier {
         }
         super.update(delta, others);
         updateRadarBoxLocation();
-        this.resetMovement();
         return List.of();
     }
 
