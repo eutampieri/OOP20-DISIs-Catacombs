@@ -4,7 +4,7 @@ import java.awt.Font;
 import java.awt.font.FontRenderContext;
 
 /**
- * This class return the width of a font
+ * This class return the width of a font.
  */
 
 public final class FontUtils {
