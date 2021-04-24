@@ -80,6 +80,7 @@
      stato a stato in modo che la logica e la grafica di ogni stato risulti diversa.
     %UML
     \\
+    \\
     \par
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
@@ -111,6 +112,8 @@
             \end{class}
 
         \end{tikzpicture}
+    \\
+    \\
     \par Questa parte verterà sulla gestione della schermata principale e su quella di fine gioco la quale poi introdurrà nuovamente
      alla schermata di menù. Il sistema per la gestione di questi due stati è la medesima, entrambi utilizzano il pattern Strategy
      infatti è possibile modificare la grafica di queste schermate senza andare ad impattare direttamente la logica che le gestisce.
@@ -118,6 +121,7 @@
      di incaricare una classe sia della gestione grafica di una schermata sia della sua logica creando così una complicazione
      in un futuro cambiamento.
     %UML
+    \\
     \\
     \par
         \begin{tikzpicture}
@@ -147,7 +151,8 @@
                 \operation{+ isOptionStart( )}
             \end{class}
         \end{tikzpicture}
-
+    \\
+    \\
     \par Questa parte riguarda la gestione degli asset più precisamente la creazione di strutture e il caricamento delle
     immagini all’interno di esse. Il pattern utilizzato in questo caso è Singleton permettendo che ci sia un'unica istanza
     di AssetManager accessibile globalmente senza doversi preoccupare di fornire il riferimento a chi lo richiede.
@@ -155,6 +160,7 @@
     permetterne l’accesso a chiunque lo richieda. Lo stesso ragionamento è stato fatto per il KeyManager essendo anche esso
     di utilità a più classi evitando anche in questo caso la creazione di istanze superflue
     %UML
+    \\
     \\
     \par
         \begin{tikzpicture}
@@ -181,33 +187,33 @@
     DRY (Don’t Repeat Yourself).
     %UML
     \\
+    \\
     \par
-            \begin{tikzpicture}
-                \tikzstyle{every node}=[font=\scriptsize]
+        \begin{tikzpicture}
+            \tikzstyle{every node}=[font=\scriptsize]
 
-                \begin{abstractclass}[text width=3.5cm]{State}{-4, 0}
+            \begin{abstractclass}[text width=3.5cm]{State}{-4, 0}
 
-                    \operation{+ update(delta : long)}
-                    \operation{+ render(g2 : Graphics2D)}
-                \end{abstractclass}
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{abstractclass}
 
-                \begin{interface}[text width=3.5cm]{TransitionFactory}{4, 0}
+            \begin{interface}[text width=3.5cm]{TransitionFactory}{4, 0}
 
-                    \operation{transState(message : String, game : DungeonGame, state : State)}
-                \end{interface}
+                \operation{transState(message : String, game : DungeonGame, state : State)}
+            \end{interface}
 
+            \begin{class}[text width=3.5cm]{TransitionFactoryImpl}{4, -5}
+                \implement{TransitionFactory}
 
-                \begin{class}[text width=3.5cm]{TransitionFactoryImpl}{4, -5}
-                    \implement{TransitionFactory}
-
-                    \operation{- generalTrans(message : String, game : DungeonGame, state : State)}
-                    \operation{+ transState(message : String, game : DungeonGame, state : State)}
-                \end{class}
+                \operation{- generalTrans(message : String, game : DungeonGame, state : State)}
+                \operation{+ transState(message : String, game : DungeonGame, state : State)}
+            \end{class}
 
                 \association{TransitionFactory}{creates}{}{State}{}{}
-            \end{tikzpicture}
-
-
+        \end{tikzpicture}
+    \\
+    \\
     \chapter{Sviluppo}
     \section{Testing automatizzato}
     \section{Metodologia di lavoro}
