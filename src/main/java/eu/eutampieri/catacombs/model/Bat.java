@@ -88,7 +88,7 @@ public final class Bat extends Entity {
                 }, () -> this.weapon.setCanFire(false));
 
         if (!this.isAlive()) {
-            List<GameObject> drops = new ArrayList<>();
+            final List<GameObject> drops = new ArrayList<>();
             this.hasDropped = true;
             final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
             if (rand.nextInt(MAX_CHANCE) + 1 <= POTION_DROP_CHANCE) {

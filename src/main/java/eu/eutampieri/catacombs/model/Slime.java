@@ -75,7 +75,7 @@ public final class Slime extends Entity implements HealthModifier {
 
         follow();
         if (!this.isAlive()) {
-            List<GameObject> drops = new ArrayList<>();
+            final List<GameObject> drops = new ArrayList<>();
             this.hasDropped = true;
             final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
             if (rand.nextInt(MAX_CHANCE) + 1 <= POTION_DROP_CHANCE) {
