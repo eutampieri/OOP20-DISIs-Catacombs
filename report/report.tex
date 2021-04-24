@@ -22,23 +22,21 @@
     di un dungeon, da un gameplay a turni, da grafica tile-based e la morte
     permanente del giocatore \cite{wiki:Roguelike}, simile ai giochi Enter the
     Gungeon e Nuclear Throne.
-    \par Il giocatore dovrà affrontare una serie di piani composti da stanze contenenti
-    nemici e oggetti fino ad arrivare a un boss finale. La mappa di gioco sarà generata
-    in modo casuale e sarà casuale anche la stanza in cui il personaggio comincerà
+    \par Il giocatore dovrà affrontare una serie di stanze contenenti
+    nemici e oggetti fino ad arrivare a un boss finale che sarà visibile solamente una volta uccisi tutti i nemici base.
+    La mappa di gioco sarà generata in modo casuale e sarà casuale anche la stanza in cui il personaggio comincerà
     la sua avventura.
-    \par Inizialmente il protagonista avrà 5 vite, un armatura al 100\%
-    e un arma base che potrà cambiare con armi più avanzate che troverà nel corso
-    della partità. Ad ogni colpo subito il personaggio perderà una percentuale dell'
-    armatura nel momento in cui l'armatura raggiungerà la percentuale dello 0\%
-    il danno subito toglierà una vita al personaggio, se il personaggio perde tutte
-    e 5 le vite il giocatore ha perso e il gioco termina.
+    \par Inizialmente il protagonista avrà il 100\% di vita e un arma base che potrà
+    cambiare con armi più avanzate che troverà nel corso
+    della partità. Ad ogni colpo subito il personaggio perderà una percentuale della
+    vita, se il personaggio muore la partita terminerà lasciando al possibilità all'utente di
+    poter cominciare un altra partità in una nuova mappa.
     \par Il gioco può terminare anche se viene sconfitto il boss della mappa ovvero
     un nemico di dimensione maggiore rispetto a quelli incontrati nelle stanze precedenti.
     Tale boss possiederà anche abilità superiori e armi letali per il personaggio.
-    \par Una volta terminato il gioco è possibile scegliere se ricominciare la partita
-    o recuperare un savepoint precedente.
-    \par Se il giocatore si trova in difficoltà può trovare sparsi per la mappa di gioco
-    alcune vite o armature che lo aiuteranno a sopravvivere fino alla battaglia finale.
+    \par Se il giocatore si trova in difficoltà può trovare sparse per la mappa di gioco
+    alcune pozioni curative che verranno lasciate sporadicamente dopo l'uccisione dei nemici base,
+    anche la quantità di vita rilasciata dalle pozioni è casuale.
     \par Esistono 2 tipi di nemici base:
     \begin{itemize}
         \item Nemici che attaccano da lontano
@@ -57,28 +55,63 @@
     \par Il sistema gestisce la generazione delle mappe con le varie stanze e le interazioni tra il
     personaggio e i nemici.
     \par Oltre ai nemici il personaggio potrà interagire con oggetti trovati nelle varie stanze.
-    \par Il personaggio possiede principalmente un numero di vite che aumenteranno con gli oggetti
-    o diminuiranno se colpiti da un nemico e una abilità speciale con un tempo di recupero variabile a seconda degli oggetti.
+    \par Il personaggio possiede principalmente una percentuale vite che aumenteranno con le pozioni
+    o diminuiranno se colpiti da un nemico.
     \par I nemici potranno essere di due tipi principali, melee (che attaccano da vicino) e ranged (che attaccano da lontano)
     e si muoveranno all'interno delle stanze e avranno una vita massima. Nemici più difficili da sconfiggere,
-    come i Boss avranno una maggiore vita massima e mosse speciali che useranno in determinati step durante il combattimento.
-    \par La mappa è strutturata in più livelli. Ogni livello è costituito da varie stanze stanze dove compariranno nemnici,
-    NPC ("Non Playable Character") e/o oggetti utilizzabili dal giocatore. Al termine di ogni stanza il giocatore si potrà
-    spostare a quelle adiacenti o esplorare la mappa. Una sola stanza permetterà di passare al piano successivo.
-    Arrivato all'ultimo paino in personaggio dovrà affrontare il Boss e dopo il combattimento il gioco terminerà.
+    come i Boss avranno una maggiore vita massima e mosse speciali che verrano usate durante il combattimento.
+    \par La mappa è divisa in più stanze di dimensione variabile, unite da corridoi, dove compariranno nemici
+    e/o oggetti utilizzabili dal giocatore.
+    Una volta sconfitti tutti i nemici presenti nella mappa il personaggio dovrà affrontare il Boss e dopo il
+    combattimento il gioco terminerà.
     \par \par Gli elementi considerati nel modello sono sintetizzati in Figura 1.1
 
 
     \chapter{Design}
     \section{Architettura}
-    \section{Design dettagliato} 
-    \subsection{Sanita}
+    \section{Design dettagliato}
+    \subsection{Sanità}
     \par Questa parte si concentrerà sugli aspetti relativi ai vari stati che costituiscono il gioco (menu, stato di gioco, stato di fine).
      Il sistema per la creazione di questi stati è la creazione di una classe astratta State dalla quale poi verranno
      estese tutte le classi che costituiscono i diversi stati. Questa classe rappresenta lo scheletro di un qualunque
      stato ed essendo una classe astratta l’implementazione di due metodi astratti quali update e render sarà diversa da
      stato a stato in modo che la logica e la grafica di ogni stato risulti diversa.
     %UML
+    \\
+    \\
+    \par
+        \begin{tikzpicture}
+            \tikzstyle{every node}=[font=\scriptsize]
+            \begin{abstractclass}[text width=3.5cm]{State}{0, 0}
+
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{abstractclass}
+
+            \begin{class}[text width=3.5cm]{MenuState}{-5, -5}
+                \inherit{State}
+
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{class}
+
+            \begin{class}[text width=3.5cm]{GameState}{0, -5}
+                \inherit{State}
+
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{class}
+
+            \begin{class}[text width=3.5cm]{EndGameState}{5, -5}
+                \inherit{State}
+
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{class}
+
+        \end{tikzpicture}
+    \\
+    \\
     \par Questa parte verterà sulla gestione della schermata principale e su quella di fine gioco la quale poi introdurrà nuovamente
      alla schermata di menù. Il sistema per la gestione di questi due stati è la medesima, entrambi utilizzano il pattern Strategy
      infatti è possibile modificare la grafica di queste schermate senza andare ad impattare direttamente la logica che le gestisce.
@@ -86,6 +119,38 @@
      di incaricare una classe sia della gestione grafica di una schermata sia della sua logica creando così una complicazione
      in un futuro cambiamento.
     %UML
+    \\
+    \\
+    \par
+        \begin{tikzpicture}
+            \tikzstyle{every node}=[font=\scriptsize]
+            \begin{class}[text width=3.5cm]{MenuState}{-4, -0.2}
+
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{class}
+
+            \begin{interface}[text width=3.5cm]{LogicMenu}{4, 0}
+
+                \operation{start( )}
+                \operation{selectOption( )}
+                \operation{getOption( )}
+                \operation{isOptionStart( )}
+            \end{interface}
+
+            \aggregation{MenuState}{uses}{}{LogicMenu}
+
+            \begin{class}[text width=3.5cm]{LogicMenuImpl}{4, -5}
+                \implement{LogicMenu}
+
+                \operation{+ start( )}
+                \operation{+ selectOption( )}
+                \operation{+ getOption( )}
+                \operation{+ isOptionStart( )}
+            \end{class}
+        \end{tikzpicture}
+    \\
+    \\
     \par Questa parte riguarda la gestione degli asset più precisamente la creazione di strutture e il caricamento delle
     immagini all’interno di esse. Il pattern utilizzato in questo caso è Singleton permettendo che ci sia un'unica istanza
     di AssetManager accessibile globalmente senza doversi preoccupare di fornire il riferimento a chi lo richiede.
@@ -93,27 +158,111 @@
     permetterne l’accesso a chiunque lo richieda. Lo stesso ragionamento è stato fatto per il KeyManager essendo anche esso
     di utilità a più classi evitando anche in questo caso la creazione di istanze superflue
     %UML
+    \\
+    \\
+    \par
+        \begin{tikzpicture}
+            \tikzstyle{every node}=[font=\scriptsize]
+            \begin{class}[text width=4cm]{AssetManager}{-3, 0}
+                \attribute{- SINGLETON\_MANAGER : AssetManager}
+
+                \operation{- AssetManager( )}
+                \operation{+ getAssetManager( )}
+            \end{class}
+
+            \begin{class}[text width=5cm]{KeyManager}{3, 0}
+                \attribute{- SINGLETON\_KEYMANAGER : KeyManager}
+
+                \operation{- KeyManager( )}
+                \operation{+ getKeyManager( )}
+            \end{class}
+        \end{tikzpicture}
+    \\
+    \\
     \par Questa parte di codice si occupa invece della cambiamento di stato ovvero delle transizioni che portano da uno stato
     a l’altro. In questo caso è stato utilizzata una Factory di transizione per via del fatto che la forma delle transizioni
     è la medesima  le uniche differenze riguardano gli stati di partenza e di arrivo e il messaggio che il giocatore vedrà.
     In questo non utilizzando una Factory avrei avuto tre classi in cui quasi tutto il codice veniva ripetuto e solo poche
     parti sarebbero cambiate  e così facendo avrei violato una regola base generale di buona programmazione ovvero
-    DRY (Don’t Repeat Yourself ).
+    DRY (Don’t Repeat Yourself).
     %UML
-    \subsection{Monti}
+    \\
+    \\
+    \par
+        \begin{tikzpicture}
+            \tikzstyle{every node}=[font=\scriptsize]
 
-    \par AssetManagerProxy
-    \par ImageRotatorFactory
+            \begin{abstractclass}[text width=3.5cm]{State}{-4, 0}
 
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{abstractclass}
+
+            \begin{interface}[text width=3.5cm]{TransitionFactory}{4, 0}
+
+                \operation{transState(message : String, game : DungeonGame, state : State)}
+            \end{interface}
+
+            \begin{class}[text width=3.5cm]{TransitionFactoryImpl}{4, -5}
+                \implement{TransitionFactory}
+
+                \operation{- generalTrans(message : String, game : DungeonGame, state : State)}
+                \operation{+ transState(message : String, game : DungeonGame, state : State)}
+            \end{class}
+
+                \association{TransitionFactory}{creates}{}{State}{}{}
+        \end{tikzpicture}
+    \\
+    \\
     \chapter{Sviluppo}
     \section{Testing automatizzato}
     \section{Metodologia di lavoro}
+    \par In questa parte esporrò il mio contributo per il progetto relativo alle interfacce grafiche al caricamento di risorse grafiche
+    e testuali , alla gestione degli asset e delle animazioni del gioco , alla struttura del loop principale attraverso il quale si
+    sviluppa il gioco e alla interazione con dispositivi esterni quali mouse e tastiera.
+    \par La parte di cui mi sono maggiormente e occupato la GUI del gioco nello specifico la gestione degli stati attraverso i quali
+    il gioco si sviluppa partendo dalla creazione di un generico stato\texttt{State} dal quale si estendono poi altri stati quali:
+    \texttt{MenuState} , \texttt{GameState} e \texttt{EndGameState}.
+    \par Un’altra parte di cui mi sono occupato riguarda le transizioni ovvero il cambiamento da uno stato a l’altro attraverso la creazione
+    , per mezzo di  \texttt{TransitionFactory} , di un interfaccia che fa da ponte tra due stati. La gestione di degli stati e dei loro
+    cambiamenti è affidata ad un'altra classe DungeonGame anche questa implementata da me. Questa classe si occupa di controllare
+    in quale stato si trova il gioco e in quale stato dovrà trovarsi se il player muore o se finisce il gioco, in poche parole p la
+    classe che gestisce la visualizzazione il funzionamento e il susseguirsi degli stati di gioco. Inoltre fornisce informazioni
+    riguardanti la finestra principale del gioco creata dalla classe \texttt{MainWindow} di mia implementazione anche se la totalità delle
+    informazioni riguardanti la finestra è disponibile a chi  ne facesse uso nella mia classe \texttt{GameConfiguration}.
+    \par Il \texttt{DungeonGame} estende la classe \texttt{Game} che contiene i metodi necessari all’inizializzazione della finestra di gioco,
+    il render degli aspetti di base ma soprattutto si occupa del loop principale del gioco.
+    \par Un’altra classe di del mio codice è la gestione degli input di dispositivi esterni quale la tastiera \texttt{KeyManager} che
+    gestisce i vari input da tastiera
+    \par Una altra parte di mia responsabilità è il caricamento di risorse come si può vedere dal package \texttt{catacombs/ui/utils (FontUtils, ImageLoader e ImageRotator)}
+    e dall’\texttt{AssetManager} che fa uso di un’altra classe, \texttt{GameSheet} che si occupa di ritagliare le immagini in immagini più piccole
+    in modo da separare i singoli frame di movimento dei personaggi. Tali frame verranno poi utilizzati dalla classe \texttt{Animation} che
+    provvede a sequenziarli in modo da farli risultare parte di un unico fluido movimento
     \section{Note di sviluppo}
+    \begin{itemize}
+            \item Uso di Optional per la gestione degli eventuali file non trovati
+            \item Uso di basilari lambda expressions nei test automatizzati
+    \end{itemize}
     \chapter{Commenti finali}
     \section{Autovalutazione e lavori futuri}
     \section{Difficoltà incontrate e commenti per i docenti}
     \appendix
     \chapter{Guida utente}
+    \par Il gioco comincerà con una schermata di menu che permette di cambiare l'opzione che si desidera scegliere attraverso l'uso
+     dei tasti W ,oppure freccia in alto, per selezionare l'inizio del gioco e S, oppure freccia in basso, per selezionare la chiusura della finestra.
+     Una volta che l'indicatore di selezione si sarà spostato sull'opzione desiderata è sufficiente premere il tasto invio per confermarla.
+     \par Una volta iniziata la partita il personaggio si potrà muovere il giro per la mappa utilizzando i tasti direzionali ovvero le
+      frecce sulla tastiera oppure i tasti W,A,S,D:
+     \begin{itemize}
+             \item W movimento verso l'alto.
+             \item S movimento verso il basso.
+             \item D movimento verso destra.
+             \item A movimento verso sinistra.
+     \end{itemize}
+     Il giocatore per eliminare i nemici potrà sparare ad essi usando il tasto spazio, sia tenendolo premuto che premendolo ripetutamente,
+     e per poter mirre al nemico bastera rivolgere il corpo del giocatore nella direzione desiderata ovvero (e.g se un nemico si trova alla
+     proria destra l'utente dovrà premere D (quindi movimento verso detra) e poi premere la barra dello spazio)
+     Per poter raccogliere gli oggetti presenti nella mappa bastera passarci sopra con il personaggio.
     \chapter{Esercitazioni di laboratorio}
     \printbibliography[heading=bibintoc]
 \end{document}
