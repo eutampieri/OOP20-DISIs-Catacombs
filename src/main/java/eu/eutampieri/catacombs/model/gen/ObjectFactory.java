@@ -6,8 +6,9 @@ import java.util.List;
 
 /**
  * A factory of GameObjects.
+ * @see SingleObject
  */
-public interface SingleObjectFactory {
+public interface ObjectFactory {
     /**
      * Spawns a specified object at a certain location.
      * @param x X position

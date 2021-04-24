@@ -3,6 +3,10 @@ package eu.eutampieri.catacombs.model;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 
+/**
+ * A weapon that fires rapidly but deals below average damage.
+ * @see Weapon
+ */
 public class Rifle extends Weapon {
     private static final int STRENGTH = 3;
     private static final int FIRE_RATE = 210;
