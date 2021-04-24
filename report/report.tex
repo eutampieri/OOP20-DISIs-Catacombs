@@ -113,7 +113,7 @@
     \par
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-            \begin {abstractclass}[text width=7.5cm]{GameObject}{0, -5}
+            \begin {abstractclass}[text width=5cm]{GameObject}{0, -8}
                 \attribute {\#posX: int}
                 \attribute {\#posY: int}
                 \operation {\#kind: GameObjectType}
@@ -124,7 +124,7 @@
                 \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
             \end {abstractclass}
 
-            \begin {abstractclass}[text width=7.5cm]{Entity}{-7.5, 0}
+            \begin {abstractclass}[text width=5cm]{Entity}{-10, 0}
                 \inherit {GameObject}
                 \attribute {\#face: Direction}
                 \attribute {\#hp: int}
@@ -133,11 +133,10 @@
                 \attribute {\#height: int}
                 \attribute {\#size: int}
                 \attribute {\#tileMap: TileMap}
-                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
                 \operation {\#move: void}
             \end {abstractclass}
 
-            \begin {abstractclass}[text width=7.5cm]{Weapon}{+7.5, 0}
+            \begin {abstractclass}[text width=5cm]{Weapon}{+2, 0}
                 \inherit {GameObject}
                 \attribute {\#strength: int}
                 \attribute {\#ps: int}
@@ -145,7 +144,6 @@
                 \attribute {\#canFire: boolean}
                 \attribute {\#fireDelay: long}
                 \attribute {\#fireDelayCount: long}
-                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
                 \operation {+fire(psx: int, psy: int): void}
             \end {abstractclass}
 
