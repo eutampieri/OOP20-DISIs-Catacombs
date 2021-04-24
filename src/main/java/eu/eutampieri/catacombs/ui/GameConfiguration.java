@@ -30,8 +30,8 @@ public final class GameConfiguration {
     private boolean resizeable;
 
     /**
-     *
-     * @return the the width of the canvas
+     * This method returns the the width of the canvas.
+     * @return the width of the canvas
      */
 
     public int getGameWidth() {
@@ -39,8 +39,8 @@ public final class GameConfiguration {
     }
 
     /**
-     *
-     * @return teh height of the canvas
+     * This method returns the height of the canvas.
+     * @return the height of the canvas
      */
 
     public int getGameHeight() {
@@ -48,7 +48,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *
+     * This method returns the game title.
      * @return the game title
      */
 
@@ -57,7 +57,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *
+     * This method returns the game fps.
      * @return the game fps
      */
 
@@ -66,7 +66,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *
+     * This method returns true if the game is fullScreen.
      * @return true if the game is fullScreen
      */
 
@@ -75,7 +75,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *
+     * This method returns true if the game is resizeable.
      * @return true if the game is resizeable
      */
 
@@ -84,7 +84,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *
+     * This method returns true if the game can be scaled.
      * @return true if the game can be scaled
      */
 
@@ -93,7 +93,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *  This method set the game in order to be full screened.
+     * This method set the game in order to be full screened.
      *
      * @param fullScreen indicates if the game can be made full screen or not
      */
@@ -103,7 +103,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *
+     * This method set the width of the game.
      * @param gameWidth the width of the game
      */
 
@@ -112,9 +112,8 @@ public final class GameConfiguration {
     }
 
     /**
-     *
+     * This method set the height of the game.
      * @param gameHeight the height of the game
-     *
      */
 
     public void setGameHeight(final int gameHeight) {
@@ -122,7 +121,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *
+     * This method set the title of the game.
      * @param title the title of the game
      */
 
@@ -131,7 +130,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *
+     * This method set the fps on which the game is based.
      * @param fps the fps on which the game is based
      */
 
@@ -140,7 +139,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *
+     * This method set true if the game  can scale.
      * @param s true if the game  can scale
      */
 
@@ -149,7 +148,7 @@ public final class GameConfiguration {
     }
 
     /**
-     *
+     * This method set true if the game can be resized.
      * @param r true if the game can be resized
      */
 
