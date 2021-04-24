@@ -86,6 +86,7 @@
      di incaricare una classe sia della gestione grafica di una schermata sia della sua logica creando così una complicazione
      in un futuro cambiamento.
     %UML
+    \par
     \begin{tikzpicture}
         \begin{abstractclass}[text width=5cm] {State}{0, 0}
 
@@ -93,21 +94,21 @@
             \operation[0]{+ render(g2 : Graphics2D)}
         \end{abstractclass}
 
-        \begin{class}[text width=7cm]{MenuState}{ -10, -10}
+        \begin{class}[text width=5cm]{MenuState}{ -10, -5}
             \inherit{State}
 
             \operation{+ update(delta : long)}
             \operation[0]{+ render(g2 : Graphics2D)}
         \end{class}
 
-        \begin{class}[text width=7cm]{GameState}{0 , -10}
+        \begin{class}[text width=5cm]{GameState}{0 , -5}
             \inherit{State}
 
             \operation{+ update(delta : long)}
             \operation[0]{+ render(g2 : Graphics2D)}
         \end{class}
 
-        \begin{class}[text width=7cm]{EndGameState}{10 , 10}
+        \begin{class}[text width=5cm]{EndGameState}{10 ,-5}
             \inherit{State}
 
             \operation{+ update(delta : long)}
