@@ -221,7 +221,7 @@
     di AssetManager accessibile globalmente senza doversi preoccupare di fornire il riferimento a chi lo richiede.
     Questa scelta è stata fatta perché il caricamento delle immagini in quelle strutture basta farla una volta sola per poi
     permetterne l’accesso a chiunque lo richieda. Lo stesso ragionamento è stato fatto per il KeyManager essendo anche esso
-    di utilità a più classi evitando anche in questo caso la creazione di istanze superflue
+    di utilità a più classi evitando anche in questo caso la creazione di istanze superflue.
     %UML
     \\
     \\
@@ -279,6 +279,49 @@
         \end{tikzpicture}
     \\
     \\
+    \subsection{Tampieri}
+    \par Durante lo sviluppo ho notato la necessità di utilizzare due diversi design pattern.
+    \subsubsection{\texttt{ImageTransformer} Abstract Factory}
+    \par
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{interface}[text width=4cm]{ImageTransformerFactory}{0, 0}
+            \operation{ + rotate(degrees: double): ImageTransformer}
+            \operation{ + scale(scalingFactor: double): ImageTransformer}
+            \operation{ + flip(flipX: boolean, flipY: boolean): ImageTransformer}
+        \end{interface}
+        \begin{class}[text width=4.5cm]{ImageTransformerFactoryImpl}{6, 0}
+            \implement{ImageTransformerFactory}
+            \operation{ + rotate(degrees: double): ImageTransformer}
+            \operation{ + scale(scalingFactor: double): ImageTransformer}
+            \operation{ + flip(flipX: boolean, flipY: boolean): ImageTransformer}
+        \end{class}
+    \end{tikzpicture}
+    \par Questa Abstract Factory si è rivelata necessaria perché venivano effettuate diverse operazioni di trasformazione di
+    immagini in più parti del codice.
+    \par Per favorire il riuso e ridurre la complessità ho deciso di creare un'interfaccia \texttt{ImageTransformer}, che si occupa di applicare una certa trasformazione ad una immagine.
+    \par Una factory di \texttt{ImageTransform} ritorna la trasformazione richiesta, che può essere applicata a più immagini.
+    \par Un vantaggio di questo pattern, che per ora non viene sfruttato, è fornire diversi algoritmi di trasformazione
+    nel caso quelli implementati non siano sufficientemente efficienti.
+    \subsubsection{AssetManager Proxy}
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{class}[text width=12cm]{AssetManagerProxy}{6, 0}
+            \attribute{- MAP\_CACHE: Map<Tile, BufferedImage>}
+            \attribute{- ANIMATIONS\_CACHE: Map<Triple<Entity, Action, Direction>, Pair<Animation, Long>>}
+            \attribute{- STATIC\_ASSETS\_CACHE: Map<StaticEntityKind, BufferedImage> }
+
+            \operation{- AssetManagerProxy()}
+            \operation{+ getFrames(entity: Entity, action: Action, direction: Direction): Animation}
+            \operation{+ getSprite(entity: GameObject): BufferedImage}
+            \operation{+ getTileSprite(tile: Tile): Optional<BufferedImage>}
+        \end{class}
+    \end{tikzpicture}
+    \par Conscio del fatto che non si tratti di un Proxy in senso lato, ho deciso di adattare il pattern al nostro caso
+    d'uso per consentire un migliore utilizzo dell'\texttt{AssetManager}, che prende in input stringhe, effettuando una
+    validazione dei parametri di input e trasformandoli in stringhe, riducendo così le fonti d'errore.
+    \par Inoltre, tramite questa classe, effettuo il caching delle immagini, cosa che, soprattutto nel caso di immagini
+    cui viene appplicata una trasformazione, riduce il tempo di rendering.
     \chapter{Sviluppo}
     \section{Testing automatizzato}
     \par Il gruppo ha realizzato testing automatizzato tramite una suite JUnit 5 di diversi componenti chiave
@@ -333,13 +376,32 @@
     e dall’\texttt{AssetManager} che fa uso di un’altra classe, \texttt{GameSheet} che si occupa di ritagliare le immagini in immagini più piccole
     in modo da separare i singoli frame di movimento dei personaggi. Tali frame verranno poi utilizzati dalla classe \texttt{Animation} che
     provvede a sequenziarli in modo da farli risultare parte di un unico fluido movimento.
-    \par Usufruendo dell funzinalità di branching che git offre è stato facile rimanere aggiornato sugli sviluppi del progetto anche non
-    relativi alle mie implenatazioni. la metofdologia utilizzata cosnisteva nell' utilizzo di un master principale da aggiornale solo con
-    il codice ultimato e più volte controllato da me e dai miei compagni.ogni parte di codice da me realizzata si sviluppava all'interno di branch
+    \par Usufruendo delle funzinalità di branching che Git offre è stato facile rimanere aggiornato sugli sviluppi del progetto anche non
+    relativi alle mie implenatazioni. la metodologia utilizzata cosnisteva nell' utilizzo di un master principale da aggiornale solo con
+    il codice ultimato e più volte controllato da me e dai miei compagni. Ogni parte di codice da me realizzata si sviluppava all'interno di branch
     in modo da non sporcare il codice definitivo contenuto nel master. solo dopo aver ultimato ogni modifica ed aver ottenuto l'approvazione dei miei colleghi
     il branch veniva mergiato con il master.
     La suddivisione dei lavori precedentemente stabilita veniva rispecchiata nella spartizione degli issue ovvero degli obbiettivi parziali da risolvere che uniti
     andavano a comporre una parte sostanziosa di codice.
+    \subsection{Tampieri}
+    \par Ho realizzato le seguenti classi:
+    \begin{itemize}
+        \item \texttt{eu.eutampieri.catacombs.model.Action}
+        \item \texttt{eu.eutampieri.catacombs.model.Direction}
+        \item \texttt{eu.eutampieri.catacombs.model.HealthModifier}
+        \item \texttt{eu.eutampieri.catacombs.model.LivingCharacter}
+        \item \texttt{eu.eutampieri.catacombs.model.Player}, con contributi minimi di Monti
+        \item \texttt{eu.eutampieri.catacombs.model.SimplePotion}
+        \item \texttt{eu.eutampieri.catacombs.ui.gamefx.Animatable}
+        \item \texttt{eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy}
+        \item \texttt{eu.eutampieri.catacombs.ui.utils.ImageTransformer}
+        \item \texttt{eu.eutampieri.catacombs.ui.ImageTransformerFactory}
+        \item \texttt{eu.eutampieri.catacombs.ui.ImageTransformerFactoryImpl}
+        \item \texttt{eu.eutampieri.catacombs.ui.World}
+    \end{itemize}
+    \par Ho inoltre realizzato alcune bugfixes nel codice da me usato, in particolare in \texttt{eu.eutampieri.catacombs.ui.Game}, \texttt{eu.eutampieri.catacombs.model.GameObject} e \texttt{eu.eutampieri.catacombs.model.Entity}.
+    \par Tranne che per le modifiche di classi o interfacce comuni, non ho avuto particolari problemi dovuti allo sviluppo in parallelo,
+    anche grazie all'utilizzo di \texttt{git}, di cui ho sfruttato il branching e il cherry pick.
     \section{Note di sviluppo}
     \subsection{Chelli}
     \begin{itemize}
@@ -352,6 +414,19 @@
     \begin{itemize}
             \item Uso di Optional per la gestione degli eventuali file non trovati
             \item Uso di basilari lambda expressions nei test automatizzati
+    \end{itemize}
+    \subsection{Tampieri}
+    \par Ho utilizzato le seguenti funzionalità avanzate del linguaggio:
+    \begin{itemize}
+        \item Generici bounded, utilizzati per estendere il \texttt{SingleObject} realizzato da Giacomo Monti
+        \item Uso di lambda expression in \texttt{AssetManagerProxy} e \texttt{ImageTransformerFactoryImpl}
+        \item Uso di \texttt{Stream} in \texttt{AssetManagerProxy}
+        \item Utilizzato (seppur marginalmente) Apache Commons Lang: nello specifico \texttt{Pair} e \texttt{Triple}
+        \item Configurato Gradle, partendo dall'esempio fornitoci e integrandolo con la static code analysis
+    \end{itemize}
+    \par Ho utilizzato i seguenti snippet di codice:
+    \begin{itemize}
+        \item How to scale a \texttt{BufferedImage}\cite{so:BufferedImageScaling},\\\texttt{src/main/java/eu/eutampieri/catacombs/ui/utils/ImageTransformerFactoryImpl.java}, linee 23-29.
     \end{itemize}
     \chapter{Commenti finali}
     \section{Autovalutazione e lavori futuri}
@@ -366,7 +441,22 @@
     primo approccio è stato abbastanza brusco, mi sono ritrovato catapultato in una gestione condivisa dei file che non avevo mai usato.
     \par Per quanto riguarda l'implementazione dei metodi e delle interfacce la difficoltà non è stata esagerata in quanto è bastato trovare una soluzione
     architetturale decente prima di scrivere righe di codice.
+    \subsection{Tampieri}
+    \par Personalmente ritengo che la parte di progettazione delle mie classi sia nel complesso positiva, perché
+    ho strutturato il codice in modo abbastanza flessibile, soprattutto grazie all'uso di interfacce per astrarre
+    i comportamenti dalle implementazioni.
+    \par Inoltre, il codice è strutturato in modo da rendere abbastanza semplice creare un gioco multiplayer, cosa
+    che potrebbe essere realizzata in una versione successiva.
+    \par Ciononostante, ci sono alcune parti ampiamente migliorabili, come il collegamento degli asset realizzato
+    nell'\texttt{AssetManagerProxy}, che renderà complessa l'aggiunta di nuove entità in futuro.
     \section{Difficoltà incontrate e commenti per i docenti}
+    \subsection{Tampieri}
+    \par Durante lo svolgimento del progetto mi è stato abbastanza difficile coordinarmi con il resto del gruppo per
+    realizzare le parti di mia responsabilità.
+    \par Ritengo che questo sia dovuto al non aver raggiunto un livello di dettaglio in fase di progettazione a me
+    sufficiente per capire effettivamente la struttura del progetto.
+    \par Il deficit sottolineato sopra ha portato ad alcune discussioni sul design delle classi, soprattutto su come
+    mantenerle retrocompatibili ma adeguandole ad esigenze non emerse in fase di progettazione.
     \appendix
     \chapter{Guida utente}
     \par Il gioco comincerà con una schermata di menu che permette di cambiare l'opzione che si desidera scegliere attraverso l'uso
@@ -385,5 +475,12 @@
      \par Dopo aver ucciso un nemico, è possibile che questo lasci cadere un'arma o una pozione.
     \par Il gioco termina dopo aver ucciso il boss e tutti i nemici.
     \chapter{Esercitazioni di laboratorio}
+    \section{Tampieri}
+    \begin{itemize}
+        \item Laboratorio 5: https://virtuale.unibo.it/mod/forum/discuss.php?d=62684\#p101017
+        \item Laboratorio 6: https://virtuale.unibo.it/mod/forum/discuss.php?d=62579\#p100872
+        \item Laboratorio 7: https://virtuale.unibo.it/mod/forum/discuss.php?d=62582\#p100877
+        \item Laboratorio 8: https://virtuale.unibo.it/mod/forum/discuss.php?d=63632
+    \end{itemize}
     \printbibliography[heading=bibintoc]
 \end{document}
