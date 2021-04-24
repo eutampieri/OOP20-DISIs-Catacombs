@@ -178,7 +178,7 @@
     \\
     \\
     \par Questa parte verterà sulla gestione della schermata principale e su quella di fine gioco la quale poi introdurrà nuovamente
-     alla schermata di menù. Il sistema per la gestione di questi due stati è la medesima, entrambi utilizzano il pattern Strategy
+     alla schermata di menu. Il sistema per la gestione di questi due stati è la medesima, entrambi utilizzano il pattern Strategy
      infatti è possibile modificare la grafica di queste schermate senza andare ad impattare direttamente la logica che le gestisce.
      Questa scelta è stata fatta principalmente per evitare di infrangere SRP (Single Responsibility Principle) e quindi
      di incaricare una classe sia della gestione grafica di una schermata sia della sua logica creando così una complicazione
@@ -228,14 +228,14 @@
     \par
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
-            \begin{class}[text width=4cm]{AssetManager}{-3, 0}
+            \begin{class}[text width=6cm]{AssetManager}{-4, 0}
                 \attribute{- SINGLETON\_MANAGER : AssetManager}
 
                 \operation{- AssetManager( )}
                 \operation{+ getAssetManager( )}
             \end{class}
 
-            \begin{class}[text width=5cm]{KeyManager}{3, 0}
+            \begin{class}[text width=6.5cm]{KeyManager}{4, 0}
                 \attribute{- SINGLETON\_KEYMANAGER : KeyManager}
 
                 \operation{- KeyManager( )}
@@ -246,9 +246,9 @@
     \\
     \par Questa parte di codice si occupa invece della cambiamento di stato ovvero delle transizioni che portano da uno stato
     a l’altro. In questo caso è stato utilizzata una Factory di transizione per via del fatto che la forma delle transizioni
-    è la medesima  le uniche differenze riguardano gli stati di partenza e di arrivo e il messaggio che il giocatore vedrà.
+    è la medesima le uniche differenze riguardano gli stati di partenza e di arrivo e il messaggio che il giocatore vedrà.
     In questo non utilizzando una Factory avrei avuto tre classi in cui quasi tutto il codice veniva ripetuto e solo poche
-    parti sarebbero cambiate  e così facendo avrei violato una regola base generale di buona programmazione ovvero
+    parti sarebbero cambiate e così facendo avrei violato una regola base generale di buona programmazione ovvero
     DRY (Don’t Repeat Yourself).
     %UML
     \\
@@ -359,12 +359,12 @@
     e testuali , alla gestione degli asset e delle animazioni del gioco , alla struttura del loop principale attraverso il quale si
     sviluppa il gioco e alla interazione con dispositivi esterni quali mouse e tastiera.
     \par La parte di cui mi sono maggiormente e occupato la GUI del gioco nello specifico la gestione degli stati attraverso i quali
-    il gioco si sviluppa partendo dalla creazione di un generico stato\texttt{State} dal quale si estendono poi altri stati quali:
+    il gioco si sviluppa partendo dalla creazione di un generico stato \texttt{State} dal quale si estendono poi altri stati quali:
     \texttt{MenuState} , \texttt{GameState} e \texttt{EndGameState}.
     \par Un’altra parte di cui mi sono occupato riguarda le transizioni ovvero il cambiamento da uno stato a l’altro attraverso la creazione
     , per mezzo di  \texttt{TransitionFactory} , di un interfaccia che fa da ponte tra due stati. La gestione di degli stati e dei loro
     cambiamenti è affidata ad un'altra classe DungeonGame anche questa implementata da me. Questa classe si occupa di controllare
-    in quale stato si trova il gioco e in quale stato dovrà trovarsi se il player muore o se finisce il gioco, in poche parole p la
+    in quale stato si trova il gioco e in quale stato dovrà trovarsi se il player muore o se finisce il gioco, in poche parole la
     classe che gestisce la visualizzazione il funzionamento e il susseguirsi degli stati di gioco. Inoltre fornisce informazioni
     riguardanti la finestra principale del gioco creata dalla classe \texttt{MainWindow} di mia implementazione anche se la totalità delle
     informazioni riguardanti la finestra è disponibile a chi  ne facesse uso nella mia classe \texttt{GameConfiguration}.
@@ -374,7 +374,7 @@
     gestisce i vari input da tastiera.
     \par Una altra parte di mia responsabilità è il caricamento di risorse come si può vedere dal package \texttt{catacombs/ui/utils (FontUtils, ImageLoader e ImageRotator)}
     e dall’\texttt{AssetManager} che fa uso di un’altra classe, \texttt{GameSheet} che si occupa di ritagliare le immagini in immagini più piccole
-    in modo da separare i singoli frame di movimento dei personaggi. Tali frame verranno poi utilizzati dalla classe \texttt{Animation} che
+    in modo da separare i singoli frame di movimento dei personaggi. Tali frames verranno poi utilizzati dalla classe \texttt{Animation} che
     provvede a sequenziarli in modo da farli risultare parte di un unico fluido movimento.
     \par Usufruendo delle funzinalità di branching che Git offre è stato facile rimanere aggiornato sugli sviluppi del progetto anche non
     relativi alle mie implenatazioni. la metodologia utilizzata cosnisteva nell' utilizzo di un master principale da aggiornale solo con
@@ -469,7 +469,7 @@
      \par Nella mappa sono presenti alcuni oggetti utili, che possono essere raccolti camminandoci sopra.
      \par Nello specifico, sono presenti delle pozioni (rappresentate da un'ampolla) per aumentare la propria vita e delle armi. Queste ultime possono essere:
      \begin{itemize}
-         \item Una pistola, che è l'arma con cui il giocatore inizia il gioco
+         \item Una pistola, che è l'arma con cui il giocatore inizia il gioco.
          \item Un fucile automatico che, rispetto alla pistola, permette di sparare più frequentemente.
      \end{itemize}
      \par Dopo aver ucciso un nemico, è possibile che questo lasci cadere un'arma o una pozione.
