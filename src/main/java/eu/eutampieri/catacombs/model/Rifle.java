@@ -1,11 +1,18 @@
 package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
+import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 
+/**
+ * A weapon that fires rapidly but deals below average damage.
+ * @see Weapon
+ */
 public class Rifle extends Weapon {
-    private static final int STRENGTH = 4;
-    private static final int FIRE_RATE = 120;
-    private static final int PROJECTILE_SPEED = 10;
+    private static final int STRENGTH = 3;
+    private static final int FIRE_RATE = 210;
+    private static final int PROJECTILE_SPEED = 14;
+    private static final int BOX_WIDTH = (int) (45 * AssetManagerProxy.getWeaponScalingFactor());
+    private static final int BOX_HEIGHT = 17;
 
     /**
      * @param e        Entity using gun
@@ -15,6 +22,6 @@ public class Rifle extends Weapon {
      * @param team     The team, i.e. if it's not an enemy
      */
     public Rifle(final Entity e, final TileMap tm, final int x, final int y, final Team team) {
-        super(e, tm, x, y, STRENGTH, PROJECTILE_SPEED, FIRE_RATE, team);
+        super(e, tm, x, y, STRENGTH, PROJECTILE_SPEED, FIRE_RATE, BOX_WIDTH, BOX_HEIGHT, team);
     }
 }

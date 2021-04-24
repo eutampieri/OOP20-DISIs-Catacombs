@@ -1,5 +1,10 @@
 package eu.eutampieri.catacombs.ui;
 
+/**
+ * this interface manages the logic part of the menu.
+ */
+
+
 public interface LogicMenu {
 
     /**

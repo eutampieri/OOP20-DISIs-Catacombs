@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * Abstract class for every living object.
+ * @see GameObject
+ * @see LivingCharacter
  */
 public abstract class Entity extends GameObject implements LivingCharacter, Animatable {
     /**
@@ -34,9 +36,13 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     protected TileMap tileMap;
 
     /**
-     * @param x       X spawn position
-     * @param y       Y spawn position
-     * @param tileMap Tile map in which Entity is spawned
+     * @param x         X spawn postion
+     * @param y         Y spawn position
+     * @param width     Entity width
+     * @param height    Entity height
+     * @param tileMap   Tile map
+     * @param kind      GameObject kind
+     * @param team      Entity team
      */
     public Entity(final int x, final int y, final int width, final int height, final TileMap tileMap,
             final GameObjectType kind, final Team team) {
@@ -211,7 +217,7 @@ public abstract class Entity extends GameObject implements LivingCharacter, Anim
     /**
      * @return true if the entity is moving; false otherwise.
      */
-    public boolean isMoving(){
+    public boolean isMoving() {
         return this.right || this.left || this.up || this.down;
     }
 }

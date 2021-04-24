@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * MobFactory Implementation.
+ * @see MobFactory
+ */
 public final class MobFactoryImpl implements MobFactory {
 
     /**

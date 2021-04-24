@@ -158,8 +158,11 @@ public final class AssetManager {
         allImages.put("coin", tileSheet.cutImage(0, 144, 16, 16));
         allImages.put("skull", tileSheet.cutImage(16, 144, 16, 16));
         allImages.put("fire", tileSheet.cutImage(0, 160, 8, 21));
-        allImages.put("potion", tileSheet.cutImage(0, 181, 9, 11));
+        allImages.put("potion", tileSheet.cutImage(0, 181, 8, 11));
         allImages.put("gun", tileSheet.cutImage(0, 193, 21, 17));
+        allImages.put("rifle", tileSheet.cutImage(24, 193, 45, 17));
+        allImages.put("sniper", tileSheet.cutImage(71, 193, 57, 17));
+
         // Check:ON: MagicNumber
     }
 

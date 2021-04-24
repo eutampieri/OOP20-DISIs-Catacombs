@@ -3,6 +3,7 @@ package eu.eutampieri.catacombs.model;
 /**
  * A general class for GameObjects boxes which define an imaginary box around the object used
  * for collisions, detections and aggro detections.
+ * @see GameObject
  */
 public class CollisionBox {
     /**

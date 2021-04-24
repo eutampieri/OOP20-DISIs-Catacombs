@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * A TileMapFactory.
+ */
 public final class TileMapFactoryImpl implements TileMapFactory {
-
     private static final int NORMAL_N_ROOMS = 16;
     private static final int NORMAL_MIN_ROOM_SIDE = 8;
     private static final int NORMAL_MAX_ROOM_SIDE = 16;
@@ -173,7 +175,7 @@ public final class TileMapFactoryImpl implements TileMapFactory {
      * @param maxRoomDist maximum distance with the closest room's center for each
      *                    room center
      * @return A Tilemap with nRooms square rooms connected by corridors in a tree,
-     *         plus some random corridors minRoomDist > maxRoomSide is recommended
+     *         plus some random corridors minRoomDist &gt; maxRoomSide is recommended
      */
     private TileMap normal(final int nRooms, final int minRoomSide, final int maxRoomSide, final int minRoomDist,
             final int maxRoomDist) {

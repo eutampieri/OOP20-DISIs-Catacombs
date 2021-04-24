@@ -1,5 +1,8 @@
 package eu.eutampieri.catacombs.model;
 
+/**
+ * The facing direction of an entity.
+ */
 public enum Direction {
     /**
      * Entity is facing right.

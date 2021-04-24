@@ -7,6 +7,8 @@ import java.util.List;
 
 /**
  * A factory of Mobs as creatures (usually) hostile towards the player.
+ * @see SingleObject
+ * @see Entity
  */
 public interface MobFactory {
 
