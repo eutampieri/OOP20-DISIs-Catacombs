@@ -1,7 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
-import eu.eutampieri.catacombs.model.gen.SingleObjectFactoryImpl;
-import eu.eutampieri.catacombs.model.gen.SingleObjectFactory;
+import eu.eutampieri.catacombs.model.gen.ObjectFactoryImpl;
+import eu.eutampieri.catacombs.model.gen.ObjectFactory;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
@@ -13,6 +13,7 @@ import java.util.Random;
 
 /**
  * Bat class - the bat is an enemy that mostly stands still and fires bullets.
+ * @see Entity
  */
 public final class Bat extends Entity {
 
@@ -90,7 +91,7 @@ public final class Bat extends Entity {
         if (!this.isAlive()) {
             final List<GameObject> drops = new ArrayList<>();
             this.hasDropped = true;
-            final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
+            final ObjectFactory objectFactory = new ObjectFactoryImpl(this.tileMap);
             if (rand.nextInt(MAX_CHANCE) + 1 <= POTION_DROP_CHANCE) {
                 drops.addAll(objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize(), this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
                         (x, y, tm) -> {

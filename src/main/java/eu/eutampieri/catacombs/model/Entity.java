@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * Abstract class for every living object.
+ * @see GameObject
+ * @see LivingCharacter
  */
 public abstract class Entity extends GameObject implements LivingCharacter, Animatable {
     /**

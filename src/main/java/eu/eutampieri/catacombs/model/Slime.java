@@ -1,7 +1,7 @@
 package eu.eutampieri.catacombs.model;
 
-import eu.eutampieri.catacombs.model.gen.SingleObjectFactory;
-import eu.eutampieri.catacombs.model.gen.SingleObjectFactoryImpl;
+import eu.eutampieri.catacombs.model.gen.ObjectFactory;
+import eu.eutampieri.catacombs.model.gen.ObjectFactoryImpl;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
@@ -13,6 +13,8 @@ import java.util.Random;
 /**
  * Slime class - the slime is an enemy that walks toward the targeted character
  * and deals damage on contact (through hit boxes).
+ * @see Entity
+ * @see HealthModifier
  */
 public final class Slime extends Entity implements HealthModifier {
 
@@ -77,7 +79,7 @@ public final class Slime extends Entity implements HealthModifier {
         if (!this.isAlive()) {
             final List<GameObject> drops = new ArrayList<>();
             this.hasDropped = true;
-            final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
+            final ObjectFactory objectFactory = new ObjectFactoryImpl(this.tileMap);
             if (rand.nextInt(MAX_CHANCE) + 1 <= POTION_DROP_CHANCE) {
                 drops.addAll(objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize(), this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
                         (x, y, tm) -> {

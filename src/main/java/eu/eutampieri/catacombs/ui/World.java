@@ -44,7 +44,7 @@ public final class World {
                 tileMap.height() * AssetManagerProxy.getMapTileSize());
         this.entities = mf.spawnRandom().stream().map((x) -> (GameObject) x).collect(Collectors.toList());
 
-        final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
+        final ObjectFactory objectFactory = new ObjectFactoryImpl(this.tileMap);
         final Random rand = new Random();
         this.entities.addAll(objectFactory.spawnSome(5, (x, y, tm) -> {
             final int healingPower = rand.nextInt(101);

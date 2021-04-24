@@ -1,8 +1,18 @@
 package eu.eutampieri.catacombs.model;
 
+/**
+ * A camera that focuses on a certain part of the game map.
+ * @see eu.eutampieri.catacombs.model.map.TileMap
+ */
 public final class Camera {
 
+    /**
+     * Camera x offset from the map top-right corner.
+     */
     private int xOffset;
+    /**
+     * Camera y offset from the map top-right corner.
+     */
     private int yOffset;
 
     private final int mapWidth, mapHeight;

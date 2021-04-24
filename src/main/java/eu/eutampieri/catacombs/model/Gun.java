@@ -2,6 +2,10 @@ package eu.eutampieri.catacombs.model;
 
 import eu.eutampieri.catacombs.model.map.TileMap;
 
+/**
+ * A weapon that fires slowly but and average damage.
+ * @see Weapon
+ */
 public class Gun extends Weapon {
     private static final int STRENGTH = 7;
     private static final int FIRE_RATE = 90;

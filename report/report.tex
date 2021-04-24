@@ -71,7 +71,40 @@
 
     \chapter{Design}
     \section{Architettura}
-    \section{Design dettagliato}
+    \section{Design dettagliato} 
+    \subsection{Sanita}
+    \par Questa parte si concentrerà sugli aspetti relativi ai vari stati che costituiscono il gioco (menu, stato di gioco, stato di fine).
+     Il sistema per la creazione di questi stati è la creazione di una classe astratta State dalla quale poi verranno
+     estese tutte le classi che costituiscono i diversi stati. Questa classe rappresenta lo scheletro di un qualunque
+     stato ed essendo una classe astratta l’implementazione di due metodi astratti quali update e render sarà diversa da
+     stato a stato in modo che la logica e la grafica di ogni stato risulti diversa.
+    %UML
+    \par Questa parte verterà sulla gestione della schermata principale e su quella di fine gioco la quale poi introdurrà nuovamente
+     alla schermata di menù. Il sistema per la gestione di questi due stati è la medesima, entrambi utilizzano il pattern Strategy
+     infatti è possibile modificare la grafica di queste schermate senza andare ad impattare direttamente la logica che le gestisce.
+     Questa scelta è stata fatta principalmente per evitare di infrangere SRP (Single Responsibility Principle) e quindi
+     di incaricare una classe sia della gestione grafica di una schermata sia della sua logica creando così una complicazione
+     in un futuro cambiamento.
+    %UML
+    \par Questa parte riguarda la gestione degli asset più precisamente la creazione di strutture e il caricamento delle
+    immagini all’interno di esse. Il pattern utilizzato in questo caso è Singleton permettendo che ci sia un'unica istanza
+    di AssetManager accessibile globalmente senza doversi preoccupare di fornire il riferimento a chi lo richiede.
+    Questa scelta è stata fatta perché il caricamento delle immagini in quelle strutture basta farla una volta sola per poi
+    permetterne l’accesso a chiunque lo richieda. Lo stesso ragionamento è stato fatto per il KeyManager essendo anche esso
+    di utilità a più classi evitando anche in questo caso la creazione di istanze superflue
+    %UML
+    \par Questa parte di codice si occupa invece della cambiamento di stato ovvero delle transizioni che portano da uno stato
+    a l’altro. In questo caso è stato utilizzata una Factory di transizione per via del fatto che la forma delle transizioni
+    è la medesima  le uniche differenze riguardano gli stati di partenza e di arrivo e il messaggio che il giocatore vedrà.
+    In questo non utilizzando una Factory avrei avuto tre classi in cui quasi tutto il codice veniva ripetuto e solo poche
+    parti sarebbero cambiate  e così facendo avrei violato una regola base generale di buona programmazione ovvero
+    DRY (Don’t Repeat Yourself ).
+    %UML
+    \subsection{Monti}
+
+    \par AssetManagerProxy
+    \par ImageRotatorFactory
+
     \chapter{Sviluppo}
     \section{Testing automatizzato}
     \section{Metodologia di lavoro}
