@@ -72,10 +72,63 @@
     \chapter{Design}
     \section{Architettura}
     \section{Design dettagliato}
+    \subsection{Sanità}
+    \par Questa parte si concentrerà sugli aspetti relativi ai vari stati che costituiscono il gioco (menu, stato di gioco, stato di fine).
+     Il sistema per la creazione di questi stati è la creazione di una classe astratta State dalla quale poi verranno
+     estese tutte le classi che costituiscono i diversi stati. Questa classe rappresenta lo scheletro di un qualunque
+     stato ed essendo una classe astratta l’implementazione di due metodi astratti quali update e render sarà diversa da
+     stato a stato in modo che la logica e la grafica di ogni stato risulti diversa.
+    %UML
+    \par Questa parte verterà sulla gestione della schermata principale e su quella di fine gioco la quale poi introdurrà nuovamente
+     alla schermata di menù. Il sistema per la gestione di questi due stati è la medesima, entrambi utilizzano il pattern Strategy
+     infatti è possibile modificare la grafica di queste schermate senza andare ad impattare direttamente la logica che le gestisce.
+     Questa scelta è stata fatta principalmente per evitare di infrangere SRP (Single Responsibility Principle) e quindi
+     di incaricare una classe sia della gestione grafica di una schermata sia della sua logica creando così una complicazione
+     in un futuro cambiamento.
+    %UML
+    \par Questa parte riguarda la gestione degli asset più precisamente la creazione di strutture e il caricamento delle
+    immagini all’interno di esse. Il pattern utilizzato in questo caso è Singleton permettendo che ci sia un'unica istanza
+    di AssetManager accessibile globalmente senza doversi preoccupare di fornire il riferimento a chi lo richiede.
+    Questa scelta è stata fatta perché il caricamento delle immagini in quelle strutture basta farla una volta sola per poi
+    permetterne l’accesso a chiunque lo richieda. Lo stesso ragionamento è stato fatto per il KeyManager essendo anche esso
+    di utilità a più classi evitando anche in questo caso la creazione di istanze superflue
+    %UML
+    \par Questa parte di codice si occupa invece della cambiamento di stato ovvero delle transizioni che portano da uno stato
+    a l’altro. In questo caso è stato utilizzata una Factory di transizione per via del fatto che la forma delle transizioni
+    è la medesima  le uniche differenze riguardano gli stati di partenza e di arrivo e il messaggio che il giocatore vedrà.
+    In questo non utilizzando una Factory avrei avuto tre classi in cui quasi tutto il codice veniva ripetuto e solo poche
+    parti sarebbero cambiate  e così facendo avrei violato una regola base generale di buona programmazione ovvero
+    DRY (Don’t Repeat Yourself ).
+    %UML
+
     \chapter{Sviluppo}
     \section{Testing automatizzato}
     \section{Metodologia di lavoro}
+    \par In questa parte esporrò il mio contributo per il progetto relativo alle interfacce grafiche al caricamento di risorse grafiche
+    e testuali , alla gestione degli asset e delle animazioni del gioco , alla struttura del loop principale attraverso il quale si
+    sviluppa il gioco e alla interazione con dispositivi esterni quali mouse e tastiera.
+    \par La parte di cui mi sono maggiormente e occupato la GUI del gioco nello specifico la gestione degli stati attraverso i quali
+    il gioco si sviluppa partendo dalla creazione di un generico stato State dal quale si estendono poi altri stati quali:
+    MenuState , GameState e EndGameState.
+    \par Un’altra parte di cui mi sono occupato riguarda le transizioni ovvero il cambiamento da uno stato a l’altro attraverso la creazione
+    , per mezzo di  TransitionFactory , di un interfaccia che fa da ponte tra due stati. La gestione di degli stati e dei loro
+    cambiamenti è affidata ad un'altra classe DungeonGame anche questa implementata da me. Questa classe si occupa di controllare
+    in quale stato si trova il gioco e in quale stato dovrà trovarsi se il player muore o se finisce il gioco, in poche parole p la
+    classe che gestisce la visualizzazione il funzionamento e il susseguirsi degli stati di gioco. Inoltre fornisce informazioni
+    riguardanti la finestra principale del gioco creata dalla classe MainWindow di mia implementazione anche se la totalità delle
+    informazioni riguardanti la finestra è disponibile a chi  ne facesse uso nella mia classe GameConfiguration.
+    \par Il DungeonGame estende la classe Game che contiene i metodi necessari all’inizializzazione della finestra di gioco,
+    il render degli aspetti di base ma soprattutto si occupa del loop principale del gioco.
+    \par Un’altra classe di del mio codice è la gestione degli input di dispositivi esterni quale la tastiera KeyManager che
+    gestisce i vari input da tastiera
+    \par Una altra parte di mia responsabilità è il caricamento di risorse come si può vedere dal package catacombs/ui/utils
+    e dall’AssetManager che fa uso di un’altra classe, GameSheet che si occupa di ritagliare le immagini in immagini più piccole
+    in modo da separare i singoli frame di movimento dei personaggi.
     \section{Note di sviluppo}
+    \begin{itemize}
+            \item Uso di Optional per la gestione degli eventuali file non trovati
+            \item Uso di basilari lambda expressions nei test automatizzati
+    \end{itemize}
     \chapter{Commenti finali}
     \section{Autovalutazione e lavori futuri}
     \section{Difficoltà incontrate e commenti per i docenti}
