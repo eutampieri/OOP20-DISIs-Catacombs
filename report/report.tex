@@ -226,22 +226,22 @@
     \\
     \\
     \par
-    \begin{tikzpicture}
-        \tikzstyle{every node}=[font=\scriptsize]
-        \begin{class}[text width=6cm]{AssetManager}{-4, 0}
-            \attribute{- SINGLETON\_MANAGER : AssetManager}
+        \begin{tikzpicture}
+            \tikzstyle{every node}=[font=\scriptsize]
+            \begin{class}[text width=6cm]{AssetManager}{-4, 0}
+                \attribute{- SINGLETON\_MANAGER : AssetManager}
 
-            \operation{- AssetManager( )}
-            \operation{+ getAssetManager( )}
-        \end{class}
+                \operation{- AssetManager( )}
+                \operation{+ getAssetManager( )}
+            \end{class}
 
-        \begin{class}[text width=6.5cm]{KeyManager}{4, 0}
-            \attribute{- SINGLETON\_KEYMANAGER : KeyManager}
+            \begin{class}[text width=6.5cm]{KeyManager}{4, 0}
+                \attribute{- SINGLETON\_KEYMANAGER : KeyManager}
 
-            \operation{- KeyManager( )}
-            \operation{+ getKeyManager( )}
-        \end{class}
-    \end{tikzpicture}
+                \operation{- KeyManager( )}
+                \operation{+ getKeyManager( )}
+            \end{class}
+        \end{tikzpicture}
     \\
     \\
     \par Questa parte di codice si occupa invece della cambiamento di stato ovvero delle transizioni che portano da uno stato
