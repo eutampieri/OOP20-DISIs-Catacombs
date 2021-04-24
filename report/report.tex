@@ -98,15 +98,44 @@
     è la medesima  le uniche differenze riguardano gli stati di partenza e di arrivo e il messaggio che il giocatore vedrà.
     In questo non utilizzando una Factory avrei avuto tre classi in cui quasi tutto il codice veniva ripetuto e solo poche
     parti sarebbero cambiate  e così facendo avrei violato una regola base generale di buona programmazione ovvero
-    DRY (Don’t Repeat Yourself ).
+    DRY (Don’t Repeat Yourself).
     %UML
+
     \subsection{Monti}
+    \par In questa sezione ci si concentrerà sugli aspetti riguardanti gli oggetti e le entità del gioco e della loro generazione.
+    \par Dovendo creare oggetti con elementi in comune ho deciso di utilizzare un Template Method che ha come template la classe astratta GameObject
+    Questa ha lo scopo di identificare un oggetto di gioco caratterizzato da poche elementali caratteristiche come la posizione nella mappa, la velocità e
+    le dimensioni che esso ha.
+    Inoltre viene specificato il metodo update nel quale gli oggetti di gioco aggiorneranno i loro stati, si muoveranno e/o spareranno o compieranno altre azioni.
+    Il template viene poi esteso alle classi Entity, Weapon, SimplePotion e Projectile.
+    %UML
+    \par Sempre con in mente il Template Method ho deciso di rendere astratte le classi Entity e Weapon, essendo entrambe una generalizzazione di quelli
+    che sono rispettivamente i diversi personaggi (come il PLayer e i nemici) e le diverse armi presenti nel gioco.
+    In particolare Entity è una classe astratta che rappresenta l'insieme degli oggetti definiti Living ("vivi"), cioè che si muovono, hanno una salute
+    e compiono azioni tramite input o in modo autonomo (come muoversi, sparare o lasciare oggetti).
+    Nel gioco sono attualmente implementate solo alcune entità basilari, ovvero il Player e tre nemici: Bat, Slime e Boss. Il metodo template però permette
+    facilmente di aggiungere in futuro altre entità (p.e.: nuovi nemici, NPC, ecc.).
+    Allo stesso tempo anche la classe astratta Weapon definisce l'insieme delle armi utilizzabili. Come Entity ci sono per ora solamente due tipi di Weapon
+    chiamate Gun e Rifle ma è possibile aggiungerne altre facilmente.
+    %UML
+    \par Per la generazione degli oggetti di gioco ho deciso di distinguere la generazione delle entità da quella degli oggetti.
+    La decisione di implementare due factory invece che una deriva da due fattori:
+    \begin{itemize}
+        \item Chiarezza dei nomi delle factory in relazione agli elementi creati
+        \item Crezione di sole Entity per facilitare l'utilizzo
+    \end{itemize}
+    Cosi facendo la MobFactory gestisce la creazione di tutte le Entity sulla mappa, mentre la ObjectFactory gestisce i GameObject.
+    Le factory forniscono metodi semplici per lo spawn, che avviene solamente solamente se la posizione selezionata (o generata randomicamente) è accessibile
+    nella mappa.
+    %UML
+
     \par AssetManagerProxy
     \par ImageRotatorFactory
 
     \chapter{Sviluppo}
     \section{Testing automatizzato}
     \section{Metodologia di lavoro}
+    \subsection{Sanità}
     \par In questa parte esporrò il mio contributo per il progetto relativo alle interfacce grafiche al caricamento di risorse grafiche
     e testuali , alla gestione degli asset e delle animazioni del gioco , alla struttura del loop principale attraverso il quale si
     sviluppa il gioco e alla interazione con dispositivi esterni quali mouse e tastiera.
@@ -127,11 +156,19 @@
     \par Una altra parte di mia responsabilità è il caricamento di risorse come si può vedere dal package catacombs/ui/utils
     e dall’AssetManager che fa uso di un’altra classe, GameSheet che si occupa di ritagliare le immagini in immagini più piccole
     in modo da separare i singoli frame di movimento dei personaggi.
+
+    \subsection{Monti}
+    \par Mi sono interessato per la quasi totalità dei GameObject e delle classi che lo estendono ad esclusione del Player, SimplePotions e Projectiles.
+    In particolare mi sono occupato dell'analisi e della creazione di GameObject, di Entity, di Weapon e del package model.gen.
+    Sviluppo
+    
     \section{Note di sviluppo}
+    \subsection{Sanità}
     \begin{itemize}
             \item Uso di Optional per la gestione degli eventuali file non trovati
             \item Uso di basilari lambda expressions nei test automatizzati
     \end{itemize}
+    \subsection{Monti}
     \chapter{Commenti finali}
     \section{Autovalutazione e lavori futuri}
     \section{Difficoltà incontrate e commenti per i docenti}
