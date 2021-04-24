@@ -10,6 +10,7 @@ import java.util.Random;
 
 /**
  * The game Boss.
+ * @see Entity
  */
 public final class Boss extends Entity {
 
@@ -23,7 +24,7 @@ public final class Boss extends Entity {
     private static final long MOVE_DELAY = 15L * 100;
     private static final long PAUSE_DELAY = 10L * 100;
     private static final int BASE_DAMAGE = 15;
-    private static final int BASE_PROJECTILE_SPEED = 2;
+    private static final int BASE_PROJECTILE_SPEED = 8;
     private static final int BASE_FIRE_RATE = 15;
     private static final int BULLET_SIZE = 28;
 
@@ -156,17 +157,33 @@ public final class Boss extends Entity {
         this.hp = health;
     }
 
+    /**
+     *
+     * @return Boss name
+     */
     public String getName() {
         return Boss.NAME;
     }
+
+    /**
+     *
+     * @return Boss shooting direction
+     */
     public Point getShootingDirection() {
         return this.shootingDirection;
     }
 
+    /**
+     * Resets the shooting direction of the Boss.
+     */
     public void resetShootingDirection() {
         this.shootingDirection.setLocation(0, 0);
     }
 
+    /**
+     * Sets the shooting direction of the Boss.
+     * @param e GameObject to aim
+     */
     public void setShootingDirection(final GameObject e) {
         if (e == null) {
             return;

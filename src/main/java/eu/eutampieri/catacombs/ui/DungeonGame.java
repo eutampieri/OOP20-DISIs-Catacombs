@@ -11,7 +11,7 @@ public final class DungeonGame extends Game {
     private State state;
 
     /**
-     *
+     * This method returns the menu state.
      * @return the menu state
      */
     public MenuState getMenuState() {
@@ -19,7 +19,7 @@ public final class DungeonGame extends Game {
     }
 
     /**
-     *
+     * This method returns the current state.
      * @return the current state
      */
 
@@ -41,7 +41,7 @@ public final class DungeonGame extends Game {
     }
 
     /**
-     *
+     * This set the current state
      * @param state the state to set as current state
      */
 

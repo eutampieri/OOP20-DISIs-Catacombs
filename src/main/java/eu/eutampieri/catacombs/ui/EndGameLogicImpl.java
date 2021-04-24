@@ -5,6 +5,10 @@ import eu.eutampieri.catacombs.ui.input.KeyManager;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 
+/**
+ * This interface manages the logic part of EndGameState.
+ */
+
 public class EndGameLogicImpl implements EndGameLogic {
 
     private static final long BLINK_DELAY = 500;
@@ -36,7 +40,7 @@ public class EndGameLogicImpl implements EndGameLogic {
         }
     }
     /**
-     *
+     * This method returns the font utilized.
      * @return the font utilized
      */
     @Override
@@ -44,7 +48,7 @@ public class EndGameLogicImpl implements EndGameLogic {
         return font;
     }
     /**
-     *
+     * The method returns true if is blinking.
      * @return true if is blinking
      */
     @Override

@@ -5,6 +5,10 @@ import eu.eutampieri.catacombs.ui.utils.FontUtils;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Color;
+/**
+ * this class manages the transitions between states.
+ */
+
 
 public class TransitionFactoryImpl implements TransitionFactory {
     /**

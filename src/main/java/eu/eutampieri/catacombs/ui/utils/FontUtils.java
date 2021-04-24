@@ -3,6 +3,10 @@ package eu.eutampieri.catacombs.ui.utils;
 import java.awt.Font;
 import java.awt.font.FontRenderContext;
 
+/**
+ * This class return the width of a font.
+ */
+
 public final class FontUtils {
 
     private FontUtils() {

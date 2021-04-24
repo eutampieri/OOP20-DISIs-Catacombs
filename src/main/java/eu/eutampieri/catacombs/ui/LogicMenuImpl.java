@@ -38,7 +38,7 @@ public final class LogicMenuImpl implements LogicMenu {
     /**
      * Constructor of the logic part of the menu.
      *
-     * @param game
+     * @param game The {@link DungeonGame} linked to this menu.
      */
     public LogicMenuImpl(final DungeonGame game) {
         this.game = game;

@@ -1,9 +1,17 @@
 package eu.eutampieri.catacombs.model.map;
 
+/**
+ * A TileMap.
+ */
 public final class TileMapImpl implements TileMap {
 
     private final Tile[][] map;
 
+    /**
+     * constructs a tilemaps from a Tile[][].
+     * 
+     * @param m a matrix of Tiles.
+     */
     public TileMapImpl(final Tile[][] m) {
         map = m.clone();
     }
@@ -26,6 +34,9 @@ public final class TileMapImpl implements TileMap {
         return map[y][x];
     }
 
+    /**
+     * @return Internal representation of the tilemap. used for testing.
+     */
     public Tile[][] getMap() {
         return map.clone();
     }

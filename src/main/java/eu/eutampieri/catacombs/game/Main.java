@@ -13,6 +13,11 @@ public final class Main {
 
     }
 
+    /**
+     * Main entry point for game.
+     * @param args main args
+     */
+
     public static void main(final String[] args) {
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         final double width = screenSize.getWidth();

@@ -1,17 +1,20 @@
 package eu.eutampieri.catacombs.model;
 
-import eu.eutampieri.catacombs.model.gen.SingleObjectFactory;
-import eu.eutampieri.catacombs.model.gen.SingleObjectFactoryImpl;
+import eu.eutampieri.catacombs.model.gen.ObjectFactory;
+import eu.eutampieri.catacombs.model.gen.ObjectFactoryImpl;
 import eu.eutampieri.catacombs.model.map.TileMap;
 import eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy;
 import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
  * Slime class - the slime is an enemy that walks toward the targeted character
  * and deals damage on contact (through hit boxes).
+ * @see Entity
+ * @see HealthModifier
  */
 public final class Slime extends Entity implements HealthModifier {
 
@@ -22,9 +25,10 @@ public final class Slime extends Entity implements HealthModifier {
     private static final String NAME = "Slime";
     private static final int RADAR_BOX_POSITION_MODIFIER = 20 * AssetManagerProxy.getMapTileSize();
     private static final int RADAR_BOX_SIZE = 20 * 2 * AssetManagerProxy.getMapTileSize() + Math.max(WIDTH, HEIGHT);
-    private static final int DAMAGE_ON_HIT = 5;
+    private static final int DAMAGE_ON_HIT = 10;
     private static final long HIT_DELAY = 1_000;
-    private static final int DROP_CHANCE = 10;
+    private static final int POTION_DROP_CHANCE = 20;
+    private static final int WEAPON_DROP_CHANCE = 5;
     private static final int MAX_CHANCE = 100;
 
     /**
@@ -73,15 +77,27 @@ public final class Slime extends Entity implements HealthModifier {
 
         follow();
         if (!this.isAlive()) {
+            final List<GameObject> drops = new ArrayList<>();
             this.hasDropped = true;
-            if (rand.nextInt(MAX_CHANCE) + 1 <= DROP_CHANCE) {
-                final SingleObjectFactory objectFactory = new SingleObjectFactoryImpl(this.tileMap);
-                return objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize(), this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
+            final ObjectFactory objectFactory = new ObjectFactoryImpl(this.tileMap);
+            if (rand.nextInt(MAX_CHANCE) + 1 <= POTION_DROP_CHANCE) {
+                drops.addAll(objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize(), this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
                         (x, y, tm) -> {
                             final int healingPower = rand.nextInt(101);
                             return new SimplePotion(healingPower, "Potion", x, y);
-                        });
+                        }));
             }
+            if (rand.nextInt(MAX_CHANCE) + 1 <= WEAPON_DROP_CHANCE) {
+                drops.addAll(objectFactory.spawnAt(this.getHitBox().getPosX() / AssetManagerProxy.getMapTileSize(), this.getHitBox().getPosY() / AssetManagerProxy.getMapTileSize(),
+                        (x, y, tm) -> {
+                            if (rand.nextInt(2) == 0) {
+                                return new Gun(null, tm, x, y, GameObject.Team.FRIEND);
+                            } else {
+                                return new Rifle(null, tm, x, y, GameObject.Team.FRIEND);
+                            }
+                        }));
+            }
+            return drops;
         }
         super.update(delta, others);
         updateRadarBoxLocation();

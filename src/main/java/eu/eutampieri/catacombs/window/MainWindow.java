@@ -51,7 +51,7 @@ public final class MainWindow {
     }
 
     /**
-     *
+     * This method returns the main Frame.
      * @return the main Frame
      */
 
@@ -70,7 +70,7 @@ public final class MainWindow {
     }
 
     /**
-     *
+     * This method returns the canvas in the main frame.
      * @return the canvas in the main frame.
      */
 
