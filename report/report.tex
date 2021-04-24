@@ -274,12 +274,14 @@
             \tikzstyle{every node}=[font=\scriptsize]
 
             \begin {interface}[text width=3.5cm]{MobFactory}{0, 0}
-                \operation {spawnAt(x: int, y: int, f: SingleObject<GameObject>): List<GameObject>}
-                \operation {spawnSome(n: int, f: SingleObject<GameObject>): List<GameObject>}
+                \operation {spawnAt(x: int, y: int, f: SingleObject<GameObject>): List<Entity>}
+                \operation {spawnSome(n: int, f: SingleObject<GameObject>): List<Entity>}
+                \operation {spawnRandom(): List<Entity>}
+                \operation {spawnNear(range: int, e: GameObject, f: SingleObject<GameObject>): List<Entity>}
             \end {interface}
 
             \begin {class}[text width=3.5cm]{MobFactoryImpl}{0, -5}
-                \implement{MopbFactory}
+                \implement{MobFactory}
                 \operation {+setNewTileMap(tileMap: TileMap): void}
             \end {class}
 
