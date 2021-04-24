@@ -82,27 +82,27 @@
     \par
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
-            \begin{abstractclass}[text width=3.5cm]{State}{0, 2}
+            \begin{abstractclass}[text width=3.5cm]{State}{0, 0}
 
                 \operation{+ update(delta : long)}
                 \operation{+ render(g2 : Graphics2D)}
             \end{abstractclass}
 
-            \begin{class}[text width=3.5cm]{MenuState}{-5, -7}
+            \begin{class}[text width=3.5cm]{MenuState}{-5, -5}
                 \inherit{State}
 
                 \operation{+ update(delta : long)}
                 \operation{+ render(g2 : Graphics2D)}
             \end{class}
 
-            \begin{class}[text width=3.5cm]{GameState}{0, -7}
+            \begin{class}[text width=3.5cm]{GameState}{0, -5}
                 \inherit{State}
 
                 \operation{+ update(delta : long)}
                 \operation{+ render(g2 : Graphics2D)}
             \end{class}
 
-            \begin{class}[text width=3.5cm]{EndGameState}{5, -7}
+            \begin{class}[text width=3.5cm]{EndGameState}{5, -5}
                 \inherit{State}
 
                 \operation{+ update(delta : long)}
@@ -120,13 +120,13 @@
     \par
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
-            \begin{class}[text width=3.5cm]{MenuState}{-5, 2}
+            \begin{class}[text width=3.5cm]{MenuState}{-5, 0}
 
                 \operation{+ update(delta : long)}
                 \operation{+ render(g2 : Graphics2D)}
             \end{class}
 
-            \begin{interface}[text width=3.5cm]{LogicMenu}{5, 2}
+            \begin{interface}[text width=3.5cm]{LogicMenu}{5, 0}
 
                 \operation{start( )}
                 \operation{selectOption( )}
@@ -136,7 +136,7 @@
 
             \aggregation{MenuState}{uses}{}{LogicMenu}
 
-            \begin{class}[text width=3.5cm]{LogicMenuImpl}{5, -7}
+            \begin{class}[text width=3.5cm]{LogicMenuImpl}{5, -5}
                 \implement{LogicMenu}
 
                 \operation{+ start( )}
@@ -160,6 +160,32 @@
     parti sarebbero cambiate  e così facendo avrei violato una regola base generale di buona programmazione ovvero
     DRY (Don’t Repeat Yourself ).
     %UML
+    \par
+            \begin{tikzpicture}
+                \tikzstyle{every node}=[font=\scriptsize]
+
+                \begin{abstractclass}[text width=3.5cm]{State}{-2.5, 0}
+
+                    \operation{+ update(delta : long)}
+                    \operation{+ render(g2 : Graphics2D)}
+                \end{abstractclass}
+
+                \begin{interface}[text width=3.5cm]{TransitionFactory}{2.5, 0}
+
+                    \operation{transState(message : String, game : DungeonGame, state : State)}
+                \end{interface}
+
+
+                \begin{class}[text width=3.5cm]{TransitionFactoryImpl}{2.5, -5}
+                    \implement{TransitionFactory}
+
+                    \operation{- generalTrans(message : String, game : DungeonGame, state : State)}
+                    \operation{+ transState(message : String, game : DungeonGame, state : State)}
+                \end{class}
+
+                \association{TransictionFactory}{creates }{}{State}{}{}
+            \end{tikzpicture}
+
 
     \chapter{Sviluppo}
     \section{Testing automatizzato}
