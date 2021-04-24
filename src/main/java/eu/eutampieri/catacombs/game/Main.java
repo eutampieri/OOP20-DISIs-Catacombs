@@ -27,8 +27,8 @@ public final class Main {
         gc.setFps(FPS);
         gc.setFullScreen(false);
 
-        gc.setGameWidth((int) (width / 2));
-        gc.setGameHeight((int) (height / 2));
+        gc.setGameWidth((int) (width / 1.25));
+        gc.setGameHeight((int) (height / 1.25));
 
         gc.setScaling(true);
         gc.setResizeable(false);

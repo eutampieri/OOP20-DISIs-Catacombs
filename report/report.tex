@@ -216,7 +216,19 @@
     \\
     \chapter{Sviluppo}
     \section{Testing automatizzato}
+    \par Il gruppo ha realizzato testing automatizzato tramite una suite JUnit 5 di diversi componenti chiave
+        per verificare che aderissero alle specifiche.
+    \par In particolare:
+        \begin{itemize}
+            \item Per le componenti che gestiscono I/O (\texttt{AssetManagerTest}, \texttt{UIUtilsTest} e \texttt{GameSheetTest}) viene verificato che l'accesso a risorse inesistenti venga gestito correttamente
+            \item Per le componenti che gestiscono la logica del gioco (\texttt{CharactersTest} e \texttt{EquipmentTest}) viene controllato che le operazioni sugli oggetti causino i risultati atteso, come ad esempio la diminuzione del punteggio salute dopo essere stati colpiti da un proiettile
+            \item Per la generazione casuale della mappa (\texttt{MapTest}) viene controllato che le mappe generate rispondano a certe caratteristiche e che la loro generazione non generi eccezioni
+            \item Per lo spawn delle entità (\texttt{MobFactoryTest}) viene testata la corretta generazione delle stesse
+            \item Per la gestione della logica di visualizzazione e di interazione (\texttt{CameraTest}, \texttt{CollisionBoxTest} e \texttt{HIDTests}) viene controllato che la logica della visualizzazione sa corretta nel primo caso, e che vengano gestiti correttamente gli eventi nei restanti due
+        \end{itemize}
+    \par Si è inoltre deciso di avere una test coverage minima obbligatoria, fissata al 50\%, e di testare tramite una pipeline (utilizzando Github Actions) per evitare di introdurre regressioni nel branch principale.
     \section{Metodologia di lavoro}
+    \subsection{Sanità}
     \par In questa parte esporrò il mio contributo per il progetto relativo alle interfacce grafiche al caricamento di risorse grafiche
     e testuali , alla gestione degli asset e delle animazioni del gioco , alla struttura del loop principale attraverso il quale si
     sviluppa il gioco e alla interazione con dispositivi esterni quali mouse e tastiera.
@@ -246,12 +258,19 @@
     La suddivisione dei lavori precedentemente stabilita veniva rispecchiata nella spartizione degli issue ovvero degli obbiettivi parziali da risolvere che uniti
     andavano a comporre una parte sostanziosa di codice.
     \section{Note di sviluppo}
+    \subsection{Sanità}
     \begin{itemize}
             \item Uso di Optional per la gestione degli eventuali file non trovati
             \item Uso di basilari lambda expressions nei test automatizzati
     \end{itemize}
     \chapter{Commenti finali}
     \section{Autovalutazione e lavori futuri}
+    \subsection{Sanità}
+    \par Questo progetto è stato veramente impegnativo ed è stato in grado di far risaltare le mie lacune riguardo sopratutto l'utilizzo di \texttt{git} che come
+    primo approccio è stato abbastanza brusco, mi sono ritrovato catapultato in una gestione condivisa dei file che non avevo mai usato.
+    \par Per quanto riguarda l'implementazione dei metodi e delle interfacce la difficoltà non è stata esagerata in quanto è bastato trovare una soluzione
+    architetturale decente prima di scrivere righe di codice.
+    \section{Difficoltà incontrate e commenti per i docenti}
     \appendix
     \chapter{Guida utente}
     \par Il gioco comincerà con una schermata di menu che permette di cambiare l'opzione che si desidera scegliere attraverso l'uso
