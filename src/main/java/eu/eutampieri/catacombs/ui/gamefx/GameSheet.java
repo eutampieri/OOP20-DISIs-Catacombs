@@ -6,7 +6,7 @@ import java.util.Optional;
 import eu.eutampieri.catacombs.ui.utils.ImageLoader;
 
 /**
- * this class manages the laoding and the cutting of the singular frames.
+ * this class manages the loading and the cutting of the single frame.
  */
 
 public final class GameSheet {

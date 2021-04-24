@@ -14,7 +14,7 @@ public final class Main {
     }
 
     /**
-     * Main entry point for game
+     * Main entry point for game.
      * @param args main args
      */
 
