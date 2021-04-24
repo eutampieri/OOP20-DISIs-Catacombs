@@ -69,20 +69,6 @@
 
     \chapter{Design}
     \section{Architettura}
-    \par L'architettura di 'D.I.S.I's Catacombs' è stata pensata e realizzata seguendo una forma modificata e naive del pattern ECS (Entity–component–system).
-    Questo pattern architetturale permette la definizione entità di gioco identificate solamente da un id.
-    Queste enità hanno variabili che ne definiscono l'aspetto e l'interazione con il mondo di gioco.
-    Il sistema itera tra le entità periodicamente, aggiornando le loro componenti fisiche (come posizione della entità, dimensioni e movimento)
-    e grafiche (la sprite o l'animazione).
-    In un pattern ECS standard più sistemi adempierebbero a compiti diversi, ma per diminuire la complessità dell'implementazione e favorire
-    un codice più chiaro al gruppo si è deciso di implementare un solo sistema che esegue tutte le azioni sulle componenti delle entità e gli eventi di gioco.
-    Questa architettura garantisce una maggiore flessibilità nelle componenti delle entità e garantisce modifiche a runtime di quest'ultime.
-    Il sistema infatti durante le iterazioni tra le entità ha la possibilità di gestirne e di eseguire la logica dei loro componenti utilizzando filtri di
-    vario tipo.
-    Questo permette l'integrazione di espressioni di alto livello come stream, lambda, ecc \ldots.
-    Gli input servono a gestire unicamente le componenti del Player.
-    Il lato negativo dell'architettura da noi usata è che il gioco può diventare molto pesante e lento dopo un certo numero di entità generate e visualizzate
-    durante il game loop.
     \section{Design dettagliato}
     \subsection{Chelli}
     \par Questa parte si concentrerà sugli aspetti relativi alla mappa di gioco.
@@ -151,83 +137,83 @@
 
     \subsection{Sanità}
     \par Questa parte si concentrerà sugli aspetti relativi ai vari stati che costituiscono il gioco (menu, stato di gioco, stato di fine).
-     Il sistema per la creazione di questi stati è la creazione di una classe astratta State dalla quale poi verranno
-     estese tutte le classi che costituiscono i diversi stati. Questa classe rappresenta lo scheletro di un qualunque
-     stato ed essendo una classe astratta l’implementazione di due metodi astratti quali update e render sarà diversa da
-     stato a stato in modo che la logica e la grafica di ogni stato risulti diversa.
+    Il sistema per la creazione di questi stati è la creazione di una classe astratta State dalla quale poi verranno
+    estese tutte le classi che costituiscono i diversi stati. Questa classe rappresenta lo scheletro di un qualunque
+    stato ed essendo una classe astratta l’implementazione di due metodi astratti quali update e render sarà diversa da
+    stato a stato in modo che la logica e la grafica di ogni stato risulti diversa.
     %UML
     \\
     \\
     \par
-        \begin{tikzpicture}
-            \tikzstyle{every node}=[font=\scriptsize]
-            \begin{abstractclass}[text width=3.5cm]{State}{0, 0}
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{abstractclass}[text width=3.5cm]{State}{0, 0}
 
-                \operation{+ update(delta : long)}
-                \operation{+ render(g2 : Graphics2D)}
-            \end{abstractclass}
+            \operation{+ update(delta : long)}
+            \operation{+ render(g2 : Graphics2D)}
+        \end{abstractclass}
 
-            \begin{class}[text width=3.5cm]{MenuState}{-5, -5}
-                \inherit{State}
+        \begin{class}[text width=3.5cm]{MenuState}{-5, -5}
+            \inherit{State}
 
-                \operation{+ update(delta : long)}
-                \operation{+ render(g2 : Graphics2D)}
-            \end{class}
+            \operation{+ update(delta : long)}
+            \operation{+ render(g2 : Graphics2D)}
+        \end{class}
 
-            \begin{class}[text width=3.5cm]{GameState}{0, -5}
-                \inherit{State}
+        \begin{class}[text width=3.5cm]{GameState}{0, -5}
+            \inherit{State}
 
-                \operation{+ update(delta : long)}
-                \operation{+ render(g2 : Graphics2D)}
-            \end{class}
+            \operation{+ update(delta : long)}
+            \operation{+ render(g2 : Graphics2D)}
+        \end{class}
 
-            \begin{class}[text width=3.5cm]{EndGameState}{5, -5}
-                \inherit{State}
+        \begin{class}[text width=3.5cm]{EndGameState}{5, -5}
+            \inherit{State}
 
-                \operation{+ update(delta : long)}
-                \operation{+ render(g2 : Graphics2D)}
-            \end{class}
+            \operation{+ update(delta : long)}
+            \operation{+ render(g2 : Graphics2D)}
+        \end{class}
 
-        \end{tikzpicture}
+    \end{tikzpicture}
     \\
     \\
     \par Questa parte verterà sulla gestione della schermata principale e su quella di fine gioco la quale poi introdurrà nuovamente
-     alla schermata di menù. Il sistema per la gestione di questi due stati è la medesima, entrambi utilizzano il pattern Strategy
-     infatti è possibile modificare la grafica di queste schermate senza andare ad impattare direttamente la logica che le gestisce.
-     Questa scelta è stata fatta principalmente per evitare di infrangere SRP (Single Responsibility Principle) e quindi
-     di incaricare una classe sia della gestione grafica di una schermata sia della sua logica creando così una complicazione
-     in un futuro cambiamento.
+    alla schermata di menu. Il sistema per la gestione di questi due stati è la medesima, entrambi utilizzano il pattern Strategy
+    infatti è possibile modificare la grafica di queste schermate senza andare ad impattare direttamente la logica che le gestisce.
+    Questa scelta è stata fatta principalmente per evitare di infrangere SRP (Single Responsibility Principle) e quindi
+    di incaricare una classe sia della gestione grafica di una schermata sia della sua logica creando così una complicazione
+    in un futuro cambiamento.
     %UML
     \\
     \\
     \par
-        \begin{tikzpicture}
-            \tikzstyle{every node}=[font=\scriptsize]
-            \begin{class}[text width=3.5cm]{MenuState}{-4, -0.2}
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{class}[text width=3.5cm]{MenuState}{-4, -0.2}
 
-                \operation{+ update(delta : long)}
-                \operation{+ render(g2 : Graphics2D)}
-            \end{class}
+            \operation{+ update(delta : long)}
+            \operation{+ render(g2 : Graphics2D)}
+        \end{class}
 
-            \begin{interface}[text width=3.5cm]{LogicMenu}{4, 0}
+        \begin{interface}[text width=3.5cm]{LogicMenu}{4, 0}
 
-                \operation{start( )}
-                \operation{selectOption( )}
-                \operation{getOption( )}
-                \operation{isOptionStart( )}
-            \end{interface}
+            \operation{start( )}
+            \operation{selectOption( )}
+            \operation{getOption( )}
+            \operation{isOptionStart( )}
+        \end{interface}
 
-            \aggregation{MenuState}{uses}{}{LogicMenu}
+        \aggregation{MenuState}{uses}{}{LogicMenu}
 
-            \begin{class}[text width=3.5cm]{LogicMenuImpl}{4, -5}
-                \implement{LogicMenu}
+        \begin{class}[text width=3.5cm]{LogicMenuImpl}{4, -5}
+            \implement{LogicMenu}
 
-                \operation{+ start( )}
-                \operation{+ selectOption( )}
-                \operation{+ getOption( )}
-                \operation{+ isOptionStart( )}
-            \end{class}
-        \end{tikzpicture}
+            \operation{+ start( )}
+            \operation{+ selectOption( )}
+            \operation{+ getOption( )}
+            \operation{+ isOptionStart( )}
+        \end{class}
+    \end{tikzpicture}
     \\
     \\
     \par Questa parte riguarda la gestione degli asset più precisamente la creazione di strutture e il caricamento delle
@@ -240,32 +226,59 @@
     \\
     \\
     \par
-        \begin{tikzpicture}
-            \tikzstyle{every node}=[font=\scriptsize]
-            \begin{class}[text width=4cm]{AssetManager}{-3, 0}
-                \attribute{- SINGLETON\_MANAGER : AssetManager}
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{class}[text width=6cm]{AssetManager}{-4, 0}
+            \attribute{- SINGLETON\_MANAGER : AssetManager}
 
-                \operation{- AssetManager( )}
-                \operation{+ getAssetManager( )}
-            \end{class}
+            \operation{- AssetManager( )}
+            \operation{+ getAssetManager( )}
+        \end{class}
 
-            \begin{class}[text width=5cm]{KeyManager}{3, 0}
-                \attribute{- SINGLETON\_KEYMANAGER : KeyManager}
+        \begin{class}[text width=6.5cm]{KeyManager}{4, 0}
+            \attribute{- SINGLETON\_KEYMANAGER : KeyManager}
 
-                \operation{- KeyManager( )}
-                \operation{+ getKeyManager( )}
-            \end{class}
-        \end{tikzpicture}
+            \operation{- KeyManager( )}
+            \operation{+ getKeyManager( )}
+        \end{class}
+    \end{tikzpicture}
     \\
     \\
     \par Questa parte di codice si occupa invece della cambiamento di stato ovvero delle transizioni che portano da uno stato
     a l’altro. In questo caso è stato utilizzata una Factory di transizione per via del fatto che la forma delle transizioni
-    è la medesima  le uniche differenze riguardano gli stati di partenza e di arrivo e il messaggio che il giocatore vedrà.
+    è la medesima le uniche differenze riguardano gli stati di partenza e di arrivo e il messaggio che il giocatore vedrà.
     In questo non utilizzando una Factory avrei avuto tre classi in cui quasi tutto il codice veniva ripetuto e solo poche
-    parti sarebbero cambiate  e così facendo avrei violato una regola base generale di buona programmazione ovvero
+    parti sarebbero cambiate e così facendo avrei violato una regola base generale di buona programmazione ovvero
     DRY (Don’t Repeat Yourself).
     %UML
+    \\
+    \\
+    \par
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
 
+        \begin{abstractclass}[text width=3.5cm]{State}{-4, 0}
+
+            \operation{+ update(delta : long)}
+            \operation{+ render(g2 : Graphics2D)}
+        \end{abstractclass}
+
+        \begin{interface}[text width=3.5cm]{TransitionFactory}{4, 0}
+
+            \operation{transState(message : String, game : DungeonGame, state : State)}
+        \end{interface}
+
+        \begin{class}[text width=3.5cm]{TransitionFactoryImpl}{4, -5}
+            \implement{TransitionFactory}
+
+            \operation{- generalTrans(message : String, game : DungeonGame, state : State)}
+            \operation{+ transState(message : String, game : DungeonGame, state : State)}
+        \end{class}
+
+        \association{TransitionFactory}{creates}{}{State}{}{}
+    \end{tikzpicture}
+    \\
+    \\
     \subsection{Monti}
     \par In questa sezione ci si concentrerà sugli aspetti riguardanti gli oggetti e le entità del gioco e della loro generazione.
     \par Dovendo creare oggetti con elementi in comune ho deciso di utilizzare un Template Method che ha come template la classe astratta GameObject
@@ -278,45 +291,45 @@
     \par
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-            \begin {abstractclass}[text width=10cm]{GameObject}{0, -8}
-                \attribute {\#posX: int}
-                \attribute {\#posY: int}
-                \operation {\#kind: GameObjectType}
-                \attribute {\#speedX: int}
-                \attribute {\#speedY: int}
-                \attribute {\#hitBox: CollisionBox}
-                \attribute {\#team: Team}
-                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
-            \end {abstractclass}
+        \begin {abstractclass}[text width=10cm]{GameObject}{0, -8}
+            \attribute {\#posX: int}
+            \attribute {\#posY: int}
+            \operation {\#kind: GameObjectType}
+            \attribute {\#speedX: int}
+            \attribute {\#speedY: int}
+            \attribute {\#hitBox: CollisionBox}
+            \attribute {\#team: Team}
+            \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
+        \end {abstractclass}
 
-            \begin {abstractclass}[text width=5cm]{Entity}{-5, 0}
-                \inherit {GameObject}
-                \attribute {\#face: Direction}
-                \attribute {\#hp: int}
-                \operation {\#kind: GameObjectType}
-                \attribute {\#width: int}
-                \attribute {\#height: int}
-                \attribute {\#size: int}
-                \attribute {\#tileMap: TileMap}
-                \operation {\#move: void}
-            \end {abstractclass}
+        \begin {abstractclass}[text width=5cm]{Entity}{-5, 0}
+            \inherit {GameObject}
+            \attribute {\#face: Direction}
+            \attribute {\#hp: int}
+            \operation {\#kind: GameObjectType}
+            \attribute {\#width: int}
+            \attribute {\#height: int}
+            \attribute {\#size: int}
+            \attribute {\#tileMap: TileMap}
+            \operation {\#move: void}
+        \end {abstractclass}
 
-            \begin {abstractclass}[text width=5cm]{Weapon}{+5, 0}
-                \inherit {GameObject}
-                \attribute {\#strength: int}
-                \attribute {\#ps: int}
-                \operation {\#fireRate: long}
-                \attribute {\#canFire: boolean}
-                \attribute {\#fireDelay: long}
-                \attribute {\#fireDelayCount: long}
-                \operation {+fire(psx: int, psy: int): void}
-            \end {abstractclass}
+        \begin {abstractclass}[text width=5cm]{Weapon}{+5, 0}
+            \inherit {GameObject}
+            \attribute {\#strength: int}
+            \attribute {\#ps: int}
+            \operation {\#fireRate: long}
+            \attribute {\#canFire: boolean}
+            \attribute {\#fireDelay: long}
+            \attribute {\#fireDelayCount: long}
+            \operation {+fire(psx: int, psy: int): void}
+        \end {abstractclass}
 
-        \end{tikzpicture}
+    \end{tikzpicture}
     \\
-        \begin{center}
-            In figura è rappresentato lo schema del Template Method del GameObject
-        \end{center}
+    \begin{center}
+        In figura è rappresentato lo schema del Template Method del GameObject
+    \end{center}
     \par Sempre con in mente il Template Method ho deciso di rendere astratte le classi Entity e Weapon, essendo entrambe una generalizzazione di quelli
     che sono rispettivamente i diversi personaggi (come il Player e i nemici) e le diverse armi presenti nel gioco.
     In particolare Entity è una classe astratta che rappresenta l'insieme degli oggetti definiti Living ("vivi"), cioè che si muovono, hanno una salute
@@ -327,77 +340,77 @@
     chiamate Gun e Rifle ma è possibile aggiungerne altre facilmente.
     \\
     \par
-        \begin{tikzpicture}
-            \tikzstyle{every node}=[font=\scriptsize]
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {abstractclass}[text width=10cm]{Entity}{-10, -10}
-                \attribute {\#face: Direction}
-                \attribute {\#hp: int}
-                \operation {\#kind: GameObjectType}
-                \attribute {\#width: int}
-                \attribute {\#height: int}
-                \attribute {\#size: int}
-                \attribute {\#tileMap: TileMap}
-                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
-                \operation {\#move: void}
-            \end {abstractclass}
+        \begin {abstractclass}[text width=10cm]{Entity}{-10, -10}
+            \attribute {\#face: Direction}
+            \attribute {\#hp: int}
+            \operation {\#kind: GameObjectType}
+            \attribute {\#width: int}
+            \attribute {\#height: int}
+            \attribute {\#size: int}
+            \attribute {\#tileMap: TileMap}
+            \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
+            \operation {\#move: void}
+        \end {abstractclass}
 
-            \begin {class}[text width=6cm]{Bat}{-15, 0}
-                \inherit {Entity}
-                \operation {+setShootingDirection(e: GameObject): void}
-                \operation {-changeDirection: void}
-            \end {class}
+        \begin {class}[text width=6cm]{Bat}{-15, 0}
+            \inherit {Entity}
+            \operation {+setShootingDirection(e: GameObject): void}
+            \operation {-changeDirection: void}
+        \end {class}
 
-            \begin {class}[text width=6cm]{Boss}{-10, -5}
-                \inherit {Entity}
-                \operation {+setShootingDirection(e: GameObject): void}
-                \operation {-changeDirection: void}
-            \end {class}
+        \begin {class}[text width=6cm]{Boss}{-10, -5}
+            \inherit {Entity}
+            \operation {+setShootingDirection(e: GameObject): void}
+            \operation {-changeDirection: void}
+        \end {class}
 
-            \begin {class}[text width=6cm]{Slime}{-7, 0}
-                \inherit {Entity}
-                \operation {+setCharacterToFollow(e: GameObject): void}
-                \operation {-follow(): void}
-            \end {class}
+        \begin {class}[text width=6cm]{Slime}{-7, 0}
+            \inherit {Entity}
+            \operation {+setCharacterToFollow(e: GameObject): void}
+            \operation {-follow(): void}
+        \end {class}
 
-        \end{tikzpicture}
+    \end{tikzpicture}
     \\
-        \begin{center}
-            In figura è rappresentato lo schema del Template Method della Entity
-        \end{center}
+    \begin{center}
+        In figura è rappresentato lo schema del Template Method della Entity
+    \end{center}
     \par
-        \begin{tikzpicture}
-            \tikzstyle{every node}=[font=\scriptsize]
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {abstractclass}[text width=10cm]{Weapon}{-5, -5}
-                \attribute {\#strength: int}
-                \attribute {\#ps: int}
-                \operation {\#fireRate: long}
-                \attribute {\#canFire: boolean}
-                \attribute {\#fireDelay: long}
-                \attribute {\#fireDelayCount: long}
-                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
-                \operation {+fire(psx: int, psy: int): void}
-            \end {abstractclass}
+        \begin {abstractclass}[text width=10cm]{Weapon}{-5, -5}
+            \attribute {\#strength: int}
+            \attribute {\#ps: int}
+            \operation {\#fireRate: long}
+            \attribute {\#canFire: boolean}
+            \attribute {\#fireDelay: long}
+            \attribute {\#fireDelayCount: long}
+            \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
+            \operation {+fire(psx: int, psy: int): void}
+        \end {abstractclass}
 
-            \begin {class}[text width=6cm]{Gun}{-10, 0}
-                \inherit {Weapon}
-                \operation {+getStrength(): int}
-                \operation {+getFireRate(): int}
-                \operation {+getProjectileSpeed(): int}
-            \end {class}
+        \begin {class}[text width=6cm]{Gun}{-10, 0}
+            \inherit {Weapon}
+            \operation {+getStrength(): int}
+            \operation {+getFireRate(): int}
+            \operation {+getProjectileSpeed(): int}
+        \end {class}
 
-            \begin {class}[text width=6cm]{Rifle}{0, 0}
-                \inherit {Weapon}
-                \operation {+getStrength(): int}
-                \operation {+getFireRate(): int}
-                \operation {+getProjectileSpeed(): int}
-            \end {class}
-        \end{tikzpicture}
+        \begin {class}[text width=6cm]{Rifle}{0, 0}
+            \inherit {Weapon}
+            \operation {+getStrength(): int}
+            \operation {+getFireRate(): int}
+            \operation {+getProjectileSpeed(): int}
+        \end {class}
+    \end{tikzpicture}
     \\
-        \begin{center}
-            In figura è rappresentato lo schema del Template Method della Weapon
-        \end{center}
+    \begin{center}
+        In figura è rappresentato lo schema del Template Method della Weapon
+    \end{center}
     \par Per la generazione degli oggetti di gioco ho deciso di distinguere la generazione delle entità da quella degli oggetti.
     La decisione di implementare due factory invece che una deriva da due fattori:
     \begin{itemize}
@@ -409,48 +422,47 @@
     nella mappa.
     \\
     \par
-        \begin{tikzpicture}
-            \tikzstyle{every node}=[font=\scriptsize]
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {interface}[text width=8.5cm]{ObjectFactory}{0, 0}
-                \operation {spawnAt(x: int, y: int, f: SingleObject<GameObject>): List<GameObject>}
-                \operation {spawnSome(n: int, f: SingleObject<GameObject>): List<GameObject>}
-            \end {interface}
+        \begin {interface}[text width=8.5cm]{ObjectFactory}{0, 0}
+            \operation {spawnAt(x: int, y: int, f: SingleObject<GameObject>): List<GameObject>}
+            \operation {spawnSome(n: int, f: SingleObject<GameObject>): List<GameObject>}
+        \end {interface}
 
-            \begin {class}[text width=8.5cm]{ObjectFactoryImpl}{0, -5}
-                \implement{ObjectFactory}
-                \operation {+setNewTileMap(tileMap: TileMap): void}
-            \end {class}
+        \begin {class}[text width=8.5cm]{ObjectFactoryImpl}{0, -5}
+            \implement{ObjectFactory}
+            \operation {+setNewTileMap(tileMap: TileMap): void}
+        \end {class}
 
-        \end{tikzpicture}
+    \end{tikzpicture}
     \\
     \\
-        \begin{center}
-            In figura è rappresentato lo schema del Factory Method della ObjectFactory
-        \end{center}
+    \begin{center}
+        In figura è rappresentato lo schema del Factory Method della ObjectFactory
+    \end{center}
     \par
-        \begin{tikzpicture}
-            \tikzstyle{every node}=[font=\scriptsize]
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {interface}[text width=8.5cm]{MobFactory}{0, 0}
-                \operation {spawnAt(x: int, y: int, f: SingleObject<GameObject>): List<Entity>}
-                \operation {spawnSome(n: int, f: SingleObject<GameObject>): List<Entity>}
-                \operation {spawnRandom(): List<Entity>}
-                \operation {spawnNear(range: int, e: GameObject, f: SingleObject<GameObject>): List<Entity>}
-            \end {interface}
+        \begin {interface}[text width=8.5cm]{MobFactory}{0, 0}
+            \operation {spawnAt(x: int, y: int, f: SingleObject<GameObject>): List<Entity>}
+            \operation {spawnSome(n: int, f: SingleObject<GameObject>): List<Entity>}
+            \operation {spawnRandom(): List<Entity>}
+            \operation {spawnNear(range: int, e: GameObject, f: SingleObject<GameObject>): List<Entity>}
+        \end {interface}
 
-            \begin {class}[text width=8.5cm]{MobFactoryImpl}{0, -5}
-                \implement{MobFactory}
-                \operation {+setNewTileMap(tileMap: TileMap): void}
-            \end {class}
+        \begin {class}[text width=8.5cm]{MobFactoryImpl}{0, -5}
+            \implement{MobFactory}
+            \operation {+setNewTileMap(tileMap: TileMap): void}
+        \end {class}
 
-        \end{tikzpicture}
+    \end{tikzpicture}
     \\
     \\
-        \begin{center}
-            In figura è rappresentato lo schema del Factory Method della MobFactory
-        \end{center}
-    \\
+    \begin{center}
+        In figura è rappresentato lo schema del Factory Method della MobFactory
+    \end{center}
     \subsection{Tampieri}
     \par Durante lo sviluppo ho notato la necessità di utilizzare due diversi design pattern.
     \subsubsection{\texttt{ImageTransformer} Abstract Factory}
@@ -497,15 +509,15 @@
     \chapter{Sviluppo}
     \section{Testing automatizzato}
     \par Il gruppo ha realizzato testing automatizzato tramite una suite JUnit 5 di diversi componenti chiave
-        per verificare che aderissero alle specifiche.
+    per verificare che aderissero alle specifiche.
     \par In particolare:
-        \begin{itemize}
-            \item Per le componenti che gestiscono I/O (\texttt{AssetManagerTest}, \texttt{UIUtilsTest} e \texttt{GameSheetTest}) viene verificato che l'accesso a risorse inesistenti venga gestito correttamente
-            \item Per le componenti che gestiscono la logica del gioco (\texttt{CharactersTest} e \texttt{EquipmentTest}) viene controllato che le operazioni sugli oggetti causino i risultati atteso, come ad esempio la diminuzione del punteggio salute dopo essere stati colpiti da un proiettile
-            \item Per la generazione casuale della mappa (\texttt{MapTest}) viene controllato che le mappe generate rispondano a certe caratteristiche e che la loro generazione non generi eccezioni
-            \item Per lo spawn delle entità (\texttt{MobFactoryTest}) viene testata la corretta generazione delle stesse
-            \item Per la gestione della logica di visualizzazione e di interazione (\texttt{CameraTest}, \texttt{CollisionBoxTest} e \texttt{HIDTests}) viene controllato che la logica della visualizzazione sa corretta nel primo caso, e che vengano gestiti correttamente gli eventi nei restanti due
-        \end{itemize}
+    \begin{itemize}
+        \item Per le componenti che gestiscono I/O (\texttt{AssetManagerTest}, \texttt{UIUtilsTest} e \texttt{GameSheetTest}) viene verificato che l'accesso a risorse inesistenti venga gestito correttamente
+        \item Per le componenti che gestiscono la logica del gioco (\texttt{CharactersTest} e \texttt{EquipmentTest}) viene controllato che le operazioni sugli oggetti causino i risultati atteso, come ad esempio la diminuzione del punteggio salute dopo essere stati colpiti da un proiettile
+        \item Per la generazione casuale della mappa (\texttt{MapTest}) viene controllato che le mappe generate rispondano a certe caratteristiche e che la loro generazione non generi eccezioni
+        \item Per lo spawn delle entità (\texttt{MobFactoryTest}) viene testata la corretta generazione delle stesse
+        \item Per la gestione della logica di visualizzazione e di interazione (\texttt{CameraTest}, \texttt{CollisionBoxTest} e \texttt{HIDTests}) viene controllato che la logica della visualizzazione sa corretta nel primo caso, e che vengano gestiti correttamente gli eventi nei restanti due
+    \end{itemize}
     \par Si è inoltre deciso di avere una test coverage minima obbligatoria, fissata al 50\%, e di testare tramite una pipeline (utilizzando Github Actions) per evitare di introdurre regressioni nel branch principale.
     \section{Metodologia di lavoro}
     \subsection{Chelli}
@@ -531,12 +543,12 @@
     e testuali , alla gestione degli asset e delle animazioni del gioco , alla struttura del loop principale attraverso il quale si
     sviluppa il gioco e alla interazione con dispositivi esterni quali mouse e tastiera.
     \par La parte di cui mi sono maggiormente e occupato la GUI del gioco nello specifico la gestione degli stati attraverso i quali
-    il gioco si sviluppa partendo dalla creazione di un generico stato\texttt{State} dal quale si estendono poi altri stati quali:
+    il gioco si sviluppa partendo dalla creazione di un generico stato \texttt{State} dal quale si estendono poi altri stati quali:
     \texttt{MenuState} , \texttt{GameState} e \texttt{EndGameState}.
     \par Un’altra parte di cui mi sono occupato riguarda le transizioni ovvero il cambiamento da uno stato a l’altro attraverso la creazione
     , per mezzo di  \texttt{TransitionFactory} , di un interfaccia che fa da ponte tra due stati. La gestione di degli stati e dei loro
     cambiamenti è affidata ad un'altra classe DungeonGame anche questa implementata da me. Questa classe si occupa di controllare
-    in quale stato si trova il gioco e in quale stato dovrà trovarsi se il player muore o se finisce il gioco, in poche parole p la
+    in quale stato si trova il gioco e in quale stato dovrà trovarsi se il player muore o se finisce il gioco, in poche parole la
     classe che gestisce la visualizzazione il funzionamento e il susseguirsi degli stati di gioco. Inoltre fornisce informazioni
     riguardanti la finestra principale del gioco creata dalla classe \texttt{MainWindow} di mia implementazione anche se la totalità delle
     informazioni riguardanti la finestra è disponibile a chi  ne facesse uso nella mia classe \texttt{GameConfiguration}.
@@ -546,7 +558,7 @@
     gestisce i vari input da tastiera.
     \par Una altra parte di mia responsabilità è il caricamento di risorse come si può vedere dal package \texttt{catacombs/ui/utils (FontUtils, ImageLoader e ImageRotator)}
     e dall’\texttt{AssetManager} che fa uso di un’altra classe, \texttt{GameSheet} che si occupa di ritagliare le immagini in immagini più piccole
-    in modo da separare i singoli frame di movimento dei personaggi. Tali frame verranno poi utilizzati dalla classe \texttt{Animation} che
+    in modo da separare i singoli frame di movimento dei personaggi. Tali frames verranno poi utilizzati dalla classe \texttt{Animation} che
     provvede a sequenziarli in modo da farli risultare parte di un unico fluido movimento.
     \par Usufruendo delle funzinalità di branching che Git offre è stato facile rimanere aggiornato sugli sviluppi del progetto anche non
     relativi alle mie implenatazioni. la metodologia utilizzata cosnisteva nell' utilizzo di un master principale da aggiornale solo con
@@ -592,8 +604,8 @@
     \end{itemize}
     \subsection{Sanità}
     \begin{itemize}
-            \item Uso di Optional per la gestione degli eventuali file non trovati
-            \item Uso di basilari lambda expressions nei test automatizzati
+        \item Uso di Optional per la gestione degli eventuali file non trovati
+        \item Uso di basilari lambda expressions nei test automatizzati
     \end{itemize}
     \subsection{Monti}
     \begin{itemize}
@@ -601,6 +613,19 @@
         \item Lambda expressions
         \item Generici nelle factory
         \item Apache commons per l'utilizzo dei pair
+    \end{itemize}
+    \subsection{Tampieri}
+    \par Ho utilizzato le seguenti funzionalità avanzate del linguaggio:
+    \begin{itemize}
+        \item Generici bounded, utilizzati per estendere il \texttt{SingleObject} realizzato da Giacomo Monti
+        \item Uso di lambda expression in \texttt{AssetManagerProxy} e \texttt{ImageTransformerFactoryImpl}
+        \item Uso di \texttt{Stream} in \texttt{AssetManagerProxy}
+        \item Utilizzato (seppur marginalmente) Apache Commons Lang: nello specifico \texttt{Pair} e \texttt{Triple}
+        \item Configurato Gradle, partendo dall'esempio fornitoci e integrandolo con la static code analysis
+    \end{itemize}
+    \par Ho utilizzato i seguenti snippet di codice:
+    \begin{itemize}
+        \item How to scale a \texttt{BufferedImage}\cite{so:BufferedImageScaling},\\\texttt{src/main/java/eu/eutampieri/catacombs/ui/utils/ImageTransformerFactoryImpl.java}, linee 23-29.
     \end{itemize}
     \chapter{Commenti finali}
     \section{Autovalutazione e lavori futuri}
@@ -638,19 +663,19 @@
     \appendix
     \chapter{Guida utente}
     \par Il gioco comincerà con una schermata di menu che permette di cambiare l'opzione che si desidera scegliere attraverso l'uso
-     dei tasti direzionali o  WASD, per selezionare la chiusura della finestra o l'avvio del gioco.
+    dei tasti direzionali o  WASD, per selezionare la chiusura della finestra o l'avvio del gioco.
     \par Una volta che l'indicatore di selezione si sarà spostato sull'opzione desiderata è sufficiente premere il tasto invio per confermarla.
     \par Iniziata la partita, il personaggio si potrà spostare la mappa utilizzando i tasti indicati in precedenza.
     \par Il giocatore potrà sparare ai nemici per eliminarli usando il tasto spazio, sia tenendolo premuto che premendolo ripetutamente,
-     e per poter mirare al nemico basterà rivolgere il corpo del giocatore nella direzione desiderata (e.g se un nemico si trova alla
-     proria destra, l'utente dovrà premere D e poi premere la barra dello spazio).
-     \par Nella mappa sono presenti alcuni oggetti utili, che possono essere raccolti camminandoci sopra.
-     \par Nello specifico, sono presenti delle pozioni (rappresentate da un'ampolla) per aumentare la propria vita e delle armi. Queste ultime possono essere:
-     \begin{itemize}
-         \item Una pistola, che è l'arma con cui il giocatore inizia il gioco
-         \item Un fucile automatico che, rispetto alla pistola, permette di sparare più frequentemente.
-     \end{itemize}
-     \par Dopo aver ucciso un nemico, è possibile che questo lasci cadere un'arma o una pozione.
+    e per poter mirare al nemico basterà rivolgere il corpo del giocatore nella direzione desiderata (e.g se un nemico si trova alla
+    proria destra, l'utente dovrà premere D e poi premere la barra dello spazio).
+    \par Nella mappa sono presenti alcuni oggetti utili, che possono essere raccolti camminandoci sopra.
+    \par Nello specifico, sono presenti delle pozioni (rappresentate da un'ampolla) per aumentare la propria vita e delle armi. Queste ultime possono essere:
+    \begin{itemize}
+        \item Una pistola, che è l'arma con cui il giocatore inizia il gioco.
+        \item Un fucile automatico che, rispetto alla pistola, permette di sparare più frequentemente.
+    \end{itemize}
+    \par Dopo aver ucciso un nemico, è possibile che questo lasci cadere un'arma o una pozione.
     \par Il gioco termina dopo aver ucciso il boss e tutti i nemici.
     \chapter{Esercitazioni di laboratorio}
     \section{Tampieri}
