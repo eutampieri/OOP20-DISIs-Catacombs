@@ -163,8 +163,6 @@ public final class World {
         Stream.concat(this.entities.stream(), Stream.of(this.player))
                 .filter((x) -> this.isOnCamera(x.getPosX(), x.getPosY()))
                 .forEach((currentObj) -> {
-                    g2.drawRect(currentObj.getHitBox().getPosX() - camera.getXOffset(), currentObj.getHitBox()
-                            .getPosY() - camera.getYOffset(), currentObj.getHitBox().getWidth(), currentObj.getHitBox().getHeight());
                     try {
                         final Entity currentEntity = (Entity) currentObj;
                         final Pair<Action, Direction> action = currentEntity.getActionWithDirection();
