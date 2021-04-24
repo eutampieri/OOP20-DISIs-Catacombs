@@ -73,6 +73,17 @@
     \subsection{Chelli}
     \par Questa parte si concentrera' sugli aspetti relativi alla mappa di gioco.
 
+    % UML Tile
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{class}[text width=3.5cm]{Tile}{0, 0}
+            \attribute{VOID}
+            \attribute{WALL}
+            \attribute{FLOOR}
+            \attribute{STAIRS}
+            \operation{+ render(g2 : Graphics2D)}
+        \end{class}
+    \end{tikzpicture}
     \par La mappa e' concettualmente una matrice di caselle, che possono essere pavimento o muro.
 
     \par Le caselle vengono rappresentate da un enum chiamato Tile.
