@@ -69,6 +69,20 @@
 
     \chapter{Design}
     \section{Architettura}
+    \par L'architettura di 'D.I.S.I's Catacombs' è stata pensata e realizzata seguendo una forma modificata e naive del pattern ECS (Entity–component–system).
+    Questo pattern architetturale permette la definizione della entità di gioco, identificata solamente da un id.
+    Queste enità hanno variabili che ne definiscono l'aspetto e l'interazione con il mondo di gioco.
+    Il sistema itera tra le entità periodicamente durante il game loop, aggiornando le loro componenti fisiche (come posizione della entità, dimensioni
+    e movimento) e grafiche (la sprite o l'animazione).
+    In un pattern ECS standard più sistemi adempierebbero a compiti diversi, ma per diminuire la complessità dell'implementazione e favorire
+    un codice più chiaro al gruppo si è deciso di implementare un solo sistema che esegue tutte le azioni sulle componenti delle entità e gli eventi di gioco.
+    Questa genere di architettura garantisce una maggiore flessibilità nelle componenti delle entità e garantisce modifiche a runtime di quest'ultime.
+    Il sistema infatti durante le iterazioni tra le entità ha la possibilità di gestirne e di eseguire la logica dei loro componenti utilizzando filtri di
+    vario tipo.
+    Questo permette l'integrazione di metodi di alto livello come stream, lambda, ecc\ldots.
+    Gli input servono a gestire unicamente il movimento e lo sparo del Player.
+    Il lato negativo dell'architettura da noi usata è che il gioco può diventare molto pesante e lento dopo un elevato numero di entità generate e visualizzate
+    durante l'esecuzione.
     \section{Design dettagliato}
     \subsection{Chelli}
     \par Questa parte si concentrerà sugli aspetti relativi alla mappa di gioco.
