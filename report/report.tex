@@ -113,7 +113,7 @@
     \par
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-            \begin {abstractclass}[text width=5cm]{GameObject}{-5, -8}
+            \begin {abstractclass}[text width=10cm]{GameObject}{-10, -8}
                 \attribute {\#posX: int}
                 \attribute {\#posY: int}
                 \operation {\#kind: GameObjectType}
@@ -124,7 +124,7 @@
                 \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
             \end {abstractclass}
 
-            \begin {abstractclass}[text width=5cm]{Entity}{-10, 0}
+            \begin {abstractclass}[text width=5cm]{Entity}{-10, -2}
                 \inherit {GameObject}
                 \attribute {\#face: Direction}
                 \attribute {\#hp: int}
@@ -165,7 +165,7 @@
         \begin{tikzpicture}
             \tikzstyle{every node}=[font=\scriptsize]
 
-            \begin {abstractclass}[text width=8.5cm]{Entity}{-10, -10}
+            \begin {abstractclass}[text width=10cm]{Entity}{-10, -10}
                 \attribute {\#face: Direction}
                 \attribute {\#hp: int}
                 \operation {\#kind: GameObjectType}
@@ -177,23 +177,20 @@
                 \operation {\#move: void}
             \end {abstractclass}
 
-            \begin {class}[text width=8.5cm]{Bat}{-13, 0}
+            \begin {class}[text width=6cm]{Bat}{-13, 0}
                 \inherit {Entity}
-                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
                 \operation {+setShootingDirection(e: GameObject): void}
                 \operation {-changeDirection: void}
             \end {class}
 
-            \begin {class}[text width=8.5cm]{Boss}{-3, 0}
+            \begin {class}[text width=6cm]{Boss}{0, -5}
                 \inherit {Entity}
-                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
                 \operation {+setShootingDirection(e: GameObject): void}
                 \operation {-changeDirection: void}
             \end {class}
 
-            \begin {class}[text width=8.5cm]{Slime}{+4, 0}
+            \begin {class}[text width=6cm]{Slime}{+4, 0}
                 \inherit {Entity}
-                \operation {+update(delta: long, others: List<GameObject>): List<GameObject>}
                 \operation {+setCharacterToFollow(e: GameObject): void}
                 \operation {-follow(): void}
             \end {class}
