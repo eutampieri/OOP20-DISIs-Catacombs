@@ -51,7 +51,7 @@ public final class World {
             return new SimplePotion(healingPower, "Potion", x, y);
         }));
 
-        this.entities.addAll(objectFactory.spawnSome(100, (x, y, tm) -> {
+        this.entities.addAll(objectFactory.spawnSome(3, (x, y, tm) -> {
 
             if(rand.nextInt(2) == 0) {
                 return new Gun(null, tm, x, y, GameObject.Team.FRIEND);
