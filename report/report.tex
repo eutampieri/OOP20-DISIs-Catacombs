@@ -281,16 +281,16 @@
     \\
     \subsection{Tampieri}
     \par Durante lo sviluppo ho notato la necessità di utilizzare due diversi design pattern.
-    \subsubsection \texttt{ImageTransformer} Abstract Factory
+    \subsubsection{\texttt{ImageTransformer} Abstract Factory}
     \par
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-        \begin{interface}[text width=3.5cm]{ImageTransformerFactory}{0, 0}
+        \begin{interface}[text width=4cm]{ImageTransformerFactory}{0, 0}
             \operation{ + rotate(degrees: double): ImageTransformer}
             \operation{ + scale(scalingFactor: double): ImageTransformer}
             \operation{ + flip(flipX: boolean, flipY: boolean): ImageTransformer}
         \end{interface}
-        \begin{class}[text width=3.5cm]{ImageTransformerFactoryImpl}{6, 0}
+        \begin{class}[text width=4.5cm]{ImageTransformerFactoryImpl}{6, 0}
             \implement{ImageTransformerFactory}
             \operation{ + rotate(degrees: double): ImageTransformer}
             \operation{ + scale(scalingFactor: double): ImageTransformer}
@@ -306,7 +306,7 @@
     \subsubsection{AssetManager Proxy}
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
-        \begin{class}[text width=3.5cm]{AssetManagerProxy}{6, 0}
+        \begin{class}[text width=8cm]{AssetManagerProxy}{6, 0}
             \attribute{- MAP\_CACHE: Map<Tile, BufferedImage>}
             \attribute{- ANIMATIONS\_CACHE: Map<Triple<Entity, Action, Direction>, Pair<Animation, Long>>}
             \attribute{- STATIC\_ASSETS\_CACHE: Map<StaticEntityKind, BufferedImage> }
