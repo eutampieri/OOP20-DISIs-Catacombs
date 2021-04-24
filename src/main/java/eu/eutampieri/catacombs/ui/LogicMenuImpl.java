@@ -38,7 +38,7 @@ public final class LogicMenuImpl implements LogicMenu {
     /**
      * Constructor of the logic part of the menu.
      *
-     * @param game
+     * @param game The {@link DungeonGame} linked to this menu.
      */
     public LogicMenuImpl(final DungeonGame game) {
         this.game = game;
@@ -79,10 +79,10 @@ public final class LogicMenuImpl implements LogicMenu {
             default:
             }
         }
-        if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_S)) {
+        if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_S) || KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_DOWN)) {
             this.optionSelected = MenuOption.QUIT_GAME;
         }
-        if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_W)) {
+        if (KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_W) || KeyManager.getKeyManager().isKeyPressed(KeyEvent.VK_UP)) {
             this.optionSelected = MenuOption.START_GAME;
         }
 

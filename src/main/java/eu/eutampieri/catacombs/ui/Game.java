@@ -61,7 +61,7 @@ public abstract class Game implements Runnable {
     private int fps;
 
     /**
-     *
+     * This method returns the graphical element used.
      * @return the graphical element used
      */
 
@@ -81,7 +81,7 @@ public abstract class Game implements Runnable {
     public abstract void render();
 
     /**
-     *
+     * This game returns the width of the main frame.
      * @return width of the main frame
      */
     public int getWidth() {
@@ -89,7 +89,7 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     *
+     * This method returns the height of the main frame.
      * @return height of the main frame
      */
 
@@ -98,7 +98,7 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     *
+     * This method returns the width of game configuration.
      * @return width of game configuration
      */
     public int getGameWidth() {
@@ -106,7 +106,7 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     *
+     * This method returns the height of game configuration.
      * @return height of game configuration
      */
 
@@ -115,16 +115,7 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     *
-     * @param fps frames per second used
-     */
-
-    protected final void setFps(final int fps) {
-        this.fps = fps;
-    }
-
-    /**
-     *
+     * This method initialize the game.
      * @param config the style choose for the frame
      */
     public final void initialize(final GameConfiguration config) {
@@ -235,8 +226,8 @@ public abstract class Game implements Runnable {
     }
 
     /**
-     *
-     * @return the main frame of the game.
+     * This method returns the main frame of the game.
+     * @return the main frame of the game
      */
 
     public JFrame getMainFrame() {
@@ -286,15 +277,6 @@ public abstract class Game implements Runnable {
     public void addKeyAdapter(final KeyAdapter e) {
         mainFrame.getCanvas().addKeyListener(e);
         mainFrame.getFrame().addKeyListener(e);
-    }
-
-    /**
-     * method used to eventually remove a KeyAdapter.
-     * @param e the Key adapter to remove
-     */
-    public void removeKeyAdapter(final KeyAdapter e) {
-        mainFrame.getCanvas().removeKeyListener(e);
-        mainFrame.getFrame().removeKeyListener(e);
     }
 
 }

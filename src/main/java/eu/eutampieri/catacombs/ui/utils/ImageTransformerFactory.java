@@ -1,7 +1,7 @@
 package eu.eutampieri.catacombs.ui.utils;
 
 /**
- * An abstract factory of image transformers
+ * An abstract factory of image transformers.
  */
 public interface ImageTransformerFactory {
     /**

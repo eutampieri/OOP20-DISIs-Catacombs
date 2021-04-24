@@ -4,10 +4,15 @@ import eu.eutampieri.catacombs.model.map.TileMap;
 
 import java.util.List;
 
+/**
+ * A weapon, i.e. an object which, if used, reduces the health of the character it's used against.
+ * @see GameObject
+ */
 public abstract class Weapon extends GameObject {
 
     private static final float MINUTE_TO_MILLIS = 60_000f;
     private static final int BULLET_DEFAULT_SIZE = 8;
+    private static final int SIZE = 16;
 
     /**
      * Projectile strength.
@@ -63,7 +68,7 @@ public abstract class Weapon extends GameObject {
      */
     public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
             final int fr, final Team team) {
-        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, 0, 0), team);
+        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, SIZE, SIZE), team);
         this.user = e;
         setTileMap(tm);
         setStrength(strength);
@@ -75,9 +80,22 @@ public abstract class Weapon extends GameObject {
         this.fireDelayCount = 0;
     }
 
+    /**
+     *
+     * @param e        Entity using weapon
+     * @param tm       Tile map
+     * @param x        X position
+     * @param y        Y position
+     * @param strength Bullet strength
+     * @param ps       Bullet speed
+     * @param fr       Weapon fire rate
+     * @param w        Weapon hit box width
+     * @param h        Weapon hit box height
+     * @param team     Shooting entity team
+     */
     public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
-                  final int fr, final Team team, final GameObjectType kind, final int size) {
-        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, 0, 0), team);
+                  final int fr, final int w, final int h, final Team team) {
+        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, w, h), team);
         this.user = e;
         setTileMap(tm);
         setStrength(strength);
@@ -85,8 +103,35 @@ public abstract class Weapon extends GameObject {
         setFireRate(fr);
         setFireDelay(Math.round(MINUTE_TO_MILLIS / fireRate));
         setCanFire(true);
-        this.bulletKind = kind;
-        this.bulletSize = size;
+        this.bulletSize = BULLET_DEFAULT_SIZE;
+        this.fireDelayCount = 0;
+    }
+
+    /**
+     *
+     * @param e             Entity using weapon
+     * @param tm            Tile map
+     * @param x             X position
+     * @param y             Y position
+     * @param strength      Bullet strength
+     * @param ps            Bullet speed
+     * @param fr            Weapon fire rate
+     * @param team          Shooting entity team
+     * @param bulletKind    Bullet kind
+     * @param bulletSize    Bullet size
+     */
+    public Weapon(final Entity e, final TileMap tm, final int x, final int y, final int strength, final int ps,
+                  final int fr, final Team team, final GameObjectType bulletKind, final int bulletSize) {
+        super(x, y, GameObjectType.PICKUP, new CollisionBox(x, y, SIZE, SIZE), team);
+        this.user = e;
+        setTileMap(tm);
+        setStrength(strength);
+        setProjectileSpeed(ps);
+        setFireRate(fr);
+        setFireDelay(Math.round(MINUTE_TO_MILLIS / fireRate));
+        setCanFire(true);
+        this.bulletKind = bulletKind;
+        this.bulletSize = bulletSize;
         this.fireDelayCount = 0;
     }
 
@@ -135,6 +180,12 @@ public abstract class Weapon extends GameObject {
         return this.canFire;
     }
 
+    /**
+     * Fires a bullet.
+     * @param psx   Projectile speed modifier in the X axis (1, -1, 0 usually)
+     * @param psy   Projectile speed modifier in the Y axis (1, -1, 0 usually)
+     * @return      A GameObject list composed of the bullet fired.
+     */
     public final List<GameObject> fire(final int psx, final int psy) {
        final Projectile p;
        if (this.bulletKind != null && bulletSize > 8) {
