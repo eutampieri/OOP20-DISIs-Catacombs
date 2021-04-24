@@ -340,6 +340,25 @@
     il branch veniva mergiato con il master.
     La suddivisione dei lavori precedentemente stabilita veniva rispecchiata nella spartizione degli issue ovvero degli obbiettivi parziali da risolvere che uniti
     andavano a comporre una parte sostanziosa di codice.
+    \subsection{Tampieri}
+    \par Ho realizzato le seguenti classi:
+    \begin{itemize}
+        \item \texttt{eu.eutampieri.catacombs.model.Action}
+        \item \texttt{eu.eutampieri.catacombs.model.Direction}
+        \item \texttt{eu.eutampieri.catacombs.model.HealthModifier}
+        \item \texttt{eu.eutampieri.catacombs.model.LivingCharacter}
+        \item \texttt{eu.eutampieri.catacombs.model.Player}, con contributi minimi di Monti
+        \item \texttt{eu.eutampieri.catacombs.model.SimplePotion}
+        \item \texttt{eu.eutampieri.catacombs.ui.gamefx.Animatable}
+        \item \texttt{eu.eutampieri.catacombs.ui.gamefx.AssetManagerProxy}
+        \item \texttt{eu.eutampieri.catacombs.ui.utils.ImageTransformer}
+        \item \texttt{eu.eutampieri.catacombs.ui.ImageTransformerFactory}
+        \item \texttt{eu.eutampieri.catacombs.ui.ImageTransformerFactoryImpl}
+        \item \texttt{eu.eutampieri.catacombs.ui.World}
+    \end{itemize}
+    \par Ho inoltre realizzato alcune bugfixes nel codice da me usato, in particolare in \texttt{eu.eutampieri.catacombs.ui.Game}, \texttt{eu.eutampieri.catacombs.model.GameObject} e \texttt{eu.eutampieri.catacombs.model.Entity}.
+    \par Tranne che per le modifiche di classi o interfacce comuni, non ho avuto particolari problemi dovuti allo sviluppo in parallelo,
+    anche grazie all'utilizzo di \texttt{git}, di cui ho sfruttato il branching e il cherry pick.
     \section{Note di sviluppo}
     \subsection{Chelli}
     \begin{itemize}
@@ -357,14 +376,14 @@
     \par Ho utilizzato le seguenti funzionalità avanzate del linguaggio:
     \begin{itemize}
         \item Generici bounded, utilizzati per estendere il \texttt{SingleObject} realizzato da Giacomo Monti
-        \item Uso di lambda expression in \texttt{AssetManagerProxy} e \texttt{ImageTransformFactoryImpl}
+        \item Uso di lambda expression in \texttt{AssetManagerProxy} e \texttt{ImageTransformerFactoryImpl}
         \item Uso di \texttt{Stream} in \texttt{AssetManagerProxy}
         \item Utilizzato (seppur marginalmente) Apache Commons Lang: nello specifico \texttt{Pair} e \texttt{Triple}
         \item Configurato Gradle, partendo dall'esempio fornitoci e integrandolo con la static code analysis
     \end{itemize}
     \par Ho utilizzato i seguenti snippet di codice:
     \begin{itemize}
-        \item How to scale a \texttt{BufferedImage}\cite{so:BufferedImageScaling},\\\texttt{src/main/java/eu/eutampieri/catacombs/ui/utils/ImageTransformFactoryImpl.java}, linee 23-29.
+        \item How to scale a \texttt{BufferedImage}\cite{so:BufferedImageScaling},\\\texttt{src/main/java/eu/eutampieri/catacombs/ui/utils/ImageTransformerFactoryImpl.java}, linee 23-29.
     \end{itemize}
     \chapter{Commenti finali}
     \section{Autovalutazione e lavori futuri}
