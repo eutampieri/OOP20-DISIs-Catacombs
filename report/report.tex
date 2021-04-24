@@ -241,7 +241,6 @@
             In figura è rappresentato lo schema del Template Method della Weapon
         \end{center}
     \\
-    \\
     \par Per la generazione degli oggetti di gioco ho deciso di distinguere la generazione delle entità da quella degli oggetti.
     La decisione di implementare due factory invece che una deriva da due fattori:
     \begin{itemize}
@@ -257,8 +256,14 @@
             \tikzstyle{every node}=[font=\scriptsize]
 
             \begin {interface}[text width=3.5cm]{ObjectFactory}{0, 0}
-
+                \operation {spawnAt(x: int, y: int, f: SingleObject<GameObject>): List<GameObject>}
+                \operation {spawnSome(n: int, f: SingleObject<GameObject>): List<GameObject>}
             \end {interface}
+
+            \begin {class}[text width=3.5cm]{ObjectFactoryImpl}{0, -5}
+                \implement{ObjectFactory}
+                \operation {+setNewTileMap(tileMap: TileMap): void}
+            \end {class}
 
         \end{tikzpicture}
     \\
