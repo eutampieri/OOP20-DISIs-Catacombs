@@ -1,5 +1,8 @@
 package eu.eutampieri.catacombs.model.map;
 
+/**
+ * Tile represents a cell type for the map.
+ */
 public enum Tile {
     /**
      * A void tile, which contains nothing.
@@ -18,6 +21,9 @@ public enum Tile {
      */
     STAIRS;
 
+    /**
+     * @return if the Tile can be walked on.
+     */
     public boolean isWalkable() {
         return this == Tile.FLOOR || this == Tile.STAIRS;
     }
