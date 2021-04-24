@@ -53,7 +53,6 @@ public final class World {
         }));
 
         this.entities.addAll(objectFactory.spawnSome(3, (x, y, tm) -> {
-
             if (rand.nextInt(2) == 0) {
                 return new Gun(null, tm, x, y, GameObject.Team.FRIEND);
             } else {
@@ -118,7 +117,9 @@ public final class World {
         }
 
         final List<GameObject> newEntities = Stream.concat(entities.stream(), Stream.of(player))
-                .filter((entity) -> this.isOnCamera(entity.getPosX(), entity.getPosY()))
+                .filter((entity) -> this.isOnCamera(entity.getPosX(), entity.getPosY())
+                        || entity.getKind() == GameObjectType.BULLET
+                        || entity.getKind() == GameObjectType.BOSS_BULLET)
                 .flatMap((x) -> x.update(delta, this.getAllEntitiesExcept(x)).stream())
                 .collect(Collectors.toList());
         this.entities.addAll(newEntities);
