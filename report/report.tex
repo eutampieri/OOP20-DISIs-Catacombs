@@ -81,13 +81,27 @@
             \attribute{WALL}
             \attribute{FLOOR}
             \attribute{STAIRS}
-            \operation{+ render(g2 : Graphics2D)}
+            \operation{+ isWalkable(): boolean}
         \end{class}
     \end{tikzpicture}
     \par La mappa e' concettualmente una matrice di caselle, che possono essere pavimento o muro.
 
     \par Le caselle vengono rappresentate da un enum chiamato Tile.
 
+    % UML TileMap
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{interface}[text width=3.5cm]{TileMap}{0, 0}
+            \operation{height(): int}
+            \operation{width(): int}
+            \operation{at(x: int, y: int): Tile}
+            \operation{canSpawnAt(x: int, y: int): boolean}
+        \end{interface}
+        \begin{class}[text width=3.5cm]{TileMapImpl}{4, 0}
+            \implement{TileMap}
+            \operation{+ getMap(): Tile[][]}
+        \end{class}
+    \end{tikzpicture}
     \par Per rappresentare la mappa, ho deciso di usare un interfaccia chiamata TileMap.
     Quest'interfaccia ha le poche funzioni necessarie per descrivere la rappresentazione concettuale
     descritta in precedenza.
