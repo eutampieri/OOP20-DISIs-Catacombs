@@ -33,7 +33,7 @@
     poter cominciare un altra partità in una nuova mappa.
     \par Il gioco può terminare anche se viene sconfitto il boss della mappa ovvero
     un nemico di dimensione maggiore rispetto a quelli incontrati nelle stanze precedenti.
-    Tale boss possiederà anche abilità superiori e armi letali per il personaggio.
+    Il boss possiederà anche abilità superiori.
     \par Se il giocatore si trova in difficoltà può trovare sparse per la mappa di gioco
     alcune pozioni curative che verranno lasciate sporadicamente dopo l'uccisione dei nemici base,
     anche la quantità di vita rilasciata dalle pozioni è casuale.
@@ -70,6 +70,71 @@
     \chapter{Design}
     \section{Architettura}
     \section{Design dettagliato}
+    \subsection{Chelli}
+    \par Questa parte si concentrerà sugli aspetti relativi alla mappa di gioco.
+    % UML Tile
+    \par
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{class}[text width=3.5cm]{Tile}{0, 0}
+            \attribute{VOID}
+            \attribute{WALL}
+            \attribute{FLOOR}
+            \attribute{STAIRS}
+            \operation{+ isWalkable(): boolean}
+        \end{class}
+    \end{tikzpicture}
+    \par La mappa e' concettualmente una matrice di caselle, che possono essere pavimento o muro.
+
+    \par Le caselle vengono rappresentate da un enum chiamato Tile.
+
+    % UML TileMap
+    \par
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{interface}[text width=3.5cm]{TileMap}{0, 0}
+            \operation{height(): int}
+            \operation{width(): int}
+            \operation{at(x: int, y: int): Tile}
+            \operation{canSpawnAt(x: int, y: int): boolean}
+        \end{interface}
+        \begin{class}[text width=3.5cm]{TileMapImpl}{6, 0}
+            \implement{TileMap}
+            \operation{+ getMap(): Tile[][]}
+        \end{class}
+    \end{tikzpicture}
+    \par Per rappresentare la mappa, ho deciso di usare un interfaccia chiamata TileMap.
+    Quest'interfaccia ha le poche funzioni necessarie per descrivere la rappresentazione concettuale
+    descritta in precedenza.
+    Anche se questa interfaccia ha una sola classe che la implementa,
+    serve per astrarre l'implementazione che potrebbe cambiare col tempo
+    e per lasciare spazio a nuove implementazioni possibili.
+    L'implementazione attuale utilizza una matrice di Tile siccome mi sembrava la rappresentazione piu vicina al concetto di TileMap.
+
+    % UML TileMapFactory
+    \par
+    \begin{tikzpicture}
+        \tikzstyle{every node}=[font=\scriptsize]
+        \begin{interface}[text width=3.5cm]{TileMapFactory}{0, 0}
+            \operation{def(): TileMap}
+            \operation{seededDef(seed: long): TileMap}
+            \operation{empty(h: int, w: int): TileMap}
+        \end{interface}
+        \begin{class}[text width=3.5cm]{TileMapFactoryImpl}{6, 0}
+            \implement{TileMapFactory}
+        \end{class}
+    \end{tikzpicture}
+    \par Per la creazione delle TileMap ho deciso di usare una Factory,
+    anche questa divisa in interfaccia e implementazione.
+    La Factory fornisce metodi per avere una TileMap con parametri default,
+    un metodo simile per fare la stessa cosa ma con un seed dato,
+    e un metodo per una TileMap vuota, usato per testing.
+
+    \par L'implementazione della Factory, e' divisa in diverse funzioni private
+    in quanto una singola funzione risultava troppo lunga e difficile da leggere.
+    Tutte le TileMap richieste dall'interfaccia della Factory, possono essere costruite con la stessa funzione internamente,
+    a parte quella vuota usata per il testing.
+
     \subsection{Sanità}
     \par Questa parte si concentrerà sugli aspetti relativi ai vari stati che costituiscono il gioco (menu, stato di gioco, stato di fine).
      Il sistema per la creazione di questi stati è la creazione di una classe astratta State dalla quale poi verranno
@@ -228,6 +293,24 @@
         \end{itemize}
     \par Si è inoltre deciso di avere una test coverage minima obbligatoria, fissata al 50\%, e di testare tramite una pipeline (utilizzando Github Actions) per evitare di introdurre regressioni nel branch principale.
     \section{Metodologia di lavoro}
+    \subsection{Chelli}
+    I file che ho sviluppato interamente io o quasi sono:
+    \begin{itemize}
+        \item Tile
+        \item TileMap
+        \item TileMapImpl
+        \item TileMapFactory
+        \item TileMapFactoryImpl
+        \item Projectile
+    \end{itemize}
+    Le dipendenze della TileMap con il resto del progetto e' minima, e la progettazione iniziale e' stata abbastanza ben costituita
+    in quanto ho dovuto aggiungere funzioni solo una volta su richiesta degli altri membri,
+    e questa modifica e' stata molto semplice e di poche righe.
+    Oltre ha questo ho contribuito in diverse classi per aggiungere feature o fare refactor di parti problematiche.
+    Abbiamo tutti usato git creando nuovi branch per ogni cambiamento richiesto,
+    facendo uso di task automtizzati su github per il controllo di errori e stile del codice,
+    e richiedendo review ai collaboratori per ogni pull request al master.
+
     \subsection{Sanità}
     \par In questa parte esporrò il mio contributo per il progetto relativo alle interfacce grafiche al caricamento di risorse grafiche
     e testuali , alla gestione degli asset e delle animazioni del gioco , alla struttura del loop principale attraverso il quale si
@@ -258,6 +341,13 @@
     La suddivisione dei lavori precedentemente stabilita veniva rispecchiata nella spartizione degli issue ovvero degli obbiettivi parziali da risolvere che uniti
     andavano a comporre una parte sostanziosa di codice.
     \section{Note di sviluppo}
+    \subsection{Chelli}
+    \begin{itemize}
+        \item Uso di stream per facilitarmi nell'algoritmo di generazione della mappa
+        \item Uso di lambda expression insieme agli stream
+        \item Abbiamo usato gradle
+        \item L'algoritmo usato per generare la mappa, essendo molto specifico non e' fornito da librerie esterne
+    \end{itemize}
     \subsection{Sanità}
     \begin{itemize}
             \item Uso di Optional per la gestione degli eventuali file non trovati
@@ -265,6 +355,12 @@
     \end{itemize}
     \chapter{Commenti finali}
     \section{Autovalutazione e lavori futuri}
+    \subsection{Chelli}
+    Il mio lavoro si concentrava su una parte chiave nel progetto anche se non centrale,\\
+    per questo mi e' stato facile lavorare sul mio progetto in modo indipendente,\\
+    riportando un risultato piu che soddisfacente senza particolari problemi.\\
+    Anche se il progetto potrebbe essere portato avanti, non e' nelle mie intenzioni farlo,\\
+    visto che come gioco non porta avanti niente di nuovo o interessante.\\
     \subsection{Sanità}
     \par Questo progetto è stato veramente impegnativo ed è stato in grado di far risaltare le mie lacune riguardo sopratutto l'utilizzo di \texttt{git} che come
     primo approccio è stato abbastanza brusco, mi sono ritrovato catapultato in una gestione condivisa dei file che non avevo mai usato.
