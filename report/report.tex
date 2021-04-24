@@ -72,6 +72,8 @@
     \section{Design dettagliato}
     \subsection{Chelli}
     \par Questa parte si concentrerà sugli aspetti relativi alla mappa di gioco.
+    \\
+    \\
     % UML Tile
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
@@ -87,6 +89,8 @@
 
     \par Le caselle vengono rappresentate da un enum chiamato Tile.
 
+    \\
+    \\
     % UML TileMap
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
@@ -109,6 +113,9 @@
     e per lasciare spazio a nuove implementazioni possibili.
     L'implementazione attuale utilizza una matrice di Tile siccome mi sembrava la rappresentazione piu vicina al concetto di TileMap.
 
+    \\
+    \\
+    % UML TileMapFactory
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
         \begin{interface}[text width=3.5cm]{TileMapFactory}{0, 0}
