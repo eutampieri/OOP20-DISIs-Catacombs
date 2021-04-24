@@ -79,6 +79,37 @@
      stato ed essendo una classe astratta l’implementazione di due metodi astratti quali update e render sarà diversa da
      stato a stato in modo che la logica e la grafica di ogni stato risulti diversa.
     %UML
+    \par
+        \begin{tikzpicture}
+            \tikzstyle{every node}=[font=\scriptsize]
+            \begin{abstractclass}[text width=3.5cm]{State}{0, 0}
+
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{abstractclass}
+
+            \begin{class}[text width=3.5cm]{MenuState}{-5, -5}
+                \inherit{State}
+
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{class}
+
+            \begin{class}[text width=3.5cm]{GameState}{0, -5}
+                \inherit{State}
+
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{class}
+
+            \begin{class}[text width=3.5cm]{EndGameState}{5, -5}
+                \inherit{State}
+
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{class}
+
+        \end{tikzpicture}
     \par Questa parte verterà sulla gestione della schermata principale e su quella di fine gioco la quale poi introdurrà nuovamente
      alla schermata di menù. Il sistema per la gestione di questi due stati è la medesima, entrambi utilizzano il pattern Strategy
      infatti è possibile modificare la grafica di queste schermate senza andare ad impattare direttamente la logica che le gestisce.
@@ -87,36 +118,64 @@
      in un futuro cambiamento.
     %UML
     \par
-    \begin{tikzpicture}
-        \tikzstyle{every node}=[font=\scriptsize]
-        \begin{abstractclass}[text width=3.5cm]{State}{0, 0}
+        \begin{tikzpicture}
+            \tikzstyle{every node}=[font=\scriptsize]
+            \begin{class}[text width=3.5cm]{MenuState}{-10, 0}
 
-            \operation{+ update(delta : long)}
-            \operation{+ render(g2 : Graphics2D)}
-        \end{abstractclass}
+                \operation{+ update(delta : long)}
+                \operation{+ render(g2 : Graphics2D)}
+            \end{class}
 
-        \begin{class}[text width=3.5cm]{MenuState}{-5, -5}
-            \inherit{State}
+            \begin{interface}[text width=3.5cm]{LogicMenu}{-10, -5}
 
-            \operation{+ update(delta : long)}
-            \operation{+ render(g2 : Graphics2D)}
-        \end{class}
+                \operation{start( )}
+                \operation{selectOption( )}
+                \operation{getOption( )}
+                \operation{isOptionStart( )}
+            \end{class}
 
-        \begin{class}[text width=3.5cm]{GameState}{0, -5}
-            \inherit{State}
+            \aggregation{MenuState}{uses}{LogicMenu}
 
-            \operation{+ update(delta : long)}
-            \operation{+ render(g2 : Graphics2D)}
-        \end{class}
+            \begin{class}[text width=3.5cm]{LogicMenuImpl}{-10, -10}
+                \implement{LogicMenu}
 
-        \begin{class}[text width=3.5cm]{EndGameState}{5, -5}
-            \inherit{State}
+                \operation{+ start( )}
+                \operation{+ selectOption( )}
+                \operation{+ getOption( )}
+                \operation{+ isOptionStart( )}
 
-            \operation{+ update(delta : long)}
-            \operation{+ render(g2 : Graphics2D)}
-        \end{class}
+            \end{class}
 
-    \end{tikzpicture}
+        \end{tikzpicture}
+
+        \begin{tikzpicture}
+                    \tikzstyle{every node}=[font=\scriptsize]
+                    \begin{class}[text width=3.5cm]{EndGameState}{10, 0}
+
+                        \operation{+ update(delta : long)}
+                        \operation{+ render(g2 : Graphics2D)}
+                    \end{class}
+
+                    \begin{interface}[text width=3.5cm]{EndGameLogic}{10, -5}
+
+                        \operation{continueGame(delta : long)}
+                        \operation{getFont( )}
+                        \operation{isBlink( )}
+                    \end{class}
+
+                    \aggregation{EndGameState}{uses}{EndGameLogic}
+
+                    \begin{class}[text width=3.5cm]{EndGameLogicImpl}{10, -10}
+                        \implement{EndGameLogic}
+
+                        \operation{+ continueGame(delta : long)}
+                        \operation{+ getFont( )}
+                        \operation{+ isBlink( )}
+
+                    \end{class}
+
+                \end{tikzpicture}
+
     \par Questa parte riguarda la gestione degli asset più precisamente la creazione di strutture e il caricamento delle
     immagini all’interno di esse. Il pattern utilizzato in questo caso è Singleton permettendo che ci sia un'unica istanza
     di AssetManager accessibile globalmente senza doversi preoccupare di fornire il riferimento a chi lo richiede.
