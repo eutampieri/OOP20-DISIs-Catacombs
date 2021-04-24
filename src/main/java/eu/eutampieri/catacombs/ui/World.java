@@ -97,7 +97,7 @@ public final class World {
     /**
      * Update all the entities in the world.
      * This method call will mainly update the state of the entities.
-     * @param delta
+     * @param delta the number of milliseconds elapsed since the last update
      */
     public void update(final long delta) {
         this.player.stop();

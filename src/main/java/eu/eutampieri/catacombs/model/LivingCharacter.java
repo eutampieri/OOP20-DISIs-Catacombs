@@ -1,5 +1,8 @@
 package eu.eutampieri.catacombs.model;
 
+/**
+ * This interface is required to handle health and to allow HealthModifiers to increase or decrease it.
+ */
 public interface LivingCharacter {
     /**
      * Getter for LivingCharacter health.
