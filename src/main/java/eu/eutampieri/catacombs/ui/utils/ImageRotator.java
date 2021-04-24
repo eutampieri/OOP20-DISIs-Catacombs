@@ -4,6 +4,10 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
+/**
+ * this Class rotate an image by a given angle.
+ */
+
 public final class ImageRotator {
     /**
      * This method rotate the given image.

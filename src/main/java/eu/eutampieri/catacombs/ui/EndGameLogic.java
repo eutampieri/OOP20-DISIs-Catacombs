@@ -2,6 +2,10 @@ package eu.eutampieri.catacombs.ui;
 
 import java.awt.Font;
 
+/**
+ * This interface manages the logic part of EndGameState.
+ */
+
 public interface EndGameLogic {
     /**
      * this method manages the generation of a new game proceeding to the menu state.
