@@ -40,7 +40,7 @@ public class EndGameLogicImpl implements EndGameLogic {
         }
     }
     /**
-     *
+     * This method returns the font utilized.
      * @return the font utilized
      */
     @Override
@@ -48,7 +48,7 @@ public class EndGameLogicImpl implements EndGameLogic {
         return font;
     }
     /**
-     *
+     * The method returns true if is blinking.
      * @return true if is blinking
      */
     @Override

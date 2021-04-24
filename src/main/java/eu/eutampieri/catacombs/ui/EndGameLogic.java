@@ -14,14 +14,14 @@ public interface EndGameLogic {
     void continueGame(long delta);
 
     /**
-     *
+     * This method returns the font utilized
      * @return the font utilized
      */
 
     Font getFont();
 
     /**
-     *
+     * This method returns true if is blinking
      * @return true if is blinking
      */
 

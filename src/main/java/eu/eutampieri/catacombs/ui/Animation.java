@@ -43,7 +43,7 @@ public class Animation {
     }
 
     /**
-     *
+     * This method returns the list of images of an animation.
      * @return the list of images of an animation
      */
 
@@ -52,8 +52,8 @@ public class Animation {
     }
 
     /**
-     *
-     * @return the frame delay setted
+     * This method returns the frame delay set.
+     * @return the frame delay set
      */
 
     public float getFrameDelay() {
@@ -61,7 +61,7 @@ public class Animation {
     }
 
     /**
-     *
+     * This method returns the single image of an animation.
      * @return the single image of an animation
      */
     public Optional<BufferedImage> getCurrentFrame() {
@@ -69,7 +69,7 @@ public class Animation {
     }
 
     /**
-     *
+     * This method returns the frame at the index specified.
      * @param stateTime an time index in an animation sequence
      * @return the frame at the index specified
      */
@@ -83,7 +83,7 @@ public class Animation {
     }
 
     /**
-     *
+     * This method returns the current index.
      * @return the current index
      */
 
@@ -92,8 +92,8 @@ public class Animation {
     }
 
     /**
-     *
-     * @return teh current timer
+     * This method returns the current timer.
+     * @return the current timer
      */
 
     public float getTimer() {
@@ -130,7 +130,7 @@ public class Animation {
     }
 
     /**
-     *
+     * This method returns the last image of the List.
      * @return the last image of the List
      */
 
