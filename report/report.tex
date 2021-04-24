@@ -72,8 +72,6 @@
     \section{Design dettagliato}
     \subsection{Chelli}
     \par Questa parte si concentrerà sugli aspetti relativi alla mappa di gioco.
-    \\
-    \\
     % UML Tile
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
@@ -89,8 +87,6 @@
 
     \par Le caselle vengono rappresentate da un enum chiamato Tile.
 
-    % \\
-    % \\
     % UML TileMap
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
@@ -105,16 +101,14 @@
             \operation{+ getMap(): Tile[][]}
         \end{class}
     \end{tikzpicture}
-    \par Per rappresentare la mappa, ho deciso di usare un interfaccia chiamata TileMap.\\
+    \par Per rappresentare la mappa, ho deciso di usare un interfaccia chiamata TileMap.
     Quest'interfaccia ha le poche funzioni necessarie per descrivere la rappresentazione concettuale
-    descritta in precedenza.\\
+    descritta in precedenza.
     Anche se questa interfaccia ha una sola classe che la implementa,
     serve per astrarre l'implementazione che potrebbe cambiare col tempo
-    e per lasciare spazio a nuove implementazioni possibili.\\
+    e per lasciare spazio a nuove implementazioni possibili.
     L'implementazione attuale utilizza una matrice di Tile siccome mi sembrava la rappresentazione piu vicina al concetto di TileMap.
 
-    \\
-    \\
     \begin{tikzpicture}
         \tikzstyle{every node}=[font=\scriptsize]
         \begin{interface}[text width=3.5cm]{TileMapFactory}{0, 0}
@@ -126,10 +120,10 @@
             \implement{TileMapFactory}
         \end{class}
     \end{tikzpicture}
-    \par Per la creazione delle TileMap ho deciso di usare una Factory,\\
-    anche questa divisa in interfaccia e implementazione.\\
-    La Factory fornisce metodi per avere una TileMap con parametri default,\\
-    un metodo simile per fare la stessa cosa ma con un seed dato,\\
+    \par Per la creazione delle TileMap ho deciso di usare una Factory,
+    anche questa divisa in interfaccia e implementazione.
+    La Factory fornisce metodi per avere una TileMap con parametri default,
+    un metodo simile per fare la stessa cosa ma con un seed dato,
     e un metodo per una TileMap vuota, usato per testing.
 
     \par L'implementazione della Factory, e' divisa in diverse funzioni private
